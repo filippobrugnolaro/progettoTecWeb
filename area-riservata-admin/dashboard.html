@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<!--I tag <br> dovranno essere sostituiti
+    con opportune modifiche in CSS-->
+
+<html lang="it">
+
+<head>
+	<title>Homepage admin - Adrenaline Motocross Park</title>
+	<meta charset="utf-8" />
+    <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
+	<meta name="keywords" content="motocross, informazioni, noleggio" />
+	<meta name="description" content="Pagina principale admin" />
+	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
+</head>
+
+<body>
+  <header>
+		<h1 lang="en">Adrenaline Motocross Park</h1>
+	</header>
+
+	<nav id="breadcrumb">
+		<p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Area riservata admin</p>
+	</nav>
+
+	<nav id="menuList" aria-labelledby="menu principale">
+		<h2>Menu</h2>
+		<ul>
+			<li><a href="../" lang="en">Home</a></li>
+			<li><a href="../tracciati.html">Tracciati</a></li>
+			<li><a href="../servizi.html">Servizi</a></li>
+			<li><a href="../scuola.html">Scuola</a></li>
+			<li><a href="../noleggio.html">Noleggio</a></li>
+			<li><a href="../ingressi.html">Ingressi</a></li>
+			<li><a href="../contatti.html">Contatti</a></li>
+			<li>Area riservata</li>
+		</ul>
+	</nav>
+
+    <div id="sideMenu">
+        <img src="img_path" alt="immagine dell'utente"/>
+
+        <nav id="sideMenu" aria-labelledby="menu area riservata admin">
+            <ul>
+                <li><span lang="en">Dashboard</span></li>
+                <li><a href="tracciati.php">Tracciati</a></li>
+                <li><a href="noleggio.php">Noleggio</a></li>
+                <li><a href="ingressi.php">Ingressi</a></li>
+                <li><a href="lezioni.php">Lezioni</a></li>
+                <li><a href="../logout.php" lang="en">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="contentAdmin">
+        <h1>Panello di controllo admin</h1>
+        <article>
+            <h2><a href="tracciati.php">Gestione tracciati</a></h2>
+            <ul>
+                <li>Inserimento di nuovi tracciati</li>
+                <li>Modifica delle informazioni dei tracciati già presenti</li>
+                <li>Cancellazione dei tracciati presenti</li>
+            </ul>
+        </article>
+
+        <article>
+            <h2><a href="noleggio.php">Gestione noleggio</a></h2>
+            <ul>
+                <li>Inserimento di nuove moto noleggiabili</li>
+                <li>Modifica delle informazioni delle moto in magazzino</li>
+                <li>Cancellazione delle moto non più presenti in magazzino</li>
+                <li>Visualizzazione noleggi prenotati dagli utenti</li>
+            </ul>
+        </article>
+
+        <article>
+            <h2><a href="ingressi.php">Gestione ingressi</a></h2>
+            <ul>
+                <li>Inserimento di nuove date di apertura</li>
+                <li>Modifica delle informazioni per una data di apertura</li>
+                <li>Cancellazione di date precedentemente inserite</li>
+                <li>Visualizzazione ingressi prenotati dagli utenti</li>
+            </ul>
+        </article>
+
+        <article>
+            <h2><a href="lezioni.php">Gestione lezioni</a></h2>
+            <ul>
+                <li>Inserimento di nuove lezioni</li>
+                <li>Modifica delle informazioni per una lezione</li>
+                <li>Cancellazione di lezioni precedentemente inserite</li>
+                <li>Visualizzazione lezioni prenotate dagli utenti</li>
+            </ul>
+        </article>
+
+		<p><a href="#top">Torna su</a></p>
+  </div>
+
+	<footer>
+		<div class="footerInfo">
+			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
+			<p>Adrenaline Motocross Park è un parco divertimenti dedicato ai motociclisti
+			e agli appassionati di motocross. Il progetto nasce dalla passione autentica
+			per questo sport e punta a dare un tocco di qualità in più per permettere agli
+			appassionati di esprimersi in totale comodità e sicurezza.</p>
+		</div>
+
+		<div class="footerDoveSiamo">
+			<h3>Dove siamo</h3>
+            <p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
+            <p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
+            <p class="informazioniFooter">Indirizzo:</p>
+		</div>
+
+		<img src="../images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+		<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
+				rights reserved</span></p>
+		<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+	</footer>
+</body>
+</html>
