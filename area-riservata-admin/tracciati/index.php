@@ -33,7 +33,7 @@
 
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td scope=\'col\'>#'.$track['id'].'</td>';
-                    $recordsBody .= '<td>'.$track['lunghezza'].'m</td>';
+                    $recordsBody .= '<td>'.$track['lunghezza'].'<abbr title=\'metri\'>m</abbr></td>';
                     $recordsBody .= '<td>'.$track['terreno'].'</td>';
                     $recordsBody .= '<td>'.$track['apertura'].'</td>';
                     $recordsBody .= '<td>'.$track['chiusura'].'</td>';

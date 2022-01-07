@@ -202,7 +202,7 @@
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);
 
-    //$page = str_replace('_id_',$id,$page);
+    $page = str_replace('_id_',$id,$page);
     $page = str_replace('_marca_',$marca,$page);
     $page = str_replace('_modello_',$modello,$page);
     $page = str_replace("value=\"$cilindrata\"","value=\"$cilindrata\" selected",$page);
