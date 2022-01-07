@@ -52,8 +52,8 @@
                     $motoBody .= '<td>'.$moto['modello'].'</td>';
                     $motoBody .= '<td>'.$moto['cilindrata'].'cc</td>';
                     $motoBody .= '<td>'.$moto['anno'].'</td>';
-                    $motoBody .= '<td><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class="fas fa-pen"></i></a></td>';
-                    $motoBody .= '<td><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class="fas fa-trash"></i></a></td>';
+                    $motoBody .= '<td><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class\'fas fa-pen\'></i></a></td>';
+                    $motoBody .= '<td><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class=\'fas fa-trash\'></i></a></td>';
                     $motoBody .= '</tr>';
                 }
             }
@@ -64,7 +64,7 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
-    $page = str_replace('img_path', $_SESSION['user']->getImgPath(), $page);
+    $page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
     $page = str_replace('<erroreMoto/>', $errorMoto, $page);
     $page = str_replace('<erroreNoleggio/>', $errorNoleggio, $page);
     $page = str_replace('<globalError/>',$globalError,$page);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Gen 07, 2022 alle 14:28
+-- Creato il: Gen 07, 2022 alle 20:52
 -- Versione del server: 10.4.16-MariaDB
 -- Versione PHP: 7.4.12
 
@@ -27,7 +27,6 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `data_disponibile`
 --
 
-DROP TABLE IF EXISTS `data_disponibile`;
 CREATE TABLE `data_disponibile` (
   `data` date NOT NULL,
   `posti` smallint(6) NOT NULL
@@ -47,7 +46,6 @@ INSERT INTO `data_disponibile` (`data`, `posti`) VALUES
 -- Struttura della tabella `ingressi_entrata`
 --
 
-DROP TABLE IF EXISTS `ingressi_entrata`;
 CREATE TABLE `ingressi_entrata` (
   `codice` int(11) NOT NULL,
   `utente` varchar(20) NOT NULL,
@@ -60,7 +58,6 @@ CREATE TABLE `ingressi_entrata` (
 -- Struttura della tabella `ingressi_lezione`
 --
 
-DROP TABLE IF EXISTS `ingressi_lezione`;
 CREATE TABLE `ingressi_lezione` (
   `codice` int(11) NOT NULL,
   `utente` varchar(20) DEFAULT NULL,
@@ -73,7 +70,6 @@ CREATE TABLE `ingressi_lezione` (
 -- Struttura della tabella `lezione`
 --
 
-DROP TABLE IF EXISTS `lezione`;
 CREATE TABLE `lezione` (
   `id` int(11) NOT NULL,
   `data` date NOT NULL,
@@ -90,7 +86,6 @@ CREATE TABLE `lezione` (
 -- Struttura della tabella `moto`
 --
 
-DROP TABLE IF EXISTS `moto`;
 CREATE TABLE `moto` (
   `numero` smallint(6) NOT NULL,
   `cilindrata` smallint(6) NOT NULL,
@@ -99,13 +94,19 @@ CREATE TABLE `moto` (
   `anno` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `moto`
+--
+
+INSERT INTO `moto` (`numero`, `cilindrata`, `marca`, `modello`, `anno`) VALUES
+(7, 450, 'Honda', 'CRF 450R', 2022);
+
 -- --------------------------------------------------------
 
 --
 -- Struttura della tabella `noleggio`
 --
 
-DROP TABLE IF EXISTS `noleggio`;
 CREATE TABLE `noleggio` (
   `codice` int(11) NOT NULL,
   `data` date NOT NULL,
@@ -120,15 +121,28 @@ CREATE TABLE `noleggio` (
 -- Struttura della tabella `pista`
 --
 
-DROP TABLE IF EXISTS `pista`;
 CREATE TABLE `pista` (
   `id` smallint(6) NOT NULL,
-  `lunghezza` varchar(5) NOT NULL,
+  `lunghezza` smallint(6) NOT NULL,
   `descrizione` text NOT NULL,
   `terreno` varchar(20) NOT NULL,
   `apertura` time NOT NULL,
-  `chiusura` time NOT NULL
+  `chiusura` time NOT NULL,
+  `foto` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `pista`
+--
+
+INSERT INTO `pista` (`id`, `lunghezza`, `descrizione`, `terreno`, `apertura`, `chiusura`, `foto`) VALUES
+(1, 100, 'prova', 'terra_battuta', '08:00:00', '15:00:00', NULL),
+(12, 1000, 'prova1', 'terra_morbida', '14:00:00', '15:00:00', '12.png'),
+(13, 1000, 'prova1', 'terra_battuta', '14:00:00', '15:00:00', NULL),
+(14, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', NULL),
+(15, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', NULL),
+(16, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', '16.png'),
+(17, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', '17.png');
 
 -- --------------------------------------------------------
 
@@ -136,7 +150,6 @@ CREATE TABLE `pista` (
 -- Struttura della tabella `utente`
 --
 
-DROP TABLE IF EXISTS `utente`;
 CREATE TABLE `utente` (
   `cf` char(16) NOT NULL,
   `cognome` varchar(25) NOT NULL,
@@ -242,7 +255,7 @@ ALTER TABLE `lezione`
 -- AUTO_INCREMENT per la tabella `moto`
 --
 ALTER TABLE `moto`
-  MODIFY `numero` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `numero` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `noleggio`
@@ -254,7 +267,7 @@ ALTER TABLE `noleggio`
 -- AUTO_INCREMENT per la tabella `pista`
 --
 ALTER TABLE `pista`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Limiti per le tabelle scaricate

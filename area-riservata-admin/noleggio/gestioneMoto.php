@@ -10,45 +10,6 @@
     use function UTILS\sanitizeInputString;
     use function UTILS\checkInputValidity;
 
-    function sanitizeInput($messaggiForm) {
-        $marca = sanitizeInputString($_POST['marca']);
-
-        switch(checkInputValidity($marca,'/\d/')) {
-            case 1: $messaggiForm .= '<li>Marca non presente.</li>'; break;
-            case 2: $messaggiForm .= '<li>Marca non può contenere numeri</li>'; break;
-            default: break;
-        }
-
-        $modello = sanitizeInputString($_POST['modello']);
-
-        switch(checkInputValidity($modello,null)) {
-            case 1: $messaggiForm .= '<li>Modello non presente.</li>'; break;
-            default: break;
-        }
-
-        $cilindrata = sanitizeInputString($_POST['cilindrata']);
-
-        switch(checkInputValidity($cilindrata,null)) {
-            case 1: $messaggiForm .= '<li>Cilindrata non presente.</li>'; break;
-            default: break;
-        }
-
-        if(!ctype_digit($cilindrata))
-            $messaggiForm .= "<li>Cilindrata deve contenere solo numeri.</li>";
-
-        $anno = sanitizeInputString($_POST['anno']);
-
-        switch(checkInputValidity($anno,null)) {
-            case 1: $messaggiForm .= '<li>Anno non presente.</li>'; break;
-            default: break;
-        }
-
-        if(!ctype_digit($anno))
-            $messaggiForm .= '<li>Anno deve contenere solo numeri.</li>';
-        else if($anno < 2000 || $anno > date("Y"))
-            $messaggiForm .= '<li>Anno deve essere contenuto nel <span lang=\'en\'>range<span> 2000 e '.date("Y").'</li>';
-    }
-
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 2)
@@ -215,9 +176,11 @@
                 if($conn->openDB()) {
                     $moto = new DirtBike(-1,$marca,$modello,(int)$cilindrata,(int)$anno);
 
-                    if($conn->createDirtBike($moto)) {
+                    $newId = $conn->createDirtBike($moto);
+
+                    if($newId > -1) {
                         $messaggiForm = 'Nuova moto inserita con successo.';
-                        header('Location: ./'); //MOMENTANEA -> DA VALUTARE
+                        header("Location: gestioneMoto.php?id=$newId"); //MOMENTANEA -> DA VALUTARE
                     } else
                         $messaggiForm = 'Errore durante l\'inserimento della nuova moto.';
 
@@ -228,6 +191,9 @@
             } else {
                 $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
+        } else {
+            //default values (empty dirtbike)
+            $anno = date("Y");
         }
 
     }
@@ -236,7 +202,7 @@
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);
 
-    $page = str_replace('_id_',$id,$page);
+    //$page = str_replace('_id_',$id,$page);
     $page = str_replace('_marca_',$marca,$page);
     $page = str_replace('_modello_',$modello,$page);
     $page = str_replace("value=\"$cilindrata\"","value=\"$cilindrata\" selected",$page);

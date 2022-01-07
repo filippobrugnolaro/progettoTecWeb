@@ -17,10 +17,10 @@
     $conn = new dbAccess();
 
     if($conn->openDB()) {
-        $conn->deleteDirtBike($id);
+        $conn->deleteTrack($id);
         $conn->closeDB();
     }
 
-    header('Location: ./#gestioneMoto');
+    header('Location: ./#gestioneTracciato');
 
 ?>
