@@ -6,7 +6,7 @@
 <html lang="it">
 
 <head>
-	<title>Gestione tracciato - Adrenaline Motocross Park</title>
+	<title>Gestione moto - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
     <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
@@ -22,8 +22,8 @@
 
 	<nav id="breadcrumb">
 		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Tracciati</a>
-            &gt;&gt; Gestione tracciato
+            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Noleggio</a>
+            &gt;&gt; Gestione moto
         </p>
 	</nav>
 
@@ -56,47 +56,38 @@
     </div>
 
     <div class="contentAdmin">
-		<h1>Gestione tracciato</h1>
+		<h1>Gestione moto</h1>
 
         <globalError/>
 
-        <form method="post" action="_action_" enctype="multipart/form-data">
+        <form method="post" action="_action_">
             <messaggiForm/>
 
             <fieldset>
 
-                <legend>Dati tracciato</legend>
+                <legend>Dati moto</legend>
 
                 <id/>
 
-                <label for="lunghezza">Lunghezza (metri)</label>
-                <input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="0" step="10" placeholder="Lunghezza del tracciato">
+                <label for="marca">Marca</label>
+                <input type="text" required name="marca" id="marca" value="_marca_" placeholder="Marca della moto">
                 <br>
 
-                <label for="descrizione">Descrizione</label>
-                <textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" maxlength="200">_descrizione_</textarea>
+                <label for="modello">Modello</label>
+                <input type="text" required name="modello" id="modello" value="_modello_" placeholder="Modello della moto">
                 <br>
 
-                <label for="terreno">Terreno</label>
-                <select name="terreno" id="terreno" required>
-                    <option value="terra_battuta">Terra battuta</option>
-                    <option value="terra_sassosa">Terra sassosa</option>
-                    <option value="terra_morbida">Terra morbida</option>
-                    <option value="sabbia">Sabbia</option>
+                <label for="cilindrata">Cilindrata</label>
+                <select name="cilindrata" id="cilindrata">
+                    <option value="125">125cc</option>
+                    <option value="250">250cc</option>
+                    <option value="450">450cc</option>
                 </select>
                 <br>
 
-                <label for="apertura">Orario apertura</label>
-                <input type="time" required name="apertura" id="apertura" value="_apertura_" min="08:00" max="14:00" step="60">
-
-                <label for="chiusura">Orario chiusura</label>
-                <input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60">
+                <label for="anno">Anno</label>
+                <input type="number" required name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" step="1" placeholder="Anno di fabbricazione">
                 <br>
-
-                <oldImg/>
-
-                <label for="img">Immagine</label>
-                <input type="file" name="img" id="img" accept="image/png, image/jpeg">
 
 
             </fieldset>

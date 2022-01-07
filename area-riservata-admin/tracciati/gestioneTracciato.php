@@ -34,18 +34,33 @@
     $img = "";
 
     if (isset($_GET['id'])) {
-        //modifica moto
+        //modifica tracciati
+        $id = $_GET['id'];
+
         $action = 'gestioneTracciato.php?id=' . $_GET['id'];
         $actionText = "AGGIORNA";
 
         $idinput = '<label for=\'identificativo\'>Identificativo</label>';
         $idinput .= '<input type=\'text\' readonly name=\'identificativo\' id=\'identificativo\' value=\'_id_\'> <br>';
 
+        $imgFile = glob("../../images/tracks/$id.*");
+
+        if($imgFile !== false && !empty($imgFile))
+            $path = $id.'.'.pathinfo($imgFile[0],PATHINFO_EXTENSION);
+        else
+            $path = "";
+
+        if($path != "") {
+            $path = '../../images/tracks/'.$path;
+
+            $img = '<img src=\''.$path.'\' alt=\'immagine del circuito\'/>';
+            $img .= '<caption>Immagine attuale del circuito</caption>';
+            $img .= '<br>';
+        }
+
         $page = str_replace('<id/>',$idinput,$page);
 
         if (isset($_POST['submit'])) {
-            $id = $_GET['id'];
-
             $lunghezza = sanitizeInputString($_POST['lunghezza']);
 
             switch(checkInputValidity($lunghezza,null)) {
@@ -78,7 +93,9 @@
                 default: break;
             }
 
-            if($apertura < "08:00:00" || $apertura > "14:00:00")
+            $apertura = substr($apertura,0,5);
+
+            if($apertura < "08:00" || $apertura > "14:00")
                 $messaggiForm .= '<li>Orario apertura deve essere compreso tra le 08:00 e le 14:00.</li>';
 
             $chiusura = sanitizeInputString($_POST['chiusura']);
@@ -89,8 +106,9 @@
                 default: break;
             }
 
+            $chiusura = substr($chiusura,0,5);
 
-            if($chiusura < "14:00:00" || $chiusura > "20:00:00")
+            if($chiusura < "14:00" || $chiusura > "20:00")
                 $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
 
             if($messaggiForm == '') {
@@ -129,9 +147,8 @@
                             if($errors == '') {
                                 $fileName = $finalDir.$id.'.'.$fileType;
 
-                                foreach(glob("../../images/tracks/$id.*") as $file) {
+                                foreach(glob("../../images/tracks/$id.*") as $file)
                                     unlink($file);
-                                }
 
                                 if(move_uploaded_file($_FILES['img']['tmp_name'],$fileName))
                                     $messaggiForm .= '<li>File caricato con successo</li>';
@@ -176,14 +193,6 @@
                         $terreno = $track['terreno'];
                         $apertura = $track['apertura'];
                         $chiusura = $track['chiusura'];
-
-                        if($track['foto'] != null) {
-                            $path = '../../images/tracks/'.$track['foto'];
-
-                            $img = '<img src=\''.$path.'\' alt=\'immagine del circuito\'/>';
-                            $img .= '<caption>Immagine attuale del circuito</caption>';
-                            $img .= '<br>';
-                        }
                     } else {
                         $messaggiForm = dbAccess::QUERIES[1][1];
                     }
@@ -236,7 +245,9 @@
                 default: break;
             }
 
-            if($apertura < "08:00:00" || $apertura > "14:00:00")
+            $apertura = substr($apertura,0,5);
+
+            if($apertura < "08:00" || $apertura > "14:00")
                 $messaggiForm .= '<li>Orario apertura deve essere compreso tra le 08:00 e le 14:00.</li>';
 
             $chiusura = sanitizeInputString($_POST['chiusura']);
@@ -247,7 +258,9 @@
                 default: break;
             }
 
-            if($chiusura < "14:00:00" || $chiusura > "20:00:00")
+            $chiusura = substr($chiusura,0,5);
+
+            if($chiusura < "14:00" || $chiusura > "20:00")
             $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
 
             if($messaggiForm == '') {

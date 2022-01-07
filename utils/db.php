@@ -30,7 +30,11 @@
 
 			array('SELECT * FROM pista','Errore durante il recupero delle informazioni dei tracciati'), //get all tracks
 
-			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato') // get specific track
+			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track\
+
+			array('SELECT data_disponibile.data, posti, COUNT(*) AS occupati FROM ingressi_entrata INNER JOIN data_disponibile ON
+				ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
+				posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'),
 		);
 
 		private $conn;
@@ -161,9 +165,13 @@
 		}
 
 		public function deleteTrack(int $id) {
-			$sql = "DELETE FROM pista WHERE numero = ".$id."";
+			$sql = "DELETE FROM pista WHERE id = ".$id."";
 
 			mysqli_query($this->conn,$sql);
 		}
+
+
+		/* ***************************** ENTRIES MANAGEMENT ************************** */
+
 	}
 ?>

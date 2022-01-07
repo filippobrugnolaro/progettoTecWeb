@@ -6,7 +6,7 @@
 <html lang="it">
 
 <head>
-	<title>Gestione tracciato - Adrenaline Motocross Park</title>
+	<title>Dettagli noleggio - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
     <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
@@ -22,8 +22,8 @@
 
 	<nav id="breadcrumb">
 		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Tracciati</a>
-            &gt;&gt; Gestione tracciato
+            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Noleggio</a>
+            &gt;&gt; Dettagli noleggio
         </p>
 	</nav>
 
@@ -56,53 +56,24 @@
     </div>
 
     <div class="contentAdmin">
-		<h1>Gestione tracciato</h1>
+		<h1>Dettagli noleggio _data_</h1>
 
         <globalError/>
 
-        <form method="post" action="_action_" enctype="multipart/form-data">
-            <messaggiForm/>
-
-            <fieldset>
-
-                <legend>Dati tracciato</legend>
-
-                <id/>
-
-                <label for="lunghezza">Lunghezza (metri)</label>
-                <input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="0" step="10" placeholder="Lunghezza del tracciato">
-                <br>
-
-                <label for="descrizione">Descrizione</label>
-                <textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" maxlength="200">_descrizione_</textarea>
-                <br>
-
-                <label for="terreno">Terreno</label>
-                <select name="terreno" id="terreno" required>
-                    <option value="terra_battuta">Terra battuta</option>
-                    <option value="terra_sassosa">Terra sassosa</option>
-                    <option value="terra_morbida">Terra morbida</option>
-                    <option value="sabbia">Sabbia</option>
-                </select>
-                <br>
-
-                <label for="apertura">Orario apertura</label>
-                <input type="time" required name="apertura" id="apertura" value="_apertura_" min="08:00" max="14:00" step="60">
-
-                <label for="chiusura">Orario chiusura</label>
-                <input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60">
-                <br>
-
-                <oldImg/>
-
-                <label for="img">Immagine</label>
-                <input type="file" name="img" id="img" accept="image/png, image/jpeg">
-
-
-            </fieldset>
-            <input type="submit" name="submit" id="submit" value="_azione_">
-
-        </form>
+        <table title="tabella contenente i dettagli dei noleggi prenotati per le prossime date di apertura">
+            <caption>Dettaglio noleggi per le prossime giornate di apertura</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Utente</th>
+                    <th scope="col">Moto prenotata</th>
+                    <th scope="col">Attrezzatura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <dettaglioNoleggi/>
+            </tbody>
+        </table>
+		<erroreDettagli/>
 
 		<p><a href="#top">Torna su</a></p>
   </div>

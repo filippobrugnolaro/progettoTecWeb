@@ -6,7 +6,7 @@
 <html lang="it">
 
 <head>
-	<title>Gestione tracciato - Adrenaline Motocross Park</title>
+	<title>Ingressi admin - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
     <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
@@ -21,10 +21,7 @@
 	</header>
 
 	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Tracciati</a>
-            &gt;&gt; Gestione tracciato
-        </p>
+		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt; <a href="../">Area riservata admin</a> &gt;&gt; Ingressi</p>
 	</nav>
 
 	<nav id="menuList" aria-labelledby="menu principale">
@@ -47,8 +44,8 @@
             <ul>
                 <li><a href="../" lang="en">Dashboard</a></li>
                 <li><a href="../tracciati/">Tracciati</a></li>
-                <li><a href="./">Noleggio</a></li>
-                <li><a href="../ingressi/">Ingressi</a></li>
+                <li><a href="../noleggio/">Noleggio</a></li>
+                <li>Ingressi</li>
                 <li><a href="../lezioni/">Lezioni</a></li>
                 <li><a href="../../logout.php" lang="en">Logout</a></li>
             </ul>
@@ -56,53 +53,55 @@
     </div>
 
     <div class="contentAdmin">
-		<h1>Gestione tracciato</h1>
+		<h1>Gestione ingressi</h1>
 
-        <globalError/>
+		<globalError/>
 
-        <form method="post" action="_action_" enctype="multipart/form-data">
-            <messaggiForm/>
+		<article>
+			<h2>Prenotazioni ingressi</h2>
+			<table title="tabella contenente le prenotazioni degli ingressi per le prossime giornate di apertura">
+				<caption>Prenotazioni ingressi per le prossime giornate di apertura</caption>
+				<thead>
+					<tr>
+						<th scope="col">Data</th>
+						<th scope="col">Posti disponibili</th>
+						<th scope="col">Posti rimanenti</th>
+						<th scope="col">Dettagli</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ingressi/>
+				</tbody>
+			</table>
+			<erroreIngressi/>
+		</article>
 
-            <fieldset>
+		<article id='gestioneIngressi'>
+			<h2>Gestione date di apertura</h2>
+			<table title="tabella contenente le prossime date di apertura">
+				<caption>Prossime date di apertura</caption>
+				<thead>
+					<tr>
+						<th scope="col">Data</th>
+						<th scope="col">Giorno</th>
+						<th scope="col">Posti disponibili</th>
+						<th scope="col">Modifica</th>
+						<th scope="col">Elimina</th>
+					</tr>
+				</thead>
+				<tbody>
+					<moto/>
+				</tbody>
+			</table>
+			<erroreMoto/>
+		</article>
 
-                <legend>Dati tracciato</legend>
-
-                <id/>
-
-                <label for="lunghezza">Lunghezza (metri)</label>
-                <input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="0" step="10" placeholder="Lunghezza del tracciato">
-                <br>
-
-                <label for="descrizione">Descrizione</label>
-                <textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" maxlength="200">_descrizione_</textarea>
-                <br>
-
-                <label for="terreno">Terreno</label>
-                <select name="terreno" id="terreno" required>
-                    <option value="terra_battuta">Terra battuta</option>
-                    <option value="terra_sassosa">Terra sassosa</option>
-                    <option value="terra_morbida">Terra morbida</option>
-                    <option value="sabbia">Sabbia</option>
-                </select>
-                <br>
-
-                <label for="apertura">Orario apertura</label>
-                <input type="time" required name="apertura" id="apertura" value="_apertura_" min="08:00" max="14:00" step="60">
-
-                <label for="chiusura">Orario chiusura</label>
-                <input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60">
-                <br>
-
-                <oldImg/>
-
-                <label for="img">Immagine</label>
-                <input type="file" name="img" id="img" accept="image/png, image/jpeg">
+		<article>
+			<h2>Inserimento nuove date di apertura</h2>
+			<a href="gestioneIngresso.php">Nuova data di apertura</a>
+		</article>
 
 
-            </fieldset>
-            <input type="submit" name="submit" id="submit" value="_azione_">
-
-        </form>
 
 		<p><a href="#top">Torna su</a></p>
   </div>

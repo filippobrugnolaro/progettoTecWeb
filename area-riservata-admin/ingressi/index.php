@@ -10,28 +10,27 @@
         header('Location: ../../login.php');
 
 
-    $page = file_get_contents('noleggio.html');
+    $page = file_get_contents('ingressi.html');
 
     $conn = new dbAccess();
 
     $globalError = '';
-    $errorNoleggio = '';
-    $errorMoto = '';
+    $errorIngressi = '';
+    $errorIngresso = '';
     $recordsBody = '';
-    $motoBody = '';
+    $ingressiBody = '';
 
     if ($conn->openDB()) {
-        //get rent infos
-
+        //get booked entries info
         try {
-            $records = $conn->getQueryResult(dbAccess::QUERIES[2]);
+            $records = $conn->getQueryResult(dbAccess::QUERIES[6]);
 
             if($records !== null) {
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</td>'; //controllare accessibilità
                     $recordsBody .= '<td>'.$record['totNoleggi'].'</td>';
-                    $recordsBody .= '<td><a href=\'dettagliNoleggio.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
+                    $recordsBody .= '<td><a href=\'dettagliIngressi.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
             }
@@ -52,7 +51,7 @@
                     $motoBody .= '<td>'.$moto['modello'].'</td>';
                     $motoBody .= '<td>'.$moto['cilindrata'].'cc</td>';
                     $motoBody .= '<td>'.$moto['anno'].'</td>';
-                    $motoBody .= '<td><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class=\'fas fa-pen\'></i></a></td>';
+                    $motoBody .= '<td><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class\'fas fa-pen\'></i></a></td>';
                     $motoBody .= '<td><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class=\'fas fa-trash\'></i></a></td>';
                     $motoBody .= '</tr>';
                 }
@@ -65,8 +64,8 @@
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
     $page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
-    $page = str_replace('<erroreMoto/>', $errorMoto, $page);
-    $page = str_replace('<erroreNoleggio/>', $errorNoleggio, $page);
+    $page = str_replace('<erroreIngresso/>', $errorMoto, $page);
+    $page = str_replace('<erroreIngressi/>', $errorNoleggio, $page);
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<moto/>',$motoBody,$page);
     $page = str_replace('<noleggi/>',$recordsBody,$page);
