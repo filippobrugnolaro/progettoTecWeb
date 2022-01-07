@@ -4,7 +4,7 @@
     require_once("utils/utils.php");
 
     use DB\dbAccess;
-     use function UTILS\sanitizeInputString;
+    use function UTILS\sanitizeInputString;
 
     session_start();
 
@@ -45,7 +45,9 @@
         if (strlen($errors) == 0) {
             try {
                 if ($conn->openDB()) {
-                    $user = $conn->search_user($email, $password);
+                    $user = $conn->searchUser($email, $password);
+
+                    $conn->closeDB();
 
                     if ($user === null)
                         $errors = 'Email o password errata.';
@@ -67,7 +69,7 @@
                     }
                 } else
                     $errors = 'Impossibile effettuare l\'accesso ora, riprovare più tardi.';
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $errors = $e->getMessage();
             }
         } else {

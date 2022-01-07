@@ -12,6 +12,7 @@
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
 	<meta name="description" content="Pagina principale admin" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
+	<script src="https://kit.fontawesome.com/48ea8a0a6a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,19 +21,18 @@
 	</header>
 
 	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; <a href="./">Area riservata admin</a> &gt;&gt; Noleggio</p>
+		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt; <a href="../">Area riservata admin</a> &gt;&gt; Noleggio</p>
 	</nav>
 
 	<nav id="menuList" aria-labelledby="menu principale">
-		<h2>Menu</h2>
 		<ul>
-			<li><a href="../" lang="en">Home</a></li>
-			<li><a href="../tracciati.html">Tracciati</a></li>
-			<li><a href="../servizi.html">Servizi</a></li>
-			<li><a href="../scuola.html">Scuola</a></li>
-			<li><a href="../noleggio.html">Noleggio</a></li>
-			<li><a href="../ingressi.html">Ingressi</a></li>
-			<li><a href="../contatti.html">Contatti</a></li>
+			<li><a href="../../" lang="en">Home</a></li>
+			<li><a href="../../tracciati.html">Tracciati</a></li>
+			<li><a href="../../servizi.html">Servizi</a></li>
+			<li><a href="../../scuola.html">Scuola</a></li>
+			<li><a href="../../noleggio.html">Noleggio</a></li>
+			<li><a href="../../ingressi.html">Ingressi</a></li>
+			<li><a href="../../contatti.html">Contatti</a></li>
 			<li>Area riservata</li>
 		</ul>
 	</nav>
@@ -42,17 +42,66 @@
 
         <nav id="sideMenu" aria-labelledby="menu area riservata admin">
             <ul>
-                <li><a href="./" lang="en">Dashboard</a></li>
-                <li><a href="tracciati.php">Tracciati</a></li>
+                <li><a href="../" lang="en">Dashboard</a></li>
+                <li><a href="../tracciati/">Tracciati</a></li>
                 <li>Noleggio</li>
-                <li><a href="ingressi.php">Ingressi</a></li>
-                <li><a href="lezioni.php">Lezioni</a></li>
-                <li><a href="../logout.php" lang="en">Logout</a></li>
+                <li><a href="../ingressi/">Ingressi</a></li>
+                <li><a href="../lezioni/">Lezioni</a></li>
+                <li><a href="../../logout.php" lang="en">Logout</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="contentAdmin">
+		<h1>Gestione noleggi</h1>
+
+		<globalError/>
+
+		<article>
+			<h2>Prenotazioni noleggi</h2>
+			<table title="tabella contenente le prenotazioni dei noleggi per le prossime giornate di apertura">
+				<caption>Prenotazioni noleggi per le prossime giornate di apertura</caption>
+				<thead>
+					<tr>
+						<th scope="col">Data</th>
+						<th scope="col">Noleggi totali</th>
+						<th scope="col">Dettagli</th>
+					</tr>
+				</thead>
+				<tbody>
+					<noleggi/>
+				</tbody>
+			</table>
+			<erroreNoleggio/>
+		</article>
+
+		<article id='gestioneMoto'>
+			<h2>Gestione moto nel magazzino</h2>
+			<table title="tabella contenente le moto del magazzino">
+				<caption>Moto del magazzino</caption>
+				<thead>
+					<tr>
+						<th scope="col">Identificativo</th>
+						<th scope="col">Marca</th>
+						<th scope="col">Modello</th>
+						<th scope="col">Cilindrata</th>
+						<th scope="col">Anno</th>
+						<th scope="col">Modifica</th>
+						<th scope="col">Elimina</th>
+					</tr>
+				</thead>
+				<tbody>
+					<moto/>
+				</tbody>
+			</table>
+			<erroreMoto/>
+		</article>
+
+		<article>
+			<h2>Inserimento nuove moto</h2>
+			<a href="gestioneMoto.php">Nuova moto</a>
+		</article>
+
 
 
 		<p><a href="#top">Torna su</a></p>

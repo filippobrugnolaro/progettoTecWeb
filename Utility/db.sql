@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Gen 07, 2022 alle 00:07
+-- Creato il: Gen 07, 2022 alle 14:28
 -- Versione del server: 10.4.16-MariaDB
 -- Versione PHP: 7.4.12
 
@@ -27,10 +27,19 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `data_disponibile`
 --
 
+DROP TABLE IF EXISTS `data_disponibile`;
 CREATE TABLE `data_disponibile` (
   `data` date NOT NULL,
   `posti` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `data_disponibile`
+--
+
+INSERT INTO `data_disponibile` (`data`, `posti`) VALUES
+('2022-01-10', 100),
+('2022-01-11', 100);
 
 -- --------------------------------------------------------
 
@@ -38,6 +47,7 @@ CREATE TABLE `data_disponibile` (
 -- Struttura della tabella `ingressi_entrata`
 --
 
+DROP TABLE IF EXISTS `ingressi_entrata`;
 CREATE TABLE `ingressi_entrata` (
   `codice` int(11) NOT NULL,
   `utente` varchar(20) NOT NULL,
@@ -50,6 +60,7 @@ CREATE TABLE `ingressi_entrata` (
 -- Struttura della tabella `ingressi_lezione`
 --
 
+DROP TABLE IF EXISTS `ingressi_lezione`;
 CREATE TABLE `ingressi_lezione` (
   `codice` int(11) NOT NULL,
   `utente` varchar(20) DEFAULT NULL,
@@ -62,6 +73,7 @@ CREATE TABLE `ingressi_lezione` (
 -- Struttura della tabella `lezione`
 --
 
+DROP TABLE IF EXISTS `lezione`;
 CREATE TABLE `lezione` (
   `id` int(11) NOT NULL,
   `data` date NOT NULL,
@@ -78,11 +90,28 @@ CREATE TABLE `lezione` (
 -- Struttura della tabella `moto`
 --
 
+DROP TABLE IF EXISTS `moto`;
 CREATE TABLE `moto` (
   `numero` smallint(6) NOT NULL,
   `cilindrata` smallint(6) NOT NULL,
   `marca` varchar(20) NOT NULL,
-  `modello` varchar(20) NOT NULL
+  `modello` varchar(20) NOT NULL,
+  `anno` year(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `noleggio`
+--
+
+DROP TABLE IF EXISTS `noleggio`;
+CREATE TABLE `noleggio` (
+  `codice` int(11) NOT NULL,
+  `data` date NOT NULL,
+  `attrezzatura` tinyint(1) NOT NULL,
+  `utente` varchar(20) NOT NULL,
+  `moto` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,6 +120,7 @@ CREATE TABLE `moto` (
 -- Struttura della tabella `pista`
 --
 
+DROP TABLE IF EXISTS `pista`;
 CREATE TABLE `pista` (
   `id` smallint(6) NOT NULL,
   `lunghezza` varchar(5) NOT NULL,
@@ -106,6 +136,7 @@ CREATE TABLE `pista` (
 -- Struttura della tabella `utente`
 --
 
+DROP TABLE IF EXISTS `utente`;
 CREATE TABLE `utente` (
   `cf` char(16) NOT NULL,
   `cognome` varchar(25) NOT NULL,
@@ -141,7 +172,7 @@ ALTER TABLE `data_disponibile`
 ALTER TABLE `ingressi_entrata`
   ADD PRIMARY KEY (`codice`),
   ADD KEY `fk_ingressi_entrata` (`utente`),
-  ADD KEY `data` (`data`);
+  ADD KEY `ingressi_entrata_ibfk_1` (`data`);
 
 --
 -- Indici per le tabelle `ingressi_lezione`
@@ -149,7 +180,7 @@ ALTER TABLE `ingressi_entrata`
 ALTER TABLE `ingressi_lezione`
   ADD PRIMARY KEY (`codice`),
   ADD KEY `fk_ingressi_lezione` (`utente`),
-  ADD KEY `lezione` (`lezione`);
+  ADD KEY `ingressi_lezione_ibfk_1` (`lezione`);
 
 --
 -- Indici per le tabelle `lezione`
@@ -163,6 +194,15 @@ ALTER TABLE `lezione`
 --
 ALTER TABLE `moto`
   ADD PRIMARY KEY (`numero`);
+
+--
+-- Indici per le tabelle `noleggio`
+--
+ALTER TABLE `noleggio`
+  ADD PRIMARY KEY (`codice`),
+  ADD KEY `fk_noleggio` (`utente`),
+  ADD KEY `noleggio_ibfk_1` (`moto`),
+  ADD KEY `fk_data` (`data`);
 
 --
 -- Indici per le tabelle `pista`
@@ -202,7 +242,13 @@ ALTER TABLE `lezione`
 -- AUTO_INCREMENT per la tabella `moto`
 --
 ALTER TABLE `moto`
-  MODIFY `numero` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `numero` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT per la tabella `noleggio`
+--
+ALTER TABLE `noleggio`
+  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `pista`
@@ -218,21 +264,29 @@ ALTER TABLE `pista`
 -- Limiti per la tabella `ingressi_entrata`
 --
 ALTER TABLE `ingressi_entrata`
-  ADD CONSTRAINT `fk_ingressi_entrata` FOREIGN KEY (`utente`) REFERENCES `utente` (`cf`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ingressi_entrata_ibfk_1` FOREIGN KEY (`data`) REFERENCES `data_disponibile` (`data`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_ingressi_entrata` FOREIGN KEY (`utente`) REFERENCES `utente` (`cf`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ingressi_entrata_ibfk_1` FOREIGN KEY (`data`) REFERENCES `data_disponibile` (`data`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `ingressi_lezione`
 --
 ALTER TABLE `ingressi_lezione`
-  ADD CONSTRAINT `fk_ingressi_lezione` FOREIGN KEY (`utente`) REFERENCES `utente` (`cf`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ingressi_lezione_ibfk_1` FOREIGN KEY (`lezione`) REFERENCES `lezione` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_ingressi_lezione` FOREIGN KEY (`utente`) REFERENCES `utente` (`cf`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ingressi_lezione_ibfk_1` FOREIGN KEY (`lezione`) REFERENCES `lezione` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `lezione`
 --
 ALTER TABLE `lezione`
   ADD CONSTRAINT `lezione_ibfk_1` FOREIGN KEY (`pista`) REFERENCES `pista` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `noleggio`
+--
+ALTER TABLE `noleggio`
+  ADD CONSTRAINT `fk_data` FOREIGN KEY (`data`) REFERENCES `data_disponibile` (`data`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_noleggio` FOREIGN KEY (`utente`) REFERENCES `utente` (`cf`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `noleggio_ibfk_1` FOREIGN KEY (`moto`) REFERENCES `moto` (`numero`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
