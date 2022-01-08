@@ -6,7 +6,7 @@
 <html lang="it">
 
 <head>
-	<title>Dettagli noleggio - Adrenaline Motocross Park</title>
+	<title>Gestione ingresso - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
     <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
@@ -22,8 +22,8 @@
 
 	<nav id="breadcrumb">
 		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Noleggio</a>
-            &gt;&gt; Dettagli noleggio
+            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Ingressi</a>
+            &gt;&gt; Gestione ingresso
         </p>
 	</nav>
 
@@ -47,8 +47,8 @@
             <ul>
                 <li><a href="../" lang="en">Dashboard</a></li>
                 <li><a href="../tracciati/">Tracciati</a></li>
-                <li><a href="./">Noleggio</a></li>
-                <li><a href="../ingressi/">Ingressi</a></li>
+                <li><a href="../noleggio/">Noleggio</a></li>
+                <li><a href="./">Ingressi</a></li>
                 <li><a href="../lezioni/">Lezioni</a></li>
                 <li><a href="../../logout.php" lang="en">Logout</a></li>
             </ul>
@@ -56,24 +56,29 @@
     </div>
 
     <div class="contentAdmin">
-		<h1>Dettagli noleggio _data_</h1>
+		<h1>Gestione ingresso</h1>
 
         <globalError/>
 
-        <table title="tabella contenente i dettagli dei noleggi prenotati per le prossime date di apertura">
-            <caption>Dettaglio noleggi per le prossime giornate di apertura</caption>
-            <thead>
-                <tr>
-                    <th scope="col">Utente</th>
-                    <th scope="col">Moto prenotata</th>
-                    <th scope="col">Attrezzatura</th>
-                </tr>
-            </thead>
-            <tbody>
-                <dettaglioNoleggi/>
-            </tbody>
-        </table>
-		<erroreDettagli/>
+        <form method="post" action="_action_">
+            <messaggiForm/>
+
+            <fieldset>
+
+                <legend>Dati ingresso</legend>
+
+                <label for="data">Data apertura</label>
+                <input type="date" required _readonly_ name="data" id="data" value="_data_" min="_today_" placeholder="Data apertura">
+                <br>
+
+                <label for="posti">Posti disponibili</label>
+                <input type="number" required name="posti" id="posti" value="_posti_" min="50" max="200" step="10" placeholder="Posti disponibili">
+                <br>
+
+            </fieldset>
+            <input type="submit" name="submit" id="submit" value="_azione_">
+
+        </form>
 
 		<p><a href="#top">Torna su</a></p>
   </div>

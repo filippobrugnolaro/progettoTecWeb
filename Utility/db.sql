@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Gen 07, 2022 alle 20:52
+-- Creato il: Gen 08, 2022 alle 01:54
 -- Versione del server: 10.4.16-MariaDB
 -- Versione PHP: 7.4.12
 
@@ -37,8 +37,9 @@ CREATE TABLE `data_disponibile` (
 --
 
 INSERT INTO `data_disponibile` (`data`, `posti`) VALUES
-('2022-01-10', 100),
-('2022-01-11', 100);
+('2022-01-10', 110),
+('2022-01-11', 100),
+('2022-01-14', 200);
 
 -- --------------------------------------------------------
 
@@ -51,6 +52,14 @@ CREATE TABLE `ingressi_entrata` (
   `utente` varchar(20) NOT NULL,
   `data` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `ingressi_entrata`
+--
+
+INSERT INTO `ingressi_entrata` (`codice`, `utente`, `data`) VALUES
+(1, 'CVLLSN00A04A001A', '2022-01-10'),
+(2, 'CVLLSN00A04A001A', '2022-01-11');
 
 -- --------------------------------------------------------
 
@@ -115,6 +124,13 @@ CREATE TABLE `noleggio` (
   `moto` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `noleggio`
+--
+
+INSERT INTO `noleggio` (`codice`, `data`, `attrezzatura`, `utente`, `moto`) VALUES
+(2, '2022-01-10', 1, 'CVLLSN00A04A001A', 7);
+
 -- --------------------------------------------------------
 
 --
@@ -137,12 +153,9 @@ CREATE TABLE `pista` (
 
 INSERT INTO `pista` (`id`, `lunghezza`, `descrizione`, `terreno`, `apertura`, `chiusura`, `foto`) VALUES
 (1, 100, 'prova', 'terra_battuta', '08:00:00', '15:00:00', NULL),
-(12, 1000, 'prova1', 'terra_morbida', '14:00:00', '15:00:00', '12.png'),
-(13, 1000, 'prova1', 'terra_battuta', '14:00:00', '15:00:00', NULL),
+(12, 1000, 'prova1', 'terra_morbida', '14:00:00', '14:00:00', '12.jpg'),
 (14, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', NULL),
-(15, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', NULL),
-(16, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', '16.png'),
-(17, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', '17.png');
+(15, 1000, 'ee', 'terra_battuta', '14:00:00', '15:00:00', '15.png');
 
 -- --------------------------------------------------------
 
@@ -213,9 +226,9 @@ ALTER TABLE `moto`
 --
 ALTER TABLE `noleggio`
   ADD PRIMARY KEY (`codice`),
+  ADD UNIQUE KEY `data` (`data`,`utente`),
   ADD KEY `fk_noleggio` (`utente`),
-  ADD KEY `noleggio_ibfk_1` (`moto`),
-  ADD KEY `fk_data` (`data`);
+  ADD KEY `noleggio_ibfk_1` (`moto`);
 
 --
 -- Indici per le tabelle `pista`
@@ -237,7 +250,7 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `ingressi_entrata`
 --
 ALTER TABLE `ingressi_entrata`
-  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `ingressi_lezione`
@@ -261,7 +274,7 @@ ALTER TABLE `moto`
 -- AUTO_INCREMENT per la tabella `noleggio`
 --
 ALTER TABLE `noleggio`
-  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `pista`

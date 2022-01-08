@@ -14,7 +14,7 @@
         if(strlen($string) == 0)
             return 1;
 
-        if($pattern !== null && preg_match($pattern,$string))
+        if($pattern !== null && !preg_match($pattern,$string))
             return 2;
 
         return 0;

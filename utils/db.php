@@ -4,11 +4,13 @@
 	require_once('moto.php');
 	require_once('user.php');
 	require_once('track.php');
+	require_once('entry.php');
 
 	use Exception;
 	use MOTO\DirtBike;
 	use TRACCIATO\Track;
 	use USER\User;
+	use INGRESSO\Entry;
 
 	class dbAccess {
 		private const HOST = '127.0.0.1';
@@ -30,11 +32,20 @@
 
 			array('SELECT * FROM pista','Errore durante il recupero delle informazioni dei tracciati'), //get all tracks
 
-			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track\
+			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track
 
-			array('SELECT data_disponibile.data, posti, COUNT(*) AS occupati FROM ingressi_entrata INNER JOIN data_disponibile ON
+			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM ingressi_entrata INNER JOIN data_disponibile ON
 				ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
-				posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'),
+				posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
+
+			array('SELECT * FROM data_disponibile','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
+
+			array('SELECT nome, cognome, moto, attrezzatura FROM (ingressi_entrata INNER JOIN utente ON ingressi_entrata.utente = utente.cf)
+				LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data
+				WHERE ingressi_entrata.data = \'_data_\'','Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entries info from open date
+
+			array('SELECT posti FROM data_disponibile WHERE data = \'_data_\'',
+				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entry infos
 		);
 
 		private $conn;
@@ -172,6 +183,32 @@
 
 
 		/* ***************************** ENTRIES MANAGEMENT ************************** */
+		public function deleteEntry(string $date) {
+			$sql = "DELETE FROM data_disponibile WHERE data = \"".$date."\"";
 
+			mysqli_query($this->conn,$sql);
+		}
+
+		public function updateEntry(Entry $entry): bool {
+			$sql = "UPDATE data_disponibile SET posti = ".$entry->getPosti()." WHERE data = \"".$entry->getDate()."\"";
+
+			mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn)) //mysqli_affected_rows doesn't work if fields are the same as before!
+				return true;
+			else
+				return false;
+		}
+
+		public function createEntry(Entry $entry): int {
+			$sql = "INSERT INTO data_disponibile (data,posti) VALUES (\"".$entry->getDate()."\",".$entry->getPosti().")";
+
+			mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+				return -1;
+		}
 	}
 ?>

@@ -6,7 +6,7 @@
 <html lang="it">
 
 <head>
-	<title>Gestione moto - Adrenaline Motocross Park</title>
+	<title>Dettagli ingresso - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
     <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
@@ -22,8 +22,8 @@
 
 	<nav id="breadcrumb">
 		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Noleggio</a>
-            &gt;&gt; Gestione moto
+            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Ingressi</a>
+            &gt;&gt; Dettagli ingresso
         </p>
 	</nav>
 
@@ -47,8 +47,8 @@
             <ul>
                 <li><a href="../" lang="en">Dashboard</a></li>
                 <li><a href="../tracciati/">Tracciati</a></li>
-                <li><a href="./">Noleggio</a></li>
-                <li><a href="../ingressi/">Ingressi</a></li>
+                <li><a href="../noleggio/">Noleggio</a></li>
+                <li><a href="./">Ingressi</a></li>
                 <li><a href="../lezioni/">Lezioni</a></li>
                 <li><a href="../../logout.php" lang="en">Logout</a></li>
             </ul>
@@ -56,44 +56,24 @@
     </div>
 
     <div class="contentAdmin">
-		<h1>Gestione moto</h1>
+		<h1>Dettagli ingresso _data_</h1>
 
         <globalError/>
 
-        <form method="post" action="_action_">
-            <messaggiForm/>
-
-            <fieldset>
-
-                <legend>Dati moto</legend>
-
-                <id/>
-
-                <label for="marca">Marca</label>
-                <input type="text" required name="marca" id="marca" value="_marca_" placeholder="Marca della moto">
-                <br>
-
-                <label for="modello">Modello</label>
-                <input type="text" required name="modello" id="modello" value="_modello_" placeholder="Modello della moto">
-                <br>
-
-                <label for="cilindrata">Cilindrata</label>
-                <select name="cilindrata" id="cilindrata">
-                    <option value="125">125cc</option>
-                    <option value="250">250cc</option>
-                    <option value="450">450cc</option>
-                </select>
-                <br>
-
-                <label for="anno">Anno</label>
-                <input type="number" required name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" step="1" placeholder="Anno di fabbricazione">
-                <br>
-
-
-            </fieldset>
-            <input type="submit" name="submit" id="submit" value="_azione_">
-
-        </form>
+        <table title="tabella contenente i dettagli degli ingressi prenotati per le prossime date di apertura">
+            <caption>Dettaglio prenotazioni ingressi per le prossime giornate di apertura</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Utente</th>
+                    <th scope="col">Noleggio moto</th>
+                    <th scope="col">Noleggio attrezzatura</th>
+                </tr>
+            </thead>
+            <tbody>
+                <dettaglioNoleggi/>
+            </tbody>
+        </table>
+		<erroreDettagli/>
 
 		<p><a href="#top">Torna su</a></p>
   </div>

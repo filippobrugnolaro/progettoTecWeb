@@ -9,18 +9,18 @@
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 2)
         header('Location: ../../login.php');
 
-    if(!isset($_GET['id']))
+    if(!isset($_GET['date']))
         header('Location: ./');
 
-    $id = $_GET['id'];
+    $date = $_GET['date'];
 
     $conn = new dbAccess();
 
     if($conn->openDB()) {
-        $conn->deleteDirtBike($id);
+        $conn->deleteEntry($date);
         $conn->closeDB();
     }
 
-    header('Location: ./#gestioneMoto');
+    header('Location: ./#gestioneIngressi');
 
 ?>

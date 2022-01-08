@@ -29,31 +29,35 @@
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</td>'; //controllare accessibilità
-                    $recordsBody .= '<td>'.$record['totNoleggi'].'</td>';
-                    $recordsBody .= '<td><a href=\'dettagliIngressi.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
+                    $recordsBody .= '<td>'.$record['posti'].'</td>';
+                    $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
+                    $recordsBody .= '<td><a href=\'dettagliIngresso.php?date='.$record['data'].'\' aria-label=\'dettaglio ingressi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
             }
 
         } catch (Throwable $t) {
-            $errorNoleggio = $t->getMessage();
+            $errorIngresso = $t->getMessage();
         }
 
-        //get rentable dirtbikes from db
+        //get open days
         try {
-            $motos = $conn->getQueryResult(dbAccess::QUERIES[0]);
+            $ingressi = $conn->getQueryResult(dbAccess::QUERIES[7]);
 
-            if($motos !== null) {
-                foreach($motos as $moto) {
-                    $motoBody .= '<tr>';
-                    $motoBody .= '<td scope=\'row\'>'.$moto['numero'].'</td>';
-                    $motoBody .= '<td>'.$moto['marca'].'</td>';
-                    $motoBody .= '<td>'.$moto['modello'].'</td>';
-                    $motoBody .= '<td>'.$moto['cilindrata'].'cc</td>';
-                    $motoBody .= '<td>'.$moto['anno'].'</td>';
-                    $motoBody .= '<td><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class\'fas fa-pen\'></i></a></td>';
-                    $motoBody .= '<td><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class=\'fas fa-trash\'></i></a></td>';
-                    $motoBody .= '</tr>';
+            $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
+
+            if($ingressi !== null) {
+                foreach($ingressi as $ingresso) {
+                    //echo date('w',strtotime($ingresso['data']));
+                    $dw = $weekDays[date('w',strtotime($ingresso['data']))];
+
+                    $ingressiBody .= '<tr>';
+                    $ingressiBody .= '<td scope=\'row\'>'.$ingresso['data'].'</td>';
+                    $ingressiBody .= '<td>'.$dw.'</td>';
+                    $ingressiBody .= '<td>'.$ingresso['posti'].'</td>';
+                    $ingressiBody .= '<td><a href=\'gestioneIngresso.php?date='.$ingresso['data'].'\' aria-label=\'modifica ingresso\'><i class=\'fas fa-pen\'></i></a></td>';
+                    $ingressiBody .= '<td><a href=\'deleteIngresso.php?date='.$ingresso['data'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
+                    $ingressiBody .= '</tr>';
                 }
             }
         } catch (Throwable $t) {
@@ -64,11 +68,11 @@
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
     $page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
-    $page = str_replace('<erroreIngresso/>', $errorMoto, $page);
-    $page = str_replace('<erroreIngressi/>', $errorNoleggio, $page);
+    $page = str_replace('<erroreIngresso/>', $errorIngresso, $page);
+    $page = str_replace('<erroreIngressi/>', $errorIngressi, $page);
     $page = str_replace('<globalError/>',$globalError,$page);
-    $page = str_replace('<moto/>',$motoBody,$page);
-    $page = str_replace('<noleggi/>',$recordsBody,$page);
+    $page = str_replace('<ingressi/>',$recordsBody,$page);
+    $page = str_replace('<ingresso/>',$ingressiBody,$page);
 
     echo $page;
 ?>

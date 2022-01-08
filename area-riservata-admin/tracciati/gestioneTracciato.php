@@ -86,27 +86,25 @@
             }
 
             $apertura = sanitizeInputString($_POST['apertura']);
+            $apertura = substr($apertura,0,5);
 
-            switch(checkInputValidity($apertura,'/^d{2}:d{2}\$/')) {
+            switch(checkInputValidity($apertura,'/^\d{2}:\d{2}$/')) {
                 case 1: $messaggiForm .= '<li>Orario apertura non presente.</li>'; break;
                 case 2: $messaggiForm .= "<li>orario apertura deve essere del tipo HH:MM</li>"; break;
                 default: break;
             }
 
-            $apertura = substr($apertura,0,5);
-
             if($apertura < "08:00" || $apertura > "14:00")
                 $messaggiForm .= '<li>Orario apertura deve essere compreso tra le 08:00 e le 14:00.</li>';
 
             $chiusura = sanitizeInputString($_POST['chiusura']);
+            $chiusura = substr($chiusura,0,5);
 
-            switch(checkInputValidity($chiusura,'/^d{2}:d{2}\$/')) {
+            switch(checkInputValidity($chiusura,'/^\d{2}:\d{2}$/')) {
                 case 1: $messaggiForm .= '<li>Orario chiusura non presente.</li>'; break;
                 case 2: $messaggiForm .= "<li>orario chiusura deve essere del tipo HH:MM</li>"; break;
                 default: break;
             }
-
-            $chiusura = substr($chiusura,0,5);
 
             if($chiusura < "14:00" || $chiusura > "20:00")
                 $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
@@ -194,7 +192,7 @@
                         $apertura = $track['apertura'];
                         $chiusura = $track['chiusura'];
                     } else {
-                        $messaggiForm = dbAccess::QUERIES[1][1];
+                        $messaggiForm = dbAccess::QUERIES[5][1];
                     }
                 } catch (Throwable $t) {
                     $messaggiForm = $t->getMessage();
@@ -238,27 +236,25 @@
             }
 
             $apertura = sanitizeInputString($_POST['apertura']);
+            $apertura = substr($apertura,0,5);
 
-            switch(checkInputValidity($apertura,'/^d{2}:d{2}\$/')) {
+            switch(checkInputValidity($apertura,'/^\d{2}:\d{2}$/')) {
                 case 1: $messaggiForm .= '<li>Orario apertura non presente.</li>'; break;
                 case 2: $messaggiForm .= "<li>orario apertura deve essere del tipo HH:MM</li>"; break;
                 default: break;
             }
 
-            $apertura = substr($apertura,0,5);
-
             if($apertura < "08:00" || $apertura > "14:00")
                 $messaggiForm .= '<li>Orario apertura deve essere compreso tra le 08:00 e le 14:00.</li>';
 
             $chiusura = sanitizeInputString($_POST['chiusura']);
+            $chiusura = substr($chiusura,0,5);
 
-            switch(checkInputValidity($chiusura,'/^d{2}:d{2}\$/')) {
+            switch(checkInputValidity($chiusura,'/^\d{2}:\d{2}$/')) {
                 case 1: $messaggiForm .= '<li>Orario chiusura non presente.</li>'; break;
                 case 2: $messaggiForm .= "<li>orario chiusura deve essere del tipo HH:MM</li>"; break;
                 default: break;
             }
-
-            $chiusura = substr($chiusura,0,5);
 
             if($chiusura < "14:00" || $chiusura > "20:00")
             $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
