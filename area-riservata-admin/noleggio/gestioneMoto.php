@@ -46,7 +46,7 @@
 
             $marca = sanitizeInputString($_POST['marca']);
 
-            switch(checkInputValidity($marca,'/\d/')) {
+            switch(checkInputValidity($marca,'/^\p{L}+$/')) {
                 case 1: $messaggiForm .= '<li>Marca non presente.</li>'; break;
                 case 2: $messaggiForm .= '<li>Marca non può contenere numeri</li>'; break;
                 default: break;
@@ -85,9 +85,10 @@
                 if($conn->openDB()) {
                     $moto = new DirtBike($id,$marca,$modello,(int)$cilindrata,(int)$anno);
 
-                    if($conn->updateDirtBike($moto))
+                    if($conn->updateDirtBike($moto)) {
                         $messaggiForm = 'Informazioni sulla moto aggiornate con successo.';
-                    else
+                        header('Location: ./#gestioneMoto');
+                    } else
                         $messaggiForm = 'Errore durante l\'aggiornamento delle informazioni sulla moto.';
 
                     $conn->closeDB();
@@ -137,7 +138,7 @@
         if(isset($_POST['submit'])) {
             $marca = sanitizeInputString($_POST['marca']);
 
-            switch(checkInputValidity($marca,'/\d/')) {
+            switch(checkInputValidity($marca,'/^\p{L}+$/')) {
                 case 1: $messaggiForm .= '<li>Marca non presente.</li>'; break;
                 case 2: $messaggiForm .= '<li>Marca non può contenere numeri</li>'; break;
                 default: break;
@@ -180,7 +181,7 @@
 
                     if($newId > -1) {
                         $messaggiForm = 'Nuova moto inserita con successo.';
-                        header("Location: gestioneMoto.php?id=$newId"); //MOMENTANEA -> DA VALUTARE
+                        header('Location: ./#gestioneMoto');
                     } else
                         $messaggiForm = 'Errore durante l\'inserimento della nuova moto.';
 

@@ -52,7 +52,7 @@
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     $ingressiBody .= '<tr>';
-                    $ingressiBody .= '<td scope=\'row\'>'.$ingresso['data'].'</td>';
+                    $ingressiBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
                     $ingressiBody .= '<td>'.$dw.'</td>';
                     $ingressiBody .= '<td>'.$ingresso['posti'].'</td>';
                     $ingressiBody .= '<td><a href=\'gestioneIngresso.php?date='.$ingresso['data'].'\' aria-label=\'modifica ingresso\'><i class=\'fas fa-pen\'></i></a></td>';

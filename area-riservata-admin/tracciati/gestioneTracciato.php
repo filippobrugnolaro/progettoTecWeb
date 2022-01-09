@@ -162,7 +162,7 @@
                             $conn->updateTrack($track);
                         }
                         $conn->closeDB();
-                        header("Location: gestioneTracciato.php?id=$id"); //MOMENTANEA -> DA VALUTARE (non va troppo bene, utente non capisce se file si è caricato o meno)
+                        header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno)
                     } else {
                         $messaggiForm = 'Errore durante l\'inserimento del tracciato.';
                         $conn->closeDB();
@@ -305,7 +305,7 @@
                     }
                         $conn->closeDB();
 
-                        header("Location: gestioneTracciato.php?id=$newId"); //MOMENTANEA -> DA VALUTARE (non va troppo bene, utente non capisce se file si è caricato o meno)
+                        header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno
                     } else {
                         $messaggiForm = 'Errore durante l\'inserimento del tracciato.';
                         $conn->closeDB();

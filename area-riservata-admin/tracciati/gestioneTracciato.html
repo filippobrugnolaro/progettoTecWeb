@@ -69,15 +69,15 @@
 
                 <id/>
 
-                <label for="lunghezza">Lunghezza (metri)</label>
-                <input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="0" step="10" placeholder="Lunghezza del tracciato">
+                <label for="lunghezza">Lunghezza (metri)*</label>
+                <input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="10" step="10" placeholder="Lunghezza del tracciato">
                 <br>
 
-                <label for="descrizione">Descrizione</label>
-                <textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" maxlength="200">_descrizione_</textarea>
+                <label for="descrizione">Descrizione*</label>
+                <textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" minlength="30" maxlength="200">_descrizione_</textarea>
                 <br>
 
-                <label for="terreno">Terreno</label>
+                <label for="terreno">Terreno*</label>
                 <select name="terreno" id="terreno" required>
                     <option value="terra_battuta">Terra battuta</option>
                     <option value="terra_sassosa">Terra sassosa</option>
@@ -86,10 +86,10 @@
                 </select>
                 <br>
 
-                <label for="apertura">Orario apertura</label>
+                <label for="apertura">Orario apertura*</label>
                 <input type="time" required name="apertura" id="apertura" value="_apertura_" min="08:00" max="14:00" step="60">
 
-                <label for="chiusura">Orario chiusura</label>
+                <label for="chiusura">Orario chiusura*</label>
                 <input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60">
                 <br>
 

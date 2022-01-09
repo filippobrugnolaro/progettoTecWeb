@@ -60,9 +60,10 @@
                 if($conn->openDB()) {
                     $entry = new Entry($date,$posti);
 
-                    if($conn->updateEntry($entry))
+                    if($conn->updateEntry($entry)) {
                         $messaggiForm = 'Informazioni sull\'ingresso aggiornate con successo.';
-                    else
+                        header("Location: ./#gestioneIngressi");
+                    } else
                         $messaggiForm = 'Errore durante l\'aggiornamento delle informazioni sull\'ingresso.';
 
                     $conn->closeDB();
@@ -135,7 +136,7 @@
 
                     if($newId > -1) {
                         $messaggiForm = 'Nuova data d\'apertura inserita con successo.';
-                        header("Location: gestioneIngresso.php?date=$date"); //MOMENTANEA -> DA VALUTARE
+                        header("Location: ./#gestioneIngressi");
                     } else
                         $messaggiForm = 'Errore durante l\'inserimento della nuova data d\'apertura.';
 
