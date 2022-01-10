@@ -92,6 +92,9 @@
 
 		/* ***************************** LOGIN ************************** */
 		public function searchUser(string $email, string $password) {
+			$email = mysqli_real_escape_string($this->conn,$email);
+			$password = mysqli_real_escape_string($this->conn,$password);
+
 			$sql = "SELECT * FROM utente WHERE email = '$email'";
 
 			$query = mysqli_query($this->conn,$sql);
@@ -145,8 +148,13 @@
 
 		/* ***************************** DIRTBIKES MANAGEMENT ************************** */
 		public function updateDirtBike(DirtBike $moto): bool {
-			$sql = "UPDATE moto SET marca = \"".$moto->getMarca()."\", modello = \"".$moto->getModello()."\", ";
-			$sql .= "cilindrata = ".$moto->getCilindrata().", anno = ".$moto->getAnno()." WHERE numero = ".$moto->getID()."";
+			$marca = mysqli_real_escape_string($this->conn,$moto->getMarca());
+			$modello = mysqli_real_escape_string($this->conn,$moto->getModello());
+			$anno = $moto->getAnno();
+			$id = $moto->getID();
+
+			$sql = "UPDATE moto SET marca = \"$marca\", modello = \"$modello\", ";
+			$sql .= "cilindrata = ".$moto->getCilindrata().", anno = $anno WHERE numero = $id";
 
 			mysqli_query($this->conn,$sql);
 
@@ -157,8 +165,12 @@
 		}
 
 		public function createDirtBike(DirtBike $moto): int {
-			$sql = "INSERT INTO moto (marca,modello,anno,cilindrata) VALUES (\"".$moto->getMarca()."\",\"".$moto->getModello()."\",";
-			$sql .= "".$moto->getAnno().",".$moto->getCilindrata().")";
+			$marca = mysqli_real_escape_string($this->conn,$moto->getMarca());
+			$modello = mysqli_real_escape_string($this->conn,$moto->getModello());
+			$anno = $moto->getAnno();
+			$cilindrata = $moto->getCilindrata();
+
+			$sql = "INSERT INTO moto (marca,modello,anno,cilindrata) VALUES (\"$marca\",\"$modello\",$anno,$cilindrata)";
 
 			mysqli_query($this->conn,$sql);
 
@@ -169,15 +181,21 @@
 		}
 
 		public function deleteDirtBike(int $id) {
-			$sql = "DELETE FROM moto WHERE numero = ".$id."";
+			$sql = "DELETE FROM moto WHERE numero = $id";
 
 			mysqli_query($this->conn,$sql);
 		}
 
 		/* ***************************** TRACKS MANAGEMENT ************************** */
 		public function createTrack(Track $track): int {
-			$sql = "INSERT INTO pista (lunghezza,descrizione,terreno,apertura,chiusura) VALUES (".$track->getLun().",";
-			$sql .= "\"".$track->getDesc()."\",\"".$track->getTerreno()."\",\"".$track->getApertura()."\",\"".$track->getChiusura()."\")";
+			$lunghezza = $track->getLun();
+			$desc = mysqli_real_escape_string($this->conn,$track->getDesc());
+			$terreno = mysqli_real_escape_string($this->conn,$track->getTerreno());
+			$apertura = mysqli_real_escape_string($this->conn,$track->getApertura());
+			$chiusura = mysqli_real_escape_string($this->conn,$track->getChiusura());
+
+			$sql = "INSERT INTO pista (lunghezza,descrizione,terreno,apertura,chiusura) VALUES ($lunghezza,";
+			$sql .= "\"$desc\",\"$terreno\",\"$apertura\",\"$chiusura\")";
 
 			mysqli_query($this->conn,$sql);
 
@@ -189,10 +207,18 @@
 
 		public function updateTrack(Track $track): bool {
 			$path = $track->getImgPath() != "" ? "\"".$track->getImgPath()."\"" : "NULL";
+			$path = mysqli_real_escape_string($this->conn,$path);
+			$lunghezza = $track->getLun();
+			$desc = mysqli_real_escape_string($this->conn,$track->getDesc());
+			$terreno = mysqli_real_escape_string($this->conn,$track->getTerreno());
+			$apertura = mysqli_real_escape_string($this->conn,$track->getApertura());
+			$chiusura = mysqli_real_escape_string($this->conn,$track->getChiusura());
 
-			$sql = "UPDATE pista SET lunghezza = ".$track->getLun().", descrizione = \"".$track->getDesc()."\", ";
-			$sql .= "terreno = \"".$track->getTerreno()."\", apertura = \"".$track->getApertura()."\", ";
-			$sql .= "chiusura = \"".$track->getChiusura()."\", foto = ".$path." WHERE id = ".$track->getID()."";
+			$id = $track->getID();
+
+			$sql = "UPDATE pista SET lunghezza = $lunghezza, descrizione = \"$desc\", ";
+			$sql .= "terreno = \"$terreno\", apertura = \"$apertura\", ";
+			$sql .= "chiusura = \"$chiusura\", foto = \"$path\" WHERE id = $id";
 
 			mysqli_query($this->conn,$sql);
 
@@ -211,13 +237,17 @@
 
 		/* ***************************** ENTRIES MANAGEMENT ************************** */
 		public function deleteEntry(string $date) {
-			$sql = "DELETE FROM data_disponibile WHERE data = \"".$date."\"";
+			$date = mysqli_real_escape_string($this->conn,$date);
 
+			$sql = "DELETE FROM data_disponibile WHERE data = \"".$date."\"";
 			mysqli_query($this->conn,$sql);
 		}
 
 		public function updateEntry(Entry $entry): bool {
-			$sql = "UPDATE data_disponibile SET posti = ".$entry->getPosti()." WHERE data = \"".$entry->getDate()."\"";
+			$posti = $entry->getPosti();
+			$data = mysqli_real_escape_string($this->conn,$entry->getDate());
+
+			$sql = "UPDATE data_disponibile SET posti = $posti WHERE data = \"$data\"";
 
 			mysqli_query($this->conn,$sql);
 
@@ -228,7 +258,10 @@
 		}
 
 		public function createEntry(Entry $entry): int {
-			$sql = "INSERT INTO data_disponibile (data,posti) VALUES (\"".$entry->getDate()."\",".$entry->getPosti().")";
+			$posti = $entry->getPosti();
+			$data = mysqli_real_escape_string($this->conn,$entry->getDate());
+
+			$sql = "INSERT INTO data_disponibile (data,posti) VALUES (\"$data\",$posti)";
 
 			mysqli_query($this->conn,$sql);
 
@@ -239,36 +272,47 @@
 		}
 
 
-				/* ***************************** LESSONS MANAGEMENT ************************** */
-				public function deleteLesson(int $id) {
-					$sql = "DELETE FROM lezioni WHERE data = $id";
+		/* ***************************** LESSONS MANAGEMENT ************************** */
+		public function deleteLesson(int $id) {
+			$sql = "DELETE FROM lezione WHERE id = $id";
+			echo $sql;
+			mysqli_query($this->conn,$sql);
+		}
 
-					mysqli_query($this->conn,$sql);
-				}
+		public function updateLesson(Lesson $lesson): bool {
+			$data = mysqli_real_escape_string($this->conn,$lesson->getData());
+			$desc = mysqli_real_escape_string($this->conn,$lesson->getDesc());
+			$istruttore = mysqli_real_escape_string($this->conn,$lesson->getIstruttore());
+			$tracciato = $lesson->getTrack();
+			$posti = $lesson->getPosti();
+			$id = $lesson->getID();
 
-				public function updateLesson(Lesson $lesson): bool {
-					$sql = "UPDATE lezione SET data = \"".$lesson->getData()."\", posti = ".$lesson->getPosti().", ";
-					$sql .= "descrizione = \"".$lesson->getDesc()."\", istruttore = \"".$lesson->getIstruttore()."\", ";
-					$sql .= "pista = ".$lesson->getTrack()." WHERE id = ".$lesson->getID()."";
+			$sql = "UPDATE lezione SET data = \"$data\", posti = $posti, descrizione = \"$desc\", istruttore = \"$istruttore\", ";
+			$sql .= "pista = $tracciato WHERE id = $id";
 
-					mysqli_query($this->conn,$sql);
+			mysqli_query($this->conn,$sql);
 
-					if(!mysqli_error($this->conn)) //mysqli_affected_rows doesn't work if fields are the same as before!
-						return true;
-					else
-						return false;
-				}
+			if(!mysqli_error($this->conn)) //mysqli_affected_rows doesn't work if fields are the same as before!
+				return true;
+			else
+			return false;
+		}
 
-				public function createLesson(Lesson $lesson): int {
-					$sql = "INSERT INTO lezione (data,posti,descrizione,istruttore,pista) VALUES (\"".$lesson->getData()."\",";
-					$sql .= "".$lesson->getPosti().", \"".$lesson->getDesc()."\", \"".$lesson->getIstruttore()."\",".$lesson->getTrack().")";
+		public function createLesson(Lesson $lesson): int {
+			$data = mysqli_real_escape_string($this->conn,$lesson->getData());
+			$desc = mysqli_real_escape_string($this->conn,$lesson->getDesc());
+			$istruttore = mysqli_real_escape_string($this->conn,$lesson->getIstruttore());
+			$tracciato = $lesson->getTrack();
+			$posti = $lesson->getPosti();
 
-					mysqli_query($this->conn,$sql);
+			$sql = "INSERT INTO lezione (data,posti,descrizione,istruttore,pista) VALUES (\"$data\",$posti,\"$desc\",\"$istruttore\",$tracciato)";
 
-					if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
-						return mysqli_insert_id($this->conn);
-					else
-						return -1;
-				}
+			mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+			return -1;
+		}
 	}
 ?>

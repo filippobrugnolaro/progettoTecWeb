@@ -148,6 +148,9 @@
             } else {
                 $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
+        } else {
+            //valori di default
+            $posti = 100;
         }
 
     }
