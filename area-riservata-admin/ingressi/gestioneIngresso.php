@@ -77,10 +77,11 @@
         } else {
             if ($conn->openDB()) {
                 try {
-                    $entry = $conn->getSpecificQueryResult(str_replace('_data_', $_GET['date'], dbAccess::QUERIES[9][0]), dbAccess::QUERIES[9][1]);
+                    $entries = $conn->getSpecificQueryResult(str_replace('_data_', $_GET['date'], dbAccess::QUERIES[9][0]), dbAccess::QUERIES[9][1]);
 
-                    if ($entry !== null) {
-                        $entry = $entry[0];
+                    if ($entries !== null) {
+                        $entry = $entries[0];
+                        unset($entries);
 
                         foreach($entry as $field) {
                             $field = htmlspecialchars($field);

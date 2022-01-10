@@ -5,12 +5,14 @@
 	require_once('user.php');
 	require_once('track.php');
 	require_once('entry.php');
+	require_once('lesson.php');
 
 	use Exception;
 	use MOTO\DirtBike;
 	use TRACCIATO\Track;
 	use USER\User;
 	use INGRESSO\Entry;
+	use LEZIONE\Lesson;
 
 	class dbAccess {
 		private const HOST = '127.0.0.1';
@@ -19,9 +21,11 @@
 		private const PSW = 'aexie7Aht6aut3uo';
 
 		public const QUERIES = array(
-			array('SELECT * FROM moto','Errore durante il recupero delle informazioni sulle moto.'), //get all dirtbikes
+			array('SELECT * FROM moto',
+				'Errore durante il recupero delle informazioni sulle moto.'), //get all dirtbikes
 
-			array('SELECT * FROM moto WHERE numero = _num_','Errore durante il recupero delle informazioni sulla moto.'), //get specific dirtbike
+			array('SELECT * FROM moto WHERE numero = _num_',
+				'Errore durante il recupero delle informazioni sulla moto.'), //get specific dirtbike
 
 			array('SELECT data, COUNT(*) AS totNoleggi FROM noleggio WHERE data >= CURDATE() GROUP BY data ORDER BY data',
 				'Errore durante il recupero delle informazioni sui noleggi'), //get rent infos
@@ -32,20 +36,43 @@
 
 			array('SELECT * FROM pista','Errore durante il recupero delle informazioni dei tracciati'), //get all tracks
 
+			//5
 			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track
 
 			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM ingressi_entrata INNER JOIN data_disponibile ON
 				ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
 				posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
 
-			array('SELECT * FROM data_disponibile','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
+			array('SELECT * FROM data_disponibile WHERE data >= CURDATE()','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
 
 			array('SELECT nome, cognome, moto, attrezzatura FROM (ingressi_entrata INNER JOIN utente ON ingressi_entrata.utente = utente.cf)
 				LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data
-				WHERE ingressi_entrata.data = \'_data_\'','Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entries info from open date
+				WHERE ingressi_entrata.data = \'_data_\'',
+				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entries info from open date
 
 			array('SELECT posti FROM data_disponibile WHERE data = \'_data_\'',
-				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entry infos
+				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entry's infos
+
+			//10
+			array('SELECT lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, COUNT(*) AS occupati FROM
+				(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
+				INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
+				WHERE data_disponibile.data >= CURDATE()
+				GROUP BY data_disponibile.data, lezione.posti
+				ORDER BY data_disponibile.data',
+				'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get booked lessons' info
+
+			array('SELECT * FROM lezione WHERE data >= CURDATE()',
+				'Errore durante il recupero delle informazioni sulle lezioni'), //get lessons' info
+
+			array('SELECT nome, cognome, moto, attrezzatura FROM ((ingressi_lezione INNER JOIN utente ON ingressi_lezione.utente = utente.cf)
+				INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
+				LEFT JOIN noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data
+				WHERE ingressi_lezione.lezione = \'_lezione_\'',
+				'Errore durante il recupero delle informazioni sulle prenotazioni del corso selezionato'), //get booked record info from lesson
+
+			array('SELECT * FROM lezione WHERE id = _lezione_',
+				'Errore durante il recupero delle informazioni del corso selezionato'), //get specific lesson info
 		);
 
 		private $conn;
@@ -210,5 +237,38 @@
 			else
 				return -1;
 		}
+
+
+				/* ***************************** LESSONS MANAGEMENT ************************** */
+				public function deleteLesson(int $id) {
+					$sql = "DELETE FROM lezioni WHERE data = $id";
+
+					mysqli_query($this->conn,$sql);
+				}
+
+				public function updateLesson(Lesson $lesson): bool {
+					$sql = "UPDATE lezione SET data = \"".$lesson->getData()."\", posti = ".$lesson->getPosti().", ";
+					$sql .= "descrizione = \"".$lesson->getDesc()."\", istruttore = \"".$lesson->getIstruttore()."\", ";
+					$sql .= "pista = ".$lesson->getTrack()." WHERE id = ".$lesson->getID()."";
+
+					mysqli_query($this->conn,$sql);
+
+					if(!mysqli_error($this->conn)) //mysqli_affected_rows doesn't work if fields are the same as before!
+						return true;
+					else
+						return false;
+				}
+
+				public function createLesson(Lesson $lesson): int {
+					$sql = "INSERT INTO lezione (data,posti,descrizione,istruttore,pista) VALUES (\"".$lesson->getData()."\",";
+					$sql .= "".$lesson->getPosti().", \"".$lesson->getDesc()."\", \"".$lesson->getIstruttore()."\",".$lesson->getTrack().")";
+
+					mysqli_query($this->conn,$sql);
+
+					if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+						return mysqli_insert_id($this->conn);
+					else
+						return -1;
+				}
 	}
 ?>

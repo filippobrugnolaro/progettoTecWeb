@@ -102,10 +102,11 @@
         } else {
             if ($conn->openDB()) {
                 try {
-                    $moto = $conn->getSpecificQueryResult(str_replace('_num_', $_GET['id'], dbAccess::QUERIES[1][0]), dbAccess::QUERIES[1][1]);
+                    $motos = $conn->getSpecificQueryResult(str_replace('_num_', $_GET['id'], dbAccess::QUERIES[1][0]), dbAccess::QUERIES[1][1]);
 
-                    if ($moto !== null) {
-                        $moto = $moto[0];
+                    if ($motos !== null) {
+                        $moto = $motos[0];
+                        unset($motos);
 
                         foreach($moto as $field) {
                             $field = htmlspecialchars($field);

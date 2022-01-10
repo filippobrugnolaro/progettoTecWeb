@@ -78,6 +78,9 @@
                 default: break;
             }
 
+            if(strlen($descrizione) < 30 || strlen($descrizione) > 200)
+                $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>';
+
             $terreno = sanitizeInputString($_POST['terreno']);
 
             switch(checkInputValidity($terreno,null)) {
@@ -176,10 +179,11 @@
         } else {
             if ($conn->openDB()) {
                 try {
-                    $track = $conn->getSpecificQueryResult(str_replace('_id_', $_GET['id'], dbAccess::QUERIES[5][0]), dbAccess::QUERIES[5][1]);
+                    $tracks = $conn->getSpecificQueryResult(str_replace('_id_', $_GET['id'], dbAccess::QUERIES[5][0]), dbAccess::QUERIES[5][1]);
 
-                    if ($track !== null) {
-                        $track = $track[0];
+                    if ($tracks !== null) {
+                        $track = $tracks[0];
+                        unset($tracks);
 
                         foreach($track as $field) {
                             $field = htmlspecialchars($field);
@@ -227,6 +231,9 @@
                 case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
                 default: break;
             }
+
+            if(strlen($descrizione) < 30 || strlen($descrizione) > 200)
+                $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>';
 
             $terreno = sanitizeInputString($_POST['terreno']);
 
