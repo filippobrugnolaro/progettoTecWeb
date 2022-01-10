@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Gen 08, 2022 alle 01:54
+-- Creato il: Gen 10, 2022 alle 15:09
 -- Versione del server: 10.4.16-MariaDB
 -- Versione PHP: 7.4.12
 
@@ -37,6 +37,7 @@ CREATE TABLE `data_disponibile` (
 --
 
 INSERT INTO `data_disponibile` (`data`, `posti`) VALUES
+('2022-01-09', 70),
 ('2022-01-10', 110),
 ('2022-01-11', 100),
 ('2022-01-14', 200);
@@ -73,6 +74,14 @@ CREATE TABLE `ingressi_lezione` (
   `lezione` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `ingressi_lezione`
+--
+
+INSERT INTO `ingressi_lezione` (`codice`, `utente`, `lezione`) VALUES
+(1, 'CVLLSN00A04A001A', 1),
+(2, 'CVLLSN00A04A001A', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -84,10 +93,17 @@ CREATE TABLE `lezione` (
   `data` date NOT NULL,
   `posti` smallint(6) NOT NULL,
   `descrizione` text NOT NULL,
-  `corso` varchar(20) NOT NULL,
   `istruttore` varchar(20) NOT NULL,
   `pista` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `lezione`
+--
+
+INSERT INTO `lezione` (`id`, `data`, `posti`, `descrizione`, `istruttore`, `pista`) VALUES
+(1, '2022-01-10', 10, 'ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', 'Alessandro', 1),
+(2, '2022-01-11', 15, 'Corso per esperti super pro mega iper forti', 'Cairoli Antonio', 15);
 
 -- --------------------------------------------------------
 
@@ -108,7 +124,9 @@ CREATE TABLE `moto` (
 --
 
 INSERT INTO `moto` (`numero`, `cilindrata`, `marca`, `modello`, `anno`) VALUES
-(7, 450, 'Honda', 'CRF 450R', 2022);
+(7, 450, 'Honda', 'CRF 450R', 2022),
+(8, 450, 'Honda', 'CRF 450 R', 2022),
+(11, 125, 'Husqvarna', 'TC 125', 2018);
 
 -- --------------------------------------------------------
 
@@ -155,7 +173,8 @@ INSERT INTO `pista` (`id`, `lunghezza`, `descrizione`, `terreno`, `apertura`, `c
 (1, 100, 'prova', 'terra_battuta', '08:00:00', '15:00:00', NULL),
 (12, 1000, 'prova1', 'terra_morbida', '14:00:00', '14:00:00', '12.jpg'),
 (14, 1000, 'ee', 'terra_battuta', '14:00:00', '15:14:00', NULL),
-(15, 1000, 'ee', 'terra_battuta', '14:00:00', '15:00:00', '15.png');
+(15, 1000, 'ee', 'terra_battuta', '14:00:00', '15:00:00', '15.png'),
+(18, 1000, 'deve essere lungo almeno 30 caratteri', 'terra_battuta', '10:10:00', '14:30:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -213,7 +232,8 @@ ALTER TABLE `ingressi_lezione`
 --
 ALTER TABLE `lezione`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pista` (`pista`);
+  ADD KEY `pista` (`pista`),
+  ADD KEY `lezione_data` (`data`);
 
 --
 -- Indici per le tabelle `moto`
@@ -256,19 +276,19 @@ ALTER TABLE `ingressi_entrata`
 -- AUTO_INCREMENT per la tabella `ingressi_lezione`
 --
 ALTER TABLE `ingressi_lezione`
-  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `lezione`
 --
 ALTER TABLE `lezione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `moto`
 --
 ALTER TABLE `moto`
-  MODIFY `numero` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `numero` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `noleggio`
@@ -280,7 +300,7 @@ ALTER TABLE `noleggio`
 -- AUTO_INCREMENT per la tabella `pista`
 --
 ALTER TABLE `pista`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Limiti per le tabelle scaricate
@@ -304,6 +324,7 @@ ALTER TABLE `ingressi_lezione`
 -- Limiti per la tabella `lezione`
 --
 ALTER TABLE `lezione`
+  ADD CONSTRAINT `lezione_data` FOREIGN KEY (`data`) REFERENCES `data_disponibile` (`data`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `lezione_ibfk_1` FOREIGN KEY (`pista`) REFERENCES `pista` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
