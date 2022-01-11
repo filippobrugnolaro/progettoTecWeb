@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+	<title>Le tue lezioni - Adrenaline Motocross Park</title>
+	<meta charset="utf-8" />
+	<!-- <meta name="keywords" content="servizi, motocross, enduro" /> -->
+	<!-- <meta name="description" content="servizi offerti dall'impianto" /> -->
+	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
+	<!--<script src="https://kit.fontawesome.com/48ea8a0a6a.js" crossorigin="anonymous"></script>-->
+
+	<script src="utils/login.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<h1 lang="en">Adrenaline Motocross Park</h1>
+	</header>
+
+	<nav id="breadcrumb">
+		<p>Ti trovi in <a href="index.html"><span lang="en">Home</span></a> &gt;&gt; Area riservata</p>
+	</nav>
+
+	<nav id="menuList">
+		<h2>Menu</h2> <!-- NON HA SENSO METTERE MENU IN UN H2!!!-->
+		<ul>
+			<li><a href="../../index.html">Home</a></li>
+			<li><a href="../../tracciati.html">Tracciati</a></li>
+			<li><a href="../../servizi.html">Servizi</a></li>
+			<li><a href="../../scuola.html">Scuola</a></li>
+			<li><a href="../../noleggio.html">Noleggio</a></li>
+			<li><a href="../../ingressi.html">Ingressi</a></li>
+			<li><a href="../../contatti.html">Contatti</a></li>
+			<li>Area riservata</li>
+		</ul>
+	</nav>
+
+    <div id="subMenu">
+        <img src="img_path" alt="immagine dell'utente"/>
+
+        <nav id="subMenu" role="navigation" aria-roledescription="menu area riservata utente"></nav>
+            <ul>
+                <li><a href="../home.html" lang="en">Home</a></li>
+                <li><a href="../datiUtente/datiUtente.html">I tuoi dati</a></li>
+                <li><a href='../ingressi/ingressi.html'>Ingressi</a></li>
+                <li>Lezioni</li>
+                <li><a href="../../logout.php" lang="en">Logout</a></li>
+            </ul>
+        </nav>
+	</div>
+
+	<div id="contentLezioni">
+        <globalError/>
+        
+        <!-- I tuoi ingressi -->
+		<article id='gestioneIngressi'>
+			<h2>Le tue prossime prenotazioni</h2>
+			<table title="tabella contenente le prossime date prenotate">
+				<thead>
+					<tr>
+						<th scope="col">Data</th>
+						<th scope="col">Giorno</th>
+						<th scope="col">Posti disponibili</th>
+						<th scope="col">Elimina</th>
+					</tr>
+				</thead>
+				<tbody>
+					<nextLezioni/>
+				</tbody>
+			</table>
+			<erroreLezione/>
+		</article>
+
+
+        <!-- Calendario -->
+        <article>
+            <h2>Calendario lezioni</h2>
+            <table title="tabella contenente le prossime date di apertura">
+				<caption>Prossime lezioni</caption>
+				<thead>
+					<tr>
+						<th scope="col">Data</th>
+						<th scope="col">Giorno</th>
+						<th scope="col">Posti disponibili</th>
+					</tr>
+				</thead>
+				<tbody>
+					<nextDate/>
+				</tbody>
+			</table>
+			<erroreNextDate/>
+        </article>
+
+        <!-- Prenotazione Lezione -->
+        <article>
+            <h2>Prenota una lezione</h2>
+            <form method="post" action="_action_">
+				<input type="hidden" id="idUtente" name="idUtente" value="[cfUtente]">
+
+				<label for="dataDisp">Data:</label>
+				<select id="dataDisp" name="dataDisp">
+					<dataDisp/>
+				</select> <br/>
+
+				<fieldset>
+					<legend>Attrezzatura extra</legend>
+					<input type="checkbox" id="moto" name="moto" value="moto">
+					<label for="moto">Moto</label>
+					<p>Cilindrata utilizzata solitamente</p>
+					<select id="cilindrata" name="cilindrata">
+						<option value="125">125cc</option>
+						<option value="250">250cc</option>
+						<option value="450">450cc</option>
+					</select>
+					<br/>
+
+					<input type="checkbox" id="vestiario" name="vestiario" value="vestiario">
+					<label for="vestiario">Vestiario</label>
+					<p>Taglia</p>
+					<select id="taglia" name="taglia">
+						<option value="s">S</option>
+						<option value="m">M</option>
+						<option value="l">L</option>
+						<option value="xl">XL</option>
+					</select>
+				</fieldset>
+
+				<input type="submit" name="submit" value="_azione_">
+            </form>
+			<messaggiForm/>
+        </article>
+
+	</div>
+
+	<footer>
+
+		<div class="footerInfo">
+			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo" />
+			<p><span lang="en">Adrenaline Motocross Park</span> è un parco divertimenti dedicato ai motociclisti e agli
+				appassionati di motocross. Il progetto nasce dalla passione autentica per questo sport e punta a dare un
+				tocco di qualità in più per permettere agli appassionati di esprimersi in totale comodità e sicurezza.
+			</p>
+		</div>
+
+		<div class="footerDoveSiamo">
+			<h3>Dove siamo</h3>
+			<p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
+			<p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
+			<p class="informazioniFooter">Indirizzo:</p>
+		</div>
+
+		<img src="images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+		<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
+				rights reserved</span></p>
+		<img src="images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+	</footer>
+</body>
+
+</html>
