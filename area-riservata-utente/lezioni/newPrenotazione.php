@@ -54,7 +54,7 @@
             if($conn->openDB()) {
                 $res = new Reservation($date, $moto, $cc, $abbigliamento, $taglia);
 
-                $newId = $conn->createLessonReservation($res); // --- TO BE DONE
+                $newId = $conn->createLessonReservation($res);
 
                 if($newId > -1) {
                     $messaggiForm = 'Ti abbiamo riservato un posto per la lezione';

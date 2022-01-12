@@ -30,7 +30,7 @@
     if ($conn->openDB()) {
         //get next n lessons reservations
         try {
-            $ingressi = $conn->getQueryResult(dbAccess::QUERIES[---]);
+            $ingressi = $conn->getSpecificQueryResult(str_replace('_cfUser_', $cfUtente, dbAccess::QUERIES[16][0]), dbAccess::QUERIES[16][1]);
 
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
@@ -41,8 +41,8 @@
                     $lezioni .= '<tr>';
                     $lezioni .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
                     $lezioni .= '<td>'.$dw.'</td>';
-                    $lezioni .= '<td>'.$ingresso['posti'].'</td>';
-                    $lezioni .= '<td><a href=\'deletePrenotazione.php?date='.$ingresso['data'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
+                    // $lezioni .= '<td>'.$ingresso['posti'].'</td>';
+                    $lezioni .= '<td><a href=\'deletePrenotazione.php?id='.$ingresso['id'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $lezioni .= '</tr>';
                 }
             }

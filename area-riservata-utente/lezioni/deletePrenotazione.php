@@ -9,15 +9,15 @@
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
         header('Location: ../../login.php');
 
-    if(!isset($_GET['date']))
+    if(!isset($_GET['id']))
         header('Location: ./');
 
-    $date = $_GET['date'];
+    $id = $_GET['id'];
 
     $conn = new dbAccess();
 
     if($conn->openDB()) {
-        $conn->deleteLessonReservation($date);
+        $conn->deleteLessonReservation($id);
         $conn->closeDB();
     }
 

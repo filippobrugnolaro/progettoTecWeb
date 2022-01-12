@@ -1,11 +1,3 @@
-<!--
-<errors/>
-
-<nextPrenotazioni/>
-
-<nextLezioni/>
--->
-
 <?php
     require_once('../../utils/db.php');
     require_once('../../utils/user.php');
@@ -31,32 +23,44 @@
     $errorLezioni = '';
 
     if ($conn->openDB()) {
-        //get next n(?) track reservations 
+        //get next 3 track reservations 
         try {
-            $records = $conn->getQueryResult(dbAccess::QUERIES[---]); //da scrivere e da aggiungere all'array QUERIES
-        
-            if($records != null) {
-                foreach($records as $record) {
-                    $prenotazioni .= '<td>'.date("d/m/Y",strtotime($record['data']))'</td>';
+            $ingressi = $conn->getSpecificQueryResult(str_replace('_cfUser_', $cfUtente, dbAccess::QUERIES[15][0]), dbAccess::QUERIES[15][1]);
+
+            $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
+
+            if($ingressi !== null) {
+                foreach($ingressi as $ingresso) {
+                    $dw = $weekDays[date('w',strtotime($ingresso['data']))];
+
+                    $prenotazioni .= '<tr>';
+                    $prenotazioni .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
+                    $prenotazioni .= '<td>'.$dw.'</td>';
+                    $prenotazioni .= '</tr>';
                 }
             }
-        
         } catch (Throwable $t) {
-            $errorPrenotazioni .= $t->getMessage();
+            $errorPrenotazioni = $t->getMessage();
         }
 
-        //get next n(?) lessons
+        //get next 3 lessons reservations
         try {
-            $records = $conn->getQueryResult(dbAccess::QUERIES[---]); //da scrivere e da aggiungere all'array QUERIES
-        
-            if($records != null) {
-                foreach($records as $record) {
-                    $lezioni .= '<td>'.date("d/m/Y",strtotime($record['data']))'</td>';
+            $ingressi = $conn->getSpecificQueryResult(str_replace('_cfUser_', $cfUtente, dbAccess::QUERIES[16][0]), dbAccess::QUERIES[16][1]);
+
+            $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
+
+            if($ingressi !== null) {
+                foreach($ingressi as $ingresso) {
+                    $dw = $weekDays[date('w',strtotime($ingresso['data']))];
+
+                    $lezioni .= '<tr>';
+                    $lezioni .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
+                    $lezioni .= '<td>'.$dw.'</td>';
+                    $lezioni .= '</tr>';
                 }
             }
-        
         } catch (Throwable $t) {
-            $errorLezioni .= $t->getMessage();
+            $errorLezione = $t->getMessage();
         }
 
 

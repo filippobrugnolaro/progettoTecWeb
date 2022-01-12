@@ -13,6 +13,7 @@
 	use USER\User;
 	use INGRESSO\Entry;
 	use LEZIONE\Lesson;
+	use PRENOTAZIONE\Reservation;
 
 	class dbAccess {
 		private const HOST = '127.0.0.1';
@@ -21,39 +22,38 @@
 		private const PSW = 'aexie7Aht6aut3uo';
 
 		public const QUERIES = array(
+			//1
 			array('SELECT * FROM moto',
 				'Errore durante il recupero delle informazioni sulle moto.'), //get all dirtbikes
-
+			//2
 			array('SELECT * FROM moto WHERE numero = _num_',
 				'Errore durante il recupero delle informazioni sulla moto.'), //get specific dirtbike
-
+			//3
 			array('SELECT data, COUNT(*) AS totNoleggi FROM noleggio WHERE data >= CURDATE() GROUP BY data ORDER BY data',
 				'Errore durante il recupero delle informazioni sui noleggi'), //get rent infos
-
+			//4
 			array('SELECT cognome, nome, marca, modello, numero, attrezzatura FROM (noleggio INNER JOIN utente ON noleggio.utente = utente.cf) '
 				.'INNER JOIN moto ON noleggio.moto = moto.numero WHERE data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sul noleggio per la data scelta'), //get rent details for a specific date
-
-			array('SELECT * FROM pista','Errore durante il recupero delle informazioni dei tracciati'), //get all tracks
-
 			//5
+			array('SELECT * FROM pista','Errore durante il recupero delle informazioni dei tracciati'), //get all tracks
+			//6
 			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track
-
+			//7
 			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM ingressi_entrata INNER JOIN data_disponibile ON
 				ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
 				posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
-
+			//8
 			array('SELECT * FROM data_disponibile WHERE data >= CURDATE()','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
-
+			//9
 			array('SELECT nome, cognome, moto, attrezzatura FROM (ingressi_entrata INNER JOIN utente ON ingressi_entrata.utente = utente.cf)
 				LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data
 				WHERE ingressi_entrata.data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entries info from open date
-
+			//10
 			array('SELECT posti FROM data_disponibile WHERE data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entry's infos
-
-			//10
+			//11
 			array('SELECT lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, COUNT(*) AS occupati FROM
 				(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
 				INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
@@ -61,18 +61,25 @@
 				GROUP BY data_disponibile.data, lezione.posti
 				ORDER BY data_disponibile.data',
 				'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get booked lessons' info
-
+			//12
 			array('SELECT * FROM lezione WHERE data >= CURDATE()',
 				'Errore durante il recupero delle informazioni sulle lezioni'), //get lessons' info
-
+			//13
 			array('SELECT nome, cognome, moto, attrezzatura FROM ((ingressi_lezione INNER JOIN utente ON ingressi_lezione.utente = utente.cf)
 				INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
 				LEFT JOIN noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data
 				WHERE ingressi_lezione.lezione = \'_lezione_\'',
 				'Errore durante il recupero delle informazioni sulle prenotazioni del corso selezionato'), //get booked record info from lesson
-
+			//14
 			array('SELECT * FROM lezione WHERE id = _lezione_',
 				'Errore durante il recupero delle informazioni del corso selezionato'), //get specific lesson info
+			//15
+			array('SELECT codice AS id, data FROM ingressi_entrata WHERE utente = _cfUser_ AND data >= CURDATE() ORDER BY data LIMIT 3',
+				'Errore durante il recupero delle informazioni sulle tue prossime prenotazioni'), //get next n track reservations for a specific user
+			//16
+			array('SELECT codice AS id, data FROM ingressi_lezione WHERE utente = _cfUser_ AND data >= CURDATE() ORDER BY data LIMIT 3',
+				'Errore durante il recupero delle informazioni sulle tue prossime lezioni'), //get next n lessons reservations for a specific user
+ 
 		);
 
 		private $conn;
@@ -313,6 +320,71 @@
 				return mysqli_insert_id($this->conn);
 			else
 			return -1;
+		}
+
+
+		/* ************************************ USER ********************************* */
+
+		/* **************************** USER DATA MANAGEMENT ************************* */
+
+		/* *************************** RESERVATION MANAGEMENT ************************ */
+		public function deleteReservation(int $id) {
+			$sql = "DELETE FROM ingressi_entrata WHERE codice = $id";
+			echo $sql;
+			mysqli_query($this->conn,$sql);
+
+			// bisogna cancellare anche la entry del noleggio 
+		}
+
+		public function createReservation(Reservation $res): int {
+			$data = mysqli_real_escape_string($this->conn,$res->getDate());
+			$user = $_SESSION['user']->getCF();
+
+			//creo reservation su ingressi_entrata
+			$sql = "INSERT INTO ingressi_entrata (data, utente) VALUES (\"$data\",$user)";
+
+
+			if($res->getMoto() || $res->getAttrezzatura()) {
+				// va creata anche la entry nella tabella noleggio
+				// come andare a prendersi il codice della moto da inserire nella prenotazione ---
+			}
+
+			mysqli_query($this->conn, $sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+				return -1;
+		}
+
+		/* *********************** LESSONS RESERVATION MANAGEMENT ******************** */
+		public function deleteLessonReservation(int $id) {
+			$sql = "DELETE FROM ingressi_lezione WHERE codice = $id";
+			echo $sql;
+			mysqli_query($this->conn,$sql);
+
+			// bisogna cancellare anche la entry del noleggio 
+		}
+
+		public function createLessonReservation(Reservation $res): int {
+			$data = mysqli_real_escape_string($this->conn,$res->getDate());
+			$user = $_SESSION['user']->getCF();
+
+			//creo reservation su ingressi_entrata
+			$sql = "INSERT INTO ingressi_entrata (data, utente) VALUES (\"$data\",$user)";
+
+
+			if($res->getMoto() || $res->getAttrezzatura()) {
+				// va creata anche la entry nella tabella noleggio
+				// come andare a prendersi il codice della moto da inserire nella prenotazione ---
+			}
+
+			mysqli_query($this->conn, $sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+				return -1;
 		}
 	}
 ?>

@@ -1,13 +1,3 @@
-<!--
-<errors/>
-
-<nextPrenotazioni/>
-
-<nextDate/>
-
-[cfUtente]
--->
-
 <?php
     require_once('../../utils/db.php');
     require_once('../../utils/user.php');
@@ -40,7 +30,7 @@
     if ($conn->openDB()) {
         //get next n track reservations
         try {
-            $ingressi = $conn->getQueryResult(dbAccess::QUERIES[---]);
+            $ingressi = $conn->getSpecificQueryResult(str_replace('_cfUser_', $cfUtente, dbAccess::QUERIES[15][0]), dbAccess::QUERIES[15][1]);
 
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
@@ -51,8 +41,8 @@
                     $prenotazioni .= '<tr>';
                     $prenotazioni .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
                     $prenotazioni .= '<td>'.$dw.'</td>';
-                    $prenotazioni .= '<td>'.$ingresso['posti'].'</td>';
-                    $prenotazioni .= '<td><a href=\'deletePrenotazione.php?date='.$ingresso['data'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
+                    // $prenotazioni .= '<td>'.$ingresso['posti'].'</td>';
+                    $prenotazioni .= '<td><a href=\'deletePrenotazione.php?id='.$ingresso['id'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $prenotazioni .= '</tr>';
                 }
             }

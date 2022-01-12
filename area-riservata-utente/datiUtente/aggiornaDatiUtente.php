@@ -3,6 +3,7 @@
     require_once('../../utils/user.php');
 
     use DB\dbAccess;
+    use USER\Utente;
     use function UTILS\sanitizeInputString;
 
     session_start();
@@ -16,6 +17,9 @@
     $errors = "";
     $globalError = '';
     
+    $user = new Utente($_POST['']);
+
+    //
     $name = $_SESSION['user']->getNome();
     $surname = $_SESSION['user']->getCognome();
     $birth = $_SESSION['user']->getNascita();
@@ -31,12 +35,12 @@
     echo str_replace("_email_", $email, $page);
     echo str_replace("_cf_", $cf, $page);
     echo str_replace("_img_path_", $img, $page);
-
+    //
 
     if($conn->openDB()) {
         
         try {
-            //
+            
         
             
 
@@ -51,9 +55,6 @@
         $globalError = 'Errore di connessione, riprovare più tardi.';
     
 
-    echo str_replace("<globalError/>", $globalError, $page);
-
-    echo str_replace("<globalError/>", $globalError, $page);
     echo str_replace("<globalError/>", $globalError, $page);
 
 ?>

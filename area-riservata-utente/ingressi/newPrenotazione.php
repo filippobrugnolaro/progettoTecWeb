@@ -54,7 +54,7 @@
             if($conn->openDB()) {
                 $res = new Reservation($date, $moto, $cc, $abbigliamento, $taglia);
 
-                $newId = $conn->createReservation($res); // --- TO BE DONE
+                $newId = $conn->createReservation($res);
 
                 if($newId > -1) {
                     $messaggiForm = 'Ti abbiamo riservato un posto in pista.';
