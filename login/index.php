@@ -65,15 +65,20 @@
 
                         switch(($_SESSION['user'])->getTipoUtente()) {
                             case 1:
-                                header('Location: ../area-riservata/');
+                                $path = '../area-riservata-utente/';
                                 break;
                             case 2:
-                                header('Location: ../area-riservata-admin/');
+                                $path = '../area-riservata-admin/';
                                 break;
                             default:
                                 session_destroy(); //should never happen
                                 break;
                         }
+                
+                        if(isset($_GET['redirect']))
+                            $path .= $_GET['redirect'].'/';
+                
+                        header("Location: $path");
 
                     }
                 } else

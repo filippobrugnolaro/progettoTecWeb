@@ -50,6 +50,10 @@ class User {
         return $this->role;
     }
 
+    public function getPsw(): string {
+        return $this->psw;
+    }
+
     public function setPsw(string $p) {
         $this->psw = $p;
     }

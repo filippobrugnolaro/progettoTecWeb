@@ -10,7 +10,7 @@
         return $string;
     }
 
-    function checkInputValidity(string $string, ?string $pattern): int {
+    function checkInputValidity(string $string, ?string $pattern = null): int {
         if(strlen($string) == 0)
             return 1;
 

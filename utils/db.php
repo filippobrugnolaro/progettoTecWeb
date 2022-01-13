@@ -127,13 +127,6 @@
 						$user = new User($row['cf'],$row['nome'],$row['cognome'],$row['nascita'],$row['telefono'],$row['email'],$row['ruolo']);
 						mysqli_free_result($query);
 
-						$path = "../user-images/".$row['cf'].".jpg";
-
-						if(file_exists($path))
-							$user->setImgPath($path);
-						else
-							$user->setImgPath('../user-images/empty-user.jpg');
-
 						return $user;
 					} else
 						return null;
@@ -338,6 +331,31 @@
 		/* *************************************************************************** */
 		/* ************************************ USER ********************************* */
 		/* *************************************************************************** */
+
+		public function createNewUser(User $newUser): int {
+
+			$cf = mysqli_real_escape_string($this->conn,$newUser->getCF());
+			$cognome = mysqli_real_escape_string($this->conn,$newUser->getCognome());
+			$nome = mysqli_real_escape_string($this->conn,$newUser->getNome());
+			$nascita = mysqli_real_escape_string($this->conn,$newUser->getNascita());
+			$telefono = mysqli_real_escape_string($this->conn,$newUser->getTelefono());
+			$email = mysqli_real_escape_string($this->conn,$newUser->getEmail());
+			$password = $newUser->getPsw();
+			$role = 1;
+
+			$sql = "INSERT INTO utente (cf,cognome,nome,nascita,telefono,email,password,ruolo) 
+					VALUES (\"$cf\",\"$cognome\",\"$nome\",\"$nascita\",\"$telefono\",\"$email\",\"$password\",$role)";
+
+			echo $sql;
+			echo mysqli_error($this->conn);
+
+			mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+				return -1;
+		}
 
 		/* **************************** USER DATA MANAGEMENT ************************* */
 
