@@ -1,7 +1,7 @@
 <?php
-    require_once("utils/db.php");
-    require_once('utils/user.php');
-    require_once("utils/utils.php");
+    require_once('../utils/db.php');
+    require_once('../utils/user.php');
+    require_once("../utils/utils.php");
 
     use DB\dbAccess;
     use function UTILS\sanitizeInputString;
@@ -11,10 +11,10 @@
     if (isset($_SESSION['user'])) {
         switch(($_SESSION['user'])->getTipoUtente()) {
             case 1:
-                header('Location: ./area-riservata/');
+                header('Location: ../area-riservata-utente/');
                 break;
             case 2:
-                header('Location: ./area-riservata-admin/');
+                header('Location: ../area-riservata-admin/');
                 break;
             default:
                 session_destroy(); //should never happen
@@ -56,10 +56,10 @@
 
                         switch(($_SESSION['user'])->getTipoUtente()) {
                             case 1:
-                                header('Location: ./area-riservata/');
+                                header('Location: ../area-riservata/');
                                 break;
                             case 2:
-                                header('Location: ./area-riservata-admin/');
+                                header('Location: ../area-riservata-admin/');
                                 break;
                             default:
                                 session_destroy(); //should never happen

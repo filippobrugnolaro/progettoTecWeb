@@ -7,7 +7,7 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 2)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
 
     $page = file_get_contents('corsi.html');
@@ -63,7 +63,7 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
-    $page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
+    //$page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
     $page = str_replace('<erroreCorso/>', $errorCorso, $page);
     $page = str_replace('<erroreCorsi/>', $errorCorsi, $page);
     $page = str_replace('<globalError/>',$globalError,$page);

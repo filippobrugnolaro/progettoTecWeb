@@ -7,19 +7,19 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
 
     $page = file_get_contents('lezioni.html');
 
     $conn = new dbAccess();
 
-   
+
     $globalError = '';
 
     $lezioni = '';
     $errorLezione = '';
-    
+
     $calendarioLezioni = '';
     $errorCalendario = '';
 
@@ -69,7 +69,7 @@
                     $lezioniDropdown .= '<option value="'.$ingresso['data'].'">'.$ingresso['data'].'</option>'
                 }
             }
-        
+
         } catch (Throwable $t) {
             $errorCalendario .= $t->getMessage();
         }
@@ -84,7 +84,7 @@
 
     $page = str_replace('<nextLezioni/>',$lezioni,$page);
     $page = str_replace('<erroreLezione/>', $errorLezione, $page);
-    
+
     $page = str_replace('<nextDate/>',$calendarioLezioni,$page);
     $page = str_replace('<erroreNextDate/>', $errorCalendario, $page);
 
@@ -95,6 +95,6 @@
 ?>
 
 
-<!-- QUERIES 
+<!-- QUERIES
 
 -->

@@ -7,14 +7,14 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 2)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
     if(!isset($_GET['date']))
         header('Location: ./');
 
     $date = $_GET['date'];
 
-    $page = file_get_contents('dettagliNoleggio.html');
+    $page = file_get_contents('dettaglinoleggio/');
     $globalError = '';
     $errorDetails = '';
     $recordsBody = '';

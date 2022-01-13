@@ -7,19 +7,19 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
 
-    $page = file_get_contents('ingressi.html');
+    $page = file_get_contents('ingressi/');
 
     $conn = new dbAccess();
 
-   
+
     $globalError = '';
 
     $prenotazioni = '';
     $errorPrenotazione = '';
-    
+
     $ingressiBody = '';
     $errorIngresso = '';
 
@@ -69,7 +69,7 @@
                     $ingressiDropdown .= '<option value="'.$ingresso['data'].'">'.$ingresso['data'].'</option>'
                 }
             }
-        
+
         } catch (Throwable $t) {
             $errorIngresso .= $t->getMessage();
         }
@@ -84,7 +84,7 @@
 
     $page = str_replace('<nextPrenotazioni/>',$prenotazioni,$page);
     $page = str_replace('<errorePrenotazione/>', $errorPrenotazione, $page);
-    
+
     $page = str_replace('<nextDate/>',$ingressiBody,$page);
     $page = str_replace('<erroreIngresso/>', $errorIngresso, $page);
 
@@ -94,6 +94,6 @@
     echo $page;
 ?>
 
-<!-- QUERIES 
+<!-- QUERIES
 
 -->

@@ -9,14 +9,14 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
     $page = file_get_contents("datiUtente.html");
     $conn = new dbAccess();
 
     $errors = "";
     $globalError = '';
-    
+
     $user = new Utente($_POST['']);
 
     //
@@ -38,14 +38,14 @@
     //
 
     if($conn->openDB()) {
-        
-        try {
-            
-        
-            
 
-            
-        
+        try {
+
+
+
+
+
+
         } catch (Throwable $t) {
             $errors .= $t->getMessage();
         }
@@ -53,7 +53,7 @@
         $conn->closeDB();
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
-    
+
 
     echo str_replace("<globalError/>", $globalError, $page);
 

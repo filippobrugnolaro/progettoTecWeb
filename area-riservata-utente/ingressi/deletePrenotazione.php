@@ -7,7 +7,7 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
     if(!isset($_GET['id']))
         header('Location: ./');

@@ -13,10 +13,10 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
 
-    $page = file_get_contents('ingressi.html');
+    $page = file_get_contents('ingressi/');
 
     $conn = new dbAccess();
 

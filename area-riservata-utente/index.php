@@ -7,14 +7,14 @@
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
-        header('Location: ../../login.php');
+        header('Location: ../../login/');
 
 
     $page = file_get_contents('home.html');
 
     $conn = new dbAccess();
 
-   
+
     $globalError = '';
 
     $prenotazioni = '';
@@ -23,7 +23,7 @@
     $errorLezioni = '';
 
     if ($conn->openDB()) {
-        //get next 3 track reservations 
+        //get next 3 track reservations
         try {
             $ingressi = $conn->getSpecificQueryResult(str_replace('_cfUser_', $cfUtente, dbAccess::QUERIES[15][0]), dbAccess::QUERIES[15][1]);
 
@@ -81,7 +81,6 @@
 ?>
 
 
-<!-- QUERIES 
+<!-- QUERIES
 
 -->
-
