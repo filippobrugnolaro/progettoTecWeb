@@ -14,7 +14,7 @@
 
     $date = $_GET['date'];
 
-    $page = file_get_contents('dettaglinoleggio/');
+    $page = file_get_contents('dettagliNoleggio.html');
     $globalError = '';
     $errorDetails = '';
     $recordsBody = '';
@@ -25,7 +25,7 @@
         try {
             $records = $conn->getSpecificQueryResult(str_replace('_data_',$date,dbAccess::QUERIES[3][0]),dbAccess::QUERIES[3][1]);
 
-            if($records !== null)
+            if($records !== null) {
                 foreach($records as $record) {
                     $utente = $record['cognome'].' '.$record['nome'];
                     $moto = $record['marca'].' '.$record['modello'].' #'.$record['numero'];
@@ -40,10 +40,10 @@
                         $recordsBody .= '<td>Propria</td>';
 
                     $recordsBody .= '</tr>';
-
-
                 }
-
+            } else {
+                $errorDetails = 'Non ci sono ancora noleggi prenotati per le prossime date di apertura.';
+            }
         } catch (Throwable $t) {
             $errorDetails = $t->getMessage();
         }
@@ -56,7 +56,6 @@
     $page = str_replace('_data_',date('d/m/Y',strtotime($date)),$page);
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<erroreDettagli>',$errorDetails,$page);
-
     $page = str_replace('<dettaglioNoleggi/>',$recordsBody,$page);
 
     echo $page;

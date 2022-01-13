@@ -51,7 +51,7 @@ class User {
     }
 
     public function setPsw(string $p) {
-        $this->psw = $p
+        $this->psw = $p;
     }
 
 }

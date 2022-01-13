@@ -34,6 +34,8 @@
                     $recordsBody .= '<td><a href=\'dettagliNoleggio.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
+            } else {
+                $errorNoleggio = 'Non ci sono informazioni sui noleggi delle prossime date di apertura.';
             }
 
         } catch (Throwable $t) {
@@ -56,6 +58,8 @@
                     $motoBody .= '<td><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class=\'fas fa-trash\'></i></a></td>';
                     $motoBody .= '</tr>';
                 }
+            } else {
+                $errorMoto = 'Non sono ancora state inserite moto a noleggio.';
             }
         } catch (Throwable $t) {
             $errorMoto = $t->getMessage();

@@ -5,5 +5,48 @@
 
     $page = file_get_contents('corsi.html');
 
+    $recordsBody = "";
+    $globalError = "";
+    $errorDetails = "";
+
+    $conn = new dbAccess();
+
+    if($conn->openDB()) {
+        try {
+            $records = $conn->getQueryResult(dbAccess::QUERIES[16]);
+
+            if($records !== null) {
+                foreach($records as $record) {
+                    $recordsBody .= '<article>';
+                    $recordsBody .= '<h2>Corso #'.$record['id'].'</h2>';
+
+                    $recordsBody .= '<p>'.$record['descrizione'].'</p>';
+
+                    $recordsBody .= '<ul>';
+                    $recordsBody .= '<li>Data: '.date('d/m/Y',strtotime($record['data'])).'</li>';
+                    $recordsBody .= '<li>Istruttore: '.$record['istruttore'].'</li>';
+                    $recordsBody .= '<li>Tracciato: #'.$record['pista'].'</li>';
+                    $recordsBody .= '<li>Posti totali: '.$record['posti'].'</li>';
+                    $recordsBody .= '<li>Posti disponibili: '.($record['posti'] - $record['occupati']).'</li>';
+                    $recordsBody .= '</ul>';
+
+                    $recordsBody .= '</article>';
+                }
+            } else {
+                $errorDetails = 'Nessun corso disponibile.';
+            }
+
+        } catch (Throwable $t) {
+            $errorDetails = $t->getMessage();
+        }
+
+        $conn->closeDB();
+    } else
+        $globalError = 'Errore di connessione, riprovare più tardi.';
+
+    $page = str_replace('<globalError/>',$globalError,$page);
+    $page = str_replace('<erroreCorsi/>',$errorDetails,$page);
+    $page = str_replace('<dettaglioCorsi/>',$recordsBody,$page);
+
     echo $page;
 ?>

@@ -11,22 +11,31 @@
     if (isset($_SESSION['user'])) {
         switch(($_SESSION['user'])->getTipoUtente()) {
             case 1:
-                header('Location: ../area-riservata-utente/');
+                $path = '../area-riservata-utente/';
                 break;
             case 2:
-                header('Location: ../area-riservata-admin/');
+                $path = '../area-riservata-admin/';
                 break;
             default:
                 session_destroy(); //should never happen
                 break;
-
         }
+
+        if(isset($_GET['redirect']))
+            $path .= $_GET['redirect'].'/';
+
+        header("Location: $path");
     }
 
-    $page = file_get_contents("login.html");
+    $page = file_get_contents('login.html');
     $conn = new dbAccess();
 
     $errors = "";
+
+    if(isset($_GET['redirect']))
+        $action = 'index.php?redirect='.$_GET['redirect'];
+    else
+        $action = 'index.php';
 
     if (isset($_POST['submit'])) {
         if (strlen($_POST['email']) == 0) {
@@ -73,10 +82,11 @@
                 $errors = $e->getMessage();
             }
         } else {
-            $errors = '<ul>$errors</ul>';
+            $errors = '<ul>'.$errors.'</ul>';
         }
     }
 
+    $page = str_replace('_action_',$action,$page);
     $page = str_replace('<messaggiForm/>', $errors, $page);
 
     echo $page;

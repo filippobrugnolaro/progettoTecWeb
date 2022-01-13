@@ -34,6 +34,8 @@
                     $recordsBody .= '<td><a href=\'dettagliIngresso.php?date='.$record['data'].'\' aria-label=\'dettaglio ingressi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
+            } else {
+                $errorIngressi = 'Non ci sono ancora prenotazioni per le prossime date di apertura';
             }
 
         } catch (Throwable $t) {
@@ -48,7 +50,6 @@
 
             if($ingressi !== null) {
                 foreach($ingressi as $ingresso) {
-                    //echo date('w',strtotime($ingresso['data']));
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     $ingressiBody .= '<tr>';
@@ -59,6 +60,8 @@
                     $ingressiBody .= '<td><a href=\'deleteIngresso.php?date='.$ingresso['data'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $ingressiBody .= '</tr>';
                 }
+            } else {
+                $errorIngresso = 'Non ci sono ancora date di apertura disponibili';
             }
         } catch (Throwable $t) {
             $errorMoto = $t->getMessage();

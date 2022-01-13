@@ -25,7 +25,7 @@
         try {
             $records = $conn->getSpecificQueryResult(str_replace('_lezione_',$id,dbAccess::QUERIES[12][0]),dbAccess::QUERIES[8][1]);
 
-            if($records !== null)
+            if($records !== null) {
                 foreach($records as $record) {
                     $utente = $record['cognome'].' '.$record['nome'];
 
@@ -45,6 +45,9 @@
                     $recordsBody .= '<td>'.$attrezzatura.'</td>';
                     $recordsBody .= '</tr>';
                 }
+            } else {
+                $errorDetails = 'Non ci sono informazioni per le prenotazioni su questo corso.';
+            }
         } catch (Throwable $t) {
             $errorDetails = $t->getMessage();
         }

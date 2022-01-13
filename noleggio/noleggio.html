@@ -43,31 +43,23 @@
 
     <h2>Noleggio moto</h2>
 
-    <article>
-      <h3>Nome moto (Esempio)</h3>
-      <ul>
-        <li>Marca:</li>
-        <li>Cilindrata:</li>
-        <li>Pubblico consigliato:</li>
-        <li>Prezzo:</li>
-      </ul>
-      <img src="" alt="immagine oggetto">
-    </article>
+    <table title="tabella contenente tutte le moto noleggiabili dell'impianto">
+      <caption>Moto noleggiabili nell'impianto</caption>
+      <thead>
+          <tr>
+              <th scope="col">Marca</th>
+              <th scope="col">Modello</th>
+              <th scope="col">Cilindrata</th>
+              <th scope="col">Anno</th>
+          </tr>
+      </thead>
+      <tbody>
+          <dettaglioMotoDisp/>
+      </tbody>
+  </table>
+  <erroreMotoDisp/>
 
-    <h2>Noleggio vestiario/protezioni</h2>
-
-    <article>
-      <h3>Nome prodotto (Esempio)</h3>
-      <ul>
-        <li>Marca:</li>
-        <li>Descrizione:</li>
-        <li>Pubblico consigliato:</li>
-        <li>Prezzo:</li>
-      </ul>
-      <img src="" alt="immagine oggetto">
-    </article>
-
-    <button type="button">Prenota Attrezzatura</button>
+    <a href='../login/?redirect=noleggio'>Prenota Attrezzatura</a>
 
     <p><a href="#top">Torna su</a></p>
   </div>

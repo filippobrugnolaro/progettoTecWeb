@@ -79,7 +79,20 @@
 			//16
 			array('SELECT codice AS id, data FROM ingressi_lezione WHERE utente = \'_cfUser_\' AND data >= CURDATE() ORDER BY data LIMIT 3',
 				'Errore durante il recupero delle informazioni sulle tue prossime lezioni'), //get next n lessons reservations for a specific user
- 
+
+			//17
+			array('SELECT lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, istruttore, descrizione, pista, COUNT(*) AS occupati FROM
+			(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
+			INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
+			WHERE data_disponibile.data >= CURDATE()
+			GROUP BY data_disponibile.data, lezione.posti, istruttore, descrizione, pista
+			ORDER BY data_disponibile.data',
+			'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get complete booked lessons' info
+
+			//18
+			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM data_disponibile LEFT JOIN ingressi_entrata ON
+			ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
+			posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
 		);
 
 		private $conn;
@@ -335,8 +348,8 @@
 
 			if(!mysqli_error($this->conn)) {
 				if(mysqli_num_rows($query)) {
-					$row = mysqli_fetch_assoc($query)
-					
+					$row = mysqli_fetch_assoc($query);
+
 					$utente = $row['utente'];
 					$date = $row['data'];
 
@@ -344,21 +357,21 @@
 
 
 					mysqli_free_result($query);
-					return $result;
+					//return $result;
 				} else
 					return null;
 			} else
-				throw new Exception($set[1]);
+				throw new Exception("aa");
 
 			$sql = "DELETE FROM ingressi_entrata WHERE codice = $id";
 			echo $sql;
 			mysqli_query($this->conn,$sql);
 
-			// bisogna cancellare anche la entry del noleggio 
+			// bisogna cancellare anche la entry del noleggio
 		}
 
 		public function createReservation(Reservation $res): int {
-			$data = mysqli_real_escape_string($this->conn,$res->getDate());
+			$data = mysqli_real_escape_string($this->conn,$res->getData());
 			$user = $_SESSION['user']->getCF();
 
 			//creo reservation su ingressi_entrata
@@ -384,11 +397,11 @@
 			echo $sql;
 			mysqli_query($this->conn,$sql);
 
-			// bisogna cancellare anche la entry del noleggio 
+			// bisogna cancellare anche la entry del noleggio
 		}
 
 		public function createLessonReservation(Reservation $res): int {
-			$data = mysqli_real_escape_string($this->conn,$res->getDate());
+			$data = mysqli_real_escape_string($this->conn,$res->getData());
 			$user = $_SESSION['user']->getCF();
 
 			//creo reservation su ingressi_lezione

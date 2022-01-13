@@ -35,6 +35,8 @@
                     $recordsBody .= '<td><a href=\'dettagliCorso.php?id='.$record['id'].'\' aria-label=\'dettaglio corso\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
+            } else {
+                $errorCorsi = 'Non ci sono ancora prenotazioni per i corsi';
             }
         } catch (Throwable $t) {
             $errorCorsi = $t->getMessage();
@@ -55,6 +57,8 @@
                     $corsiBody .= '<td><a href=\'deleteCorso.php?id='.$corso['id'].'\' aria-label=\'elimina corso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $corsiBody .= '</tr>';
                 }
+            } else {
+                $errorCorso = 'Non ci sono corsi previsti.';
             }
         } catch (Throwable $t) {
             $errorCorso = $t->getMessage();

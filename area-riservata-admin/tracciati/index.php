@@ -23,7 +23,7 @@
         try {
             $tracks = $conn->getQueryResult(dbAccess::QUERIES[4]);
 
-            if($tracks !== null)
+            if($tracks !== null) {
                 foreach($tracks as $track) {
                     $track['terreno'][0] = strtoupper($track['terreno'][0]);
                     $track['terreno'] = str_replace('_',' ',$track['terreno']);
@@ -41,6 +41,9 @@
                     $recordsBody .= '<td><a href=\'deleteTracciato.php?id='.$track['id'].'\' aria-label=\'elimina tracciato\'><i class=\'fas fa-trash\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
+            } else {
+                $errorTracciati = 'Non è ancora stato inserito alcun tracciato.';
+            }
         } catch (Throwable $t) {
             $errorTracciati = $t->getMessage();
         }
