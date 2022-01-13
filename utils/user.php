@@ -10,7 +10,6 @@ class User {
     private $email;
     private $psw;
     private $role; //1 == utente, 2 == admin
-    private $imgPath;
 
     function __construct(string $cf, string $nome, string $cognome, string $nascita, string $telefono, string $email, int $role, string $psw = '') {
         $this->cf = $cf;
@@ -49,10 +48,6 @@ class User {
 
     public function getTipoUtente(): int {
         return $this->role;
-    }
-
-    public function setImgPath(string $path) {
-        $this->imgPath = $path;
     }
 
     public function setPsw(string $p) {
