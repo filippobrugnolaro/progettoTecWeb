@@ -8,10 +8,11 @@ class User {
     private $nascita;
     private $telefono;
     private $email;
+    private $psw;
     private $role; //1 == utente, 2 == admin
-    private $imgPath = null;
+    private $imgPath;
 
-    function __construct(string $cf, string $nome, string $cognome, string $nascita, string $telefono, string $email, int $role) {
+    function __construct(string $cf, string $nome, string $cognome, string $nascita, string $telefono, string $email, int $role, string $psw = '') {
         $this->cf = $cf;
         $this->nome = $nome;
         $this->cognome = $cognome;
@@ -19,6 +20,7 @@ class User {
         $this->telefono = $telefono;
         $this->email = $email;
         $this->role = $role;
+        $this->psw = $psw;
     }
 
     public function getCF(): string {
@@ -49,12 +51,12 @@ class User {
         return $this->role;
     }
 
-    public function getImgPath() {
-        return $this->imgPath;
-    }
-
     public function setImgPath(string $path) {
         $this->imgPath = $path;
+    }
+
+    public function setPsw(string $p) {
+        $this->psw = $p
     }
 
 }

@@ -74,10 +74,10 @@
 			array('SELECT * FROM lezione WHERE id = _lezione_',
 				'Errore durante il recupero delle informazioni del corso selezionato'), //get specific lesson info
 			//15
-			array('SELECT codice AS id, data FROM ingressi_entrata WHERE utente = _cfUser_ AND data >= CURDATE() ORDER BY data LIMIT 3',
+			array('SELECT codice AS id, data FROM ingressi_entrata WHERE utente = \'_cfUser_\' AND data >= CURDATE() ORDER BY data LIMIT 3',
 				'Errore durante il recupero delle informazioni sulle tue prossime prenotazioni'), //get next n track reservations for a specific user
 			//16
-			array('SELECT codice AS id, data FROM ingressi_lezione WHERE utente = _cfUser_ AND data >= CURDATE() ORDER BY data LIMIT 3',
+			array('SELECT codice AS id, data FROM ingressi_lezione WHERE utente = \'_cfUser_\' AND data >= CURDATE() ORDER BY data LIMIT 3',
 				'Errore durante il recupero delle informazioni sulle tue prossime lezioni'), //get next n lessons reservations for a specific user
  
 		);
@@ -322,13 +322,34 @@
 			return -1;
 		}
 
-
+		/* *************************************************************************** */
 		/* ************************************ USER ********************************* */
+		/* *************************************************************************** */
 
 		/* **************************** USER DATA MANAGEMENT ************************* */
 
 		/* *************************** RESERVATION MANAGEMENT ************************ */
 		public function deleteReservation(int $id) {
+			$sql = "SELECT * FROM ingressi_entrata WHERE codice = $id";
+			$query = mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn)) {
+				if(mysqli_num_rows($query)) {
+					$row = mysqli_fetch_assoc($query)
+					
+					$utente = $row['utente'];
+					$date = $row['data'];
+
+					$sql = "DELETE FROM noleggio WHERE codice = $id";
+
+
+					mysqli_free_result($query);
+					return $result;
+				} else
+					return null;
+			} else
+				throw new Exception($set[1]);
+
 			$sql = "DELETE FROM ingressi_entrata WHERE codice = $id";
 			echo $sql;
 			mysqli_query($this->conn,$sql);
@@ -370,8 +391,8 @@
 			$data = mysqli_real_escape_string($this->conn,$res->getDate());
 			$user = $_SESSION['user']->getCF();
 
-			//creo reservation su ingressi_entrata
-			$sql = "INSERT INTO ingressi_entrata (data, utente) VALUES (\"$data\",$user)";
+			//creo reservation su ingressi_lezione
+			$sql = "INSERT INTO ingressi_lezione (data, utente) VALUES (\"$data\",$user)";
 
 
 			if($res->getMoto() || $res->getAttrezzatura()) {

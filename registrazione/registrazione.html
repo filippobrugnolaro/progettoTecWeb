@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+	<title>Registrazione - Adrenaline Motocross Park</title>
+	<meta charset="utf-8" />
+	<!-- <meta name="keywords" content="servizi, motocross, enduro" /> -->
+	<!-- <meta name="description" content="servizi offerti dall'impianto" /> -->
+	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
+	<!--<script src="https://kit.fontawesome.com/48ea8a0a6a.js" crossorigin="anonymous"></script>-->
+
+	<script src="utils/login.js"></script>
+
+</head>
+
+<body>
+	<header>
+		<h1 lang="en">Adrenaline Motocross Park</h1>
+	</header>
+
+	<nav id="breadcrumb">
+		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; Area riservata</p>
+	</nav>
+
+	<nav id="menuList">
+		<ul>
+			<li><a href="../">Home</a></li>
+			<li><a href="../tracciati/">Tracciati</a></li>
+			<li><a href="../servizi/">Servizi</a></li>
+			<li><a href="../corsi/">Corsi</a></li>
+			<li><a href="../noleggio/">Noleggio</a></li>
+			<li><a href="../ingressi/">Ingressi</a></li>
+			<li><a href="../contatti/">Contatti</a></li>
+			<li>Area riservata</li>
+		</ul>
+	</nav>
+
+	<div id="contentLogin">
+		<h1>Registrazione</h1>
+
+        <form method="post" action="index.php" onsubmit="return validazioneForm();">
+			<messaggiForm/>
+
+            <fieldset>
+				<label for="nomeUser">Nome</label>
+				<input type="text" name="nomeUser" id="nomeUser" value="_nome_"/> <br/>
+
+				<label for="cognomeUser">Cognome</label>
+				<input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_"/> <br/>
+
+				<label for="nascitaUser">Data di Nascita</label>
+				<input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_"/> <br/>
+
+				<label for="cfUser">Codice Fiscale</label>
+				<input type="text" name="cfUser" id="cfUser" value="_cf_"/> <br/>
+
+				<label for="telUser">Telefono</label>
+				<input type="tel" name="telUser" id="telUser" value="_telefono_" pattern="[0-9]{3} [0-9]{2} [0-9]{3}"/> <br/>
+			</fieldset>
+
+            <fieldset>
+				<legend>Dati per l'accesso</legend>
+
+                <label for="emailUser">E-mail</label>
+				<input type="email" name="emailUser" id="emailUser"/> <br/>
+
+                <label for="pswUser">E-mail</label>
+				<input type="password" name="pswUser" id="pswUser"/> <br/>
+
+                <label for="pswCheck">E-mail</label>
+				<input type="password" name="pswCheck" id="pswCheck"/> <br/>
+			</fieldset>
+
+			<input type="submit" name="submit" value="REGISTRATI"/>
+		</form>
+
+        <!-- 
+            -ANAGRAFICA-
+            CF
+            Cognome
+            Nome
+            Data di nascita
+            Telefono
+
+            -DATI PER ACCESSO-
+            Email 
+            Password
+            Password Check
+        -->
+
+		<form method="post" action="index.php" onsubmit="return validazioneForm();">
+			<messaggiForm/>
+
+			<fieldset>
+				<legend>Dati personali</legend>
+				<label for="nome">Email</label>
+				<span><input type="email" name="email" id="email"/></span><br />
+
+				<label for="colore">Password </label>
+				<span><input type="password" name="password" id="password"/></span><br />
+			</fieldset>
+			<input type="submit" name="submit" value="ACCEDI"/>
+		</form>
+
+
+	</div>
+
+	<footer>
+
+		<div class="footerInfo">
+			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo" />
+			<p><span lang="en">Adrenaline Motocross Park</span> è un parco divertimenti dedicato ai motociclisti e agli
+				appassionati di motocross. Il progetto nasce dalla passione autentica per questo sport e punta a dare un
+				tocco di qualità in più per permettere agli appassionati di esprimersi in totale comodità e sicurezza.
+			</p>
+		</div>
+
+		<div class="footerDoveSiamo">
+			<h3>Dove siamo</h3>
+			<p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
+			<p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
+			<p class="informazioniFooter">Indirizzo:</p>
+		</div>
+
+		<img src="images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+		<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
+				rights reserved</span></p>
+		<img src="images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+	</footer>
+</body>
+
+</html>

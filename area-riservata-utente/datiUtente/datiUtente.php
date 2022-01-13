@@ -39,7 +39,8 @@
             //
 
 
-
+            //aggiorno i dati user della sessione
+            $_SESSION['user'] = $ //nuovo oggetto 
 
 
         } catch (Throwable $t) {
