@@ -21,6 +21,6 @@
         $conn->closeDB();
     }
 
-    header('Location: ./#gestioneIngressi');
+    header('Location: ./');
 
 ?>

@@ -8,7 +8,7 @@
 
 
     $page = file_get_contents('dashboard.html');
-    //$page = str_replace('img_path','../user-images/'.$_SESSION['user']->getImgPath(),$page);
+
 
     echo $page;
 

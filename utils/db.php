@@ -6,6 +6,7 @@
 	require_once('track.php');
 	require_once('entry.php');
 	require_once('lesson.php');
+	require_once('lessonReservation.php');
 
 	use Exception;
 	use MOTO\DirtBike;
@@ -13,8 +14,10 @@
 	use USER\User;
 	use INGRESSO\Entry;
 	use LEZIONE\Lesson;
-use MESSAGGIO\Message;
-use PRENOTAZIONE\Reservation;
+	use PRENOTAZIONELEZ\LessonReservation;
+	use MESSAGGIO\Message;
+	use PRENOTAZIONE\Reservation;
+	use Throwable;
 
 	class dbAccess {
 		private const HOST = '127.0.0.1';
@@ -41,9 +44,10 @@ use PRENOTAZIONE\Reservation;
 			//5
 			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track
 			//6
-			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM ingressi_entrata INNER JOIN data_disponibile ON
-				ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
-				posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
+			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati
+				FROM data_disponibile INNER JOIN ingressi_entrata ON ingressi_entrata.data = data_disponibile.data
+				WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data ORDER BY data_disponibile.data',
+				'Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
 			//7
 			array('SELECT * FROM data_disponibile WHERE data >= CURDATE()','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
 			//8
@@ -75,14 +79,22 @@ use PRENOTAZIONE\Reservation;
 			array('SELECT * FROM lezione WHERE id = _lezione_',
 				'Errore durante il recupero delle informazioni del corso selezionato'), //get specific lesson info
 			//14
-			array('SELECT codice AS id, data FROM ingressi_entrata WHERE utente = \'_cfUser_\' AND data >= CURDATE() ORDER BY data LIMIT 3',
+			array('SELECT ingressi_entrata.codice AS id, ingressi_entrata.data, marca, modello, attrezzatura FROM
+				(ingressi_entrata LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data)
+				LEFT JOIN moto ON noleggio.moto = moto.numero
+				WHERE ingressi_entrata.utente = \'_cfUser_\' AND ingressi_entrata.data >= CURDATE()',
 				'Errore durante il recupero delle informazioni sulle tue prossime prenotazioni'), //get next n track reservations for a specific user
+
 			//15
-			array('SELECT codice AS id, data FROM ingressi_lezione WHERE utente = \'_cfUser_\' AND data >= CURDATE() ORDER BY data LIMIT 3',
+			array('SELECT lezione.ID AS id, ingressi_lezione.codice AS codice, lezione.data AS data, istruttore, pista, marca, modello, attrezzatura
+				FROM ((ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
+				LEFT JOIN noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data)
+				LEFT JOIN moto ON noleggio.moto = moto.numero
+				WHERE ingressi_lezione.utente = \'_cfUser_\' AND lezione.data >= CURDATE()',
 				'Errore durante il recupero delle informazioni sulle tue prossime lezioni'), //get next n lessons reservations for a specific user
 
 			//16
-			array('SELECT lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, istruttore, descrizione, pista, COUNT(*) AS occupati FROM
+			array('SELECT ingressi_lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, istruttore, descrizione, pista, COUNT(*) AS occupati FROM
 			(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
 			INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
 			WHERE data_disponibile.data >= CURDATE()
@@ -100,6 +112,29 @@ use PRENOTAZIONE\Reservation;
 
 			//19
 			array('SELECT * FROM messaggio WHERE id = _id_','Errore durante il recupero del messaggio'), //get specific user message
+
+			//20
+			array('SELECT data_disponibile.data AS data, posti, COUNT(posti) AS occupati
+				FROM data_disponibile
+				WHERE data_disponibile.data >= CURDATE()
+				AND data NOT IN (SELECT data FROM ingressi_entrata WHERE utente = \'_cf_\')
+				GROUP BY data_disponibile.data
+				ORDER BY data_disponibile.data',
+				'Errore durante il recupero delle informazioni sugli ingressi prenotati'),
+
+			//21
+			array('SELECT * FROM moto
+				WHERE numero NOT IN (SELECT moto FROM noleggio WHERE data = \'_date_\')',
+				'Errore durante il recupero delle informazioni sugli ingressi'), //get available dirtbikes
+
+			//22
+			array('SELECT id,istruttore, data, pista, posti, COUNT(*) AS occupati
+				FROM lezione
+				WHERE data >= CURDATE()
+					AND id NOT IN (SELECT lezione FROM ingressi_lezione WHERE utente = \'_cfUser_\')
+				GROUP BY id
+				ORDER BY data',
+				'Errore durante il recupero delle informazioni sui corsi prenotati'),
 		);
 
 		private $conn;
@@ -144,6 +179,7 @@ use PRENOTAZIONE\Reservation;
 
 		/* ***************************** GENERIC ************************** */
 		public function getQueryResult(array $set) {
+			//echo $set[0];
 			$query = mysqli_query($this->conn,$set[0]);
 
 			if(!mysqli_error($this->conn)) {
@@ -306,7 +342,6 @@ use PRENOTAZIONE\Reservation;
 		/* ***************************** LESSONS MANAGEMENT ************************** */
 		public function deleteLesson(int $id) {
 			$sql = "DELETE FROM lezione WHERE id = $id";
-			echo $sql;
 			mysqli_query($this->conn,$sql);
 		}
 
@@ -370,8 +405,6 @@ use PRENOTAZIONE\Reservation;
 			$sql = "INSERT INTO messaggio (nominativo,email,telefono,oggetto,testo) VALUES ";
 			$sql .= "(\"$nominativo\",\"$email\",\"$tel\",\"$obj\",\"$text\")";
 
-			echo $sql;
-
 			mysqli_query($this->conn,$sql);
 
 			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
@@ -405,165 +438,248 @@ use PRENOTAZIONE\Reservation;
 			$sql = "INSERT INTO utente (cf,cognome,nome,nascita,telefono,email,password,ruolo)
 					VALUES (\"$cf\",\"$cognome\",\"$nome\",\"$nascita\",\"$telefono\",\"$email\",\"$password\",$role)";
 
-			echo $sql;
-			echo mysqli_error($this->conn);
-
 			mysqli_query($this->conn,$sql);
 
 			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
 				return mysqli_insert_id($this->conn);
-			else
-				if(!strpos('#1062',mysqli_error($this->conn)))
+			else {
+				if(mysqli_errno($this->conn) != 1062)
 					return -1;
 				else
 					return -2;
+			}
 		}
 
 		/* **************************** USER DATA MANAGEMENT ************************* */
 
-		public function updateUserData(User $user): int {
+		public function updateUserData(User $user): bool {
 			//usato per identificare l'utente
 			$cf = strtoupper(mysqli_real_escape_string($this->conn,$user->getCF()));
 
 			//colonne da aggiornare
 			$cognome = mysqli_real_escape_string($this->conn,$user->getCognome());
+			$cognome[0] = strtoupper($cognome[0]);
+
 			$nome = mysqli_real_escape_string($this->conn,$user->getNome());
+			$nome[0] = strtoupper($nome[0]);
+
 			$nascita = mysqli_real_escape_string($this->conn,$user->getNascita());
 			$telefono = mysqli_real_escape_string($this->conn,$user->getTelefono());
 
-
-			$sql = "UPDATE utenti
-					SET cognome = \'$cognome\', nome = \'$nome\', nascita = \'$nascita\', telefono = \'$telefono\',
-					WHERE cf = \'$cf\'";
-
-			//echo $sql;
-			//echo mysqli_error($this->conn);
-
+			$sql = "UPDATE utente SET cognome=\"$cognome\", nome=\"$nome\", nascita=\"$nascita\", telefono = \"$telefono\" WHERE cf = \"$cf\"";
 			mysqli_query($this->conn,$sql);
 
-			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
-				return mysqli_insert_id($this->conn);
+			if(!mysqli_error($this->conn))
+				return true;
 			else
-				if(!strpos('#1062',mysqli_error($this->conn)))
-					return -1;
-				else
-					return -2;
+				return false;
 		}
 
 		public function checkNewPassword(string $email, string $oldPsw, string $newPsw) : string {
 			//controllo che email e psw vecchia siano corette
-			if(searchUser($email, $oldPsw) != null) {
+
+			if($this->searchUser($email, $oldPsw) != null) {
 				//controllo che psw vecchia e nuova siano diverse
-				if(strcmp($oldPsw, $newPsw) == 0) {
-					return '';
+				if(strcmp($oldPsw, $newPsw) != 0) {
+						return '';
 				} else {
-					return '<li>La vecchia e la nuova password non combaciano.</li';
+					return '<li>La vecchia e la nuova password combaciano.</li>';
 				}
 			} else {
-				return '<li>La vecchia password è errata.</li';
+				return '<li>La vecchia password è errata.</li>';
 			}
 		}
 
-		public function updateUserPassword(User $user): int {
+		public function updateUserPassword(User $user): bool {
 			//usato per identificare l'utente
 			$cf = mysqli_real_escape_string($this->conn,$user->getCF());
 			//colonne da aggiornare
 			$email = mysqli_real_escape_string($this->conn,$user->getEmail());
+			$email = strtolower($email);
+
 			$password = $user->getPsw();
 
-			$sql = "UPDATE utenti
-					SET email = \'$email\', password = \'$password\',
-					WHERE cf = \'$cf\'";
-
-			echo $sql;
-			echo mysqli_error($this->conn);
+			$sql = "UPDATE utente SET email = \"$email\", password = \"$password\" WHERE cf = \"$cf\"";
 
 			mysqli_query($this->conn,$sql);
 
-			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
-				return mysqli_insert_id($this->conn);
+			if(!mysqli_error($this->conn))
+				return true;
 			else
-				return -1;
+				return false;
 		}
 
 		/* *************************** RESERVATION MANAGEMENT ************************ */
 		public function deleteReservation(int $id) {
-			$sql = "SELECT * FROM ingressi_entrata WHERE codice = $id";
+			try {
+				mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+				mysqli_autocommit($this->conn,false);
+				mysqli_begin_transaction($this->conn,MYSQLI_TRANS_START_READ_WRITE);
+
+				$sql = "SELECT noleggio.codice AS codice
+					FROM ingressi_entrata INNER JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data
+					WHERE ingressi_entrata.codice = $id";
+
+				$query = mysqli_query($this->conn,$sql);
+
+				if(!mysqli_error($this->conn)) {
+					if(mysqli_num_rows($query)) {
+						$row = mysqli_fetch_assoc($query); //sempre e solo un risultato
+						$codice = $row['codice'];
+						mysqli_free_result($query);
+
+						$sql = "DELETE FROM noleggio WHERE codice = $codice";
+						mysqli_query($this->conn,$sql);
+					}
+				}
+
+				$sql = "DELETE FROM ingressi_entrata WHERE codice = $id";
+				mysqli_query($this->conn,$sql);
+
+				mysqli_commit($this->conn);
+				mysqli_autocommit($this->conn,true);
+			} catch(Throwable $t) {
+				mysqli_rollback($this->conn);
+			}
+		}
+
+		public function createReservation(Reservation $res): int {
+			$user = $res->getCF();
+			$data = mysqli_real_escape_string($this->conn,$res->getData());
+
+			mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+			try {
+				mysqli_autocommit($this->conn,false);
+				mysqli_begin_transaction($this->conn,MYSQLI_TRANS_START_READ_WRITE);
+
+				//controllo che non abbia già fatto iscrizione a corso
+				$sql = "SELECT codice FROM ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id
+					WHERE lezione.data = \"$data\"";
+
+				$query = mysqli_query($this->conn,$sql);
+
+				if(mysqli_num_rows($query) > 0) {//ha già prenotato un corso!!
+					mysqli_free_result($query);
+					return -1;
+				}
+
+				$sql = "INSERT INTO ingressi_entrata (data, utente) VALUES (\"$data\",\"$user\")";
+				mysqli_query($this->conn,$sql);
+
+				if($res->getMotoBool()) {
+					if($res->getAttrezzatura())
+						$attrezzatura = 1;
+					else
+						$attrezzatura = 0;
+
+					$moto = $res->getMoto();
+
+					$sql = "INSERT INTO noleggio (data,attrezzatura,utente,moto) VALUES(\"$data\",$attrezzatura,\"$user\",$moto)";
+					mysqli_query($this->conn, $sql);
+				}
+
+				mysqli_commit($this->conn);
+				mysqli_autocommit($this->conn,true);
+
+				return 0;
+			} catch(Throwable $t) {
+				mysqli_rollback($this->conn);
+				return -2;
+			}
+		}
+
+		/* *********************** LESSONS RESERVATION MANAGEMENT ******************** */
+	public function deleteLessonReservation(int $id) {
+		try {
+			mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+			mysqli_autocommit($this->conn,false);
+			mysqli_begin_transaction($this->conn,MYSQLI_TRANS_START_READ_WRITE);
+
+			$sql = "SELECT noleggio.codice AS codice
+				FROM ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id INNER JOIN
+				noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data
+				WHERE ingressi_lezione.codice = $id";
+
 			$query = mysqli_query($this->conn,$sql);
 
 			if(!mysqli_error($this->conn)) {
 				if(mysqli_num_rows($query)) {
-					$row = mysqli_fetch_assoc($query);
-
-					$utente = $row['utente'];
-					$date = $row['data'];
-
-					$sql = "DELETE FROM noleggio WHERE codice = $id";
-
-
+					$row = mysqli_fetch_assoc($query); //sempre e solo un risultato
+					$codice = $row['codice'];
 					mysqli_free_result($query);
-					//return $result;
-				} else
-					return null;
-			} else
-				throw new Exception("aa");
 
-			$sql = "DELETE FROM ingressi_entrata WHERE codice = $id";
-			echo $sql;
-			mysqli_query($this->conn,$sql);
-
-			// bisogna cancellare anche la entry del noleggio
-		}
-
-		public function createReservation(Reservation $res): int {
-			$data = mysqli_real_escape_string($this->conn,$res->getData());
-			$user = $_SESSION['user']->getCF();
-
-			//creo reservation su ingressi_entrata
-			$sql = "INSERT INTO ingressi_entrata (data, utente) VALUES (\"$data\",$user)";
-
-
-			if($res->getMoto() || $res->getAttrezzatura()) {
-				// va creata anche la entry nella tabella noleggio
-				// come andare a prendersi il codice della moto da inserire nella prenotazione ---
+					$sql = "DELETE FROM noleggio WHERE codice = $codice";
+					mysqli_query($this->conn,$sql);
+				}
 			}
 
-			mysqli_query($this->conn, $sql);
-
-			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
-				return mysqli_insert_id($this->conn);
-			else
-				return -1;
-		}
-
-		/* *********************** LESSONS RESERVATION MANAGEMENT ******************** */
-		public function deleteLessonReservation(int $id) {
 			$sql = "DELETE FROM ingressi_lezione WHERE codice = $id";
-			echo $sql;
 			mysqli_query($this->conn,$sql);
 
-			// bisogna cancellare anche la entry del noleggio
-		}
-
-		public function createLessonReservation(Reservation $res): int {
-			$data = mysqli_real_escape_string($this->conn,$res->getData());
-			$user = $_SESSION['user']->getCF();
-
-			//creo reservation su ingressi_lezione
-			$sql = "INSERT INTO ingressi_lezione (data, utente) VALUES (\"$data\",$user)";
-
-
-			if($res->getMoto() || $res->getAttrezzatura()) {
-				// va creata anche la entry nella tabella noleggio
-				// come andare a prendersi il codice della moto da inserire nella prenotazione ---
-			}
-
-			mysqli_query($this->conn, $sql);
-
-			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
-				return mysqli_insert_id($this->conn);
-			else
-				return -1;
+			mysqli_commit($this->conn);
+			mysqli_autocommit($this->conn,true);
+		} catch(Throwable $t) {
+			mysqli_rollback($this->conn);
 		}
 	}
+
+	public function createLessonReservation(LessonReservation $res): bool {
+		$user = $res->getCF();
+		$lez = $res->getLesson();
+
+		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+		try {
+			mysqli_autocommit($this->conn,false);
+			mysqli_begin_transaction($this->conn,MYSQLI_TRANS_START_READ_WRITE);
+
+			//controllo che non abbia già fatto iscrizione ad un ingresso
+			$sql = "SELECT data FROM lezione WHERE id = $lez";
+			$query = mysqli_query($this->conn,$sql);
+
+			$data = mysqli_fetch_assoc($query)['data'];
+			mysqli_free_result($query);
+
+			$sql = "SELECT codice FROM ingressi_entrata WHERE data = \"$data\"";
+
+			$query = mysqli_query($this->conn,$sql);
+
+			if(mysqli_num_rows($query) > 0) {//ha già prenotato un ingresso!!
+				mysqli_free_result($query);
+				return -1;
+			}
+
+			$sql = "INSERT INTO ingressi_lezione (lezione, utente) VALUES (\"$lez\",\"$user\"); ";
+			mysqli_query($this->conn,$sql);
+
+			$sql = "SELECT data FROM lezione WHERE id = $lez";
+
+			$query = mysqli_query($this->conn,$sql);
+			$result = mysqli_fetch_assoc($query);
+
+			$data = $result['data'];
+
+			if($res->getMotoBool()) {
+				if($res->getAttrezzatura())
+					$attrezzatura = 1;
+				else
+					$attrezzatura = 0;
+
+				$moto = $res->getMoto();
+
+				$sql = "INSERT INTO noleggio (data,attrezzatura,utente,moto) VALUES(\"$data\",$attrezzatura,\"$user\",$moto)";
+				mysqli_query($this->conn, $sql);
+			}
+
+			mysqli_commit($this->conn);
+			mysqli_autocommit($this->conn,true);
+
+			return true;
+		} catch(Throwable $t) {
+			mysqli_rollback($this->conn);
+			return false;
+		}
+	}
+}
 ?>

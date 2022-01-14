@@ -8,23 +8,6 @@
     use function UTILS\sanitizeInputString;
     use function UTILS\checkInputValidity;
 
-    // session_start();
-
-    // if (isset($_SESSION['user'])) {
-    //     switch(($_SESSION['user'])->getTipoUtente()) {
-    //         case 1:
-    //             header('Location: ../area-riservata-utente/');
-    //             break;
-    //         case 2:
-    //             header('Location: ../area-riservata-admin/');
-    //             break;
-    //         default:
-    //             session_destroy(); //should never happen
-    //             break;
-
-    //     }
-    // }
-
     $page = file_get_contents("registrazione.html");
     $conn = new dbAccess();
 

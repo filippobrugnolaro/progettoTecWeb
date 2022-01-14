@@ -4,14 +4,13 @@
 
 <head>
 
-	<title>Le tue lezioni - Adrenaline Motocross Park</title>
+	<title>I tuoi corsi - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
 	<!-- <meta name="keywords" content="servizi, motocross, enduro" /> -->
 	<!-- <meta name="description" content="servizi offerti dall'impianto" /> -->
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-	<!--<script src="https://kit.fontawesome.com/48ea8a0a6a.js" crossorigin="anonymous"></script>-->
-
-	<script src="utils/login.js"></script>
+	<script src="https://kit.fontawesome.com/48ea8a0a6a.js" crossorigin="anonymous"></script>
+	<script src="moto.js"></script>
 
 </head>
 
@@ -21,13 +20,12 @@
 	</header>
 
 	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="index.html"><span lang="en">Home</span></a> &gt;&gt; Area riservata</p>
+		<p>Ti trovi in <a href="../../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Corsi</p>
 	</nav>
 
 	<nav id="menuList">
-		<h2>Menu</h2> <!-- NON HA SENSO METTERE MENU IN UN H2!!!-->
 		<ul>
-			<li><a href="../../index.html">Home</a></li>
+			<li><a href="../../">Home</a></li>
 			<li><a href="../../tracciati/">Tracciati</a></li>
 			<li><a href="../../servizi/">Servizi</a></li>
 			<li><a href="../../corsi/">Corsi</a></li>
@@ -39,14 +37,12 @@
 	</nav>
 
     <div id="subMenu">
-        <img src="img_path" alt="immagine dell'utente"/>
-
         <nav id="subMenu" role="navigation" aria-roledescription="menu area riservata utente"></nav>
             <ul>
-                <li><a href="../home.html" lang="en">Home</a></li>
-                <li><a href="../datiUtente/datiUtente.html">I tuoi dati</a></li>
-                <li><a href='../ingressi/ingressi/'>Ingressi</a></li>
-                <li>Lezioni</li>
+                <li><a href="../" lang="en">Home</a></li>
+                <li><a href="../dati-utente/">I tuoi dati</a></li>
+                <li><a href="../ingressi/">Ingressi</a></li>
+                <li>Corsi</li>
                 <li><a href="../../login/logout.php" lang="en">Logout</a></li>
             </ul>
         </nav>
@@ -57,13 +53,17 @@
 
         <!-- I tuoi ingressi -->
 		<article id='gestioneIngressi'>
-			<h2>Le tue prossime prenotazioni</h2>
-			<table title="tabella contenente le prossime date prenotate">
+			<h2>I tuoi prossimi corsi prenotati</h2>
+			<table title="tabella contenente i prossimi corsi prenotati">
+				<caption>Corsi prenotati</caption>
 				<thead>
 					<tr>
+						<th scope="col">Corso</th>
 						<th scope="col">Data</th>
-						<th scope="col">Giorno</th>
-						<th scope="col">Posti disponibili</th>
+						<th scope="col">Istruttore</th>
+						<th scope="col">Tracciato</th>
+						<th scope="col">Moto</th>
+						<th scope="col">Attrezzatura</th>
 						<th scope="col">Elimina</th>
 					</tr>
 				</thead>
@@ -77,13 +77,16 @@
 
         <!-- Calendario -->
         <article>
-            <h2>Calendario lezioni</h2>
-            <table title="tabella contenente le prossime date di apertura">
-				<caption>Prossime lezioni</caption>
+            <h2>Calendario corsi</h2>
+            <table title="tabella contenente i prossimi corsi prenotati disponibili">
+				<caption>Prossimi corsi</caption>
 				<thead>
 					<tr>
+						<th scope="col">Corso</th>
 						<th scope="col">Data</th>
 						<th scope="col">Giorno</th>
+						<th scope="col">Istruttore</th>
+						<th scope="col">Tracciato</th>
 						<th scope="col">Posti disponibili</th>
 					</tr>
 				</thead>
@@ -97,40 +100,32 @@
         <!-- Prenotazione Lezione -->
         <article>
             <h2>Prenota una lezione</h2>
-            <form method="post" action="_action_">
-				<input type="hidden" id="idUtente" name="idUtente" value="[cfUtente]">
 
-				<label for="dataDisp">Data:</label>
-				<select id="dataDisp" name="dataDisp">
-					<dataDisp/>
-				</select> <br/>
+            <form method="post" action="./">
+				<messaggiForm/>
+
+				<label for="corso">Corso*</label>
+				<select id="corso" name="corso" required>
+					<corsoDisp/>
+				</select>
 
 				<fieldset>
-					<legend>Attrezzatura extra</legend>
+					<legend>Noleggio</legend>
+
+					<label for="moto">Noleggio moto</label>
 					<input type="checkbox" id="moto" name="moto" value="moto">
-					<label for="moto">Moto</label>
-					<p>Cilindrata utilizzata solitamente</p>
-					<select id="cilindrata" name="cilindrata">
-						<option value="125">125cc</option>
-						<option value="250">250cc</option>
-						<option value="450">450cc</option>
+
+					<label for="motoNoleggio">Tipo di moto</label>
+					<select id="motoNoleggio" name="motoNoleggio">
 					</select>
 					<br/>
 
+					<label for="vestiario">Attrezzatura</label>
 					<input type="checkbox" id="vestiario" name="vestiario" value="vestiario">
-					<label for="vestiario">Vestiario</label>
-					<p>Taglia</p>
-					<select id="taglia" name="taglia">
-						<option value="s">S</option>
-						<option value="m">M</option>
-						<option value="l">L</option>
-						<option value="xl">XL</option>
-					</select>
 				</fieldset>
 
-				<input type="submit" name="submit" value="_azione_">
+				<input type="submit" name="submit" value="PRENOTA">
             </form>
-			<messaggiForm/>
         </article>
 
 	</div>

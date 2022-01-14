@@ -1,13 +1,13 @@
 <?php
-    require_once('../../utils/db.php');
-    require_once('../../utils/user.php');
+    require_once('../utils/db.php');
+    require_once('../utils/user.php');
 
     use DB\dbAccess;
 
     session_start();
 
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
-        header('Location: ../../login/');
+        header('Location: ../login/');
 
 
     $page = file_get_contents('home.html');
@@ -22,10 +22,12 @@
     $lezioni = '';
     $errorLezioni = '';
 
+    $cfUtente = $_SESSION['user']->getCF();
+
     if ($conn->openDB()) {
         //get next 3 track reservations
         try {
-            $ingressi = $conn->getSpecificQueryResult(str_replace('_cfUser_', $cfUtente, dbAccess::QUERIES[15][0]), dbAccess::QUERIES[15][1]);
+            $ingressi = $conn->getSpecificQueryResult(str_replace('_cfUser_',$cfUtente, dbAccess::QUERIES[15][0]), dbAccess::QUERIES[15][1]);
 
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
@@ -68,7 +70,6 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
-    $page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
     $page = str_replace('<globalError/>',$globalError,$page);
 
     $page = str_replace('<nextPrenotazioni/>',$prenotazioni,$page);

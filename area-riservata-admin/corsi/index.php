@@ -67,7 +67,6 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
-    //$page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
     $page = str_replace('<erroreCorso/>', $errorCorso, $page);
     $page = str_replace('<erroreCorsi/>', $errorCorsi, $page);
     $page = str_replace('<globalError/>',$globalError,$page);

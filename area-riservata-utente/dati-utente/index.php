@@ -1,6 +1,7 @@
 <?php
     require_once('../../utils/db.php');
     require_once('../../utils/user.php');
+    require_once('../../utils/utils.php');
 
     use DB\dbAccess;
     use USER\User;
@@ -29,7 +30,7 @@
 
     // PRIMO FORM - Modifica anagrafica
     if (isset($_POST['submitUser'])) {
-        //check dati anagrafica    
+        //check dati anagrafica
         $cognome = sanitizeInputString($_POST['cognomeUser']);
         switch(checkInputValidity($cognome,'/^\p{L}+$/')) {
             case 1: $messaggiForm .= '<li>Cognome non presente.</li>'; break;
@@ -50,7 +51,7 @@
             case 2: $messaggiForm .= '<li>Formato data non corretto</li>'; break;
             default: break;
         }
-        
+
         $telefono = sanitizeInputString($_POST['telUser']);
         if(ctype_digit($telefono)) {
             switch(checkInputValidity($telefono)) {
@@ -59,17 +60,18 @@
                 default: break;
             }
         }
-        
+
         if(strlen($messaggiForm) == 0) {
             //prendo il cf per identificare l'utente
             $cf = $_SESSION['user']->getCF();
 
             //creo oggetto utente e faccio l'insert con la funzione
-            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, '', 0, '');
+            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $_SESSION['user']->getEmail(), 1,$_SESSION['user']->getPsw());
 
             if($conn->openDB()) {
-                if($conn->updateUserData($newUser) > -1) {
-                    header('Location: ./');
+                if($conn->updateUserData($newUser)) {
+                    $_SESSION['user'] = $newUser;
+                    $messaggiForm = '</li>Dati personali modificati con successo.</li>';
                 } else {
                     $globalError = 'Errore durante l\'aggiornamento dei dati.';
                 }
@@ -77,13 +79,13 @@
             } else {
                 $globalError = 'Errore di connessione, riprovare più tardi.';
             }
-            
         }
+        $email = $_SESSION['user']->getEmail();
 
     //SECONDO FORM - Modifica Password
     } else if (isset($_POST['submitPsw'])) {
         $email = $_SESSION['user']->getEmail();
-        
+
         //check password
         if (strlen($_POST['oldPsw']) == 0) {
             $errors .= '<li>Vecchia password non inserita.</li>';
@@ -102,31 +104,43 @@
         }
 
         if(strlen($errors) == 0) {
-            $oldPassword = password_hash($oldPassword, PASSWORD_DEFAULT);
-            $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-
             if($conn->openDB()) {
                 $checkPsw = $conn->checkNewPassword($email, $oldPassword, $newPassword);
+
                 if(strlen($checkPsw) == 0) {
                     //creo oggetto utente e faccio l'insert con la funzione
-                    $newUser = new User($cf, '', '', '', '', $email, 0, $password);
+                    $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-                    if($conn->updateUserPassword($newUser) > -1) {
-                        header('Location: ./');
+                    $newUser = new User($_SESSION['user']->getCF(),
+                        $_SESSION['user']->getNome(),
+                        $_SESSION['user']->getCognome(),
+                        $_SESSION['user']->getNascita(),
+                        $_SESSION['user']->getTelefono(),
+                        $email,
+                        1,
+                        $newPassword);
+
+                    if($conn->updateUserPassword($newUser)) {
+                        $_SESSION['user'] = $newUser;
+                        $errors = '<li>Password aggiornata con successo.</1li>';
                     } else {
-                        $globalError = 'Errore durante l\'aggiornamento della password.';
+                        $errors = '<li>Errore durante l\'aggiornamento della password.</li>';
                     }
                 } else {
-                    $errors .= $checkPsw;
+                    $errors = $checkPsw;
                 }
 
                 $conn->closeDB();
             } else {
                 $globalError = 'Errore di connessione, riprovare più tardi.';
             }
-            
         }
-    
+
+        $nome = $_SESSION['user']->getNome();
+        $cognome = $_SESSION['user']->getCognome();
+        $nascita = $_SESSION['user']->getNascita();
+        $telefono = $_SESSION['user']->getTelefono();
+
     // NO FORM - Caricamento pagina
     } else {
         //riempire i campi dati dei form
@@ -137,7 +151,16 @@
         $email = $_SESSION['user']->getEmail();
     }
 
-    
+    if(strlen($globalError) > 0)
+        $globalError = '<p>'.$globalError.'</p>';
+
+    if(strlen($errors) > 0)
+        $errors = '<ul>'.$errors.'</ul>';
+
+    if(strlen($messaggiForm) > 0)
+        $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
+
+
     $page = str_replace('<globalError/>', $globalError, $page);
 
     // PRIMO FORM
@@ -146,12 +169,13 @@
     $page = str_replace("_cognome_", $cognome, $page);
     $page = str_replace("_nome_", $nome, $page);
     $page = str_replace("_nascita_", $nascita, $page);
-    // $page = str_replace("_cf_", $cf, $page);
     $page = str_replace("_telefono_", $telefono, $page);
 
     // SECONDO FORM
     $page = str_replace('<errors/>', $errors, $page);
 
-    $page = str_replace("_email_", $email, $page); 
+    $page = str_replace("_email_", $email, $page);
+
+    echo $page;
 
 ?>

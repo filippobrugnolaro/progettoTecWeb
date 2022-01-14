@@ -1,16 +1,16 @@
 <?php
-namespace PRENOTAZIONE;
+namespace PRENOTAZIONELEZ;
 
-class Reservation {
+class LessonReservation {
     private string $cf;
-    private string $data;
+    private int $lesson;
     private bool $motoBool;
     private ?int $moto;
     private bool $attrezzatura;
 
-    function __construct(string $cf, string $data, bool $motoBool, ?int $moto, bool $attrezzatura) {
+    function __construct(string $cf, int $lesson, bool $motoBool, ?int $moto, bool $attrezzatura) {
         $this->cf = $cf;
-        $this->data = $data;
+        $this->lesson = $lesson;
         $this->motoBool = $motoBool;
         $this->moto = $moto;
         $this->attrezzatura = $attrezzatura;
@@ -21,8 +21,8 @@ class Reservation {
     }
 
 
-    public function getData(): string {
-        return $this->data;
+    public function getLesson(): int {
+        return $this->lesson;
     }
 
     public function getMotoBool(): bool {

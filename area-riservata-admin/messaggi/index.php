@@ -45,7 +45,6 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
-    //$page = str_replace('img_path', '../'.$_SESSION['user']->getImgPath(), $page);
     $page = str_replace('<erroreMessaggi/>', $errorMessaggi, $page);
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<messaggi/>',$messaggi,$page);

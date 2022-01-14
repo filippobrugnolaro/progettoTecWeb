@@ -34,7 +34,7 @@
                     else
                         $moto = '#' . $record['moto'];
 
-                    if ($record['attrezzatura'] != null)
+                    if ($record['attrezzatura'] != 0)
                         $attrezzatura = 'Da noleggiare';
                     else
                         $attrezzatura = 'Propria';
@@ -56,7 +56,6 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
-    $page = str_replace('img_path', "../".$_SESSION['user']->getImgPath(), $page);
     $page = str_replace('_corso_',"#$id",$page);
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<erroreDettagli>',$errorDetails,$page);

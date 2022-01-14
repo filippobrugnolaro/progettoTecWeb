@@ -47,34 +47,34 @@
             <fieldset>
                 <legend>Dati personali</legend>
 
-				<label for="cognomeUser">Cognome</label>
-				<input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_"/> <br/>
+				<label for="cognomeUser">Cognome*</label>
+				<input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" required/> <br/>
 
-                <label for="nomeUser">Nome</label>
-				<input type="text" name="nomeUser" id="nomeUser" value="_nome_"/> <br/>
+                <label for="nomeUser">Nome*</label>
+				<input type="text" name="nomeUser" id="nomeUser" value="_nome_" required/> <br/>
 
-				<label for="nascitaUser">Data di Nascita</label>
-				<input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_"/> <br/>
+				<label for="nascitaUser">Data di nascita*</label>
+				<input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" required/> <br/>
 
-				<label for="cfUser">Codice Fiscale</label>
-				<input type="text" name="cfUser" id="cfUser" value="_cf_"/> <br/>
+				<label for="cfUser">Codice fiscale*</label>
+				<input type="text" name="cfUser" id="cfUser" value="_cf_" required/> <br/>
 
-				<label for="telUser">Telefono</label>
-				<input type="tel" name="telUser" id="telUser" value="_telefono_"/> <br/>
+				<label for="telUser">Telefono*</label>
+				<input type="tel" name="telUser" id="telUser" value="_telefono_" required/> <br/>
 			</fieldset>
 
             <errors/>
             <fieldset>
 				<legend>Dati per l'accesso</legend>
 
-                <label for="emailUser">E-mail</label>
-				<input type="email" name="emailUser" id="emailUser" value="_email_"/> <br/>
+                <label for="emailUser" lang="en">E-mail*</label>
+				<input type="email" name="emailUser" id="emailUser" value="_email_" required/> <br/>
 
-                <label for="pswUser">Password</label>
-				<input type="password" name="pswUser" id="pswUser"/> <br/>
+                <label for="pswUser">Password*</label>
+				<input type="password" name="pswUser" id="pswUser" required/> <br/>
 
                 <label for="pswCheck">Reinserisci la password</label>
-				<input type="password" name="pswCheck" id="pswCheck"/> <br/>
+				<input type="password" name="pswCheck" id="pswCheck" required/> <br/>
 			</fieldset>
 
 			<input type="submit" name="submit" value="REGISTRATI"/>
