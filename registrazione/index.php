@@ -38,9 +38,9 @@
     $cf = '';
     $telefono = '';
     $email = '';
-    
+
     if (isset($_POST['submit'])) {
-        //check dati anagrafica    
+        //check dati anagrafica
         $cf = sanitizeInputString($_POST['cfUser']);
         if(strlen($cf) == 16) {
             switch(checkInputValidity($cf)) {
@@ -72,7 +72,7 @@
             case 2: $messaggiForm .= '<li>Formato data non corretto</li>'; break;
             default: break;
         }
-        
+
         $telefono = sanitizeInputString($_POST['telUser']);
         if(ctype_digit($telefono)) {
             switch(checkInputValidity($telefono)) {
@@ -81,8 +81,7 @@
                 default: break;
             }
         }
-        
-        
+
         //check email e password
         if (strlen($_POST['emailUser']) == 0) {
             $errors .= '<li>Email non inserita</li>';
@@ -109,16 +108,20 @@
             $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $email, 0, $password);
 
             if($conn->openDB()) {
-                if($conn->createNewUser($newUser) > -1) {
+                $res = $conn->createNewUser($newUser);
+
+                if($res > -1) {
                     header('Location: ../login/');
-                } else {
+                } else if($res == -1){
                     $globalError = 'Errore durante l\'inserimento della registrazione.';
+                } else {
+                    $globalError = 'Esiste già un utente con questo codice fiscale.';
                 }
                 $conn->closeDB();
             } else {
                 $globalError = 'Errore di connessione, riprovare più tardi.';
             }
-            
+
         }
     }
 
@@ -133,7 +136,7 @@
 
     $page = str_replace('<errors/>', $errors, $page);
 
-    $page = str_replace("_email_", $email, $page); 
+    $page = str_replace("_email_", $email, $page);
 
     echo $page;
 ?>

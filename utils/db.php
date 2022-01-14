@@ -13,7 +13,8 @@
 	use USER\User;
 	use INGRESSO\Entry;
 	use LEZIONE\Lesson;
-	use PRENOTAZIONE\Reservation;
+use MESSAGGIO\Message;
+use PRENOTAZIONE\Reservation;
 
 	class dbAccess {
 		private const HOST = '127.0.0.1';
@@ -93,6 +94,12 @@
 			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM data_disponibile LEFT JOIN ingressi_entrata ON
 			ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
 			posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
+
+			//18
+			array('SELECT * FROM messaggio','Errore durante il recupero dei messaggi'), //get user messages
+
+			//19
+			array('SELECT * FROM messaggio WHERE id = _id_','Errore durante il recupero del messaggio'), //get specific user message
 		);
 
 		private $conn;
@@ -111,9 +118,8 @@
 		}
 
 		/* ***************************** LOGIN ************************** */
-		public function searchUser(string $email, string $password) {
+		public function searchUser(string $email, string $password): ?User {
 			$email = mysqli_real_escape_string($this->conn,$email);
-			$password = mysqli_real_escape_string($this->conn,$password);
 
 			$sql = "SELECT * FROM utente WHERE email = '$email'";
 
@@ -162,7 +168,11 @@
 		/* ***************************** DIRTBIKES MANAGEMENT ************************** */
 		public function updateDirtBike(DirtBike $moto): bool {
 			$marca = mysqli_real_escape_string($this->conn,$moto->getMarca());
+			$marca[0] = strtoupper($marca[0]);
+
 			$modello = mysqli_real_escape_string($this->conn,$moto->getModello());
+			$modello[0] = strtoupper($modello[0]);
+
 			$anno = $moto->getAnno();
 			$id = $moto->getID();
 
@@ -179,7 +189,11 @@
 
 		public function createDirtBike(DirtBike $moto): int {
 			$marca = mysqli_real_escape_string($this->conn,$moto->getMarca());
+			$marca[0] = strtoupper($marca[0]);
+
 			$modello = mysqli_real_escape_string($this->conn,$moto->getModello());
+			$modello[0] = strtoupper($modello[0]);
+
 			$anno = $moto->getAnno();
 			$cilindrata = $moto->getCilindrata();
 
@@ -195,14 +209,16 @@
 
 		public function deleteDirtBike(int $id) {
 			$sql = "DELETE FROM moto WHERE numero = $id";
-
 			mysqli_query($this->conn,$sql);
 		}
 
 		/* ***************************** TRACKS MANAGEMENT ************************** */
 		public function createTrack(Track $track): int {
 			$lunghezza = $track->getLun();
+
 			$desc = mysqli_real_escape_string($this->conn,$track->getDesc());
+			$desc[0] = strtoupper($desc[0]);
+
 			$terreno = mysqli_real_escape_string($this->conn,$track->getTerreno());
 			$apertura = mysqli_real_escape_string($this->conn,$track->getApertura());
 			$chiusura = mysqli_real_escape_string($this->conn,$track->getChiusura());
@@ -222,7 +238,10 @@
 			$path = $track->getImgPath() != "" ? "\"".$track->getImgPath()."\"" : "NULL";
 			$path = mysqli_real_escape_string($this->conn,$path);
 			$lunghezza = $track->getLun();
+
 			$desc = mysqli_real_escape_string($this->conn,$track->getDesc());
+			$desc[0] = strtoupper($desc[0]);
+
 			$terreno = mysqli_real_escape_string($this->conn,$track->getTerreno());
 			$apertura = mysqli_real_escape_string($this->conn,$track->getApertura());
 			$chiusura = mysqli_real_escape_string($this->conn,$track->getChiusura());
@@ -243,7 +262,6 @@
 
 		public function deleteTrack(int $id) {
 			$sql = "DELETE FROM pista WHERE id = ".$id."";
-
 			mysqli_query($this->conn,$sql);
 		}
 
@@ -294,8 +312,13 @@
 
 		public function updateLesson(Lesson $lesson): bool {
 			$data = mysqli_real_escape_string($this->conn,$lesson->getData());
+
 			$desc = mysqli_real_escape_string($this->conn,$lesson->getDesc());
+			$desc[0] = strtoupper($desc[0]);
+
 			$istruttore = mysqli_real_escape_string($this->conn,$lesson->getIstruttore());
+			$istruttore[0] = strtoupper($istruttore[0]);
+
 			$tracciato = $lesson->getTrack();
 			$posti = $lesson->getPosti();
 			$id = $lesson->getID();
@@ -313,12 +336,41 @@
 
 		public function createLesson(Lesson $lesson): int {
 			$data = mysqli_real_escape_string($this->conn,$lesson->getData());
+
 			$desc = mysqli_real_escape_string($this->conn,$lesson->getDesc());
+			$desc[0] = strtoupper($desc[0]);
+
 			$istruttore = mysqli_real_escape_string($this->conn,$lesson->getIstruttore());
+			$istruttore[0] = strtoupper($istruttore[0]);
+
 			$tracciato = $lesson->getTrack();
 			$posti = $lesson->getPosti();
 
 			$sql = "INSERT INTO lezione (data,posti,descrizione,istruttore,pista) VALUES (\"$data\",$posti,\"$desc\",\"$istruttore\",$tracciato)";
+
+			mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+				return -1;
+		}
+
+		/* ***************************** MESSAGE MANAGEMENT ************************** */
+		public function createMessage(Message $mex): int {
+			$nominativo = mysqli_real_escape_string($this->conn,$mex->getNominativo()); //già controllate lettere maiuscole
+
+			$email = mysqli_real_escape_string($this->conn,$mex->getEmail());
+			$email = strtolower($email);
+
+			$tel = mysqli_real_escape_string($this->conn,$mex->getTel());
+			$obj = mysqli_real_escape_string($this->conn,$mex->getObj());
+			$text = mysqli_real_escape_string($this->conn,$mex->getText());
+
+			$sql = "INSERT INTO messaggio (nominativo,email,telefono,oggetto,testo) VALUES ";
+			$sql .= "(\"$nominativo\",\"$email\",\"$tel\",\"$obj\",\"$text\")";
+
+			echo $sql;
 
 			mysqli_query($this->conn,$sql);
 
@@ -333,17 +385,24 @@
 		/* *************************************************************************** */
 
 		public function createNewUser(User $newUser): int {
+			$cf = strtoupper(mysqli_real_escape_string($this->conn,$newUser->getCF()));
 
-			$cf = mysqli_real_escape_string($this->conn,$newUser->getCF());
 			$cognome = mysqli_real_escape_string($this->conn,$newUser->getCognome());
+			$cognome[0] = strtoupper($cognome[0]);
+
 			$nome = mysqli_real_escape_string($this->conn,$newUser->getNome());
+			$nome[0] = strtoupper($nome[0]);
+
 			$nascita = mysqli_real_escape_string($this->conn,$newUser->getNascita());
 			$telefono = mysqli_real_escape_string($this->conn,$newUser->getTelefono());
+
 			$email = mysqli_real_escape_string($this->conn,$newUser->getEmail());
+			$email = strtolower($email);
+
 			$password = $newUser->getPsw();
 			$role = 1;
 
-			$sql = "INSERT INTO utente (cf,cognome,nome,nascita,telefono,email,password,ruolo) 
+			$sql = "INSERT INTO utente (cf,cognome,nome,nascita,telefono,email,password,ruolo)
 					VALUES (\"$cf\",\"$cognome\",\"$nome\",\"$nascita\",\"$telefono\",\"$email\",\"$password\",$role)";
 
 			echo $sql;
@@ -354,39 +413,46 @@
 			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
 				return mysqli_insert_id($this->conn);
 			else
-				return -1;
+				if(!strpos('#1062',mysqli_error($this->conn)))
+					return -1;
+				else
+					return -2;
 		}
 
 		/* **************************** USER DATA MANAGEMENT ************************* */
 
 		public function updateUserData(User $user): int {
 			//usato per identificare l'utente
-			$cf = mysqli_real_escape_string($this->conn,$user->getCF());
+			$cf = strtoupper(mysqli_real_escape_string($this->conn,$user->getCF()));
+
 			//colonne da aggiornare
 			$cognome = mysqli_real_escape_string($this->conn,$user->getCognome());
 			$nome = mysqli_real_escape_string($this->conn,$user->getNome());
 			$nascita = mysqli_real_escape_string($this->conn,$user->getNascita());
 			$telefono = mysqli_real_escape_string($this->conn,$user->getTelefono());
-			
 
-			$sql = "UPDATE utenti 
-					SET cognome = \'$cognome\', nome = \'$nome\', nascita = \'$nascita\', telefono = \'$telefono\', 
+
+			$sql = "UPDATE utenti
+					SET cognome = \'$cognome\', nome = \'$nome\', nascita = \'$nascita\', telefono = \'$telefono\',
 					WHERE cf = \'$cf\'";
 
-			echo $sql;
-			echo mysqli_error($this->conn);
+			//echo $sql;
+			//echo mysqli_error($this->conn);
 
 			mysqli_query($this->conn,$sql);
 
 			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
 				return mysqli_insert_id($this->conn);
 			else
-				return -1;
+				if(!strpos('#1062',mysqli_error($this->conn)))
+					return -1;
+				else
+					return -2;
 		}
 
 		public function checkNewPassword(string $email, string $oldPsw, string $newPsw) : string {
 			//controllo che email e psw vecchia siano corette
-			if(searchUser($email, $oldPsw)) {
+			if(searchUser($email, $oldPsw) != null) {
 				//controllo che psw vecchia e nuova siano diverse
 				if(strcmp($oldPsw, $newPsw) == 0) {
 					return '';
@@ -405,8 +471,8 @@
 			$email = mysqli_real_escape_string($this->conn,$user->getEmail());
 			$password = $user->getPsw();
 
-			$sql = "UPDATE utenti 
-					SET email = \'$email\', password = \'$password\', 
+			$sql = "UPDATE utenti
+					SET email = \'$email\', password = \'$password\',
 					WHERE cf = \'$cf\'";
 
 			echo $sql;

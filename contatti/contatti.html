@@ -52,52 +52,47 @@
 
         <h2>Chiedici informazioni!</h2>
 
-            <form>
-                <fieldset>
+            <form action="index.php" method="post">
+                <messaggiForm/>
+                <globalError/>
 
+                <fieldset>
                     <legend>Dati personali</legend>
 
-                    <label for="nome">Nome:</label>
-                    <br>
-                    <input type="text" name="nome" id="nome">
-                    <br>
-
-                    <label for="cognome">Cognome:</label>
-                    <br>
-                    <input type="text" name="cognome" id="cognome">
+                    <label for="nome">Nome*</label>
+                    <input type="text" name="nome" id="nome" value="_nome_" required>
                     <br>
 
-                    <label for="email"><span lang="en">E-mail</span>:</label>
-                    <br>
-                    <input type="email" name="email" id="email">
+                    <label for="cognome">Cognome*</label>
+                    <input type="text" name="cognome" id="cognome" value="_cognome_" required>
                     <br>
 
-                    <label for="telefono">Telefono:</label>
+                    <label for="email"><span lang="en">E-mail</span>*</label>
+                    <input type="email" name="email" id="email" value="_email_" required>
                     <br>
-                    <input type="tel" name="telefono" id="telefono">
+
+                    <label for="telefono">Telefono*</label>
+                    <input type="tel" name="telefono" id="telefono" value="_tel_" required maxlength="10">
 
                 </fieldset>
                 <fieldset>
 
                     <legend>Richiesta</legend>
 
-                    <label for="oggetto">Oggetto:</label>
-                    <br>
-                    <input type="text" name="oggetto" id="oggetto">
+                    <label for="oggetto">Oggetto*</label>
+                    <input type="text" name="oggetto" id="oggetto" value="_obj_" required>
                     <br>
 
-                    <label for="messaggio">Messaggio:</label>
-                    <br>
-                    <textarea id="messaggio" name="messaggio"></textarea>
-
+                    <label for="messaggio">Messaggio*</label>
+                    <textarea id="messaggio" name="messaggio" required rows="10" cols="50">_text_</textarea>
                 </fieldset>
 
-                <input type="checkbox" name="termini" id="termini">
-                <label for="termini">Accetto i termini di servizio e <a href="">l'informativa sulla <span lang="en">privacy</span></a>.</label>
+                <input type="checkbox" name="termini" id="termini" required _checked_>
+                <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.</label>
 
                 <br>
 
-                <input type="submit" name="invio" id="invio">
+                <input type="submit" name="submit" id="invio">
 
             </form>
 
@@ -106,7 +101,6 @@
     </div>
 
 	<footer>
-
 		<div class="footerInfo">
 			<img src="" alt="logo con le tre iniziali sovrapposte" class="logo"/>
 			<p><span lang="en">Adrenaline Motocross Park</span> è un parco divertimenti dedicato ai motociclisti e agli appassionati di motocross. Il progetto nasce dalla passione autentica per questo sport e punta a dare un tocco di qualità in più per permettere agli appassionati di esprimersi in totale comodità e sicurezza.</p>

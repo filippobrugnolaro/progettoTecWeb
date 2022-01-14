@@ -6,13 +6,12 @@
 <html lang="it">
 
 <head>
-	<title>Ingressi admin - Adrenaline Motocross Park</title>
+	<title>Dettagli messaggio - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
     <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
 	<meta name="description" content="Pagina principale admin" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-	<script src="https://kit.fontawesome.com/48ea8a0a6a.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,7 +20,10 @@
 	</header>
 
 	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt; <a href="../">Area riservata admin</a> &gt;&gt; Ingressi</p>
+		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
+            <a href="../">Area riservata admin</a> &gt;&gt; <a href="./">Messaggi</a>
+            &gt;&gt; Dettagli messaggio
+        </p>
 	</nav>
 
 	<nav id="menuList" role="navigation" aria-roledescription="menu principale">
@@ -33,76 +35,41 @@
 			<li><a href="../../noleggio/">Noleggio</a></li>
 			<li><a href="../../ingressi/">Ingressi</a></li>
 			<li><a href="../../contatti/">Contatti</a></li>
+			<li><a href="./">Messaggi</a></li>
 			<li>Area riservata</li>
 		</ul>
 	</nav>
 
-    <div id="sideMenu">
-        <img src="img_path" alt="immagine dell'utente"/>
-
-        <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata admin">
-            <ul>
-                <li><a href="../" lang="en">Dashboard</a></li>
-                <li><a href="../tracciati/">Tracciati</a></li>
-                <li><a href="../noleggio/">Noleggio</a></li>
-                <li>Ingressi</li>
-                <li><a href="../corsi/">Corsi</a></li>
-				<li><a href="../messaggi/">Messaggi</a></li>
-                <li><a href="../../login/logout.php" lang="en">Logout</a></li>
-            </ul>
-        </nav>
-    </div>
+    <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata admin">
+        <ul>
+            <li><a href="../" lang="en">Dashboard</a></li>
+            <li><a href="../tracciati/">Tracciati</a></li>
+            <li><a href="./">Noleggio</a></li>
+            <li><a href="../ingressi/">Ingressi</a></li>
+            <li><a href="../corsi/">Corsi</a></li>
+            <li><a href="../../login/logout.php" lang="en">Logout</a></li>
+        </ul>
+    </nav>
 
     <div class="contentAdmin">
-		<h1>Gestione ingressi</h1>
+		<h1>Dettagli messaggio</h1>
 
-		<globalError/>
-
-		<article>
-			<h2>Prenotazioni ingressi</h2>
-			<table title="tabella contenente le prenotazioni degli ingressi per le prossime giornate di apertura">
-				<caption>Prenotazioni ingressi per le prossime giornate di apertura</caption>
-				<thead>
-					<tr>
-						<th scope="col">Data</th>
-						<th scope="col">Posti disponibili</th>
-						<th scope="col">Posti rimanenti</th>
-						<th scope="col">Dettagli</th>
-					</tr>
-				</thead>
-				<tbody>
-					<ingressi/>
-				</tbody>
-			</table>
-			<erroreIngressi/>
-		</article>
-
-		<article id='gestioneIngressi'>
-			<h2>Gestione date di apertura</h2>
-			<table title="tabella contenente le prossime date di apertura">
-				<caption>Prossime date di apertura</caption>
-				<thead>
-					<tr>
-						<th scope="col">Data</th>
-						<th scope="col">Giorno</th>
-						<th scope="col">Posti disponibili</th>
-						<th scope="col">Modifica</th>
-						<th scope="col">Elimina</th>
-					</tr>
-				</thead>
-				<tbody>
-					<ingresso/>
-				</tbody>
-			</table>
-			<erroreIngresso/>
-		</article>
+        <globalError/>
+		<errorMessaggio/>
 
 		<article>
-			<h2>Inserimento nuove date di apertura</h2>
-			<a href="gestioneIngresso.php">Nuova data di apertura</a>
+			<ul>
+				<li>Nominativo: _nominativo_</li>
+				<li>Email: <a href="mailto:_email_?subject=RE: _obj_">_email_</a></li>
+				<li>Telefono: <a href="tel:_tel_">_tel_</a></li>
+			</ul>
+
+			<label for="oggetto">Oggetto:</label>
+			<p id="oggetto">_obj_</p>
+
+			<label for="messaggio">Messaggio:</label>
+			<p id="messaggio">_messaggio_</p>
 		</article>
-
-
 
 		<p><a href="#top">Torna su</a></p>
   </div>

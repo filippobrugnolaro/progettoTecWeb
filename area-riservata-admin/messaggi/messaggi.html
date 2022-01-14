@@ -6,13 +6,13 @@
 <html lang="it">
 
 <head>
-	<title>Ingressi admin - Adrenaline Motocross Park</title>
+	<title>Messaggi admin - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
     <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
 	<meta name="description" content="Pagina principale admin" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-	<script src="https://kit.fontawesome.com/48ea8a0a6a.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 	</header>
 
 	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt; <a href="../">Area riservata admin</a> &gt;&gt; Ingressi</p>
+		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt; <a href="../">Area riservata admin</a> &gt;&gt; Messaggi</p>
 	</nav>
 
 	<nav id="menuList" role="navigation" aria-roledescription="menu principale">
@@ -45,64 +45,34 @@
                 <li><a href="../" lang="en">Dashboard</a></li>
                 <li><a href="../tracciati/">Tracciati</a></li>
                 <li><a href="../noleggio/">Noleggio</a></li>
-                <li>Ingressi</li>
+                <li><a href="../ingressi/">Ingressi</a></li>
                 <li><a href="../corsi/">Corsi</a></li>
-				<li><a href="../messaggi/">Messaggi</a></li>
+				<li>Messaggi</li>
                 <li><a href="../../login/logout.php" lang="en">Logout</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="contentAdmin">
-		<h1>Gestione ingressi</h1>
+		<h1>Messaggi dal form di richiesta informazioni</h1>
 
 		<globalError/>
 
-		<article>
-			<h2>Prenotazioni ingressi</h2>
-			<table title="tabella contenente le prenotazioni degli ingressi per le prossime giornate di apertura">
-				<caption>Prenotazioni ingressi per le prossime giornate di apertura</caption>
-				<thead>
-					<tr>
-						<th scope="col">Data</th>
-						<th scope="col">Posti disponibili</th>
-						<th scope="col">Posti rimanenti</th>
-						<th scope="col">Dettagli</th>
-					</tr>
-				</thead>
-				<tbody>
-					<ingressi/>
-				</tbody>
+		<table title="tabella contenente le moto del magazzino">
+			<caption>Moto del magazzino</caption>
+			<thead>
+				<tr>
+					<th scope="col">Data</th>
+					<th scope="col">Nominativo</th>
+					<th scope="col">Oggetto</th>
+					<th scope="col">Dettagli</th>
+				</tr>
+			</thead>
+			<tbody>
+				<messaggi/>
+			</tbody>
 			</table>
-			<erroreIngressi/>
-		</article>
-
-		<article id='gestioneIngressi'>
-			<h2>Gestione date di apertura</h2>
-			<table title="tabella contenente le prossime date di apertura">
-				<caption>Prossime date di apertura</caption>
-				<thead>
-					<tr>
-						<th scope="col">Data</th>
-						<th scope="col">Giorno</th>
-						<th scope="col">Posti disponibili</th>
-						<th scope="col">Modifica</th>
-						<th scope="col">Elimina</th>
-					</tr>
-				</thead>
-				<tbody>
-					<ingresso/>
-				</tbody>
-			</table>
-			<erroreIngresso/>
-		</article>
-
-		<article>
-			<h2>Inserimento nuove date di apertura</h2>
-			<a href="gestioneIngresso.php">Nuova data di apertura</a>
-		</article>
-
-
+		<erroreMessaggi/>
 
 		<p><a href="#top">Torna su</a></p>
   </div>
