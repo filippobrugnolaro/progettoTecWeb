@@ -55,14 +55,14 @@
         $cognome = sanitizeInputString($_POST['cognomeUser']);
         switch(checkInputValidity($cognome,'/^\p{L}+$/')) {
             case 1: $messaggiForm .= '<li>Cognome non presente.</li>'; break;
-            case 2: $messaggiForm .= '<li>Il cognome non puo contenere numeri.</li>'; break;
+            case 2: $messaggiForm .= '<li>Il cognome non puo contenere numeri o caratteri speciali.</li>'; break;
             default: break;
         }
 
         $nome = sanitizeInputString($_POST['nomeUser']);
         switch(checkInputValidity($nome,'/^\p{L}+$/')) {
             case 1: $messaggiForm .= '<li>Nome non presente.</li>'; break;
-            case 2: $messaggiForm .= '<li>Il nome non puo contenere numeri.</li>'; break;
+            case 2: $messaggiForm .= '<li>Il nome non puo contenere numeri o caratteri speciali.</li>'; break;
             default: break;
         }
 
@@ -102,7 +102,7 @@
             }
         }
 
-        if(strlen($errors) == 0) {
+        if(strlen($errors) == 0 && strlen($messaggiForm) == 0) {
             $password = password_hash($password, PASSWORD_DEFAULT);
 
             //creo oggetto utente e faccio l'insert con la funzione

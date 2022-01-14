@@ -58,42 +58,47 @@
 		<img src="_img_path_" alt="immagine del profilo"> <br/>
 
 		<!--   view / modifica dati personali    -->
-		<form method="post" action="aggiornaDatiUtente.php" onsubmit="">
-			<fieldset>
-				<label for="nomeUser">Nome</label>
-				<input type="text" name="nomeUser" id="nomeUser" value="_nome_"/> <br/>
+		<form method="post" action="index.php" onsubmit="return validazioneForm();">
+			<messaggiForm/>
+
+            <fieldset>
+                <legend>Dati personali</legend>
 
 				<label for="cognomeUser">Cognome</label>
 				<input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_"/> <br/>
+
+                <label for="nomeUser">Nome</label>
+				<input type="text" name="nomeUser" id="nomeUser" value="_nome_"/> <br/>
 
 				<label for="nascitaUser">Data di Nascita</label>
 				<input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_"/> <br/>
 
 				<label for="telUser">Telefono</label>
-				<input type="tel" name="telUser" id="telUser" value="_telefono_" pattern="[0-9]{3} [0-9]{2} [0-9]{3}"/> <br/>
-
-				<label for="emailUser">E-mail</label>
-				<input type="email" name="emailUser" id="emailUser" value="_email_" readonly/> <br/>
+				<input type="tel" name="telUser" id="telUser" value="_telefono_"/> <br/>
 			</fieldset>
-			<userDataErrors/> <!-- -->
-			<input type="submit" name="submit" value="Applica Modifiche"/>
+			<input type="submit" name="submitUser" value="Applica Modifiche"/>
 		</form>
 
 		<!-- modifica password -->
-		<form method="post" action="modificaPassword.php" onsubmit="">
-			<fieldset>
-				<legend>Modifica la tua password</legend>
+		<form method="post" action="index.php" onsubmit="return validazioneForm();">
+            <errors/>
+            <fieldset>
+				<legend>Dati per l'accesso</legend>
 
-				<label for="oldPassword">Vecchia Password</label>
-				<input type="password" name="oldPassword" id="oldPassword"/> <br/>
+                <label for="emailUser">E-mail</label>
+				<input type="email" name="emailUser" id="emailUser" value="_email_" readonly/> <br/>
 
-				<label for="newPassword">Nuova Password</label>
-				<input type="password" name="newPassword" id="newPassword"/> <br/>
+                <label for="oldPsw">Vecchia Password</label>
+				<input type="password" name="oldPsw" id="oldPsw"/> <br/>
 
-				<input type="submit" name="submit" value="Modifica"/>
+                <label for="newPsw">Nuova password</label>
+				<input type="password" name="newPsw" id="newPsw"/> <br/>
+
+				<label for="pswCheck">Reinserisci la nuova password</label>
+				<input type="password" name="pswCheck" id="pswCheck"/> <br/>
 			</fieldset>
+			<input type="submit" name="submitPsw" value="Modifica"/>
 		</form>
-		<passwordErrors/> <!-- -->
 
 	</div>
 

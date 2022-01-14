@@ -22,38 +22,38 @@
 		private const PSW = 'aexie7Aht6aut3uo';
 
 		public const QUERIES = array(
-			//1
+			//0
 			array('SELECT * FROM moto',
 				'Errore durante il recupero delle informazioni sulle moto.'), //get all dirtbikes
-			//2
+			//1
 			array('SELECT * FROM moto WHERE numero = _num_',
 				'Errore durante il recupero delle informazioni sulla moto.'), //get specific dirtbike
-			//3
+			//2
 			array('SELECT data, COUNT(*) AS totNoleggi FROM noleggio WHERE data >= CURDATE() GROUP BY data ORDER BY data',
 				'Errore durante il recupero delle informazioni sui noleggi'), //get rent infos
-			//4
+			//3
 			array('SELECT cognome, nome, marca, modello, numero, attrezzatura FROM (noleggio INNER JOIN utente ON noleggio.utente = utente.cf) '
 				.'INNER JOIN moto ON noleggio.moto = moto.numero WHERE data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sul noleggio per la data scelta'), //get rent details for a specific date
-			//5
+			//4
 			array('SELECT * FROM pista','Errore durante il recupero delle informazioni dei tracciati'), //get all tracks
-			//6
+			//5
 			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track
-			//7
+			//6
 			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM ingressi_entrata INNER JOIN data_disponibile ON
 				ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
 				posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
-			//8
+			//7
 			array('SELECT * FROM data_disponibile WHERE data >= CURDATE()','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
-			//9
+			//8
 			array('SELECT nome, cognome, moto, attrezzatura FROM (ingressi_entrata INNER JOIN utente ON ingressi_entrata.utente = utente.cf)
 				LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data
 				WHERE ingressi_entrata.data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entries info from open date
-			//10
+			//9
 			array('SELECT posti FROM data_disponibile WHERE data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entry's infos
-			//11
+			//10
 			array('SELECT lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, COUNT(*) AS occupati FROM
 				(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
 				INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
@@ -61,26 +61,26 @@
 				GROUP BY data_disponibile.data, lezione.posti
 				ORDER BY data_disponibile.data',
 				'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get booked lessons' info
-			//12
+			//11
 			array('SELECT * FROM lezione WHERE data >= CURDATE()',
 				'Errore durante il recupero delle informazioni sulle lezioni'), //get lessons' info
-			//13
+			//12
 			array('SELECT nome, cognome, moto, attrezzatura FROM ((ingressi_lezione INNER JOIN utente ON ingressi_lezione.utente = utente.cf)
 				INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
 				LEFT JOIN noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data
 				WHERE ingressi_lezione.lezione = \'_lezione_\'',
 				'Errore durante il recupero delle informazioni sulle prenotazioni del corso selezionato'), //get booked record info from lesson
-			//14
+			//13
 			array('SELECT * FROM lezione WHERE id = _lezione_',
 				'Errore durante il recupero delle informazioni del corso selezionato'), //get specific lesson info
-			//15
+			//14
 			array('SELECT codice AS id, data FROM ingressi_entrata WHERE utente = \'_cfUser_\' AND data >= CURDATE() ORDER BY data LIMIT 3',
 				'Errore durante il recupero delle informazioni sulle tue prossime prenotazioni'), //get next n track reservations for a specific user
-			//16
+			//15
 			array('SELECT codice AS id, data FROM ingressi_lezione WHERE utente = \'_cfUser_\' AND data >= CURDATE() ORDER BY data LIMIT 3',
 				'Errore durante il recupero delle informazioni sulle tue prossime lezioni'), //get next n lessons reservations for a specific user
 
-			//17
+			//16
 			array('SELECT lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, istruttore, descrizione, pista, COUNT(*) AS occupati FROM
 			(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
 			INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
@@ -89,7 +89,7 @@
 			ORDER BY data_disponibile.data',
 			'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get complete booked lessons' info
 
-			//18
+			//17
 			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM data_disponibile LEFT JOIN ingressi_entrata ON
 			ingressi_entrata.data = data_disponibile.data WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data,
 			posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
@@ -358,6 +358,67 @@
 		}
 
 		/* **************************** USER DATA MANAGEMENT ************************* */
+
+		public function updateUserData(User $user): int {
+			//usato per identificare l'utente
+			$cf = mysqli_real_escape_string($this->conn,$user->getCF());
+			//colonne da aggiornare
+			$cognome = mysqli_real_escape_string($this->conn,$user->getCognome());
+			$nome = mysqli_real_escape_string($this->conn,$user->getNome());
+			$nascita = mysqli_real_escape_string($this->conn,$user->getNascita());
+			$telefono = mysqli_real_escape_string($this->conn,$user->getTelefono());
+			
+
+			$sql = "UPDATE utenti 
+					SET cognome = \'$cognome\', nome = \'$nome\', nascita = \'$nascita\', telefono = \'$telefono\', 
+					WHERE cf = \'$cf\'";
+
+			echo $sql;
+			echo mysqli_error($this->conn);
+
+			mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+				return -1;
+		}
+
+		public function checkNewPassword(string $email, string $oldPsw, string $newPsw) : string {
+			//controllo che email e psw vecchia siano corette
+			if(searchUser($email, $oldPsw)) {
+				//controllo che psw vecchia e nuova siano diverse
+				if(strcmp($oldPsw, $newPsw) == 0) {
+					return '';
+				} else {
+					return '<li>La vecchia e la nuova password non combaciano.</li';
+				}
+			} else {
+				return '<li>La vecchia password è errata.</li';
+			}
+		}
+
+		public function updateUserPassword(User $user): int {
+			//usato per identificare l'utente
+			$cf = mysqli_real_escape_string($this->conn,$user->getCF());
+			//colonne da aggiornare
+			$email = mysqli_real_escape_string($this->conn,$user->getEmail());
+			$password = $user->getPsw();
+
+			$sql = "UPDATE utenti 
+					SET email = \'$email\', password = \'$password\', 
+					WHERE cf = \'$cf\'";
+
+			echo $sql;
+			echo mysqli_error($this->conn);
+
+			mysqli_query($this->conn,$sql);
+
+			if(!mysqli_error($this->conn) && mysqli_affected_rows($this->conn))
+				return mysqli_insert_id($this->conn);
+			else
+				return -1;
+		}
 
 		/* *************************** RESERVATION MANAGEMENT ************************ */
 		public function deleteReservation(int $id) {
