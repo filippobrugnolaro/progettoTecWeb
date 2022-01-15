@@ -61,19 +61,16 @@
                     $entry = new Entry($date,$posti);
 
                     if($conn->updateEntry($entry)) {
-                        $messaggiForm = 'Informazioni sull\'ingresso aggiornate con successo.';
+                        $messaggiForm = '<li>Informazioni sull\'ingresso aggiornate con successo.</li>';
                         header("Location: ./#gestioneIngressi");
                     } else
-                        $messaggiForm = 'Errore durante l\'aggiornamento delle informazioni sull\'ingresso.';
+                        $messaggiForm = '<li>Errore durante l\'aggiornamento delle informazioni sull\'ingresso.</li>';
 
                     $conn->closeDB();
                 } else {
                     $globalError = 'Errore di connessione, riprovare più tardi.';
                 }
-            } else {
-                $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
-
         } else {
             if ($conn->openDB()) {
                 try {
@@ -90,10 +87,10 @@
                         $date = $_GET['date'];
                         $posti = $entry['posti'];
                     } else {
-                        $messaggiForm = dbAccess::QUERIES[9][1];
+                        $messaggiForm = '<li>'.dbAccess::QUERIES[9][1].'</li>';
                     }
                 } catch (Throwable $t) {
-                    $messaggiForm = $t->getMessage();
+                    $messaggiForm = '<li>'.$t->getMessage().'</li>';
                 }
 
                 $conn->closeDB();
@@ -132,28 +129,30 @@
             if($messaggiForm == '') {
                 if($conn->openDB()) {
                     $entry = new Entry($date,$posti);
-
                     $newId = $conn->createEntry($entry);
 
                     if($newId > -1) {
-                        $messaggiForm = 'Nuova data d\'apertura inserita con successo.';
+                        $messaggiForm = '<li>Nuova data d\'apertura inserita con successo.</li>';
                         header("Location: ./#gestioneIngressi");
                     } else
-                        $messaggiForm = 'Errore durante l\'inserimento della nuova data d\'apertura.';
+                        $messaggiForm = '<li>Errore durante l\'inserimento della nuova data d\'apertura.</li>';
 
                     $conn->closeDB();
                 } else {
                     $globalError = 'Errore di connessione, riprovare più tardi.';
                 }
-            } else {
-                $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
         } else {
             //valori di default
             $posti = 100;
         }
-
     }
+
+    if(strlen($messaggiForm) > 0)
+        $messaggiForm = "<ul>$messaggiForm</ul>";
+
+    if(strlen($globalError) > 0)
+        $globalError = "<p class='error'>$globalError</p>";
 
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);

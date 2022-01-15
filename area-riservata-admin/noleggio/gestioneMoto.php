@@ -86,19 +86,16 @@
                     $moto = new DirtBike($id,$marca,$modello,(int)$cilindrata,(int)$anno);
 
                     if($conn->updateDirtBike($moto)) {
-                        $messaggiForm = 'Informazioni sulla moto aggiornate con successo.';
+                        $messaggiForm = '<li>Informazioni sulla moto aggiornate con successo.</li>';
                         header('Location: ./#gestioneMoto');
                     } else
-                        $messaggiForm = 'Errore durante l\'aggiornamento delle informazioni sulla moto.';
+                        $messaggiForm = '<li>Errore durante l\'aggiornamento delle informazioni sulla moto.</li>';
 
                     $conn->closeDB();
                 } else {
                     $globalError = 'Errore di connessione, riprovare più tardi.';
                 }
-            } else {
-                $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
-
         } else {
             if ($conn->openDB()) {
                 try {
@@ -118,10 +115,10 @@
                         $cilindrata = $moto['cilindrata'];
                         $anno = $moto['anno'];
                     } else {
-                        $messaggiForm = dbAccess::QUERIES[1][1];
+                        $messaggiForm = '<li>'.dbAccess::QUERIES[1][1].'</li>';
                     }
                 } catch (Throwable $t) {
-                    $messaggiForm = $t->getMessage();
+                    $messaggiForm = '<li>'.$t->getMessage().'</li>';
                 }
 
                 $conn->closeDB();
@@ -177,28 +174,30 @@
             if($messaggiForm == '') {
                 if($conn->openDB()) {
                     $moto = new DirtBike(-1,$marca,$modello,(int)$cilindrata,(int)$anno);
-
                     $newId = $conn->createDirtBike($moto);
 
                     if($newId > -1) {
-                        $messaggiForm = 'Nuova moto inserita con successo.';
+                        $messaggiForm = '<li>Nuova moto inserita con successo.</li>';
                         header('Location: ./#gestioneMoto');
                     } else
-                        $messaggiForm = 'Errore durante l\'inserimento della nuova moto.';
+                        $messaggiForm = '<li>Errore durante l\'inserimento della nuova moto.</li>';
 
                     $conn->closeDB();
                 } else {
                     $globalError = 'Errore di connessione, riprovare più tardi.';
                 }
-            } else {
-                $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
         } else {
             //default values (empty dirtbike)
             $anno = date("Y");
         }
-
     }
+
+    if(strlen($globalError) > 0)
+        $globalError = "<p class='error'>$globalError</p>";
+
+    if(strlen($messaggiForm) > 0)
+        $messaggiForm = "<ul>$messaggiForm</ul>";
 
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);

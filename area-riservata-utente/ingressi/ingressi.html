@@ -51,19 +51,7 @@
         <!-- I tuoi ingressi -->
 		<article id='gestioneIngressi'>
 			<h2>I tuoi prossimi ingressi prenotati</h2>
-			<table title="tabella contenente i tuoi prossimi ingressi prenotati">
-				<thead>
-					<tr>
-						<th scope="col">Data</th>
-						<th scope="col">Moto</th>
-						<th scope="col">Attrezzatura</th>
-						<th scope="col">Elimina</th>
-					</tr>
-				</thead>
-				<tbody>
-					<nextPrenotazioni/>
-				</tbody>
-			</table>
+			_prenotazioni_
 			<errorePrenotazione/>
 		</article>
 
@@ -71,50 +59,14 @@
         <!-- Calendario -->
         <article>
             <h2>Calendario ingressi</h2>
-            <table title="tabella contenente le prossime date di apertura">
-				<caption>Prossime date di apertura</caption>
-				<thead>
-					<tr>
-						<th scope="col">Data</th>
-						<th scope="col">Giorno</th>
-						<th scope="col">Posti disponibili</th>
-					</tr>
-				</thead>
-				<tbody>
-					<nextDate/>
-				</tbody>
-			</table>
+			_disp_
 			<erroreIngresso/>
         </article>
 
         <!-- Prenotazione -->
         <article>
             <h2>Prenota un ingresso</h2>
-            <form method="post" action="./">
-				<messaggiForm/>
-
-				<label for="dataDisponibile">Data*</label>
-				<select id="dataDisponibile" name="dataDisp" required>
-					<dataDisp/>
-				</select>
-				<br/>
-
-				<fieldset>
-					<legend>Noleggio</legend>
-					<label for="moto">Noleggio moto</label>
-					<input type="checkbox" id="moto" name="moto" value="moto"_checkedMoto_ >
-
-					<label for="motoNol">Tipo di moto</label>
-					<select id="motoNol" name="motoNoleggio">
-					</select>
-					<br/>
-
-					<label for="vestiario">Attrezzatura</label>
-					<input type="checkbox" id="vestiario" name="vestiario" value="vestiario" _checkedAttr_>
-				</fieldset>
-
-				<input type="submit" name="submit" value="PRENOTA">
-            </form>
+			_form_
         </article>
 
 	</div>

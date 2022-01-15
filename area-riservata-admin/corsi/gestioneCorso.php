@@ -98,10 +98,10 @@
                     $lesson = new Lesson($id,$data,$desc,$istruttore,$tracciato,$posti);
 
                     if($conn->updateLesson($lesson)) {
-                        $messaggiForm = 'Informazioni sul corso aggiornate con successo.';
+                        $messaggiForm = '<li class=\'success\'>Informazioni sul corso aggiornate con successo.</li>';
                         header("Location: ./#gestioneCorsi");
                     } else
-                        $messaggiForm = 'Errore durante l\'aggiornamento delle informazioni sul corso.';
+                        $messaggiForm = '<li class=\'error\'>Errore durante l\'aggiornamento delle informazioni sul corso.</li>';
 
                     $conn->closeDB();
                 } else {
@@ -202,10 +202,10 @@
                     $newId = $conn->createLesson($lesson);
 
                     if($newId > -1) {
-                        $messaggiForm = 'Nuovo corso inserito con successo.';
+                        $messaggiForm = '<li class=\'success\'>Nuovo corso inserito con successo.</li>';
                         header("Location: ./#gestioneCorsi");
                     } else
-                        $messaggiForm = 'Errore durante l\'inserimento del nuovo corso.';
+                        $messaggiForm = '<li class=\'error\'>Errore durante l\'inserimento del nuovo corso.</li>';
 
                     $conn->closeDB();
                 } else {
@@ -236,7 +236,7 @@
                 }
             }
         } catch (Throwable $t) {
-            $messaggiForm .= "<ul>".$t->getMessage()."</ul>";
+            $messaggiForm .= "<li class=\"error\">".$t->getMessage()."</li>";
         }
 
         //recupero piste disponibili
@@ -257,12 +257,18 @@
                 }
             }
         } catch (Throwable $t) {
-            $messaggiForm .= "<ul>".$t->getMessage()."</ul>";
+            $messaggiForm .= "<li class=\"error\">".$t->getMessage()."</li>";
         }
 
         $conn->closeDB();
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
+
+    if(strlen($messaggiForm) > 0)
+        $messaggiForm = "<ul>$messaggiForm</ul>";
+
+    if(strlen($globalError) > 0)
+        $globalError = "<p class='error'>$globalError</p>";
 
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);

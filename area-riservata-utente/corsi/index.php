@@ -38,6 +38,11 @@
 
     $messaggiForm = '';
 
+    $form = '';
+
+    $tableIngressiPrenotati = '';
+    $tableIngressiDisp = '';
+
     if(isset($_POST['submit'])) {
         $corsoScelto = $_POST['corso'];
         switch(checkInputValidity($corsoScelto)) {
@@ -91,6 +96,24 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($corsi !== null) {
+                $tableIngressiPrenotati = '<table title="tabella contenente i prossimi corsi prenotati">
+                                                <caption>Corsi prenotati</caption>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Corso</th>
+                                                        <th scope="col">Data</th>
+                                                        <th scope="col">Istruttore</th>
+                                                        <th scope="col">Tracciato</th>
+                                                        <th scope="col">Moto</th>
+                                                        <th scope="col">Attrezzatura</th>
+                                                        <th scope="col">Elimina</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <nextLezioni/>
+                                                </tbody>
+                                            </table>';
+
                 foreach($corsi as $corso) {
                     $dw = $weekDays[date('w',strtotime($corso['data']))];
 
@@ -128,6 +151,23 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($corsi !== null) {
+                $tableIngressiDisp = '<table title="tabella contenente i prossimi corsi prenotati disponibili">
+                                            <caption>Prossimi corsi</caption>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Corso</th>
+                                                    <th scope="col">Data</th>
+                                                    <th scope="col">Giorno</th>
+                                                    <th scope="col">Istruttore</th>
+                                                    <th scope="col">Tracciato</th>
+                                                    <th scope="col">Posti disponibili</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <nextDate/>
+                                            </tbody>
+                                        </table>';
+
                 foreach($corsi as $corso) {
                     $dw = $weekDays[date('w',strtotime($corso['data']))];
 
@@ -136,7 +176,7 @@
                     $corsiBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($corso['data'])).'</td>';
                     $corsiBody .= '<td>'.$dw.'</td>';
                     $corsiBody .= '<td>'.$corso['istruttore'].'</td>';
-                    $corsiBody .= '<td>'.$corso['pista'].'</td>';
+                    $corsiBody .= '<td>#'.$corso['pista'].'</td>';
                     $corsiBody .= '<td>'.($corso['posti'] - $corso['occupati']).'</td>';
                     $corsiBody .= '</tr>';
 
@@ -146,7 +186,7 @@
                         $corsiDropdown .= "<option value=\"".$corso['id']."\">#".$corso['id'].", ".date('d/m/Y',strtotime($corso['data']))."</option>";
                 }
             } else {
-                $errorCorsi = 'Non ci sono date prenotabili disponibili.';
+                $errorCorsi = 'Non ci sono corsi prenotabili disponibili.';
             }
 
         } catch (Throwable $t) {
@@ -155,6 +195,39 @@
         $conn->closeDB();
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
+
+    if(strlen($corsiDropdown) > 0 || $corsoScelto > 0)
+        $form = '<form method="post" action="./">
+                    <messaggiForm/>
+
+                    <label for="corso">Corso*</label>
+                    <select id="corso" name="corso" required>
+                        <corsoDisp/>
+                    </select>
+                    <br>
+
+                    <label for="descCorso">Descrizione del corso:</label>
+                    <p id="descCorso"></p>
+
+                    <fieldset>
+                        <legend>Noleggio</legend>
+
+                        <label for="moto">Noleggio moto</label>
+                        <input type="checkbox" id="moto" name="moto" value="moto">
+
+                        <label for="motoNoleggio">Tipo di moto</label>
+                        <select id="motoNoleggio" name="motoNoleggio">
+                        </select>
+                        <br/>
+
+                        <label for="vestiario">Attrezzatura</label>
+                        <input type="checkbox" id="vestiario" name="vestiario" value="vestiario">
+                    </fieldset>
+
+                    <input type="submit" name="submit" value="PRENOTA">
+                </form>';
+    else
+        $form = '<p class=\'error\'>Form prenotazione corsi non disponibile.</p>';
 
 
     if(strlen($globalError) > 0)
@@ -165,6 +238,13 @@
 
     if(strlen($errorCorsi) > 0)
         $errorCorsi = '<p>'.$errorCorsi.'</p>';
+
+    if(strlen($errorPrenotazione) > 0)
+        $errorPrenotazione = '<p>'.$errorPrenotazione.'</p>';
+
+    $page = str_replace('_prenotati_',$tableIngressiPrenotati,$page);
+    $page = str_replace('_calendario_',$tableIngressiDisp,$page);
+    $page = str_replace('_form_',$form,$page);
 
     $page = str_replace('<globalError/>',$globalError,$page);
 

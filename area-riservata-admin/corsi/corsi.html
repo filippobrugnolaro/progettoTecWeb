@@ -38,8 +38,6 @@
 	</nav>
 
     <div id="sideMenu">
-        <img src="img_path" alt="immagine dell'utente"/>
-
         <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata admin">
             <ul>
                 <li><a href="../" lang="en">Dashboard</a></li>
@@ -60,42 +58,13 @@
 
 		<article>
 			<h2>Prenotazioni Corsi</h2>
-			<table title="tabella contenente le prenotazioni dei prossimi Corsi">
-				<caption>Prenotazioni posti per i prossimi Corsi</caption>
-				<thead>
-					<tr>
-						<th scope="col">Corso</th>
-						<th scope="col">Data</th>
-						<th scope="col">Posti disponibili</th>
-						<th scope="col">Posti rimanenti</th>
-						<th scope="col">Dettagli</th>
-					</tr>
-				</thead>
-				<tbody>
-					<corsi/>
-				</tbody>
-			</table>
+				_tabellaCorsi_
 			<erroreCorsi/>
 		</article>
 
 		<article id='gestioneCorsi'>
 			<h2>Gestione Corsi</h2>
-			<table title="tabella contenente i prossimi Corsi">
-				<caption>Prossimi Corsi</caption>
-				<thead>
-					<tr>
-						<th scope="col">Data</th>
-						<th scope="col">Posti disponibili</th>
-						<th scope="col">Istruttore</th>
-						<th scope="col">Tracciato</th>
-						<th scope="col">Modifica</th>
-						<th scope="col">Elimina</th>
-					</tr>
-				</thead>
-				<tbody>
-					<corso/>
-				</tbody>
-			</table>
+				_tabellaCorso_
 			<erroreCorso/>
 		</article>
 
@@ -104,7 +73,7 @@
 			<a href="gestioneCorso.php">Nuovo corso</a>
 		</article>
 
-		<p><a href="#top">Torna su</a></p>
+		<a href="#top">Torna su</a>
   	</div>
 
 	<footer>

@@ -10,7 +10,7 @@
 	<!-- <meta name="description" content="servizi offerti dall'impianto" /> -->
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
 	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
-	<script src="moto.js"></script>
+	<script src="corsi.js"></script>
 
 </head>
 
@@ -54,23 +54,7 @@
         <!-- I tuoi ingressi -->
 		<article id='gestioneIngressi'>
 			<h2>I tuoi prossimi corsi prenotati</h2>
-			<table title="tabella contenente i prossimi corsi prenotati">
-				<caption>Corsi prenotati</caption>
-				<thead>
-					<tr>
-						<th scope="col">Corso</th>
-						<th scope="col">Data</th>
-						<th scope="col">Istruttore</th>
-						<th scope="col">Tracciato</th>
-						<th scope="col">Moto</th>
-						<th scope="col">Attrezzatura</th>
-						<th scope="col">Elimina</th>
-					</tr>
-				</thead>
-				<tbody>
-					<nextLezioni/>
-				</tbody>
-			</table>
+			_prenotati_
 			<erroreLezione/>
 		</article>
 
@@ -78,54 +62,14 @@
         <!-- Calendario -->
         <article>
             <h2>Calendario corsi</h2>
-            <table title="tabella contenente i prossimi corsi prenotati disponibili">
-				<caption>Prossimi corsi</caption>
-				<thead>
-					<tr>
-						<th scope="col">Corso</th>
-						<th scope="col">Data</th>
-						<th scope="col">Giorno</th>
-						<th scope="col">Istruttore</th>
-						<th scope="col">Tracciato</th>
-						<th scope="col">Posti disponibili</th>
-					</tr>
-				</thead>
-				<tbody>
-					<nextDate/>
-				</tbody>
-			</table>
+			_calendario_
 			<erroreNextDate/>
         </article>
 
         <!-- Prenotazione Lezione -->
         <article>
-            <h2>Prenota una lezione</h2>
-
-            <form method="post" action="./">
-				<messaggiForm/>
-
-				<label for="corso">Corso*</label>
-				<select id="corso" name="corso" required>
-					<corsoDisp/>
-				</select>
-
-				<fieldset>
-					<legend>Noleggio</legend>
-
-					<label for="moto">Noleggio moto</label>
-					<input type="checkbox" id="moto" name="moto" value="moto">
-
-					<label for="motoNoleggio">Tipo di moto</label>
-					<select id="motoNoleggio" name="motoNoleggio">
-					</select>
-					<br/>
-
-					<label for="vestiario">Attrezzatura</label>
-					<input type="checkbox" id="vestiario" name="vestiario" value="vestiario">
-				</fieldset>
-
-				<input type="submit" name="submit" value="PRENOTA">
-            </form>
+            <h2>Prenota un corso</h2>
+			_form_
         </article>
 
 	</div>

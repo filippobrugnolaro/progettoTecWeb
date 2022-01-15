@@ -17,6 +17,7 @@
     $globalError = '';
     $errorTracciati = '';
     $recordsBody = '';
+    $table = '';
 
     if ($conn->openDB()) {
         //get tracks infos
@@ -24,6 +25,23 @@
             $tracks = $conn->getQueryResult(dbAccess::QUERIES[4]);
 
             if($tracks !== null) {
+                $table = '<table title="tabella contenente le informazioni dei tracciati">
+                            <caption>Informazioni sui tracciati presenti nell\'impianto</caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Lunghezza</th>
+                                    <th scope="col">Terreno</th>
+                                    <th scope="col">Orario apertura</th>
+                                    <th scope="col">Orario chiusura</th>
+                                    <th scope="col">Modifica</th>
+                                    <th scope="col">Elimina</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tracciati/>
+                            </tbody>
+                        </table>';
                 foreach($tracks as $track) {
                     $track['terreno'][0] = strtoupper($track['terreno'][0]);
                     $track['terreno'] = str_replace('_',' ',$track['terreno']);
@@ -52,6 +70,13 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
+    if(strlen($globalError) > 0)
+        $globalError = "<p class='error'>$globalError</p>";
+
+    if(strlen($errorTracciati) > 0)
+        $errorTracciati = "<p class='error'>$errorTracciati</p>";
+
+    $page = str_replace('_tracciati_',$table,$page);
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<erroreTracciati/>',$errorTracciati,$page);
     $page = str_replace('<tracciati/>',$recordsBody,$page);

@@ -41,8 +41,6 @@
 	</nav>
 
     <div id="sideMenu">
-        <img src="img_path" alt="immagine dell'utente"/>
-
         <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata admin">
             <ul>
                 <li><a href="../" lang="en">Dashboard</a></li>
@@ -50,6 +48,7 @@
                 <li><a href="../noleggio/">Noleggio</a></li>
                 <li><a href="./">Ingressi</a></li>
                 <li><a href="../corsi/">Corsi</a></li>
+				<li><a href="../messaggi/">Messaggi</a></li>
                 <li><a href="../../login/logout.php" lang="en">Logout</a></li>
             </ul>
         </nav>
@@ -64,7 +63,6 @@
             <messaggiForm/>
 
             <fieldset>
-
                 <legend>Dati ingresso</legend>
 
                 <label for="data">Data apertura*</label>
@@ -74,13 +72,12 @@
                 <label for="posti">Posti disponibili*</label>
                 <input type="number" required name="posti" id="posti" value="_posti_" min="50" max="200" step="10" placeholder="Posti disponibili">
                 <br>
-
             </fieldset>
             <input type="submit" name="submit" id="submit" value="_azione_">
 
         </form>
 
-		<p><a href="#top">Torna su</a></p>
+		<a href="#top">Torna su</a>
   </div>
 
 	<footer>

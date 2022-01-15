@@ -19,6 +19,8 @@
     $errorCorso = '';
     $recordsBody = '';
     $corsiBody = '';
+    $tableCorsi = '';
+    $tableCorso = '';
 
     if ($conn->openDB()) {
         //get booked lessons infos
@@ -26,6 +28,22 @@
             $records = $conn->getQueryResult(dbAccess::QUERIES[10]);
 
             if($records !== null) {
+                $tableCorsi = '<table title=\'tabella contenente le prenotazioni dei prossimi Corsi\'>
+				                <caption>Prenotazioni posti per i prossimi Corsi</caption>
+				                <thead>
+					            <tr>
+						            <th scope=\'col\'>Corso</th>
+						            <th scope=\'col\'>Data</th>
+						            <th scope=\'col"\'>Posti disponibili</th>
+						            <th scope=\'col\'>Posti rimanenti</th>
+						            <th scope=\'col\'>Dettagli</th>
+					            </tr>
+				                </thead>
+				                <tbody>
+					            <corsi/>
+				            </tbody>
+			            </table>';
+
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td scope=\'row\'>#'.$record['id'].'</td>';
@@ -36,7 +54,7 @@
                     $recordsBody .= '</tr>';
                 }
             } else {
-                $errorCorsi = 'Non ci sono ancora prenotazioni per i corsi';
+                $errorCorsi = 'Non ci sono ancora prenotazioni per i corsi.';
             }
         } catch (Throwable $t) {
             $errorCorsi = $t->getMessage();
@@ -47,6 +65,23 @@
             $corsi = $conn->getQueryResult(dbAccess::QUERIES[11]);
 
             if($corsi !== null) {
+                $tableCorso = '<table title=\'tabella contenente i prossimi Corsi\'>
+				                <caption>Prossimi Corsi</caption>
+				                <thead>
+					            <tr>
+						            <th scope=\'col\'>Data</th>
+						            <th scope=\'col\'>Posti disponibili</th>
+						            <th scope=\'col\'>Istruttore</th>
+						            <th scope=\'col\'>Tracciato</th>
+						            <th scope=\'col\'>Modifica</th>
+						            <th scope=\'col\'>Elimina</th>
+					            </tr>
+				                </thead>
+				                <tbody>
+					                <corso/>
+				                </tbody>
+			                </table>';
+
                 foreach($corsi as $corso) {
                     $corsiBody .= '<tr>';
                     $corsiBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($corso['data'])).'</td>';
@@ -66,6 +101,18 @@
         $conn->closeDB();
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
+
+    if(strlen($globalError) > 0)
+        $globalError = '<p class=\'error\'>'.$globalError.'</p>';
+
+    if(strlen($errorCorso) > 0)
+        $errorCorso = '<p class=\'error\'>'.$errorCorso.'</p>';
+
+    if(strlen($errorCorsi) > 0)
+        $errorCorsi = '<p class=\'error\'>'.$errorCorsi.'</p>';
+
+    $page = str_replace('_tabellaCorsi_', $tableCorsi, $page);
+    $page = str_replace('_tabellaCorso_', $tableCorso, $page);
 
     $page = str_replace('<erroreCorso/>', $errorCorso, $page);
     $page = str_replace('<erroreCorsi/>', $errorCorsi, $page);

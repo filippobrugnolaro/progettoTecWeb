@@ -20,12 +20,30 @@
     $recordsBody = '';
     $ingressiBody = '';
 
+    $tableIngressi = '';
+    $tableIngresso = '';
+
     if ($conn->openDB()) {
         //get booked entries info
         try {
             $records = $conn->getQueryResult(dbAccess::QUERIES[6]);
 
             if($records !== null) {
+                $tableIngressi = '<table title=\'tabella contenente le prenotazioni degli ingressi per le prossime giornate di apertura\'>
+				                    <caption>Prenotazioni ingressi per le prossime giornate di apertura</caption>
+				                <thead>
+                                        <tr>
+                                            <th scope=\'col\'>Data</th>
+                                            <th scope=\'col\'>Posti disponibili</th>
+                                            <th scope=\'col\'>Posti rimanenti</th>
+                                            <th scope=\'col\'>Dettagli</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ingressi/>
+                                    </tbody>
+                                </table>';
+
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</td>'; //controllare accessibilità
@@ -35,7 +53,7 @@
                     $recordsBody .= '</tr>';
                 }
             } else {
-                $errorIngressi = 'Non ci sono ancora prenotazioni per le prossime date di apertura';
+                $errorIngressi = 'Non ci sono ancora prenotazioni per le prossime date di apertura.';
             }
 
         } catch (Throwable $t) {
@@ -49,6 +67,21 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($ingressi !== null) {
+                $tableIngresso = '<table title=\'tabella contenente le prossime date di apertura\'>
+                                    <caption>Prossime date di apertura</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope=\'col\'>Data</th>
+                                            <th scope=\'col\'>Giorno</th>
+                                            <th scope=\'col\'>Posti disponibili</th>
+                                            <th scope=\'col\'>Modifica</th>
+                                            <th scope=\'col\'>Elimina</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ingresso/>
+                                    </tbody>
+                                </table>';
                 foreach($ingressi as $ingresso) {
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
@@ -61,7 +94,7 @@
                     $ingressiBody .= '</tr>';
                 }
             } else {
-                $errorIngresso = 'Non ci sono ancora date di apertura disponibili';
+                $errorIngresso = 'Non ci sono ancora date di apertura disponibili.';
             }
         } catch (Throwable $t) {
             $errorMoto = $t->getMessage();
@@ -69,6 +102,18 @@
         $conn->closeDB();
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
+
+    if(strlen($globalError) > 0)
+        $globalError = '<p class=\'error\'>'.$globalError.'</p>';
+
+    if(strlen($errorIngresso) > 0)
+        $errorIngresso = '<p class=\'error\'>'.$errorIngresso.'</p>';
+
+    if(strlen($errorIngressi) > 0)
+        $errorIngressi = '<p class=\'error\'>'.$errorIngressi.'</p>';
+
+    $page = str_replace('_tabellaIngressi_',$tableIngressi,$page);
+    $page = str_replace('_tabellaIngresso_',$tableIngresso,$page);
 
     $page = str_replace('<erroreIngresso/>', $errorIngresso, $page);
     $page = str_replace('<erroreIngressi/>', $errorIngressi, $page);

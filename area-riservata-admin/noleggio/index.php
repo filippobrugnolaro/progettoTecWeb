@@ -20,13 +20,29 @@
     $recordsBody = '';
     $motoBody = '';
 
+    $tableNoleggi = '';
+    $tableNoleggio = '';
+
     if ($conn->openDB()) {
         //get rent infos
-
         try {
             $records = $conn->getQueryResult(dbAccess::QUERIES[2]);
 
             if($records !== null) {
+                $tableNoleggi = '<table title="tabella contenente le prenotazioni dei noleggi per le prossime giornate di apertura">
+                                    <caption>Prenotazioni noleggi per le prossime giornate di apertura</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Data</th>
+                                            <th scope="col">Noleggi totali</th>
+                                            <th scope="col">Dettagli</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <noleggi/>
+                                    </tbody>
+                                </table>';
+
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</td>'; //controllare accessibilità
@@ -47,6 +63,24 @@
             $motos = $conn->getQueryResult(dbAccess::QUERIES[0]);
 
             if($motos !== null) {
+                $tableNoleggio = '<table title="tabella contenente le moto del magazzino">
+                                        <caption>Moto del magazzino</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Identificativo</th>
+                                                <th scope="col">Marca</th>
+                                                <th scope="col">Modello</th>
+                                                <th scope="col">Cilindrata</th>
+                                                <th scope="col">Anno</th>
+                                                <th scope="col">Modifica</th>
+                                                <th scope="col">Elimina</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <moto/>
+                                        </tbody>
+                                    </table>';
+
                 foreach($motos as $moto) {
                     $motoBody .= '<tr>';
                     $motoBody .= '<td scope=\'row\'>'.$moto['numero'].'</td>';
@@ -68,9 +102,24 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
+
+    if(strlen($globalError) > 0)
+        $globalError = '<p class=\'error\'>'.$globalError.'</p>';
+
+    if(strlen($errorMoto) > 0)
+        $errorMoto = '<p class=\'error\'>'.$errorMoto.'</p>';
+
+    if(strlen($errorNoleggio) > 0)
+        $errorNoleggio = '<p class=\'error\'>'.$errorNoleggio.'</p>';
+
+
     $page = str_replace('<erroreMoto/>', $errorMoto, $page);
     $page = str_replace('<erroreNoleggio/>', $errorNoleggio, $page);
     $page = str_replace('<globalError/>',$globalError,$page);
+
+    $page = str_replace('_prenotazioneNoleggio_',$tableNoleggi,$page);
+    $page = str_replace('_motoNoleggio_',$tableNoleggio,$page);
+
     $page = str_replace('<moto/>',$motoBody,$page);
     $page = str_replace('<noleggi/>',$recordsBody,$page);
 

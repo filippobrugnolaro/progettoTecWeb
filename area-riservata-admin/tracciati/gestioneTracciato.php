@@ -145,7 +145,7 @@
                             if($_FILES['img']['size'] > 5000000)
                                 $errors .= '<li>File troppo grande.</li>';
 
-                            if($errors == '') {
+                            if(strlen($error) == 0) {
                                 $fileName = $finalDir.$id.'.'.$fileType;
 
                                 foreach(glob("../../images/tracks/$id.*") as $file)
@@ -161,20 +161,17 @@
                             $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
 
                             $track->setImgPath($id.'.'.$fileType);
-
                             $conn->updateTrack($track);
                         }
                         $conn->closeDB();
                         header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno)
                     } else {
-                        $messaggiForm = 'Errore durante l\'inserimento del tracciato.';
+                        $messaggiForm = '<li>Errore durante l\'inserimento del tracciato.</li>';
                         $conn->closeDB();
                     }
                 } else {
                     $globalError = 'Errore di connessione, riprovare più tardi.';
                 }
-            } else {
-                $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
         } else {
             if ($conn->openDB()) {
@@ -196,12 +193,11 @@
                         $apertura = $track['apertura'];
                         $chiusura = $track['chiusura'];
                     } else {
-                        $messaggiForm = dbAccess::QUERIES[5][1];
+                        $messaggiForm = '<li>'.dbAccess::QUERIES[5][1].'</li>';
                     }
                 } catch (Throwable $t) {
-                    $messaggiForm = $t->getMessage();
+                    $messaggiForm = '<li>'.$t->getMessage().'</li>';
                 }
-
                 $conn->closeDB();
             } else
                 $globalError = 'Errore di connessione, riprovare più tardi.';
@@ -303,32 +299,31 @@
                         } else
                             $messaggiForm .= $errors;
 
-                        $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
-
                         $track->setNewId($newId);
                         $track->setImgPath($newId.'.'.$fileType);
-
                         $conn->updateTrack($track);
                     }
                         $conn->closeDB();
-
                         header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno
                     } else {
-                        $messaggiForm = 'Errore durante l\'inserimento del tracciato.';
+                        $messaggiForm = '<li>Errore durante l\'inserimento del tracciato.</li>';
                         $conn->closeDB();
                     }
                 } else {
                     $globalError = 'Errore di connessione, riprovare più tardi.';
                 }
-            } else {
-                $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
             }
         } else {
             //default values (empty id)
             $lunghezza = 1000;
         }
-
     }
+
+    if(strlen($globalError) > 0)
+        $globalError = "<p class='error'>$globalError</p>";
+
+    if(strlen($messaggiForm) > 0)
+        $messaggiForm = "<ul>$messaggiForm</ul>";
 
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);

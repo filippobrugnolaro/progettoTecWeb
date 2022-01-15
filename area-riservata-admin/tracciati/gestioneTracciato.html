@@ -41,7 +41,6 @@
 	</nav>
 
     <div id="sideMenu">
-        <img src="img_path" alt="immagine dell'utente"/>
 
         <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata admin">
             <ul>
@@ -50,6 +49,7 @@
                 <li><a href="../noleggio/">Noleggio</a></li>
                 <li><a href="../ingressi/">Ingressi</a></li>
                 <li><a href="../corsi/">Corsi</a></li>
+                <li><a href="../messaggi/">Messaggi</a></li>
                 <li><a href="../../login/logout.php" lang="en">Logout</a></li>
             </ul>
         </nav>
@@ -93,18 +93,19 @@
                 <input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60">
                 <br>
 
+                <label for="oldImg">Immagine attuale</label>
                 <oldImg/>
+                <br>
 
-                <label for="img">Immagine</label>
+                <label for="img">Immagine nuova</label>
                 <input type="file" name="img" id="img" accept="image/png, image/jpeg">
-
 
             </fieldset>
             <input type="submit" name="submit" id="submit" value="_azione_">
 
         </form>
 
-		<p><a href="#top">Torna su</a></p>
+		<a href="#top">Torna su</a>
   </div>
 
 	<footer>

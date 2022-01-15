@@ -9,6 +9,8 @@ window.onload = function() {
 
 function getDirtBikes(select,data) {
     if(data != "") {
+        document.getElementById('moto').disabled = false;
+
         var xmlhttp = new XMLHttpRequest();
 
         xmlhttp.onreadystatechange = function() {
@@ -21,14 +23,16 @@ function getDirtBikes(select,data) {
                            select.remove(i);
                         }
 
-                        for (moto of motos){
-                            var opt = document.createElement('option');
-                            opt.value = moto.numero;
-                            opt.innerHTML = moto.marca + " " + moto.modello + " " + moto.anno;
-                            select.appendChild(opt);
+                        if(motos != null) {
+                            for (moto of motos){
+                                var opt = document.createElement('option');
+                                opt.value = moto.numero;
+                                opt.innerHTML = moto.marca + " " + moto.modello + " " + moto.anno;
+                                select.appendChild(opt);
+                            }
+                        } else {
+                                document.getElementById('moto').disabled = true;
                         }
-
-
                 }
             }
         };

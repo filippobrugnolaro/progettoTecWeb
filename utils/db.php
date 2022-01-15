@@ -44,9 +44,13 @@
 			//5
 			array('SELECT * FROM pista WHERE id = _id_','Errore durante il recupero delle informazioni sul tracciato'), // get specific track
 			//6
-			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati
-				FROM data_disponibile INNER JOIN ingressi_entrata ON ingressi_entrata.data = data_disponibile.data
-				WHERE data_disponibile.data >= CURDATE() GROUP BY data_disponibile.data ORDER BY data_disponibile.data',
+			array('SELECT data_disponibile.data AS data, posti,
+					(SELECT COUNT(*) FROM ingressi_entrata WHERE ingressi_entrata.data = data_disponibile.data
+					GROUP BY ingressi_entrata.data) AS occupati
+				FROM data_disponibile
+				WHERE data_disponibile.data >= CURDATE()
+				HAVING occupati IS NOT NULL
+				ORDER BY data_disponibile.data',
 				'Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
 			//7
 			array('SELECT * FROM data_disponibile WHERE data >= CURDATE()','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
@@ -59,12 +63,13 @@
 			array('SELECT posti FROM data_disponibile WHERE data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entry's infos
 			//10
-			array('SELECT lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, COUNT(*) AS occupati FROM
-				(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
-				INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
-				WHERE data_disponibile.data >= CURDATE()
-				GROUP BY data_disponibile.data, lezione.posti
-				ORDER BY data_disponibile.data',
+			array('SELECT  id, data, posti,
+				(SELECT COUNT(*) FROM ingressi_lezione WHERE  ingressi_lezione.lezione = lezione.id
+				GROUP BY lezione.data) AS occupati
+				FROM  lezione
+				WHERE data >= CURDATE()
+				HAVING occupati IS NOT NULL
+				ORDER BY data',
 				'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get booked lessons' info
 			//11
 			array('SELECT * FROM lezione WHERE data >= CURDATE()',
@@ -114,11 +119,12 @@
 			array('SELECT * FROM messaggio WHERE id = _id_','Errore durante il recupero del messaggio'), //get specific user message
 
 			//20
-			array('SELECT data_disponibile.data AS data, posti, COUNT(posti) AS occupati
+			array('SELECT data_disponibile.data AS data, posti,
+				(SELECT COUNT(*) FROM ingressi_entrata WHERE ingressi_entrata.data = data_disponibile.data
+				GROUP BY data_disponibile.data) AS occupati
 				FROM data_disponibile
 				WHERE data_disponibile.data >= CURDATE()
 				AND data NOT IN (SELECT data FROM ingressi_entrata WHERE utente = \'_cf_\')
-				GROUP BY data_disponibile.data
 				ORDER BY data_disponibile.data',
 				'Errore durante il recupero delle informazioni sugli ingressi prenotati'),
 
@@ -128,7 +134,9 @@
 				'Errore durante il recupero delle informazioni sugli ingressi'), //get available dirtbikes
 
 			//22
-			array('SELECT id,istruttore, data, pista, posti, COUNT(*) AS occupati
+			array('SELECT id,istruttore, data, pista, posti,
+				(SELECT COUNT(*) FROM ingressi_lezione WHERE ingressi_lezione.lezione = lezione.id
+				GROUP BY lezione.id) AS occupati
 				FROM lezione
 				WHERE data >= CURDATE()
 					AND id NOT IN (SELECT lezione FROM ingressi_lezione WHERE utente = \'_cfUser_\')
@@ -188,6 +196,12 @@
 
 					while($row = mysqli_fetch_assoc($query))
 						array_push($result,$row);
+
+					foreach($result as $row) {
+						foreach($row as $key)
+							if(is_string($key))
+								$key = htmlspecialchars($key);
+					}
 
 					mysqli_free_result($query);
 					return $result;

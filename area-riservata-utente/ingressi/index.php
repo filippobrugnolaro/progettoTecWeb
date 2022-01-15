@@ -39,6 +39,10 @@
 
     $messaggiForm = '';
 
+    $tablePrenotazioni = '';
+    $tableDisp = '';
+    $form = '';
+
     if(isset($_POST['submit'])) {
         $date = $_POST['dataDisp'];
         switch(checkInputValidity($date,'/^\d{4}-\d{2}-\d{2}$/')) {
@@ -93,6 +97,20 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($ingressi !== null) {
+                $tablePrenotazioni = '<table title="tabella contenente i tuoi prossimi ingressi prenotati">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Data</th>
+                                                    <th scope="col">Moto</th>
+                                                    <th scope="col">Attrezzatura</th>
+                                                    <th scope="col">Elimina</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <nextPrenotazioni/>
+                                            </tbody>
+                                        </table>';
+
                 foreach($ingressi as $ingresso) {
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
@@ -127,6 +145,20 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($ingressi !== null) {
+                $tableDisp = '<table title="tabella contenente le prossime date di apertura">
+                                <caption>Prossime date di apertura</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Giorno</th>
+                                        <th scope="col">Posti disponibili</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <nextDate/>
+                                </tbody>
+                            </table>';
+
                 foreach($ingressi as $ingresso) {
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
@@ -161,6 +193,40 @@
 
     if(strlen($errorIngresso) > 0)
         $errorIngresso = '<p>'.$errorIngresso.'</p>';
+
+    if(strlen($ingressiDropdown) > 0 || strlen($date) > 0)
+        $form = '<form method="post" action="./">
+                    <messaggiForm/>
+
+                    <label for="dataDisponibile">Data*</label>
+                    <select id="dataDisponibile" name="dataDisp" required>
+                        <dataDisp/>
+                    </select>
+                    <br/>
+
+                    <fieldset>
+                        <legend>Noleggio</legend>
+                        <label for="moto">Noleggio moto</label>
+                        <input type="checkbox" id="moto" name="moto" value="moto"_checkedMoto_ >
+
+                        <label for="motoNol">Tipo di moto</label>
+                        <select id="motoNol" name="motoNoleggio">
+                        </select>
+                        <br/>
+
+                        <label for="vestiario">Attrezzatura</label>
+                        <input type="checkbox" id="vestiario" name="vestiario" value="vestiario" _checkedAttr_>
+                    </fieldset>
+
+                    <input type="submit" name="submit" value="PRENOTA">
+                </form>';
+    else
+        $form = '<p class=\'error\'>Form prenotazione ingressi non disponibile.</p>';
+
+
+    $page = str_replace('_prenotazioni_',$tablePrenotazioni,$page);
+    $page = str_replace('_disp_',$tableDisp,$page);
+    $page = str_replace('_form_',$form,$page);
 
     $page = str_replace('<globalError/>',$globalError,$page);
 

@@ -18,6 +18,8 @@
     $errorMessaggi = '';
     $messaggi = '';
 
+    $tableMessaggi = '';
+
     if ($conn->openDB()) {
         //get rent infos
 
@@ -25,6 +27,21 @@
             $records = $conn->getQueryResult(dbAccess::QUERIES[18]);
 
             if($records !== null) {
+                $tableMessaggi = '<table title=\'tabella contenente i messaggi inviati dall\'utente\'>
+                                    <caption>Messaggi inviati dagli utenti</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope=\'col\'>Data</th>
+                                            <th scope=\'col\'>Nominativo</th>
+                                            <th scope=\'col\'>Oggetto</th>
+                                            <th scope=\'col\'>Dettagli</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <messaggi/>
+                                    </tbody>
+                                </table>';
+
                 foreach($records as $record) {
                     $messaggi .= '<tr>';
                     $messaggi .= '<td>'.date("d/m/Y",strtotime($record['data'])).'</td>';
@@ -45,6 +62,13 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
+    if(strlen($globalError) > 0)
+        $globalError = '<p class=\'error\'>'.$globalError.'</p>';
+
+    if(strlen($errorMessaggi) > 0)
+        $errorMessaggi = '<p class=\'error\'>'.$errorMessaggi.'</p>';
+
+    $page = str_replace('_tabellaMessaggi_', $tableMessaggi, $page);
     $page = str_replace('<erroreMessaggi/>', $errorMessaggi, $page);
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<messaggi/>',$messaggi,$page);
