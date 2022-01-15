@@ -10,6 +10,9 @@ window.onload = function() {
 function getDirtBikes(select,data) {
     if(data != "") {
         document.getElementById('moto').disabled = false;
+        document.getElementById('motoNol').disabled = false;
+        document.getElementById('vestiario').disabled = false;
+        document.getElementById('hint').innerHTML = "";
 
         var xmlhttp = new XMLHttpRequest();
 
@@ -31,7 +34,11 @@ function getDirtBikes(select,data) {
                                 select.appendChild(opt);
                             }
                         } else {
+
                                 document.getElementById('moto').disabled = true;
+                                document.getElementById('motoNol').disabled = true;
+                                document.getElementById('vestiario').disabled = true;
+                                document.getElementById('hint').innerHTML = "Non ci sono più moto disponibili per questa giornata!";
                         }
                 }
             }

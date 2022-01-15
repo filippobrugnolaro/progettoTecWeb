@@ -206,6 +206,8 @@
 
                     <fieldset>
                         <legend>Noleggio</legend>
+                        <p id="hint"></p>
+
                         <label for="moto">Noleggio moto</label>
                         <input type="checkbox" id="moto" name="moto" value="moto"_checkedMoto_ >
 

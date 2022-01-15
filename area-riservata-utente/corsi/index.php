@@ -212,11 +212,13 @@
                     <fieldset>
                         <legend>Noleggio</legend>
 
+                        <p id="hint"></p>
+
                         <label for="moto">Noleggio moto</label>
                         <input type="checkbox" id="moto" name="moto" value="moto">
 
-                        <label for="motoNoleggio">Tipo di moto</label>
-                        <select id="motoNoleggio" name="motoNoleggio">
+                        <label for="motoNol">Tipo di moto</label>
+                        <select id="motoNol" name="motoNoleggio">
                         </select>
                         <br/>
 
