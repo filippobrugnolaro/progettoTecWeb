@@ -1,0 +1,140 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+/*html = finestra, body = contenuto pagina */
+html {
+	font-size: 100%;
+	font-family: "Roboto";
+	margin: auto;
+	max-width: 1024px;
+}
+
+/* body {
+	border: 1px solid #000;
+} */
+
+.errSuggestion {
+	color: red;
+}
+
+.defaultText {
+	color: gray;
+}
+
+/* ***************** BODY ***************** */
+/* body {
+	display: flex;
+} */
+
+/* **************************************** */
+/* **************** HEADER **************** */
+/* **************************************** */
+
+header {
+	color: #f38328;
+	padding: 1em;
+	padding-top: 0.7em;
+}
+
+/* ****************** NAV ***************** */
+#menulist {
+	width: 98%;
+}
+
+/* ***************** LOGO ***************** */
+/* #menuList i {
+	display: inline;
+} */
+
+/* ***************** MENU ***************** */
+#menu {
+	
+	font-size: 1.3em;
+	padding: 0.5em;
+}
+
+#menu ul {
+	list-style-type: none;
+}
+
+/* #menu li {
+	
+} */
+
+#menu ul li {
+	margin-top: 0.5em;
+}
+
+/* #menu #areaRiservata {
+	
+} */
+
+/* #active {
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-size: 1.4em;
+	text-indent: 1.5em;
+} */
+
+/* ************** BREADCRUMB ************** */
+
+#breadcrumb {
+	/* background-color: black; */
+	color: #F3C428;
+	font-size: 1.1em;
+	padding: 0.5em 0em 0.5em 1.0em;
+}
+
+#breadcrumb a:visited {
+	color: yellow;
+}
+
+#breadcrumb a {
+	text-decoration: none;
+}
+
+
+/* **************************************** */
+/* ********** NAV AREA RISERVATA ********** */
+/* **************************************** */
+
+#subMenu {
+	
+	width: 25%;
+}
+
+
+/* **************************************** */
+/* ******** CONTENT AREA RISERVATA ******** */
+/* **************************************** */
+#contentUser {
+	
+	width: 72%;
+}
+
+
+
+
+
+footer {
+	border-top: 1px solid black;
+	clear: both;
+	text-align: center;
+	font-size: 0.8em;
+	padding: 0.5em;
+}
+
+footer p, footer .imgValidCode{
+	display: inline;
+}
+
+footer p {
+	font-style: italic;
+}
+
+footer .imgValidCode {
+	vertical-align: middle;
+	margin: 0.7em 1.0em 0.7em 1.0em;
+}
