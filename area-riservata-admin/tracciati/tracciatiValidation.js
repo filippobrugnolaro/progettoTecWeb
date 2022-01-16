@@ -1,5 +1,5 @@
 var validationDetails = {
-    "lunghezza"     : ["Lunghezza del tracciato",/^\d$/,"Inserire un numero"],
+    "lunghezza"     : ["Lunghezza del tracciato",/^[0-9]+$/,"Inserire un numero"],
     "descrizione"   : ["Descrizione del tracciato",/^.{30,200}$/,"Inserire almeno 10 caratteri"],
     "apertura"      : ["Orario d'apertura del tracciato",/^\d{2}:\d{2}$/,"Inserire un'orario compreso tra le 08:00 e le 14:00"],
     "chiusura"      : ["Orario di chiusura del tracciato",/^\d{2}:\d{2}$/,"Inserire un'orario compreso tra le 14:00 e le 20:00"]
@@ -20,8 +20,8 @@ function fieldValidation(input) {
     removeErrorMessage(input);
         if(input.value.search(validationDetails[input.id][1]) != 0 || input.value == validationDetails[input.id][0]) {
             showError(input);
-            input.focus(); //focus on error (ok 4 users & SR)
-            input.select(); //select all chars
+            //input.focus(); //focus on error (ok 4 users & SR)
+            //input.select(); //select all chars
             return false;
         } else {
             return true;

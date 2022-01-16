@@ -1,6 +1,6 @@
 var validationDetails = {
-    "marca"         : ["Marca della moto",/^[\w\s]{2,}$/,"Inserire almeno 2 caratteri"],
-    "modello"       : ["Modello della moto",/^[\w\s] {2,}$/,"Inserire almeno 2 caratteri"],
+    "marca"         : ["Marca della moto",/^[\wàèùìòé\s]{2,}$/,"Inserire almeno 2 caratteri"],
+    "modello"       : ["Modello della moto",/^[\wàèùìòé\s] {2,}$/,"Inserire almeno 2 caratteri"],
     "anno"          : ["Nome dell'istruttore",/^\d{4}$/,"Inserire almeno 2 caratteri"],
 }
 
@@ -19,8 +19,8 @@ function fieldValidation(input) {
     removeErrorMessage(input);
         if(input.value.search(validationDetails[input.id][1]) != 0 || input.value == validationDetails[input.id][0]) {
             showError(input);
-            input.focus(); //focus on error (ok 4 users & SR)
-            input.select(); //select all chars
+            //input.focus(); //focus on error (ok 4 users & SR)
+            //input.select(); //select all chars
             return false;
         } else {
             return true;

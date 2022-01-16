@@ -1,8 +1,7 @@
 var validationDetails = {
-    "data"          : ["Data del corso",/^\d{4}-\d{2}-\d{2}$/,"Inserire almeno 2 caratteri"],
-    "posti"         : ["Numero di posti disponibili",/^\d$/,"Inserire un numero"],
+    "posti"         : ["Numero di posti disponibili",/^[0-9]+$/,"Inserire un numero"],
     "desc"          : ["Descrizione del corso",/^.{30,200}$/,"Inserire almeno 10 caratteri"],
-    "istruttore"    : ["Nome dell'istruttore",/^[A-Za-z\s]{2,}$/,"Inserire almeno 2 caratteri"]
+    "istruttore"    : ["Nome dell'istruttore",/^[A-Za-zàèùìòé\s]{2,}$/,"Inserire almeno 2 caratteri"]
 }
 
 function showError(input) {
@@ -20,8 +19,8 @@ function fieldValidation(input) {
     removeErrorMessage(input);
         if(input.value.search(validationDetails[input.id][1]) != 0 || input.value == validationDetails[input.id][0]) {
             showError(input);
-            input.focus(); //focus on error (ok 4 users & SR)
-            input.select(); //select all chars
+            //input.focus(); //focus on error (ok 4 users & SR)
+            //input.select(); //select all chars
             return false;
         } else {
             return true;
