@@ -71,11 +71,14 @@
                 <id/>
 
                 <label for="lunghezza">Lunghezza (metri)*</label>
-                <input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="10" step="10" placeholder="Lunghezza del tracciato">
+                <span><input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="10" step="10" placeholder="Lunghezza del tracciato"></span>
                 <br>
 
                 <label for="descrizione">Descrizione*</label>
-                <textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" minlength="30" maxlength="200">_descrizione_</textarea>
+                <span><textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" minlength="30" maxlength="200">
+                        _descrizione_
+                    </textarea>
+                </span>
                 <br>
 
                 <label for="terreno">Terreno*</label>
@@ -88,10 +91,10 @@
                 <br>
 
                 <label for="apertura">Orario apertura*</label>
-                <input type="time" required name="apertura" id="apertura" value="_apertura_" min="08:00" max="14:00" step="60">
+                <span><input type="time" required name="apertura" id="apertura" value="_apertura_" min="08:00" max="14:00" step="60"></span>
 
                 <label for="chiusura">Orario chiusura*</label>
-                <input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60">
+                <span><input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60"></span>
                 <br>
 
                 <label for="oldImg">Immagine attuale</label>

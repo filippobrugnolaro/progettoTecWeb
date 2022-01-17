@@ -61,19 +61,19 @@
                     <legend>Dati personali</legend>
 
                     <label for="nome">Nome*</label>
-                    <input type="text" name="nome" id="nome" value="_nome_" required>
+                    <span><input type="text" name="nome" id="nome" value="_nome_" required placeholder="Mario"></span>
                     <br>
 
                     <label for="cognome">Cognome*</label>
-                    <input type="text" name="cognome" id="cognome" value="_cognome_" required>
+                    <span><input type="text" name="cognome" id="cognome" value="_cognome_" required placeholder="Rossi"></span>
                     <br>
 
                     <label for="email"><span lang="en">E-mail</span>*</label>
-                    <input type="email" name="email" id="email" value="_email_" required>
+                    <span><input type="email" name="email" id="email" value="_email_" required placeholder="mario.rossi@gmail.com"></span>
                     <br>
 
                     <label for="telefono">Telefono*</label>
-                    <input type="tel" name="telefono" id="telefono" value="_tel_" required maxlength="10">
+                    <span><input type="tel" name="telefono" id="telefono" value="_tel_" required maxlength="10" placeholder="34213458973"></span>
 
                 </fieldset>
                 <fieldset>
@@ -81,14 +81,14 @@
                     <legend>Richiesta</legend>
 
                     <label for="oggetto">Oggetto*</label>
-                    <input type="text" name="oggetto" id="oggetto" value="_obj_" required>
+                    <span><input type="text" name="oggetto" id="oggetto" value="_obj_" required placeholder="Richiesta informazioni per..."></span>
                     <br>
 
                     <label for="messaggio">Messaggio*</label>
-                    <textarea id="messaggio" name="messaggio" required rows="10" cols="50">_text_</textarea>
+                    <div><textarea id="messaggio" name="messaggio" required rows="10" cols="50" placeholder="Testo del messaggio">_text_</textarea></div>
                 </fieldset>
 
-                <input type="checkbox" name="termini" id="termini" required _checked_>
+                <span><input type="checkbox" name="termini" id="termini" required _checked_></span>
                 <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.</label>
 
                 <br>
