@@ -1,0 +1,110 @@
+\documentclass[a4paper]{article}
+
+\usepackage{style}
+
+\begin{document}
+
+    \copertina
+
+    \tableofcontents
+
+    \newpage
+
+    \section{Introduzione}
+	    \input{Sezioni/Introduzione/Introduzione.tex} % anche vuoto
+	    	\subsection{Abstract}
+		    	\input{Sezioni/Introduzione/Abstract.tex}
+
+	\newpage
+
+	\section{Analisi}
+		\input{Sezioni/Analisi/Analisi.tex} % anche vuoto
+		\subsection{Studio dell'utenza finale}
+			\input{Sezioni/Analisi/StudioUtenza.tex}
+		\subsection{Casi d'uso}
+			\input{Sezioni/Analisi/CasiUso.tex}
+			\subsubsection{Utente generico}
+				\input{Sezioni/Analisi/CasiUso/UtenteGenerico.tex}
+			\subsubsection{Utente loggato}
+				\input{Sezioni/Analisi/CasiUso/UtenteLoggato.tex}
+			\subsubsection{Amministratore}
+				\input{Sezioni/Analisi/CasiUso/Amministratore.tex}
+
+	\newpage
+
+	\section{Progettazione}
+		\input{Sezioni/Progettazione/Progettazione.tex} % anche vuoto
+		\subsection{Obiettivi}
+			\input{Sezioni/Progettazione/Obiettivi.tex}
+		%parlare di separazione struttura contenuto ecc, accessibilità
+		\subsection{Layout}
+			\input{Sezioni/Progettazione/Layout.tex}
+			\subsubsection{Resize e Mobile}
+				\input{Sezioni/Progettazione/Layout/Mobile.tex}
+		\subsection{Accessibilità}
+		 	\input{Sezioni/Progettazione/Accessibilita.tex}
+		 	\subsubsection{Trasformazione elegante}
+		 		\input{Sezioni/Progettazione/Accessibilita/TrasformazioneElegante.tex}
+		 	\subsubsection{Schema colori}
+		 		\input{Sezioni/Progettazione/Accessibilita/SchemaColori.tex}
+		\subsection{Schema organizzativo}
+			\input{Sezioni/Progettazione/SchemaOrganizzativo.tex}
+		% principi web design
+
+	\newpage
+
+	\section{Implementazione}
+		\input{Sezioni/Implementazione/Implementazione.tex} % anche vuoto
+		\subsection{Linguaggi e strumenti}
+			\input{Sezioni/Implementazione/LinguaggiEStrumenti.tex}
+			\subsubsection{HTML 5}
+				\input{Sezioni/Implementazione/LinguaggiEStrumenti/HTML5.tex}
+			\subsubsection{PHP}
+				\input{Sezioni/Implementazione/LinguaggiEStrumenti/PHP.tex}
+			\subsubsection{SQL}
+				\input{Sezioni/Implementazione/LinguaggiEStrumenti/SQL.tex}
+			\subsubsection{JavaScript}
+				\input{Sezioni/Implementazione/LinguaggiEStrumenti/JS.tex}
+			\subsubsection{XAMPP}
+				\input{Sezioni/Implementazione/LinguaggiEStrumenti/Xampp.tex}
+			\subsubsection{Chrome Inspect}
+				\input{Sezioni/Implementazione/LinguaggiEStrumenti/ChromeInspect.tex}
+		\subsection{Funzionamento generale}
+			\input{Sezioni/Implementazione/FunzionamentoGenerale.tex}
+		\subsection{Separazione struttura-contenuto}
+			\input{Sezioni/Implementazione/StrutturaContenuto.tex}
+		
+	\newpage
+
+	\section{Validazione}
+		\input{Sezioni/Validazione/Validazione.tex} % anche vuoto
+		\subsection{Strumenti usati}
+			\input{Sezioni/Validazione/StrumentiUsati.tex}
+			\subsubsection{TotalValidator}
+				\input{Sezioni/Validazione/StrumentiUsati/TotalValidator.tex}
+			\subsubsection{W3C HTML Validator}
+				\input{Sezioni/Validazione/StrumentiUsati/HTMLValidator.tex}
+			\subsubsection{W3C CSS Validator}
+				\input{Sezioni/Validazione/StrumentiUsati/CSSValidator.tex}
+			\subsubsection{PhpCodeChecker}
+				\input{Sezioni/Validazione/StrumentiUsati/PHPValidator.tex}
+			\subsubsection{Esprima}
+				\input{Sezioni/Validazione/StrumentiUsati/JSValidator.tex}
+				
+	\newpage
+
+	\section{Organizzazione del lavoro}
+		\input{Sezioni/OrganizzazioneLavoro/Lavoro.tex}
+	
+	\newpage
+	
+	\appendix
+	\addcontentsline{toc}{part}{Appendice}
+	\section{Note per la correzione}
+		\input{Appendice/Introduzione.tex}
+		\subsection{Credenziali}
+			\input{Appendice/Credenziali.tex}
+		\subsection{Popolamento}
+			\input{Appendice/Popolamento.tex}
+    
+\end{document}
