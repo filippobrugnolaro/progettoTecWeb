@@ -71,6 +71,9 @@
             if(!ctype_digit($lunghezza))
                 $messaggiForm .= "<li>Lunghezza deve contenere solo numeri.</li>";
 
+            if($lunghezza < 500 || $lunghezza > 10000)
+                $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000</li>';
+
             $descrizione = sanitizeInputString($_POST['descrizione']);
 
             switch(checkInputValidity($descrizione,null)) {
@@ -220,6 +223,9 @@
 
             if(!ctype_digit($lunghezza))
                 $messaggiForm .= "<li>Lunghezza deve contenere solo numeri.</li>";
+
+            if($lunghezza < 500 || $lunghezza > 10000)
+                $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000</li>';
 
             $descrizione = sanitizeInputString($_POST['descrizione']);
 
