@@ -18,13 +18,20 @@
 </head>
 
 <body>
-	<header>
-		<nav id="menuList">
 
-			<!-- LOGO -->
+	<!-- start container 1 -->
+	<div class="container1">
+		
+		<!-- GRUPPO 1 -> ITEM 1 -->
+		<!-- start container 2 -->
+		<nav class="container2 container1-item">
+
+			<!-- GRUPPO 2 -> ITEM 1 -->
+			<!-- LOGO --> 
 			<i class="fa-brands fa-google">oogle</i>
 
-			<!-- MENU LINK -->
+			<!-- GRUPPO 2 -> ITEM 2 -->
+			<!-- MENU LINK --> 
 			<ul id="menu">
 				<li><a href="../">Dashboard</a></li>
 				<li><a href="../tracciati/">Tracciati</a></li>
@@ -33,49 +40,59 @@
 				<li><a href="../noleggio/">Noleggio</a></li>
 				<li><a href="../ingressi/">Ingressi</a></li>
 				<li><a href="../contatti/">Contatti</a></li>
-				<li id="areaRiservata">Area riservata</li>
+				<li id="active">Area riservata</li>
 			</ul>
+		</nav> <!-- end container 2 --> 
 
-		</nav>
-
-		<nav id="breadcrumb">
+		<!-- GRUPPO 1 -> ITEM 2 -->
+		<nav id="breadcrumb" class="container1-item">
 			<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; Area riservata</p>
 		</nav>
 
-	</header>
+		<!-- GRUPPO 1 -> ITEM 3 -->
+		<!-- start container 3 -->
+		<div class="container3 container1-item">
+			<!-- GRUPPO 3 -> ITEM 1 -->
+			<nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata utente">
+				<i class="fa-solid fa-a"></i>
 
-    <nav id="subMenu" role="navigation" aria-roledescription="menu area riservata utente"></nav>
-        <ul>
-            <li lang="en">Home</li>
-            <li><a href="./dati-utente/">I tuoi dati</a></li>
-            <li><a href='./ingressi/'>Ingressi</a></li>
-            <li><a href='./corsi/'>Corsi</a></li>
-            <li><a href="../login/logout.php" lang="en">Logout</a></li>
-        </ul>
-    </nav>
+				<ul id="sideMenu">
+					<li lang="en" id="activeSub">Home</li>
+					<li><a href="./dati-utente/">I tuoi dati</a></li>
+					<li><a href='./ingressi/'>Ingressi</a></li>
+					<li><a href='./corsi/'>Corsi</a></li>
+					<li><a href="../login/logout.php" lang="en">Logout</a></li>
+				</ul>
+			</nav>
+			
 
-	<div class="contentUser">
-        <h1>La tua Area Riservata</h1>
+			<!-- GRUPPO 3 -> ITEM 2 -->
+			<div class="contentUser container3-item"> 
+				<h1>La tua Area Riservata</h1>
 
-        <errors/>
+				<errors/>
 
-		<article>
-            <h2><a href="./dati-utente/">I tuoi dati</a></h2>
-            <p>Gestisici i tuoi dati personali.</p>
-        </article>
+				<article>
+					<h2><a href="./dati-utente/">I tuoi dati</a></h2>
+					<p>Gestisici i tuoi dati personali.</p>
+				</article>
 
-        <article>
-            <h2><a href="./ingressi/">I tuoi ingressi</a></h2>
-            <p>Prenota e gestisici le tue entrate prenotate alle piste.</p>
-        </article>
+				<article>
+					<h2><a href="./ingressi/">I tuoi ingressi</a></h2>
+					<p>Prenota e gestisici le tue entrate prenotate alle piste.</p>
+				</article>
 
-        <article>
-            <h2><a href="./corsi/">I tuoi corsi</a></h2>
-            <p>Prenota e gestisici i tuoi corsi prenotati.</p>
-        </article>
+				<article>
+					<h2><a href="./corsi/">I tuoi corsi</a></h2>
+					<p>Prenota e gestisici i tuoi corsi prenotati.</p>
+				</article>
 
-        <a href="#top">Torna su</a>
-    </div>
+				<a href="#top">Torna su</a>
+			</div>
+
+		</div> <!-- end container 3 -->
+
+	</div> <!-- end container 1 -->
 
 
 	<footer>

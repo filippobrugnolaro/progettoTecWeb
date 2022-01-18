@@ -5,15 +5,11 @@
 
 /*html = finestra, body = contenuto pagina */
 html {
+	height: 100%;
 	font-size: 100%;
 	font-family: "Roboto";
 	margin: auto;
-	max-width: 1024px;
 }
-
-/* body {
-	border: 1px solid #000;
-} */
 
 .errSuggestion {
 	color: red;
@@ -24,102 +20,176 @@ html {
 }
 
 /* ***************** BODY ***************** */
-/* body {
+body {
 	display: flex;
-} */
-
-/* **************************************** */
-/* **************** HEADER **************** */
-/* **************************************** */
-
-header {
-	color: #f38328;
-	padding: 1em;
-	padding-top: 0.7em;
+	flex-direction: column;
+	justify-content: normal;
+	min-height: 100%;
 }
+
+/* **************************************** */
+/* *********** GESTIONE FLEXBOX *********** */
+/* **************************************** */
+.container1 {
+	flex: 100 0 0;
+	display: flex;
+	flex-direction: column;
+
+	border: 3px solid rgb(225, 0, 255);
+
+	background-color: rgb(247, 248, 234);
+}
+
+.container1-item {
+	border: 1px solid rgb(38, 74, 70);
+}
+
+.container2 {
+	flex-direction: row;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-around;
+
+	color: rgb(247, 248, 234);
+	background-color: rgb(38, 74, 70);
+
+	/* border: 3px solid rgb(0, 255, 76); */
+}
+
+.container3 {
+	flex-grow: 1;
+
+	flex-direction: row;
+	display: flex;
+	justify-content: normal;
+
+	border: 1px solid rgb(38, 74, 70);
+
+	border: 3px solid rgb(60, 255, 0);
+}
+
+.container3-item {
+	flex: 1 1 0;
+	padding: 1em;
+	
+
+	border: 1px solid rgb(38, 74, 70);
+}
+
 
 /* ****************** NAV ***************** */
-#menulist {
-	width: 98%;
-}
-
 /* ***************** LOGO ***************** */
-/* #menuList i {
-	display: inline;
-} */
+
 
 /* ***************** MENU ***************** */
 #menu {
-	
+	list-style-type: none;
 	font-size: 1.3em;
 	padding: 0.5em;
+	color:rgb(247, 248, 234);
 }
 
-#menu ul {
-	list-style-type: none;
-}
-
-/* #menu li {
-	
-} */
-
-#menu ul li {
+#menu li {
+	display: inline;
 	margin-top: 0.5em;
+	margin: 0.5em 0.3em 0.3em 0.3em;
+
 }
 
-/* #menu #areaRiservata {
-	
-} */
+#menu a {
+	color:rgb(185, 185, 180);
+	text-decoration: none;
+}
 
-/* #active {
-	background-position: left center;
-	background-repeat: no-repeat;
-	background-size: 1.4em;
-	text-indent: 1.5em;
-} */
+#active {
+	font-size: 1.4em;
+}
 
 /* ************** BREADCRUMB ************** */
 
 #breadcrumb {
-	/* background-color: black; */
-	color: #F3C428;
-	font-size: 1.1em;
+	background-color: rgb(227, 230, 181);
+	color: black;
 	padding: 0.5em 0em 0.5em 1.0em;
 }
 
 #breadcrumb a:visited {
-	color: yellow;
+	color: rgb(38, 74, 70);
 }
 
 #breadcrumb a {
+	font-size: 1.2em;
+	color: rgb(38, 74, 70);
+	text-decoration: underline;
+}
+
+
+
+/* ************ AREA RISERVATA ************ */
+.navUser {
+	min-width: 120px;
+	flex: 0.7 0 0;
+
+	display: flex;
+	flex-direction: column;
+
+}
+
+.navUser i {
+	align-self: center;
+}
+
+.navUser ul {
+	align-self: center;
+}
+
+
+#sideMenu {
+	list-style-type: none;
+	font-size: 1.3em;
+	padding: 0.5em;
+	color:rgb(38, 74, 70);
+}
+
+#sideMenu li {
+	padding: 0.1em;
+}
+
+#sideMenu a {
+	color: rgb(65, 75, 74);
 	text-decoration: none;
 }
 
-
-/* **************************************** */
-/* ********** NAV AREA RISERVATA ********** */
-/* **************************************** */
-
-#subMenu {
-	
-	width: 25%;
+#activeSub {
+	font-size: 1.4em;
 }
 
 
-/* **************************************** */
 /* ******** CONTENT AREA RISERVATA ******** */
-/* **************************************** */
-#contentUser {
-	
-	width: 72%;
+.contentUser {
+	flex: 3 1 0;
+	color:rgb(38, 74, 70);
+}
+
+.contentUser a {
+	color: rgb(38, 74, 70);
+}
+
+.contentUser p {
+	color: rgb(0,0,0);
 }
 
 
 
 
+
+/* **************** FOOTER **************** */
 
 footer {
-	border-top: 1px solid black;
+	flex: 0 0 0; 
+	color: rgb(247, 248, 234);
+	background-color:rgb(38, 74, 70);
 	clear: both;
 	text-align: center;
 	font-size: 0.8em;
