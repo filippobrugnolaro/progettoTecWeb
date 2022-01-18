@@ -33,9 +33,9 @@
     $errors = "";
 
     if(isset($_GET['redirect']))
-        $action = 'index.php?redirect='.$_GET['redirect'];
+        $action = './?redirect='.$_GET['redirect'];
     else
-        $action = 'index.php';
+        $action = './';
 
     if (isset($_POST['submit'])) {
         if (strlen($_POST['email']) == 0) {
@@ -59,7 +59,7 @@
                     $conn->closeDB();
 
                     if ($user === null)
-                        $errors = 'Email o password errata.';
+                        $errors = '<li>Email o password errata.</li>';
                     else {
                         $_SESSION['user'] = $user;
 
@@ -74,22 +74,23 @@
                                 session_destroy(); //should never happen
                                 break;
                         }
-                
+
                         if(isset($_GET['redirect']))
                             $path .= $_GET['redirect'].'/';
-                
+
                         header("Location: $path");
 
                     }
                 } else
-                    $errors = 'Impossibile effettuare l\'accesso ora, riprovare più tardi.';
+                    $errors = '<li>Impossibile effettuare l\'accesso ora, riprovare più tardi.</li>';
             } catch (Throwable $e) {
-                $errors = $e->getMessage();
+                $errors .= '<li>'.$e->getMessage().'</li>';
             }
-        } else {
-            $errors = '<ul>'.$errors.'</ul>';
         }
     }
+
+    if(strlen($errors) > 0)
+        $errors = "<ul>$errors</ul>";
 
     $page = str_replace('_action_',$action,$page);
     $page = str_replace('<messaggiForm/>', $errors, $page);

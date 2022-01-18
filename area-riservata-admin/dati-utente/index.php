@@ -10,7 +10,7 @@
 
     session_start();
 
-    if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
+    if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 2)
         header('Location: ../../login/');
 
     $page = file_get_contents("datiUtente.html");
@@ -27,6 +27,13 @@
 
     $email = '';
     $password = '';
+
+    $form = '';
+    $messaggiForm2 = '';
+    $utenti = '';
+    $utente = '';
+
+    $errorDetails = '';
 
     // PRIMO FORM - Modifica anagrafica
     if (isset($_POST['submitUser'])) {
@@ -66,12 +73,12 @@
             $cf = $_SESSION['user']->getCF();
 
             //creo oggetto utente e faccio l'insert con la funzione
-            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $_SESSION['user']->getEmail(), 1,$_SESSION['user']->getPsw());
+            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $_SESSION['user']->getEmail(), 2,$_SESSION['user']->getPsw());
 
             if($conn->openDB()) {
                 if($conn->updateUserData($newUser)) {
                     $_SESSION['user'] = $newUser;
-                    $messaggiForm = '</li>Dati personali modificati con successo.</li>';
+                    $messaggiForm = '<li>Dati personali modificati con successo.</li>';
                 } else {
                     $globalError = 'Errore durante l\'aggiornamento dei dati.';
                 }
@@ -117,7 +124,7 @@
                         $_SESSION['user']->getNascita(),
                         $_SESSION['user']->getTelefono(),
                         $email,
-                        1,
+                        2,
                         $newPassword);
 
                     if($conn->updateUserPassword($newUser)) {
@@ -135,6 +142,29 @@
                 $globalError = 'Errore di connessione, riprovare più tardi.';
             }
         }
+    } else if(isset($_POST['submitUtenteAdmin'])) {
+        $utente = sanitizeInputString($_POST['utente']);
+
+        if(strlen($utente) == 16) {
+            switch(checkInputValidity($utente)) {
+                case 1: $messaggiForm2 .= '<li>Codice fiscale utente non presente.</li>'; break;
+                default: break;
+            }
+        } else $messaggiForm2 .= '<li>Codice fiscale utente non valido.</li>';
+
+
+        if(strlen($messaggiForm2) == 0) {
+            if($conn->openDB()) {
+                if($conn->updateUserRole($utente)) {
+                    $messaggiForm2 = '<li>Utente promosso con successo.</li>';
+                } else {
+                    $messaggiForm2 = '<li>Errore durante l\'aggiornamento del ruolo dell\'utente.</li>';
+                }
+                $conn->closeDB();
+            } else {
+                $globalError = 'Errore di connessione, riprovare più tardi.';
+            }
+        }
     }
 
     $nome = strlen($nome) > 0 ? $nome : $_SESSION['user']->getNome();
@@ -143,8 +173,52 @@
     $telefono = strlen($telefono) > 0 ? $telefono : $_SESSION['user']->getTelefono();
     $email = strlen($email) > 0 ? $email : $_SESSION['user']->getEmail();
 
+    //retrieve worthy of promotion users
+    if ($conn->openDB()) {
+        try {
+            $records = $conn->getQueryResult(dbAccess::QUERIES[23]);
+
+            if ($records !== null) {
+                $form = '<form method="post" action="./" onsubmit="return validazioneForm2();">
+                            <messaggiForm2/>
+
+                                <label for="utenti">Utente*</label>
+                                <select name="utente" id="utenti">
+                                    _utenti_
+                                </select>
+                            <input type="submit" name="submitUtenteAdmin" value="Promuovi utente"/>
+                        </form>';
+
+                if($utente != null)
+                    foreach ($records as $record) {
+                        $info = $record['cognome'].' '.$record['nome'].', '.date('d/m/Y',strtotime($record['nascita']));
+                        if($record['cf'] == $utente)
+                            $utenti .= '<option value=\''.$record['cf'].'\' selected>'.$info.'</option>';
+                        else
+                            $utenti .= '<option value=\''.$record['cf'].'\'>'.$info.'</option>';
+                    }
+                else {
+                    foreach ($records as $record) {
+                        $info = $record['cognome'].' '.$record['nome'].', '.date('d/m/Y',strtotime($record['nascita']));
+                        $utenti .= '<option value=\''.$record['cf'].'\'>'.$info.'</option>';
+                    }
+                }
+            } else {
+                $errorDetails = 'Non ci sono utenti promuovibili.';
+            }
+        } catch (Throwable $t) {
+            $errorDetails = $t->getMessage();
+        }
+
+        $conn->closeDB();
+    } else
+        $globalError = 'Errore di connessione, riprovare più tardi.';
+
     if(strlen($globalError) > 0)
         $globalError = '<p>'.$globalError.'</p>';
+
+    if(strlen($errorDetails) > 0)
+        $errorDetails = '<p>'.$errorDetails.'</p>';
 
     if(strlen($errors) > 0)
         $errors = '<ul>'.$errors.'</ul>';
@@ -165,8 +239,13 @@
 
     // SECONDO FORM
     $page = str_replace('<errors/>', $errors, $page);
-
     $page = str_replace("_email_", $email, $page);
+
+    //terzo form
+    $page = str_replace('_form_',$form,$page);
+    $page = str_replace('<messaggiForm2/>', $messaggiForm2, $page);
+    $page = str_replace('_utenti_',$utenti,$page);
+    $page = str_replace('_erroreUtenti_',$errorDetails,$page);
 
     echo $page;
 

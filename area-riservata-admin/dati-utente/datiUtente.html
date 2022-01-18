@@ -4,15 +4,12 @@
 
 <head>
 
-	<title>Dati personali - Adrenaline Motocross Park</title>
+	<title>Gestione personale - Adrenaline Motocross Park</title>
 	<meta charset="utf-8" />
 	<!-- <meta name="keywords" content="servizi, motocross, enduro" /> -->
 	<!-- <meta name="description" content="servizi offerti dall'impianto" /> -->
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
 	<!--<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>-->
-
-	<script src="utils/login.js"></script>
-
 </head>
 
 <body>
@@ -21,7 +18,7 @@
 	</header>
 
 	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Dati personali</p>
+		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Gestione personale</p>
 	</nav>
 
 	<nav id="menuList">
@@ -40,11 +37,14 @@
 	<div id="subMenu">
         <nav id="subMenu" role="navigation" aria-roledescription="menu area riservata utente"></nav>
 			<ul>
-				<li><a href="../" lang="en">Dashboard</a></li>
-				<li>Dati personali</li>
-				<li><a href='../ingressi/'>Ingressi</a></li>
-				<li><a href='../corsi/'>Corsi</a></li>
-				<li><a href="../../login/logout.php" lang="en">Logout</a></li>
+                <li><a href="../" lang="en">Dashboard</a></li>
+                <li>Gestione personale</li>
+				<li><a href="../tracciati/">Tracciati</a></li>
+                <li><a href="../noleggio/">Noleggio</a></li>
+                <li><a href="../ingressi/">Ingressi</a></li>
+                <li><a href="../corsi/">Corsi</a></li>
+				<li><a href="../messaggi/">Messaggi</a></li>
+                <li><a href="../../login/logout.php" lang="en">Logout</a></li>
 			</ul>
         </nav>
 	</div>
@@ -79,7 +79,6 @@
 			<input type="submit" name="submitUser" value="Applica Modifiche"/>
 		</form>
 
-
 		<!-- modifica password -->
 		<form method="post" action="./" onsubmit="return validazioneForm();">
             <errors/>
@@ -104,6 +103,14 @@
 			</fieldset>
 			<input type="submit" name="submitPsw" value="Modifica"/>
 		</form>
+	</div>
+
+	<div>
+		<h1>Promozione utenti</h1>
+		<globalError/>
+
+		_erroreUtenti_
+		_form_
 	</div>
 
 	<footer>

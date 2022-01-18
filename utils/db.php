@@ -143,6 +143,13 @@
 				GROUP BY id
 				ORDER BY data',
 				'Errore durante il recupero delle informazioni sui corsi prenotati'),
+
+			//23
+			array('SELECT cf, nome, cognome, nascita
+			FROM utente
+			WHERE ruolo = 1
+			ORDER BY cognome, nome',
+			'Errore durante il recupero delle informazioni sugli utenti promuovibli'),
 		);
 
 		private $conn;
@@ -694,6 +701,19 @@
 			mysqli_rollback($this->conn);
 			return false;
 		}
+	}
+
+	public function updateUserRole(string $cf): bool {
+		$cf = mysqli_real_escape_string($this->conn,$cf);
+
+		$sql = "UPDATE utente SET ruolo = 2 WHERE cf = \"$cf\"";
+
+		mysqli_query($this->conn,$sql);
+
+		if(!mysqli_error($this->conn))
+			return true;
+		else
+			return false;
 	}
 }
 ?>
