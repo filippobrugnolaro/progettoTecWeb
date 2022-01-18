@@ -1,6 +1,6 @@
 var validationDetails = {
-    "data"          : ["Data dell'ingresso",/^\d{4}-\d{2}-\d{2}$/,"Inserire almeno 2 caratteri"],
-    "posti"         : ["Numero di posti disponibili",/^[0-9]+$/,"Inserire un numero"]
+    "data"          : ["Data dell'ingresso",/^\d{4}-\d{2}-\d{2}$/,"Inserire una data valida"],
+    "posti"         : ["Numero di posti disponibili",/^[0-9]+$/,"Inserire un numero compreso tra 50 e 200 inclusi"],
 }
 
 function showError(input) {
@@ -20,7 +20,7 @@ function fieldValidation(input) {
             return false;
         } else {
             return true;
-    }
+        }
 }
 
 function removeErrorMessage(input) {
@@ -45,4 +45,26 @@ function formValidation() {
         ret = ret & input.onblur();
     }
     return ret;
+}
+
+function checkDate(input) {
+    var birthDate = new Date(String(input.value));
+    var date = new Date()
+    var stringToday = String(date.getFullYear()).concat("-", String(date.getMonth()), "-", String(date.getDay));
+    var todayDate = new Date(stringToday);
+    if(birthDate < todayDate){
+        return true;
+    } else {
+        showError(input);
+        return false;
+    }
+}
+
+function checkPosti(input) {
+    if(input.value >= 50 && input.value <= 200){
+        return true;
+    } else {
+        showError(input);
+        return false;
+    }
 }

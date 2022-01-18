@@ -1,6 +1,6 @@
 var validationDetails = {
-    "posti"         : ["Numero di posti disponibili",/^[0-9]+$/,"Inserire un numero"],
-    "descrizione"   : ["Descrizione del corso",/^.{30,200}$/,"Inserire almeno 10 caratteri"],
+    "posti"         : ["Numero di posti disponibili",/^[0-9]+$/,"Inserire un numero compreso tra 2 e 15 inclusi"],
+    "descrizione"   : ["Descrizione del corso",/^.{30,200}$/,"Inserire almeno tra i 30 e i 200 caratteri"],
     "istruttore"    : ["Nome dell'istruttore",/^[A-Za-zàèùìòé\s]{2,}$/,"Inserire almeno 2 caratteri"]
 }
 
@@ -46,4 +46,13 @@ function formValidation() {
         ret = ret & input.onblur();
     }
     return ret;
+}
+
+function checkPosti(input) {
+    if((input.value >= 2) && (input.value <= 15)){
+        return true;
+    } else {
+        showError(input);
+        return false;
+    }
 }
