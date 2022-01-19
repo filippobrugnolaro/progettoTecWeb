@@ -12,34 +12,37 @@
 	<meta name="keywords" content="motocross, informazioni, contatti" />
 	<meta name="description" content="Informazioni di contatto" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-    <script src="contattiValidation.js"></script>
+  <script src="contattiValidation.js"></script>
+	<link rel="stylesheet" href="../css/style1.css"/>
 
 </head>
 
 <body onload="load();">
-	<header>
-		<h1 lang="en">Adrenaline Motocross Park</h1>
-	</header>
+	<div class="container-vertical">
+		<div id="menu" class="container-horizontal">
+			<header>
+				<h1 lang="en">Adrenaline Motocross Park</h1>
+			</header>
 
+	    <nav id="menuList">
+				<ul>
+					<li><a href="../" lang="en">Home</a></li>
+					<li><a href="../tracciati/">Tracciati</a></li>
+					<li><a href="../servizi/">Servizi</a></li>
+					<li><a href="../corsi/">Corsi</a></li>
+					<li><a href="../noleggio">Noleggio</a></li>
+					<li><a href="../ingressi/">Ingressi</a></li>
+					<li>Contatti</li>
+		      <li><a href="../login/">Area riservata</a></li>
+				</ul>
+			</nav>
+		</div>
 
-	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Contatti</p>
-	</nav>
+		<nav id="breadcrumb">
+			<p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Contatti</p>
+		</nav>
 
-    <nav id="menuList">
-		<ul>
-			<li><a href="../" lang="en">Home</a></li>
-			<li><a href="../tracciati/">Tracciati</a></li>
-			<li><a href="../servizi/">Servizi</a></li>
-			<li><a href="../corsi/">Corsi</a></li>
-			<li><a href="../noleggio">Noleggio</a></li>
-			<li><a href="../ingressi/">Ingressi</a></li>
-			<li>Contatti</li>
-            <li><a href="../login/">Area riservata</a></li>
-		</ul>
-	</nav>
-
-    <div id="contentContatti">
+    <div id="contentContatti" class="content">
 
         <h1>Contatti</h1>
 
@@ -101,24 +104,29 @@
 
     </div>
 
-	<footer>
-		<div class="footerInfo">
-			<img src="" alt="logo con le tre iniziali sovrapposte" class="logo"/>
-			<p><span lang="en">Adrenaline Motocross Park</span> è un parco divertimenti dedicato ai motociclisti e agli appassionati di motocross. Il progetto nasce dalla passione autentica per questo sport e punta a dare un tocco di qualità in più per permettere agli appassionati di esprimersi in totale comodità e sicurezza.</p>
-		</div>
+		<footer>
+			<div class="footerInfo">
+				<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
+				<p>Adrenaline Motocross Park è un parco divertimenti dedicato ai motociclisti
+				e agli appassionati di motocross. Il progetto nasce dalla passione autentica
+				per questo sport e punta a dare un tocco di qualità in più per permettere agli
+				appassionati di esprimersi in totale comodità e sicurezza.</p>
+			</div>
 
-		<div class="footerDoveSiamo">
-			<h3>Dove siamo</h3>
-            <p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
-            <p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
-            <p class="informazioniFooter">Indirizzo:</p>
-		</div>
-
-		<img src="images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
-		<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
-				rights reserved</span></p>
-		<img src="images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
-	</footer>
+			<div class="footerDoveSiamo">
+				<h3>Dove siamo</h3>
+	            <p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
+	            <p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
+	            <p class="informazioniFooter">Indirizzo:</p>
+			</div>
+			<div class="footerValid">
+				<img src="../images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+				<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
+						rights reserved</span></p>
+				<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+			</div>
+		</footer>
+	</div>
 </body>
 
 </html>
