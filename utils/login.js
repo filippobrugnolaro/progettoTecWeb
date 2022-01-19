@@ -14,7 +14,7 @@ function showError(input) {
     parent.appendChild(error);
 }
 
-function fieldValidation(input) {
+function fieldValidation(input, event = null) {
     removeErrorMessage(input);
 
     if(input.value.search(validationDetails[input.id][1]) != 0
@@ -58,11 +58,24 @@ function fieldForInput(input) {
     }
 }
 
-function formValidation() {
-    var ret = true;
-    for(var key in validationDetails) {
-        var input = document.getElementById(key);
-        ret = ret & input.onblur();
-    }
-    return ret;
-}
+		function formValidation(event) {
+
+			var ret = true;
+			var focus = null;
+			for(var key in validationDetails) {
+				var input = document.getElementById(key);
+				var validation = fieldValidation(input,event);
+
+				//console.log("ret = " + ret + "; validation = " + validation + "; focus = " + focus);
+
+				if(focus == null && ret == true && validation == false)
+					focus = input;
+
+				ret = ret && validation;
+			}
+
+			if(ret == false)
+				focus.focus();
+
+			return ret;
+		}

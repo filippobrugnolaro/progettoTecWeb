@@ -71,7 +71,7 @@
 				<globalError/>
 
 				<!--   view / modifica dati personali    -->
-				<form method="post" action="./" onsubmit="return validazioneForm();">
+				<form method="post" action="./" onsubmit="return formValidation(event);">
 					<messaggiForm/>
 
 					<fieldset>
@@ -98,7 +98,7 @@
 
 
 				<!-- modifica password -->
-				<form method="post" action="./" onsubmit="return validazioneForm();">
+				<form method="post" action="./" onsubmit="return formValidation(event);">
 					<errors/>
 					<fieldset>
 						<legend>Dati per l'accesso</legend>

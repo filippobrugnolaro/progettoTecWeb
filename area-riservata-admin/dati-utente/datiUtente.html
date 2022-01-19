@@ -11,10 +11,12 @@
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
 	<!--<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>-->
 
+	<script src="datiValidation.js"></script>
+
 	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
-<body>
+<body onload="load();">
 	<!-- start container 1 -->
 	<div class="container1">
 
@@ -38,7 +40,7 @@
                 <li><a href="../../contatti/">Contatti</a></li>
                 <li id="active">Area riservata</li>
             </ul>
-            
+
         </nav> <!-- end container 2 -->
 
         <!-- GRUPPO 1 -> ITEM 2 -->
@@ -52,7 +54,7 @@
             <!-- GRUPPO 3 -> ITEM 1 -->
             <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
                 <i class="_userIcon_"></i>
-				
+
 				<ul id="sideMenu">
 					<li><a href="../" lang="en">Home</a></li>
 					<li id="activeSub">Gestione personale</li>
@@ -72,33 +74,33 @@
 					<globalError/>
 
 					<!--   view / modifica dati personali    -->
-					<form method="post" action="./" onsubmit="return validazioneForm();">
+					<form method="post" action="./" onsubmit="return formValidation(event)">
 						<messaggiForm/>
 
 						<fieldset>
 							<legend>Dati personali</legend>
 
 							<label for="cognomeUser">Cognome*</label>
-							<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" required/></span>
+							<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_"></span>
 							<br/>
 
 							<label for="nomeUser">Nome*</label>
-							<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" required/></span>
+							<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_"></span>
 							<br/>
 
 							<label for="nascitaUser">Data di nascita*</label>
-							<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" required/></span>
+							<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_"></span>
 							<br/>
 
 							<label for="telUser">Telefono*</label>
-							<span><input type="tel" name="telUser" id="telUser" value="_telefono_" required/></span>
+							<span><input type="tel" name="telUser" id="telUser" value="_telefono_"></span>
 							<br/>
 						</fieldset>
-						<input type="submit" name="submitUser" value="Applica Modifiche"/>
+						<input type="submit" name="submitUser" value="Applica Modifiche">
 					</form>
 
 					<!-- modifica password -->
-					<form method="post" action="./" onsubmit="return validazioneForm();">
+					<form method="post" action="./" onsubmit="return formValidation2(event);">
 						<errors/>
 						<fieldset>
 							<legend>Dati per l'accesso</legend>
@@ -108,15 +110,15 @@
 							<br/>
 
 							<label for="oldPsw">Vecchia password*</label>
-							<span><input type="password" name="oldPsw" id="oldPsw" required/></span>
+							<span><input type="password" name="oldPsw" id="oldPsw"></span>
 							<br/>
 
 							<label for="newPsw">Nuova password*</label>
-							<span><input type="password" name="newPsw" id="newPsw" required/></span>
+							<span><input type="password" name="newPsw" id="newPsw"></span>
 							<br/>
 
 							<label for="pswCheck">Reinserisci nuova password*</label>
-							<span><input type="password" name="pswCheck" id="pswCheck" required/></span>
+							<span><input type="password" name="pswCheck" id="pswCheck"></span>
 							<br/>
 						</fieldset>
 						<input type="submit" name="submitPsw" value="Modifica"/>

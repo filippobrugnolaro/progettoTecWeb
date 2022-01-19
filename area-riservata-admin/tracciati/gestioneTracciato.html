@@ -19,7 +19,7 @@
 </head>
 
 <body onload="load();">
-    
+
     <!-- start container 1 -->
 	<div class="container1">
 
@@ -43,7 +43,7 @@
                 <li><a href="../../contatti/">Contatti</a></li>
                 <li id="active">Area riservata</li>
             </ul>
-            
+
         </nav> <!-- end container 2 -->
 
         <!-- GRUPPO 1 -> ITEM 2 -->
@@ -72,7 +72,7 @@
                     <li><a href="../../login/logout.php" lang="en">Logout</a></li>
                 </ul>
             </nav>
-            
+
 
             <!-- GRUPPO 3 -> ITEM 2 -->
             <div class="contentAdmin container3-item">
@@ -80,7 +80,7 @@
 
                 <globalError/>
 
-                <form method="post" action="_action_" enctype="multipart/form-data" onsubmit="return formValidation()">
+                <form method="post" action="_action_" enctype="multipart/form-data" onsubmit="return formValidation(event);">
                     <messaggiForm/>
 
                     <fieldset>
@@ -90,18 +90,16 @@
                         <id/>
 
                         <label for="lunghezza">Lunghezza (metri)*</label>
-                        <span><input type="number" required name="lunghezza" id="lunghezza" value="_lunghezza_" min="500" max="10000" step="100" placeholder="Lunghezza del tracciato"></span>
+                        <span><input type="number" name="lunghezza" id="lunghezza" value="_lunghezza_" step="100" placeholder="Lunghezza del tracciato"></span>
                         <br>
 
                         <label for="descrizione">Descrizione*</label>
-                        <span><textarea required placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione" minlength="30" maxlength="200">
-                                _descrizione_
-                            </textarea>
+                        <span><textarea placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione">_descrizione_</textarea>
                         </span>
                         <br>
 
                         <label for="terreno">Terreno*</label>
-                        <select name="terreno" id="terreno" required>
+                        <select name="terreno" id="terreno">
                             <option value="terra_battuta">Terra battuta</option>
                             <option value="terra_sassosa">Terra sassosa</option>
                             <option value="terra_morbida">Terra morbida</option>
@@ -110,10 +108,10 @@
                         <br>
 
                         <label for="apertura">Orario apertura*</label>
-                        <span><input type="time" required name="apertura" id="apertura" value="_apertura_" min="08:00" max="14:00" step="60"></span>
+                        <span><input type="time" name="apertura" id="apertura" value="_apertura_"  step="60"></span>
 
                         <label for="chiusura">Orario chiusura*</label>
-                        <span><input type="time" required name="chiusura" id="chiusura" value="_chiusura_" min="14:00" max="20:00" step="60"></span>
+                        <span><input type="time" name="chiusura" id="chiusura" value="_chiusura_" step="60"></span>
                         <br>
 
                         <label for="oldImg">Immagine attuale</label>

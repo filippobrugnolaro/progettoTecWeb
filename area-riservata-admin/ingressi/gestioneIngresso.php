@@ -36,25 +36,27 @@
         $page = str_replace('_readonly_','readonly',$page);
 
         if (isset($_POST['submit'])) {
-            $date = $_GET['date'];
-
-            $date = sanitizeInputString($date);
+            $date = sanitizeInputString($_GET['date']);
 
             switch(checkInputValidity($date,'/^\d{4}-\d{2}-\d{2}$/')) {
                 case 1: $messaggiForm .= '<li>Data non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Formato data non corretto</li>'; break;
+                case 2: $messaggiForm .= '<li>Formato data non corretto.</li>'; break;
                 default: break;
             }
+
+            if(strtotime($date) < strtotime(date('Y-m-d')))
+                $messaggiForm .= '<li>La data non può essere antecedente alla data odierna.</li>';
 
             $posti = sanitizeInputString($_POST['posti']);
 
-            switch(checkInputValidity($posti,null)) {
+            switch(checkInputValidity($posti,'/^[0-9]{2,3}$/')) {
                 case 1: $messaggiForm .= '<li>Numero posti disponibili non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Numero inserito non valido.</li>'; break;
                 default: break;
             }
 
-            if(!ctype_digit($posti))
-                $messaggiForm .= '<li>Numero posti disponibili deve essere un numero.</li>';
+            if($posti < 50 || $posti > 200)
+                $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 50 e 200.</li>';
 
             if($messaggiForm == '') {
                 if($conn->openDB()) {
@@ -106,25 +108,27 @@
         $page = str_replace('_readonly_','',$page);
 
         if(isset($_POST['submit'])) {
-            $date = $_POST['data'];
-
-            $date = sanitizeInputString($date);
+            $date = sanitizeInputString($_POST['date']);
 
             switch(checkInputValidity($date,'/^\d{4}-\d{2}-\d{2}$/')) {
                 case 1: $messaggiForm .= '<li>Data non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Formato data non corretto</li>'; break;
+                case 2: $messaggiForm .= '<li>Formato data non corretto.</li>'; break;
                 default: break;
             }
+
+            if(strtotime($date) < strtotime(date('Y-m-d')))
+                $messaggiForm .= '<li>La data non può essere antecedente alla data odierna.</li>';
 
             $posti = sanitizeInputString($_POST['posti']);
 
-            switch(checkInputValidity($posti,null)) {
+            switch(checkInputValidity($posti,'/^[0-9]{2,3}$/')) {
                 case 1: $messaggiForm .= '<li>Numero posti disponibili non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Numero inserito non valido.</li>'; break;
                 default: break;
             }
 
-            if(!ctype_digit($posti))
-                $messaggiForm .= '<li>Numero posti disponibili deve essere un numero.</li>';
+            if($posti < 50 || $posti > 200)
+                $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 50 e 200.</li>';
 
             if($messaggiForm == '') {
                 if($conn->openDB()) {

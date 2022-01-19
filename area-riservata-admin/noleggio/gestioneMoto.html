@@ -19,7 +19,7 @@
 </head>
 
 <body onload="load();">
-    
+
     <!-- start container 1 -->
 	<div class="container1">
 
@@ -43,7 +43,7 @@
                 <li><a href="../../contatti/">Contatti</a></li>
                 <li id="active">Area riservata</li>
             </ul>
-            
+
         </nav> <!-- end container 2 -->
 
         <!-- GRUPPO 1 -> ITEM 2 -->
@@ -60,7 +60,7 @@
             <!-- GRUPPO 3 -> ITEM 1 -->
             <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
                 <i class="_userIcon_"></i>
-				
+
 				<ul id="sideMenu">
                     <li><a href="../" lang="en">Home</a></li>
                     <li><a href="../dati-utente/">Gestione personale</a></li>
@@ -79,7 +79,7 @@
 
                 <globalError/>
 
-                <form method="post" action="_action_" onsubmit="return formValidation()">
+                <form method="post" action="_action_" onsubmit="return formValidation(event);">
                     <messaggiForm/>
 
                     <fieldset>
@@ -88,11 +88,11 @@
                         <id/>
 
                         <label for="marca">Marca*</label>
-                        <span><input type="text" required name="marca" id="marca" value="_marca_" placeholder="Marca della moto"></span>
+                        <span><input type="text" name="marca" id="marca" value="_marca_" placeholder="Marca della moto"></span>
                         <br>
 
                         <label for="modello">Modello*</label>
-                        <span><input type="text" required name="modello" id="modello" value="_modello_" placeholder="Modello della moto"></span>
+                        <span><input type="text" name="modello" id="modello" value="_modello_" placeholder="Modello della moto"></span>
                         <br>
 
                         <label for="cilindrata">Cilindrata*</label>
@@ -105,7 +105,7 @@
                         <br>
 
                         <label for="anno">Anno*</label>
-                        <span><input type="number" required name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" step="1" placeholder="Anno di fabbricazione"></span>
+                        <span><input type="number" name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" step="1" placeholder="Anno di fabbricazione"></span>
                         <br>
                     </fieldset>
                     <input type="submit" name="submit" id="submit" value="_azione_">

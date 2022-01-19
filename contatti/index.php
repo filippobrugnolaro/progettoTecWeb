@@ -27,19 +27,14 @@
 
     if (isset($_POST['submit'])) {
         $nome = sanitizeInputString($_POST['nome']);
-        switch (checkInputValidity($nome, '/\D/')) {
-            case 1:
-                $messaggiForm .= '<li>Nome non presente.</li>';
-                break;
-            case 2:
-                $messaggiForm .= '<li>Nome non può contenere numeri.</li>';
-                break;
-            default:
-                break;
+        switch (checkInputValidity($nome, '/^[A-Za-zàèùìòé\'\s]{2,}$/')) {
+            case 1: $messaggiForm .= '<li>Nome non presente.</li>'; break;
+            case 2: $messaggiForm .= '<li>Nome non può contenere numeri o caratteri speciali.</li>'; break;
+            default: break;
         }
 
         $cognome = sanitizeInputString($_POST['cognome']);
-        switch (checkInputValidity($cognome, '/\D/')) {
+        switch (checkInputValidity($cognome, '/^[A-Za-zàèùìòé\'\s]{2,}$/')) {
             case 1:
                 $messaggiForm .= '<li>Cognome non presente.</li>';
                 break;
@@ -50,8 +45,9 @@
                 break;
         }
 
+
         $email = sanitizeInputString($_POST['email']);
-        switch (checkInputValidity($cognome,null)) {
+        switch (checkInputValidity($email,null)) {
             case 1:
                 $messaggiForm .= '<li>Email non presente.</li>';
                 break;
@@ -63,30 +59,36 @@
             $messaggiForm .= '<li>Email non valida.</li>';
 
         $tel = sanitizeInputString($_POST['telefono']);
-        switch (checkInputValidity($tel,'/\d/')) {
+        switch (checkInputValidity($tel,'/^\d{8,10}$/')) {
                 case 1:
                     $messaggiForm .= '<li>Numero di telefono non presente.</li>';
                     break;
                 case 2:
-                    $messaggiForm .= '<li>Il numero di telefono non può contenere caratteri diversi da numeri.</li>';
+                    $messaggiForm .= '<li>Il numero di telefono deve contenere tra le 8 e le 10 cifre.</li>';
                     break;
                 default:
                     break;
         }
 
         $obj = sanitizeInputString($_POST['oggetto']);
-        switch (checkInputValidity($obj)) {
+        switch (checkInputValidity($obj,'/^.{2,}$/')) {
             case 1:
                 $messaggiForm .= '<li>Oggetto del messaggio non presente.</li>';
+                break;
+            case 2:
+                $messaggiForm .= '<li>Oggetto deve contenere almeno 2 caratteri.</li>';
                 break;
             default:
                 break;
         }
 
         $text = sanitizeInputString($_POST['messaggio']);
-        switch (checkInputValidity($obj)) {
+        switch (checkInputValidity($text,'/^.{10,}$/')) {
             case 1:
                 $messaggiForm .= '<li>Testo del messaggio non presente.</li>';
+                break;
+            case 2:
+                $messaggiForm .= '<li>Testo deve contenere almeno 10 caratteri.</li>';
                 break;
             default:
                 break;

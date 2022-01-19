@@ -63,26 +63,22 @@
         if (isset($_POST['submit'])) {
             $lunghezza = sanitizeInputString($_POST['lunghezza']);
 
-            switch(checkInputValidity($lunghezza,null)) {
+            switch(checkInputValidity($lunghezza,'/^[0-9]{3,5}$/')) {
                 case 1: $messaggiForm .= '<li>Lunghezza non presente.</li>'; break;
+                case 2: $messaggiForm .= "<li>Lunghezza deve contenere da 3 a 5 cifre.</li>"; break;
                 default: break;
             }
 
-            if(!ctype_digit($lunghezza))
-                $messaggiForm .= "<li>Lunghezza deve contenere solo numeri.</li>";
-
             if($lunghezza < 500 || $lunghezza > 10000)
-                $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000</li>';
+                $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000.</li>';
 
             $descrizione = sanitizeInputString($_POST['descrizione']);
 
-            switch(checkInputValidity($descrizione,null)) {
+            switch(checkInputValidity($descrizione,'/^.{30,200}$/')) {
                 case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Descrizione deve essere compresa tra 30 e 300 caratteri.</li>'; break;
                 default: break;
             }
-
-            if(strlen($descrizione) < 30 || strlen($descrizione) > 200)
-                $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>';
 
             $terreno = sanitizeInputString($_POST['terreno']);
 
@@ -216,26 +212,22 @@
         if(isset($_POST['submit'])) {
             $lunghezza = sanitizeInputString($_POST['lunghezza']);
 
-            switch(checkInputValidity($lunghezza,null)) {
+            switch(checkInputValidity($lunghezza,'/^[0-9]{3,5}$/')) {
                 case 1: $messaggiForm .= '<li>Lunghezza non presente.</li>'; break;
+                case 2: $messaggiForm .= "<li>Lunghezza deve contenere da 3 a 5 cifre.</li>"; break;
                 default: break;
             }
 
-            if(!ctype_digit($lunghezza))
-                $messaggiForm .= "<li>Lunghezza deve contenere solo numeri.</li>";
-
             if($lunghezza < 500 || $lunghezza > 10000)
-                $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000</li>';
+                $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000.</li>';
 
             $descrizione = sanitizeInputString($_POST['descrizione']);
 
-            switch(checkInputValidity($descrizione,null)) {
+            switch(checkInputValidity($descrizione,'/^.{30,200}$/')) {
                 case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Descrizione deve essere compresa tra 30 e 300 caratteri.</li>'; break;
                 default: break;
             }
-
-            if(strlen($descrizione) < 30 || strlen($descrizione) > 200)
-                $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>';
 
             $terreno = sanitizeInputString($_POST['terreno']);
 
@@ -266,7 +258,7 @@
             }
 
             if($chiusura < "14:00" || $chiusura > "20:00")
-            $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
+                $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
 
             if($messaggiForm == '') {
                 if($conn->openDB()) {

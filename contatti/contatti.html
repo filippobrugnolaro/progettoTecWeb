@@ -56,7 +56,7 @@
 
         <h2>Chiedici informazioni!</h2>
 
-            <form action="./" method="post" onsubmit="return formValidation();">
+            <form action="./" method="post" onsubmit="return formValidation(event);">
                 <messaggiForm/>
                 <globalError/>
 
@@ -64,19 +64,19 @@
                     <legend>Dati personali</legend>
 
                     <label for="nome">Nome*</label>
-                    <span><input type="text" name="nome" id="nome" value="_nome_" required placeholder="Mario"></span>
+                    <span><input type="text" name="nome" id="nome" value="_nome_" placeholder="Mario"></span>
                     <br>
 
                     <label for="cognome">Cognome*</label>
-                    <span><input type="text" name="cognome" id="cognome" value="_cognome_" required placeholder="Rossi"></span>
+                    <span><input type="text" name="cognome" id="cognome" value="_cognome_" placeholder="Rossi"></span>
                     <br>
 
                     <label for="email"><span lang="en">E-mail</span>*</label>
-                    <span><input type="email" name="email" id="email" value="_email_" required placeholder="mario.rossi@gmail.com"></span>
+                    <span><input type="email" name="email" id="email" value="_email_" placeholder="mario.rossi@gmail.com"></span>
                     <br>
 
                     <label for="telefono">Telefono*</label>
-                    <span><input type="tel" name="telefono" id="telefono" value="_tel_" required maxlength="10" placeholder="34213458973"></span>
+                    <span><input type="tel" name="telefono" id="telefono" value="_tel_" placeholder="34213458973"></span>
 
                 </fieldset>
                 <fieldset>
@@ -84,16 +84,15 @@
                     <legend>Richiesta</legend>
 
                     <label for="oggetto">Oggetto*</label>
-                    <span><input type="text" name="oggetto" id="oggetto" value="_obj_" required placeholder="Richiesta informazioni per..."></span>
+                    <span><input type="text" name="oggetto" id="oggetto" value="_obj_" placeholder="Richiesta informazioni per..."></span>
                     <br>
 
                     <label for="messaggio">Messaggio*</label>
-                    <div><textarea id="messaggio" name="messaggio" required rows="10" cols="50" placeholder="Testo del messaggio">_text_</textarea></div>
+                    <div><textarea id="messaggio" name="messaggio" rows="10" cols="50" placeholder="Testo del messaggio">_text_</textarea></div>
                 </fieldset>
 
-                <span><input type="checkbox" name="termini" id="termini" required _checked_></span>
-                <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.</label>
-
+                <span><input type="checkbox" name="termini" id="termini" _checked_></span>
+                <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.*</label>
                 <br>
 
                 <input type="submit" name="submit" id="invio">

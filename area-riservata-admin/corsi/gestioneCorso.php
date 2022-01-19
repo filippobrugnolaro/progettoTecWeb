@@ -56,29 +56,28 @@
 
             $posti = sanitizeInputString($_POST['posti']);
 
-            switch(checkInputValidity($posti,null)) {
+            switch(checkInputValidity($posti,'/^[0-9]{1,2}$/')) {
                 case 1: $messaggiForm .= '<li>Numero posti disponibili non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Numero deve avere da 2 a 3 cifre.</li>'; break;
                 default: break;
             }
 
-            if(!ctype_digit($posti))
-                $messaggiForm .= '<li>Numero posti disponibili deve essere un numero.</li>';
+            if($posti < 2 || $posti > 15)
+                $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 2 e 15.</li>';
 
             $desc = sanitizeInputString($_POST['descrizione']);
 
-            switch(checkInputValidity($desc,null)) {
+            switch(checkInputValidity($desc,'/^.{30,300}$/')) {
                 case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>'; break;
                 default: break;
             }
 
-            if(strlen($desc) < 30 || strlen($desc) > 200)
-                $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>';
-
             $istruttore = sanitizeInputString($_POST['istruttore']);
 
-            switch(checkInputValidity($istruttore,'/\D/')) {
+            switch(checkInputValidity($istruttore,'/^[A-Za-zàèùìòé\'\s]{2,}$/')) {
                 case 1: $messaggiForm .= '<li>Istruttore non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Istruttore non può contenere numeri.</li>'; break;
+                case 2: $messaggiForm .= '<li>Istruttore non può contenere numeri e caratteri speciali.</li>'; break;
                 default: break;
             }
 
@@ -159,29 +158,28 @@
 
             $posti = sanitizeInputString($_POST['posti']);
 
-            switch(checkInputValidity($posti,null)) {
+            switch(checkInputValidity($posti,'/^[0-9]{1,2}$/')) {
                 case 1: $messaggiForm .= '<li>Numero posti disponibili non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Numero deve avere da 2 a 3 cifre.</li>'; break;
                 default: break;
             }
 
-            if(!ctype_digit($posti))
-                $messaggiForm .= '<li>Numero posti disponibili deve essere un numero.</li>';
+            if($posti < 2 || $posti > 15)
+                $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 2 e 15.</li>';
 
             $desc = sanitizeInputString($_POST['descrizione']);
 
-            switch(checkInputValidity($desc,null)) {
+            switch(checkInputValidity($desc,'/^.{30,300}$/')) {
                 case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>'; break;
                 default: break;
             }
 
-            if(strlen($desc) < 30 || strlen($desc) > 200)
-                $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 200 caratteri.</li>';
-
             $istruttore = sanitizeInputString($_POST['istruttore']);
 
-            switch(checkInputValidity($istruttore,'/\D/')) {
+            switch(checkInputValidity($istruttore,'/^[A-Za-zàèùìòé\'\s]{2,}$/')) {
                 case 1: $messaggiForm .= '<li>Istruttore non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Istruttore non può contenere numeri.</li>'; break;
+                case 2: $messaggiForm .= '<li>Istruttore non può contenere numeri e caratteri speciali.</li>'; break;
                 default: break;
             }
 

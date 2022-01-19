@@ -25,15 +25,11 @@
     if (isset($_POST['submit'])) {
         //check dati anagrafica
         $cf = sanitizeInputString($_POST['cfUser']);
-        if(strlen($cf) == 16) {
-            switch(checkInputValidity($cf)) {
+        switch(checkInputValidity($cf,'/^(?:[A-Z][AEIOU][AEIOUX]|[AEIOU]X{2}|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/')) {
                 case 1: $messaggiForm .= '<li>Codice fiscale non presente.</li>'; break;
-                case 2: /*non dovrebbe succedere perche non c'e il pattern */ break;
+                case 2: $messaggiForm .= '<li>Codice fiscale non valido.</li>'; break;
                 default: break;
             }
-        } else {
-            $messaggiForm .= '<li>Formato del Codice fiscale non corretto.</li>';
-        }
 
         $cognome = sanitizeInputString($_POST['cognomeUser']);
         switch(checkInputValidity($cognome,'/^\p{L}+$/')) {
@@ -51,19 +47,20 @@
 
         $nascita = sanitizeInputString($_POST['nascitaUser']);
         switch(checkInputValidity($nascita,'/^\d{4}-\d{2}-\d{2}$/')) {
-            case 1: $messaggiForm .= '<li>Data non presente.</li>'; break;
+            case 1: $messaggiForm .= '<li>Data di nascita non presente.</li>'; break;
             case 2: $messaggiForm .= '<li>Formato data non corretto</li>'; break;
             default: break;
         }
 
+        if(strtotime($nascita) > strtotime(date("Y-m-d")))
+        $messaggiForm .= '<li>Data di nascita deve essere antecedente alla data odierna.</li>';
+
         $telefono = sanitizeInputString($_POST['telUser']);
-        if(ctype_digit($telefono)) {
-            switch(checkInputValidity($telefono)) {
+            switch(checkInputValidity($telefono,'/^\d{8,10}$/')) {
                 case 1: $messaggiForm .= '<li>Telefono non presente.</li>'; break;
-                case 2: /*non dovrebbe succedere perche non c'e il pattern */ break;
+                case 2: $messaggiForm .= '<li>Telefono può avere tra le 8 e le 10 cifre.</li>'; break;
                 default: break;
             }
-        }
 
         //check email e password
         if (strlen($_POST['emailUser']) == 0) {
@@ -75,7 +72,7 @@
         }
 
         if (strlen($_POST['pswUser']) == 0 || strlen($_POST['pswCheck']) == 0) {
-            $errors .= '<li>Password non inserita.</li>';
+            $errors .= '<li>Password o Conferma password non inserite.</li>';
         } else {
             if($_POST['pswUser'] != $_POST['pswCheck']) {
                 $errors .= '<li>Le due password non combaciano.</li>';

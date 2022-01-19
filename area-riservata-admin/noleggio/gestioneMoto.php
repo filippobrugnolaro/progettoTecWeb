@@ -46,16 +46,17 @@
 
             $marca = sanitizeInputString($_POST['marca']);
 
-            switch(checkInputValidity($marca,'/^\p{L}+$/')) {
+            switch(checkInputValidity($marca,'/^[\wàèùìòé\s]{2,}$/')) {
                 case 1: $messaggiForm .= '<li>Marca non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Marca non può contenere numeri</li>'; break;
+                case 2: $messaggiForm .= '<li>Marca non può contenere numeri o caratteri speciali</li>'; break;
                 default: break;
             }
 
             $modello = sanitizeInputString($_POST['modello']);
 
-            switch(checkInputValidity($modello,null)) {
+            switch(checkInputValidity($modello,'/^[\wàèùìòé\d\s]{2,}$/')) {
                 case 1: $messaggiForm .= '<li>Modello non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Modello non può caratteri speciali</li>'; break;
                 default: break;
             }
 
@@ -136,16 +137,17 @@
         if(isset($_POST['submit'])) {
             $marca = sanitizeInputString($_POST['marca']);
 
-            switch(checkInputValidity($marca,'/^\p{L}+$/')) {
+            switch(checkInputValidity($marca,'/^[\wàèùìòé\s]{2,}$/')) {
                 case 1: $messaggiForm .= '<li>Marca non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Marca non può contenere numeri</li>'; break;
+                case 2: $messaggiForm .= '<li>Marca non può contenere numeri o caratteri speciali</li>'; break;
                 default: break;
             }
 
             $modello = sanitizeInputString($_POST['modello']);
 
-            switch(checkInputValidity($modello,null)) {
+            switch(checkInputValidity($modello,'/^[\wàèùìòé\d\s]{2,}$/')) {
                 case 1: $messaggiForm .= '<li>Modello non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li>Modello non può caratteri speciali</li>'; break;
                 default: break;
             }
 
