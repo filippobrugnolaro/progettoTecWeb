@@ -12,56 +12,79 @@
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
 	<meta name="description" content="Pagina principale admin" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
+
+	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
 <body>
-  <header>
-		<h1 lang="en">Adrenaline Motocross Park</h1>
-	</header>
+	
+	<!-- start container 1 -->
+	<div class="container1">
 
-	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata</a> &gt;&gt; <a href="./">Messaggi</a>
-            &gt;&gt; Dettagli messaggio
-        </p>
-	</nav>
+        <!-- GRUPPO 1 -> ITEM 1 -->
+        <!-- start container 2 -->
+        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-	<nav id="menuList" role="navigation" aria-roledescription="menu principale">
-		<ul>
-			<li><a href="../../" lang="en">Home</a></li>
-			<li><a href="../../tracciati/">Tracciati</a></li>
-			<li><a href="../../servizi/">Servizi</a></li>
-			<li><a href="../../corsi/">Corsi</a></li>
-			<li><a href="../../noleggio/">Noleggio</a></li>
-			<li><a href="../../ingressi/">Ingressi</a></li>
-			<li><a href="../../contatti/">Contatti</a></li>
-			<li><a href="./">Messaggi</a></li>
-			<li>Area riservata</li>
-		</ul>
-	</nav>
+            <!-- GRUPPO 2 -> ITEM 1 -->
+			<!-- LOGO -->
+			<i class="fa-brands fa-google">oogle</i>
 
-    <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata">
-        <ul>
-            <li><a href="../" lang="en">Home</a></li>
-			<li><a href="../dati-utente/">Gestione personale</a></li>
-            <li><a href="../tracciati/">Tracciati</a></li>
-            <li><a href="./">Noleggio</a></li>
-            <li><a href="../ingressi/">Ingressi</a></li>
-            <li><a href="../corsi/">Corsi</a></li>
-            <li><a href="../../login/logout.php" lang="en">Logout</a></li>
-        </ul>
-    </nav>
+			<!-- GRUPPO 2 -> ITEM 2 -->
+			<!-- MENU LINK -->
+            <ul id="menu">
+                <li><a href="../../" lang="en">Home</a></li>
+                <li><a href="../../tracciati/">Tracciati</a></li>
+                <li><a href="../../servizi/">Servizi</a></li>
+                <li><a href="../../corsi/">Corsi</a></li>
+                <li><a href="../../noleggio/">Noleggio</a></li>
+                <li><a href="../../ingressi/">Ingressi</a></li>
+                <li><a href="../../contatti/">Contatti</a></li>
+                <li id="active">Area riservata</li>
+            </ul>
+            
+        </nav> <!-- end container 2 -->
 
-    <div class="contentAdmin">
-		<h1>Dettagli messaggio</h1>
+        <!-- GRUPPO 1 -> ITEM 2 -->
+        <nav id="breadcrumb">
+			<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
+				<a href="../">Area riservata</a> &gt;&gt; <a href="./">Messaggi</a>
+				&gt;&gt; Dettagli messaggio
+			</p>
+		</nav>
 
-        <globalError/>
-		<erroreMessaggio/>
+        <!-- GRUPPO 1 -> ITEM 3 -->
+        <!-- start container 3 -->
+		<div class="container3 container1-item">
+            <!-- GRUPPO 3 -> ITEM 1 -->
+            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+                <i class="_userIcon_"></i>
+				
+				<ul id="sideMenu">
+					<li><a href="../" lang="en">Home</a></li>
+					<li><a href="../dati-utente/">Gestione personale</a></li>
+					<li><a href="../tracciati/">Tracciati</a></li>
+					<li><a id="activeSub" href="./">Noleggio</a></li>
+					<li><a href="../ingressi/">Ingressi</a></li>
+					<li><a href="../corsi/">Corsi</a></li>
+					<li><a href="../../login/logout.php" lang="en">Logout</a></li>
+				</ul>
+			</nav>
 
-		_messaggioBody_
+            <!-- GRUPPO 3 -> ITEM 2 -->
+            <div class="contentAdmin container3-item">
+                <h1>Dettagli messaggio</h1>
 
-		<a href="#top">Torna su</a>
-  </div>
+				<globalError/>
+				<erroreMessaggio/>
+
+				_messaggioBody_
+
+				<a href="#top">Torna su</a>
+            </div>
+
+        </div> <!-- end container 3 -->
+
+    </div> <!-- end container 1 -->
 
 	<footer>
 		<div class="footerInfo">

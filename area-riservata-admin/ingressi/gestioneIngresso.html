@@ -14,73 +14,95 @@
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
 	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 	<script src="ingressiValidation.js"></script>
+
+	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
 <body onload="load();">
-  <header>
-		<h1 lang="en">Adrenaline Motocross Park</h1>
-	</header>
+	
+	<!-- start container 1 -->
+	<div class="container1">
 
-	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata</a> &gt;&gt; <a href="./">Ingressi</a>
-            &gt;&gt; Gestione ingresso
-        </p>
-	</nav>
+        <!-- GRUPPO 1 -> ITEM 1 -->
+        <!-- start container 2 -->
+        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-	<nav id="menuList" role="navigation" aria-roledescription="menu principale">
-		<ul>
-			<li><a href="../../" lang="en">Home</a></li>
-			<li><a href="../../tracciati/">Tracciati</a></li>
-			<li><a href="../../servizi/">Servizi</a></li>
-			<li><a href="../../corsi/">Corsi</a></li>
-			<li><a href="../../noleggio/">Noleggio</a></li>
-			<li><a href="../../ingressi/">Ingressi</a></li>
-			<li><a href="../../contatti/">Contatti</a></li>
-			<li>Area riservata</li>
-		</ul>
-	</nav>
+            <!-- GRUPPO 2 -> ITEM 1 -->
+			<!-- LOGO -->
+			<i class="fa-brands fa-google">oogle</i>
 
-    <div id="sideMenu">
-        <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata">
-            <ul>
-                <li><a href="../" lang="en">Home</a></li>
-				<li><a href="../dati-utente/">Gestione personale</a></li>
-                <li><a href="../tracciati/">Tracciati</a></li>
-                <li><a href="../noleggio/">Noleggio</a></li>
-                <li><a href="./">Ingressi</a></li>
-                <li><a href="../corsi/">Corsi</a></li>
-				<li><a href="../messaggi/">Messaggi</a></li>
-                <li><a href="../../login/logout.php" lang="en">Logout</a></li>
+			<!-- GRUPPO 2 -> ITEM 2 -->
+			<!-- MENU LINK -->
+            <ul id="menu">
+                <li><a href="../../" lang="en">Home</a></li>
+                <li><a href="../../tracciati/">Tracciati</a></li>
+                <li><a href="../../servizi/">Servizi</a></li>
+                <li><a href="../../corsi/">Corsi</a></li>
+                <li><a href="../../noleggio/">Noleggio</a></li>
+                <li><a href="../../ingressi/">Ingressi</a></li>
+                <li><a href="../../contatti/">Contatti</a></li>
+                <li id="active">Area riservata</li>
             </ul>
-        </nav>
-    </div>
+            
+        </nav> <!-- end container 2 -->
 
-    <div class="contentAdmin">
-		<h1>Gestione ingresso</h1>
+        <!-- GRUPPO 1 -> ITEM 2 -->
+        <nav id="breadcrumb">
+			<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
+				<a href="../">Area riservata</a> &gt;&gt; <a href="./">Ingressi</a>
+				&gt;&gt; Gestione ingresso
+			</p>
+		</nav>
 
-        <globalError/>
+        <!-- GRUPPO 1 -> ITEM 3 -->
+        <!-- start container 3 -->
+		<div class="container3 container1-item">
+            <!-- GRUPPO 3 -> ITEM 1 -->
+            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+                <i class="_userIcon_"></i>
+				
+				<ul id="sideMenu">
+					<li><a href="../" lang="en">Home</a></li>
+					<li><a href="../dati-utente/">Gestione personale</a></li>
+					<li><a href="../tracciati/">Tracciati</a></li>
+					<li><a href="../noleggio/">Noleggio</a></li>
+					<li><a id="activeSub" href="./">Ingressi</a></li>
+					<li><a href="../corsi/">Corsi</a></li>
+					<li><a href="../messaggi/">Messaggi</a></li>
+					<li><a href="../../login/logout.php" lang="en">Logout</a></li>
+				</ul>
+			</nav>
 
-        <form method="post" action="_action_" onsubmit="return formValidation()">
-            <messaggiForm/>
+            <!-- GRUPPO 3 -> ITEM 2 -->
+            <div class="contentAdmin container3-item">
+                <h1>Gestione ingresso</h1>
 
-            <fieldset>
-                <legend>Dati ingresso</legend>
+				<globalError/>
 
-                <label for="data">Data apertura*</label>
-                <span><input type="date" required _readonly_ name="data" id="data" value="_data_" min="_today_" placeholder="Data apertura"></span>
-                <br>
+				<form method="post" action="_action_" onsubmit="return formValidation()">
+					<messaggiForm/>
 
-                <label for="posti">Posti disponibili*</label>
-                <span><input type="number" required name="posti" id="posti" value="_posti_" min="50" max="200" step="10" placeholder="Posti disponibili"></span>
-                <br>
-            </fieldset>
-            <input type="submit" name="submit" id="submit" value="_azione_">
+					<fieldset>
+						<legend>Dati ingresso</legend>
 
-        </form>
+						<label for="data">Data apertura*</label>
+						<span><input type="date" required _readonly_ name="data" id="data" value="_data_" min="_today_" placeholder="Data apertura"></span>
+						<br>
 
-		<a href="#top">Torna su</a>
-  </div>
+						<label for="posti">Posti disponibili*</label>
+						<span><input type="number" required name="posti" id="posti" value="_posti_" min="50" max="200" step="10" placeholder="Posti disponibili"></span>
+						<br>
+					</fieldset>
+					<input type="submit" name="submit" id="submit" value="_azione_">
+
+				</form>
+
+				<a href="#top">Torna su</a>
+            </div>
+
+        </div> <!-- end container 3 -->
+
+    </div> <!-- end container 1 -->
 
 	<footer>
 		<div class="footerInfo">

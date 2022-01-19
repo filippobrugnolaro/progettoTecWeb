@@ -1,3 +1,10 @@
+/* 
+	icona da utilizzare per profilo
+	<i class="fa-solid fa-a"></i>
+	da modificare l'ultima lettera
+	e fare il replace su _userIcon_
+*/
+
 * {
 	padding: 0;
 	margin: 0;
@@ -102,6 +109,11 @@ body {
 	text-decoration: none;
 }
 
+#menu a:hover {
+	color:rgb(247, 248, 234);
+	text-decoration: none;
+}
+
 #active {
 	font-size: 1.4em;
 }
@@ -128,24 +140,22 @@ body {
 
 /* ************ AREA RISERVATA ************ */
 .navUser {
-	min-width: 120px;
-	flex: 0.7 0 0;
+	min-width: 230px;
+	flex: 0.5 0 0;
 
 	display: flex;
 	flex-direction: column;
-
 }
 
 .navUser i {
 	align-self: center;
 }
 
-.navUser ul {
-	align-self: center;
-}
-
-
 #sideMenu {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-self: center;
 	list-style-type: none;
 	font-size: 1.3em;
 	padding: 0.5em;
@@ -161,14 +171,24 @@ body {
 	text-decoration: none;
 }
 
+#sideMenu a:hover {
+	font-size: 1.4em;
+	color:rgb(38, 74, 70);
+	text-decoration: none;
+}
+
 #activeSub {
+	font-size: 1.4em;
+}
+
+#activeSub :hover {
 	font-size: 1.4em;
 }
 
 
 /* ******** CONTENT AREA RISERVATA ******** */
 .contentUser {
-	flex: 3 1 0;
+	flex: 3 0 0;
 	color:rgb(38, 74, 70);
 }
 
@@ -180,6 +200,25 @@ body {
 	color: rgb(0,0,0);
 }
 
+
+.contentAdmin {
+	flex: 3 0 0;
+	color:rgb(38, 74, 70);
+}
+
+.contentAdmin a {
+	color: rgb(38, 74, 70);
+}
+
+.contentAdmin p {
+	color: rgb(0,0,0);
+}
+
+.contentAdmin ul {
+	list-style-type: circle;
+	list-style-position: inside;
+	color: rgb(0,0,0);
+}
 
 
 

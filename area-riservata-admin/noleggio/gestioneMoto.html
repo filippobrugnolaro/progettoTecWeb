@@ -14,88 +14,109 @@
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
 	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
     <script src="noleggioValidation.js"></script>
+
+    <link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
 <body onload="load();">
-  <header>
-		<h1 lang="en">Adrenaline Motocross Park</h1>
-	</header>
+    
+    <!-- start container 1 -->
+	<div class="container1">
 
-	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata</a> &gt;&gt; <a href="./">Noleggio</a>
-            &gt;&gt; Gestione moto
-        </p>
-	</nav>
+        <!-- GRUPPO 1 -> ITEM 1 -->
+        <!-- start container 2 -->
+        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-	<nav id="menuList" role="navigation" aria-roledescription="menu principale">
-		<ul>
-			<li><a href="../../" lang="en">Home</a></li>
-			<li><a href="../../tracciati/">Tracciati</a></li>
-			<li><a href="../../servizi/">Servizi</a></li>
-			<li><a href="../../corsi/">Corsi</a></li>
-			<li><a href="../../noleggio/">Noleggio</a></li>
-			<li><a href="../../ingressi/">Ingressi</a></li>
-			<li><a href="../../contatti/">Contatti</a></li>
-			<li>Area riservata</li>
-		</ul>
-	</nav>
+            <!-- GRUPPO 2 -> ITEM 1 -->
+			<!-- LOGO -->
+			<i class="fa-brands fa-google">oogle</i>
 
-    <div id="sideMenu">
-
-        <nav id="sideMenu" role="navigation" aria-roledescription="menu area riservata">
-            <ul>
-                <li><a href="../" lang="en">Home</a></li>
-                <li><a href="../dati-utente/">Gestione personale</a></li>
-                <li><a href="../tracciati/">Tracciati</a></li>
-                <li><a href="./">Noleggio</a></li>
-                <li><a href="../ingressi/">Ingressi</a></li>
-                <li><a href="../corsi/">Corsi</a></li>
-                <li><a href="../messaggi/">Messaggi</a></li>
-                <li><a href="../../login/logout.php" lang="en">Logout</a></li>
+			<!-- GRUPPO 2 -> ITEM 2 -->
+			<!-- MENU LINK -->
+            <ul id="menu">
+                <li><a href="../../" lang="en">Home</a></li>
+                <li><a href="../../tracciati/">Tracciati</a></li>
+                <li><a href="../../servizi/">Servizi</a></li>
+                <li><a href="../../corsi/">Corsi</a></li>
+                <li><a href="../../noleggio/">Noleggio</a></li>
+                <li><a href="../../ingressi/">Ingressi</a></li>
+                <li><a href="../../contatti/">Contatti</a></li>
+                <li id="active">Area riservata</li>
             </ul>
+            
+        </nav> <!-- end container 2 -->
+
+        <!-- GRUPPO 1 -> ITEM 2 -->
+        <nav id="breadcrumb">
+            <p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
+                <a href="../">Area riservata</a> &gt;&gt; <a href="./">Noleggio</a>
+                &gt;&gt; Gestione moto
+            </p>
         </nav>
-    </div>
 
-    <div class="contentAdmin">
-		<h1>Gestione moto</h1>
+        <!-- GRUPPO 1 -> ITEM 3 -->
+        <!-- start container 3 -->
+		<div class="container3 container1-item">
+            <!-- GRUPPO 3 -> ITEM 1 -->
+            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+                <i class="_userIcon_"></i>
+				
+				<ul id="sideMenu">
+                    <li><a href="../" lang="en">Home</a></li>
+                    <li><a href="../dati-utente/">Gestione personale</a></li>
+                    <li><a href="../tracciati/">Tracciati</a></li>
+                    <li><a id="activeSub" href="./">Noleggio</a></li>
+                    <li><a href="../ingressi/">Ingressi</a></li>
+                    <li><a href="../corsi/">Corsi</a></li>
+                    <li><a href="../messaggi/">Messaggi</a></li>
+                    <li><a href="../../login/logout.php" lang="en">Logout</a></li>
+				</ul>
+			</nav>
 
-        <globalError/>
+            <!-- GRUPPO 3 -> ITEM 2 -->
+            <div class="contentAdmin container3-item">
+                <h1>Gestione moto</h1>
 
-        <form method="post" action="_action_" onsubmit="return formValidation()">
-            <messaggiForm/>
+                <globalError/>
 
-            <fieldset>
-                <legend>Dati moto</legend>
+                <form method="post" action="_action_" onsubmit="return formValidation()">
+                    <messaggiForm/>
 
-                <id/>
+                    <fieldset>
+                        <legend>Dati moto</legend>
 
-                <label for="marca">Marca*</label>
-                <span><input type="text" required name="marca" id="marca" value="_marca_" placeholder="Marca della moto"></span>
-                <br>
+                        <id/>
 
-                <label for="modello">Modello*</label>
-                <span><input type="text" required name="modello" id="modello" value="_modello_" placeholder="Modello della moto"></span>
-                <br>
+                        <label for="marca">Marca*</label>
+                        <span><input type="text" required name="marca" id="marca" value="_marca_" placeholder="Marca della moto"></span>
+                        <br>
 
-                <label for="cilindrata">Cilindrata*</label>
-                <select name="cilindrata" id="cilindrata">
-                    <option value="125">125cc</option>
-                    <option value="250">250cc</option>
-                    <option value="350">350cc</option>
-                    <option value="450">450cc</option>
-                </select>
-                <br>
+                        <label for="modello">Modello*</label>
+                        <span><input type="text" required name="modello" id="modello" value="_modello_" placeholder="Modello della moto"></span>
+                        <br>
 
-                <label for="anno">Anno*</label>
-                <span><input type="number" required name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" step="1" placeholder="Anno di fabbricazione"></span>
-                <br>
-            </fieldset>
-            <input type="submit" name="submit" id="submit" value="_azione_">
-        </form>
+                        <label for="cilindrata">Cilindrata*</label>
+                        <select name="cilindrata" id="cilindrata">
+                            <option value="125">125cc</option>
+                            <option value="250">250cc</option>
+                            <option value="350">350cc</option>
+                            <option value="450">450cc</option>
+                        </select>
+                        <br>
 
-		<a href="#top">Torna su</a>
-  </div>
+                        <label for="anno">Anno*</label>
+                        <span><input type="number" required name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" step="1" placeholder="Anno di fabbricazione"></span>
+                        <br>
+                    </fieldset>
+                    <input type="submit" name="submit" id="submit" value="_azione_">
+                </form>
+
+                <a href="#top">Torna su</a>
+            </div>
+
+        </div> <!-- end container 3 -->
+
+    </div> <!-- end container 1 -->
 
 	<footer>
 		<div class="footerInfo">
