@@ -157,7 +157,7 @@
 		public function openDB(): bool {
 			$this->conn = mysqli_connect(dbAccess::HOST, dbAccess::USER, dbAccess::PSW, dbAccess::NAME);
 
-			if(mysqli_connect_errno($this->conn))
+			if(mysqli_connect_errno())
 				return false;
 			else
 				return true;
