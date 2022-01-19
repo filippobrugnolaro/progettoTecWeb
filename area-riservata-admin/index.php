@@ -6,6 +6,6 @@
     if(!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 2)
         header('Location: ../login/');
 
-    echo file_get_contents('home.html');
+    echo file_get_contents('dashboard.html');
 
 ?>
