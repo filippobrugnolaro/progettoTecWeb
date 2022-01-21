@@ -28,7 +28,7 @@
             if($records !== null) {
                 foreach($records as $record) {
                     $utente = $record['cognome'].' '.$record['nome'];
-                    $moto = $record['marca'].' '.$record['modello'].' #'.$record['numero'];
+                    $moto = '#'.$record['numero'].' - '.$record['marca'].' '.$record['modello'].' '.$record['anno'];
 
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td scope=\'row\'>'.$utente.'</td>';

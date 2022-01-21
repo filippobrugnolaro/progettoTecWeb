@@ -3,7 +3,18 @@ window.onload = function() {
     var data = document.getElementById('dataDisponibile');
     data.onchange = function(){getDirtBikes(moto,data.value)};
 
+    var checkboxMoto = document.getElementById('moto');
+    checkboxMoto.onchange = function() {enDisSelectMoto(checkboxMoto.checked)};
+
     getDirtBikes(moto,data.value);
+    enDisSelectMoto(checkboxMoto.checked);
+}
+
+function enDisSelectMoto(checkBox) {
+    if(checkBox == false)
+        document.getElementById('motoNol').disabled = true;
+    else
+        document.getElementById('motoNol').disabled = false;
 }
 
 

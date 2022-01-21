@@ -28,8 +28,8 @@
             $records = $conn->getQueryResult(dbAccess::QUERIES[10]);
 
             if($records !== null) {
-                $tableCorsi = '<table title=\'tabella contenente le prenotazioni dei prossimi Corsi\'>
-				                <caption>Prenotazioni posti per i prossimi Corsi</caption>
+                $tableCorsi = '<table title=\'tabella contenente le prenotazioni dei prossimi corsi\'>
+				                <caption>Prenotazioni posti per i prossimi corsi</caption>
 				                <thead>
 					            <tr>
 						            <th scope=\'col\'>Corso</th>
@@ -65,8 +65,8 @@
             $corsi = $conn->getQueryResult(dbAccess::QUERIES[11]);
 
             if($corsi !== null) {
-                $tableCorso = '<table title=\'tabella contenente i prossimi Corsi\'>
-				                <caption>Prossimi Corsi</caption>
+                $tableCorso = '<table title=\'tabella contenente i prossimi corsi\'>
+				                <caption>Prossimi corsi</caption>
 				                <thead>
 					            <tr>
 						            <th scope=\'col\'>Data</th>

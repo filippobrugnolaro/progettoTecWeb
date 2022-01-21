@@ -40,6 +40,8 @@
 
     $form = '';
 
+    $error = false;
+
     $tableIngressiPrenotati = '';
     $tableIngressiDisp = '';
 
@@ -72,8 +74,13 @@
                     $noleggioAttrezzatura = '';
                     $moto = '';
                 }
-                else if ($res == -1) $messaggiForm = '<li>Impossibile prenotare corso. Hai già prenotato un ingresso per questa data!</li>';
-                else $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione del corso.</li>';
+                else if ($res == -1) {
+                    $messaggiForm = '<li>Impossibile prenotare corso. Hai già prenotato un ingresso per questa data!</li>';
+                    $error = true;
+                } else {
+                    $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione del corso.</li>';
+                    $error = true;
+                }
 
                 $conn->closeDB();
             } else {
@@ -86,7 +93,6 @@
             }
         }
     }
-
 
     if ($conn->openDB()) {
         //get next n lesson reservations
@@ -118,7 +124,7 @@
                     $dw = $weekDays[date('w',strtotime($corso['data']))];
 
                     if($corso['marca'] != null) {
-                        $moto = $corso['marca'].' '.$corso['modello'];
+                        $moto = $corso['marca'].' '.$corso['modello'].' '.$corso['anno'];
                     } else
                         $moto = 'Propria';
 
@@ -196,7 +202,7 @@
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
-    if(strlen($corsiDropdown) > 0 || $corsoScelto > 0)
+    if(strlen($corsiDropdown) > 0 || $error)
         $form = '<form method="post" action="./">
                     <messaggiForm/>
 

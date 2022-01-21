@@ -16,7 +16,8 @@
 	use LEZIONE\Lesson;
 	use PRENOTAZIONELEZ\LessonReservation;
 	use MESSAGGIO\Message;
-	use PRENOTAZIONE\Reservation;
+use mysqli;
+use PRENOTAZIONE\Reservation;
 	use Throwable;
 
 	class dbAccess {
@@ -36,7 +37,7 @@
 			array('SELECT data, COUNT(*) AS totNoleggi FROM noleggio WHERE data >= CURDATE() GROUP BY data ORDER BY data',
 				'Errore durante il recupero delle informazioni sui noleggi'), //get rent infos
 			//3
-			array('SELECT cognome, nome, marca, modello, numero, attrezzatura FROM (noleggio INNER JOIN utente ON noleggio.utente = utente.cf) '
+			array('SELECT cognome, nome, marca, modello, numero, attrezzatura, anno FROM (noleggio INNER JOIN utente ON noleggio.utente = utente.cf) '
 				.'INNER JOIN moto ON noleggio.moto = moto.numero WHERE data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sul noleggio per la data scelta'), //get rent details for a specific date
 			//4
@@ -52,11 +53,14 @@
 				HAVING occupati IS NOT NULL
 				ORDER BY data_disponibile.data',
 				'Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
-			//7
+
+				//7
 			array('SELECT * FROM data_disponibile WHERE data >= CURDATE()','Errore durante il recupero delle informazioni sulle date d\'apertura'), //get future open days
+
 			//8
-			array('SELECT nome, cognome, moto, attrezzatura FROM (ingressi_entrata INNER JOIN utente ON ingressi_entrata.utente = utente.cf)
-				LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data
+			array('SELECT nome, cognome, moto, attrezzatura, marca, modello, anno FROM ((ingressi_entrata INNER JOIN utente ON ingressi_entrata.utente = utente.cf)
+				LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data)
+				LEFT JOIN moto ON noleggio.moto = moto.numero
 				WHERE ingressi_entrata.data = \'_data_\'',
 				'Errore durante il recupero delle informazioni sulla data d\'apertura selezionata'), //get entries info from open date
 			//9
@@ -75,23 +79,24 @@
 			array('SELECT * FROM lezione WHERE data >= CURDATE()',
 				'Errore durante il recupero delle informazioni sulle lezioni'), //get lessons' info
 			//12
-			array('SELECT nome, cognome, moto, attrezzatura FROM ((ingressi_lezione INNER JOIN utente ON ingressi_lezione.utente = utente.cf)
+			array('SELECT nome, cognome, moto, attrezzatura, marca, modello, anno FROM (((ingressi_lezione INNER JOIN utente ON ingressi_lezione.utente = utente.cf)
 				INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
-				LEFT JOIN noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data
+				LEFT JOIN noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data)
+				LEFT JOIN moto ON moto.numero = noleggio.moto
 				WHERE ingressi_lezione.lezione = \'_lezione_\'',
 				'Errore durante il recupero delle informazioni sulle prenotazioni del corso selezionato'), //get booked record info from lesson
 			//13
 			array('SELECT * FROM lezione WHERE id = _lezione_',
 				'Errore durante il recupero delle informazioni del corso selezionato'), //get specific lesson info
 			//14
-			array('SELECT ingressi_entrata.codice AS id, ingressi_entrata.data, marca, modello, attrezzatura FROM
+			array('SELECT ingressi_entrata.codice AS id, ingressi_entrata.data, marca, modello, anno, attrezzatura FROM
 				(ingressi_entrata LEFT JOIN noleggio ON ingressi_entrata.utente = noleggio.utente AND ingressi_entrata.data = noleggio.data)
 				LEFT JOIN moto ON noleggio.moto = moto.numero
 				WHERE ingressi_entrata.utente = \'_cfUser_\' AND ingressi_entrata.data >= CURDATE()',
 				'Errore durante il recupero delle informazioni sulle tue prossime prenotazioni'), //get next n track reservations for a specific user
 
 			//15
-			array('SELECT lezione.ID AS id, ingressi_lezione.codice AS codice, lezione.data AS data, istruttore, pista, marca, modello, attrezzatura
+			array('SELECT lezione.ID AS id, ingressi_lezione.codice AS codice, lezione.data AS data, istruttore, pista, marca, modello, attrezzatura, anno
 				FROM ((ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
 				LEFT JOIN noleggio ON ingressi_lezione.utente = noleggio.utente AND lezione.data = noleggio.data)
 				LEFT JOIN moto ON noleggio.moto = moto.numero
@@ -99,13 +104,13 @@
 				'Errore durante il recupero delle informazioni sulle tue prossime lezioni'), //get next n lessons reservations for a specific user
 
 			//16
-			array('SELECT ingressi_lezione.id AS id, data_disponibile.data AS data, lezione.posti AS posti, istruttore, descrizione, pista, COUNT(*) AS occupati FROM
-			(ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id)
-			INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
-			WHERE data_disponibile.data >= CURDATE()
-			GROUP BY data_disponibile.data, lezione.posti, istruttore, descrizione, pista
-			ORDER BY data_disponibile.data',
-			'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get complete booked lessons' info
+			array('SELECT  id, data, posti, istruttore, descrizione, pista,
+				(SELECT COUNT(*) FROM ingressi_lezione WHERE  ingressi_lezione.lezione = lezione.id
+				GROUP BY lezione.data) AS occupati
+				FROM  lezione
+				WHERE data >= CURDATE()
+				ORDER BY data',
+			'Errore durante il recupero delle informazioni sulle lezioni prenotate.'), //get complete booked lessons' info
 
 			//17
 			array('SELECT data_disponibile.data AS data, posti, COUNT(*) AS occupati FROM data_disponibile LEFT JOIN ingressi_entrata ON
@@ -113,7 +118,7 @@
 			posti ORDER BY data_disponibile.data','Errore durante il recupero delle informazioni sugli ingressi'), //get future entries
 
 			//18
-			array('SELECT * FROM messaggio','Errore durante il recupero dei messaggi'), //get user messages
+			array('SELECT * FROM messaggio ORDER BY data DESC','Errore durante il recupero dei messaggi'), //get user messages
 
 			//19
 			array('SELECT * FROM messaggio WHERE id = _id_','Errore durante il recupero del messaggio'), //get specific user message
@@ -194,7 +199,6 @@
 
 		/* ***************************** GENERIC ************************** */
 		public function getQueryResult(array $set) {
-			//echo $set[0];
 			$query = mysqli_query($this->conn,$set[0]);
 
 			if(!mysqli_error($this->conn)) {
@@ -565,7 +569,7 @@
 		}
 
 		public function createReservation(Reservation $res): int {
-			$user = $res->getCF();
+			$user = mysqli_real_escape_string($this->conn,$res->getCF());
 			$data = mysqli_real_escape_string($this->conn,$res->getData());
 
 			mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -576,7 +580,7 @@
 
 				//controllo che non abbia già fatto iscrizione a corso
 				$sql = "SELECT codice FROM ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id
-					WHERE lezione.data = \"$data\"";
+					WHERE lezione.data = \"$data\" AND utente = \"$user\"";
 
 				$query = mysqli_query($this->conn,$sql);
 
@@ -645,8 +649,8 @@
 		}
 	}
 
-	public function createLessonReservation(LessonReservation $res): bool {
-		$user = $res->getCF();
+	public function createLessonReservation(LessonReservation $res): int {
+		$user = mysqli_real_escape_string($this->conn,$res->getCF());
 		$lez = $res->getLesson();
 
 		mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -662,7 +666,7 @@
 			$data = mysqli_fetch_assoc($query)['data'];
 			mysqli_free_result($query);
 
-			$sql = "SELECT codice FROM ingressi_entrata WHERE data = \"$data\"";
+			$sql = "SELECT codice FROM ingressi_entrata WHERE data = \"$data\" AND utente = \"$user\"";
 
 			$query = mysqli_query($this->conn,$sql);
 
@@ -696,10 +700,10 @@
 			mysqli_commit($this->conn);
 			mysqli_autocommit($this->conn,true);
 
-			return true;
+			return 0;
 		} catch(Throwable $t) {
 			mysqli_rollback($this->conn);
-			return false;
+			return -2;
 		}
 	}
 

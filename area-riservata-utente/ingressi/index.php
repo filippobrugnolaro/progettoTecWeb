@@ -37,6 +37,8 @@
     $moto = '';
     $noleggioAttrezzatura = '';
 
+    $error = false;
+
     $messaggiForm = '';
 
     $tablePrenotazioni = '';
@@ -73,8 +75,13 @@
                     $noleggioAttrezzatura = '';
                     $moto = '';
                 }
-                else if ($res == -1) $messaggiForm = '<li>Impossibile prenotare ingresso. Hai già prenotato un corso per questa data!</li>';
-                else $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione.</li>';
+                else if ($res == -1) {
+                    $messaggiForm = '<li>Impossibile prenotare ingresso. Hai già prenotato un corso per questa data!</li>';
+                    $error = true;
+                } else {
+                    $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione dell\'ingresso.</li>';
+                    $error = true;
+                }
 
                 $conn->closeDB();
             } else {
@@ -115,7 +122,7 @@
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     if($ingresso['marca'] != null) {
-                        $moto = $ingresso['marca'].' '.$ingresso['modello'];
+                        $moto = $ingresso['marca'].' '.$ingresso['modello'].' '.$ingresso['anno'];
                     } else
                         $moto = 'Propria';
 
@@ -194,7 +201,7 @@
     if(strlen($errorIngresso) > 0)
         $errorIngresso = '<p>'.$errorIngresso.'</p>';
 
-    if(strlen($ingressiDropdown) > 0 || strlen($date) > 0)
+    if(strlen($ingressiDropdown) > 0 || $error)
         $form = '<form method="post" action="./">
                     <messaggiForm/>
 
@@ -209,7 +216,7 @@
                         <p id="hint"></p>
 
                         <label for="moto">Noleggio moto</label>
-                        <input type="checkbox" id="moto" name="moto" value="moto"_checkedMoto_ >
+                        <input type="checkbox" id="moto" name="moto" value="moto" _checkedMoto_ >
 
                         <label for="motoNol">Tipo di moto</label>
                         <select id="motoNol" name="motoNoleggio">

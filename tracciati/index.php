@@ -49,8 +49,8 @@
                     $recordsBody .= '<ul>';
                     $recordsBody .= '<li>Lunghezza: '.$record['lunghezza'].' metri</li>';
                     $recordsBody .= '<li>Tipo di terreno: '.$record['terreno'].'</li>';
-                    $recordsBody .= '<li>Orario di apertura: '.$record['apertura'].'</li>';
-                    $recordsBody .= '<li>Orario di chiusura: '.$record['chiusura'].'</li>';
+                    $recordsBody .= '<li>Orario di apertura: '.substr($record['apertura'],0,5).'</li>';
+                    $recordsBody .= '<li>Orario di chiusura: '.substr($record['chiusura'],0,5).'</li>';
                     $recordsBody .= '</ul>';
 
                     $recordsBody .= '</article>';

@@ -8,10 +8,20 @@ window.onload = function () {
         getDescCorso(descCorso, id.value);
     }
 
+    var checkboxMoto = document.getElementById('moto');
+    checkboxMoto.onchange = function() {enDisSelectMoto(checkboxMoto.checked)};
+
     getDirtBikes(moto, id.value);
     getDescCorso(descCorso, id.value);
+    enDisSelectMoto(checkboxMoto.checked);
 }
 
+function enDisSelectMoto(checkBox) {
+    if(checkBox == false)
+        document.getElementById('motoNol').disabled = true;
+    else
+        document.getElementById('motoNol').disabled = false;
+}
 
 function getDirtBikes(select, id) {
     if (id != "") {
@@ -27,13 +37,11 @@ function getDirtBikes(select, id) {
                 if (xmlhttp.status == 200) {
                     var motos = JSON.parse(this.responseText);
 
-                    var options = document.getElementById('motoNol');
-                    var option = options.getElementsByTagName('option');
-
-                    for (var i = 0; i < option.length; i++) {
-                        option.removeChild(options[i]);
-                        i--; //perdono un elemento ogni volta!!
+                    var i, L = select.options.length - 1;
+                    for(i = L; i >= 0; i--) {
+                       select.remove(i);
                     }
+
 
                     if(motos != null) {
                         for (moto of motos){

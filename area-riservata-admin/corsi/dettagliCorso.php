@@ -47,7 +47,7 @@
                     if ($record['moto'] == null)
                         $moto = 'Propria';
                     else
-                        $moto = '#' . $record['moto'];
+                    $moto = '#'.$record['moto'].' - '.$record['marca'].' '.$record['modello'].' '.$record['anno'];
 
                     if ($record['attrezzatura'] != 0)
                         $attrezzatura = 'Da noleggiare';
