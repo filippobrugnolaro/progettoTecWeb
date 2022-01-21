@@ -112,7 +112,7 @@
             if($chiusura < "14:00" || $chiusura > "20:00")
                 $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $imgFile = glob("../../images/tracks/$id.*");
 
@@ -261,7 +261,7 @@
             if($chiusura < "14:00" || $chiusura > "20:00")
                 $messaggiForm .= '<li>Orario chiusura deve essere compreso tra le 14:00 e le 20:00.</li>';
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $track = new Track(-1,(int) $lunghezza,$descrizione,$terreno,$apertura,$chiusura);
 
@@ -280,21 +280,21 @@
                         $allowedExt = array('jpg','png','jpeg','gif');
 
                         if(getimagesize($_FILES['img']['tmp_name']) === false)
-                            $errors .= '<li>File non accettato</li>';
+                            $errors .= '<li>File non accettato.</li>';
 
                         if(!in_array($fileType,$allowedExt))
-                            $errors .= '<li>Formato immagine non accettato</li>';
+                            $errors .= '<li>Formato immagine non accettato.</li>';
 
                         if($_FILES['img']['size'] > 5000000)
                             $errors .= '<li>File troppo grande.</li>';
 
-                        if($errors == '') {
+                        if(strlen($errors) == 0) {
                             $fileName = $finalDir.$newId.'.'.$fileType;
 
                             if(move_uploaded_file($_FILES['img']['tmp_name'],$fileName))
-                                $messaggiForm .= '<li>File caricato con successo</li>';
+                                $messaggiForm .= '<li>File caricato con successo.</li>';
                             else
-                                $messaggiForm .= '<li>Errore durante il carimento del file</li>';
+                                $messaggiForm .= '<li>Errore durante il carimento del file.</li>';
                         } else
                             $messaggiForm .= $errors;
 

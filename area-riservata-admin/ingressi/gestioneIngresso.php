@@ -58,7 +58,7 @@
             if($posti < 50 || $posti > 200)
                 $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 50 e 200.</li>';
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $entry = new Entry($date,$posti);
 
@@ -130,7 +130,7 @@
             if($posti < 50 || $posti > 200)
                 $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 50 e 200.</li>';
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $entry = new Entry($date,$posti);
                     $newId = $conn->createEntry($entry);

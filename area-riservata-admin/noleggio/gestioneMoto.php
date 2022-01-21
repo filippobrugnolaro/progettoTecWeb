@@ -82,7 +82,7 @@
             else if($anno < 2000 || $anno > date("Y"))
                 $messaggiForm .= '<li>Anno deve essere contenuto nel <span lang=\'en\'>range<span> 2000 e '.date("Y").'</li>';
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $moto = new DirtBike($id,$marca,$modello,(int)$cilindrata,(int)$anno);
 
@@ -173,7 +173,7 @@
             else if($anno < 2000 || $anno > date("Y"))
                 $messaggiForm .= '<li>Anno deve essere contenuto nel <span lang=\'en\'>range<span> 2000 e '.date("Y").'</li>';
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $moto = new DirtBike(-1,$marca,$modello,(int)$cilindrata,(int)$anno);
                     $newId = $conn->createDirtBike($moto);

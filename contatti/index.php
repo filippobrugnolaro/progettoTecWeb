@@ -99,7 +99,7 @@
         else
             $checked = 'checked';
 
-        if ($messaggiForm == '') {
+        if (strlen($messaggiForm) == 0) {
             if ($conn->openDB()) {
                 $nome[0] = strtoupper($nome[0]);
                 $cognome[0] = strtoupper($cognome);

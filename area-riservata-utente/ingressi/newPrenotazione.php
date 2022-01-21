@@ -50,7 +50,7 @@
         $abbigliamento = $_POST['vestiario'];
         $taglia = $_POST['taglia'];
 
-        if($messaggiForm == '') {
+        if(strlen($messaggiForm) == 0) {
             if($conn->openDB()) {
                 $res = new Reservation($date, $moto, $cc, $abbigliamento, $taglia);
 

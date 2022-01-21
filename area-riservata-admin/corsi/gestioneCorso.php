@@ -92,7 +92,7 @@
                 $messaggiForm .= '<li>Il tracciato deve essere un numero.</li>';
 
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $lesson = new Lesson($id,$data,$desc,$istruttore,$tracciato,$posti);
 
@@ -193,7 +193,7 @@
             if(!ctype_digit($tracciato))
                 $messaggiForm .= '<li>Il tracciato deve essere un numero.</li>';
 
-            if($messaggiForm == '') {
+            if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
                     $lesson = new Lesson(-1,$data,$desc,$istruttore,$tracciato,$posti);
 
