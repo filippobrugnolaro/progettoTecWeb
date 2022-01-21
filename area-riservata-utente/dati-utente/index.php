@@ -71,7 +71,7 @@
             if($conn->openDB()) {
                 if($conn->updateUserData($newUser)) {
                     $_SESSION['user'] = $newUser;
-                    $messaggiForm = '</li>Dati personali modificati con successo.</li>';
+                    $messaggiForm = '<li>Dati personali modificati con successo.</li>';
                 } else {
                     $globalError = 'Errore durante l\'aggiornamento dei dati.';
                 }

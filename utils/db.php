@@ -225,10 +225,10 @@
 		/* ***************************** DIRTBIKES MANAGEMENT ************************** */
 		public function updateDirtBike(DirtBike $moto): bool {
 			$marca = mysqli_real_escape_string($this->conn,$moto->getMarca());
-			$marca[0] = strtoupper($marca[0]);
+			$marca = strtoupper($marca);
 
 			$modello = mysqli_real_escape_string($this->conn,$moto->getModello());
-			$modello[0] = strtoupper($modello[0]);
+			$modello = strtoupper($modello);
 
 			$anno = $moto->getAnno();
 			$id = $moto->getID();
@@ -246,10 +246,10 @@
 
 		public function createDirtBike(DirtBike $moto): int {
 			$marca = mysqli_real_escape_string($this->conn,$moto->getMarca());
-			$marca[0] = strtoupper($marca[0]);
+			$marca = strtoupper($marca);
 
 			$modello = mysqli_real_escape_string($this->conn,$moto->getModello());
-			$modello[0] = strtoupper($modello[0]);
+			$modello = strtoupper($modello);
 
 			$anno = $moto->getAnno();
 			$cilindrata = $moto->getCilindrata();
@@ -292,8 +292,8 @@
 		}
 
 		public function updateTrack(Track $track): bool {
-			$path = $track->getImgPath() != "" ? "\"".$track->getImgPath()."\"" : "NULL";
-			$path = mysqli_real_escape_string($this->conn,$path);
+			$path = mysqli_real_escape_string($this->conn,$track->getImgPath());
+			$path = strlen($track->getImgPath()) > 0 ? "\"".$track->getImgPath()."\"" : "NULL";
 			$lunghezza = $track->getLun();
 
 			$desc = mysqli_real_escape_string($this->conn,$track->getDesc());
@@ -307,7 +307,7 @@
 
 			$sql = "UPDATE pista SET lunghezza = $lunghezza, descrizione = \"$desc\", ";
 			$sql .= "terreno = \"$terreno\", apertura = \"$apertura\", ";
-			$sql .= "chiusura = \"$chiusura\", foto = \"$path\" WHERE id = $id";
+			$sql .= "chiusura = \"$chiusura\", foto = $path WHERE id = $id";
 
 			mysqli_query($this->conn,$sql);
 

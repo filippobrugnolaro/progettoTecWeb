@@ -1,6 +1,6 @@
 var validationDetails = {
-    "marca"         : ["Marca della moto",/^[\wàèùìòé\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
-    "modello"       : ["Modello della moto",/^[\wàèùìòé\d\s]{2,}$/,"Inserire almeno 2 fra caratteri e numeri (caratteri speciali non ammessi)"],
+    "marca"         : ["Marca della moto",/^[A-Za-zàèùìòé\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
+    "modello"       : ["Modello della moto",/^[\wàèùìòé\s]{2,}$/,"Inserire almeno 2 fra caratteri e numeri (caratteri speciali non ammessi)"],
     "anno"          : ["Nome dell'istruttore",/^\d{4}$/,"Inserire un numero di 4 cifre maggiore di 2000 e non superiore all'anno attuale"],
 }
 

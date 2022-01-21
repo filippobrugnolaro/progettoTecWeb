@@ -108,7 +108,7 @@
         $page = str_replace('_readonly_','',$page);
 
         if(isset($_POST['submit'])) {
-            $date = sanitizeInputString($_POST['date']);
+            $date = sanitizeInputString($_POST['data']);
 
             switch(checkInputValidity($date,'/^\d{4}-\d{2}-\d{2}$/')) {
                 case 1: $messaggiForm .= '<li>Data non presente.</li>'; break;

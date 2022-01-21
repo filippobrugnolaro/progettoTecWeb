@@ -53,6 +53,7 @@
         if($path != "") {
             $path = '../../images/tracks/'.$path;
 
+            $img .= '<label for="oldImg">Immagine attuale</label>';
             $img = '<img src=\''.$path.'\' alt=\'immagine del circuito\'/>';
             $img .= '<caption>Immagine attuale del circuito</caption>';
             $img .= '<br>';
@@ -136,24 +137,24 @@
                             $allowedExt = array('jpg','png','jpeg','gif');
 
                             if(getimagesize($_FILES['img']['tmp_name']) === false)
-                                $errors .= '<li>File non accettato</li>';
+                                $errors .= '<li>File non accettato.</li>';
 
                             if(!in_array($fileType,$allowedExt))
-                                $errors .= '<li>Formato immagine non accettato</li>';
+                                $errors .= '<li>Formato immagine non accettato.</li>';
 
                             if($_FILES['img']['size'] > 5000000)
                                 $errors .= '<li>File troppo grande.</li>';
 
-                            if(strlen($error) == 0) {
+                            if(strlen($errors) == 0) {
                                 $fileName = $finalDir.$id.'.'.$fileType;
 
                                 foreach(glob("../../images/tracks/$id.*") as $file)
                                     unlink($file);
 
                                 if(move_uploaded_file($_FILES['img']['tmp_name'],$fileName))
-                                    $messaggiForm .= '<li>File caricato con successo</li>';
+                                    $messaggiForm .= '<li>File caricato con successo.</li>';
                                 else
-                                    $messaggiForm .= '<li>Errore durante il carimento del file</li>';
+                                    $messaggiForm .= '<li>Errore durante il carimento del file.</li>';
                             } else
                                 $messaggiForm .= $errors;
 
@@ -163,7 +164,7 @@
                             $conn->updateTrack($track);
                         }
                         $conn->closeDB();
-                        header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno)
+                        //header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno)
                     } else {
                         $messaggiForm = '<li>Errore durante l\'inserimento del tracciato.</li>';
                         $conn->closeDB();

@@ -1,5 +1,5 @@
 window.onload = function () {
-    var moto = document.getElementById('motoNoleggio');
+    var moto = document.getElementById('motoNol');
     var id = document.getElementById('corso');
     var descCorso = document.getElementById('descCorso');
 

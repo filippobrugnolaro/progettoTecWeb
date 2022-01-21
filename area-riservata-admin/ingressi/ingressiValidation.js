@@ -1,5 +1,5 @@
 var validationDetails = {
-    "data"          : ["Data dell'ingresso",/^\d{4}-\d{2}-\d{2}$/,"Inserire una data valida"],
+    "data"          : ["Data dell'ingresso",/^\d{4}-\d{2}-\d{2}$/,"Inserire una data valida successiva ad oggi"],
     "posti"         : ["Numero di posti disponibili",/^[0-9]{2,3}$/,"Inserire un numero compreso tra 50 e 200 inclusi"],
 }
 
@@ -28,7 +28,7 @@ function fieldValidation(input, event = null) {
             } else {
                 return true;
             }
-            
+
         case "posti":
             if ((event !== null && !checkPosti(input))
                 || (event === null && (input.value.length > 0 && !checkPosti(input)))) {
@@ -93,19 +93,15 @@ function checkDate(input) {
 	if(input.value.search(validationDetails[input.id][1]) != 0)
 		return false;
 
-	var birthDate = new Date(input.value);
+	var selectedDate = new Date(input.value);
 	var todayDate = new Date();
 
-	return birthDate <= todayDate ? true : false;
+	return selectedDate > todayDate ? true : false;
 }
 
 function checkPosti(input) {
 	if(input.value.search(validationDetails[input.id][1]) != 0)
 			return false;
-			
-    if(input.value >= 50 && input.value <= 200){
-        return true;
-    } else {
-        return false;
-    }
+
+    return (input.value >= 50 && input.value <= 200) ? true : false;
 }
