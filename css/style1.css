@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 html, body {
 	font-size: 100%;
 	font-family: "Roboto", cursive, sans-serif;

@@ -17,28 +17,30 @@
 </head>
 
 <body onload="load();">
-	<header>
-		<h1 lang="en">Adrenaline Motocross Park</h1>
-	</header>
+	<div id="menu" class="container-horizontal">
+		<header>
+			<h1 lang="en">Adrenaline Motocross Park</h1>
+		</header>
+
+    <nav id="menuList">
+			<ul>
+				<li><a href="../" lang="en">Home</a></li>
+				<li><a href="../tracciati/">Tracciati</a></li>
+				<li><a href="../servizi/">Servizi</a></li>
+				<li><a href="../corsi/">Corsi</a></li>
+				<li><a href="../noleggio">Noleggio</a></li>
+				<li><a href="../ingressi/">Ingressi</a></li>
+				<li><a href="../contatti/">Contatti</a></li>
+	      <li>Area riservata</li>
+			</ul>
+		</nav>
+	</div>
 
 	<nav id="breadcrumb">
 		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; Area riservata</p>
 	</nav>
 
-	<nav id="menuList">
-		<ul>
-			<li><a href="../">Home</a></li>
-			<li><a href="../tracciati/">Tracciati</a></li>
-			<li><a href="../servizi/">Servizi</a></li>
-			<li><a href="../corsi/">Corsi</a></li>
-			<li><a href="../noleggio/">Noleggio</a></li>
-			<li><a href="../ingressi/">Ingressi</a></li>
-			<li><a href="../contatti/">Contatti</a></li>
-			<li>Area riservata</li>
-		</ul>
-	</nav>
-
-	<div id="contentLogin">
+	<div id="contentLogin" class="content">
 		<h1>Login</h1>
 
 		<form method="post" action="_action_" onsubmit="return formValidation(event);">
