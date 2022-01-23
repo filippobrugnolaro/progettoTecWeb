@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<!--I tag <br> dovranno essere sostituiti
+    con opportune modifiche in CSS-->
+
+<html lang="it">
+
+<head>
+	<title>Corsi admin - Adrenaline Motocross Park</title>
+	<meta charset="utf-8" />
+    <meta name="robots" content="noindex"/> <!-- avoid indexing by search engines-->
+	<meta name="keywords" content="motocross, informazioni, noleggio" />
+	<meta name="description" content="Pagina principale admin" />
+	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
+	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" media="screen" href="style.css"/>
+</head>
+
+<body>
+
+	<!-- start container 1 -->
+	<div class="container1">
+
+        <!-- GRUPPO 1 -> ITEM 1 -->
+        <!-- start container 2 -->
+        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+
+            <!-- GRUPPO 2 -> ITEM 1 -->
+			<!-- LOGO -->
+			<i class="fa-brands fa-google">oogle</i>
+
+			<!-- GRUPPO 2 -> ITEM 2 -->
+			<!-- MENU LINK -->
+            <ul id="menu">
+                <li><a href="../../" lang="en">Home</a></li>
+                <li><a href="../../tracciati/">Tracciati</a></li>
+                <li><a href="../../servizi/">Servizi</a></li>
+                <li><a href="../../corsi/">Corsi</a></li>
+                <li><a href="../../noleggio/">Noleggio</a></li>
+                <li><a href="../../ingressi/">Ingressi</a></li>
+                <li><a href="../../contatti/">Contatti</a></li>
+                <li id="active">Area riservata</li>
+            </ul>
+
+        </nav> <!-- end container 2 -->
+
+        <!-- GRUPPO 1 -> ITEM 2 -->
+        <nav id="breadcrumb">
+			<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Corsi</p>
+		</nav>
+
+        <!-- GRUPPO 1 -> ITEM 3 -->
+        <!-- start container 3 -->
+		<div class="container3 container1-item">
+            <!-- GRUPPO 3 -> ITEM 1 -->
+            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+                <i class="fa-solid fa-a"></i>
+
+				<ul id="sideMenu">
+					<li><a href="../" lang="en">Home</a></li>
+					<li><a href="../dati-utente/">Gestione personale</a></li>
+					<li><a href="../tracciati/">Tracciati</a></li>
+					<li><a href="../noleggio/">Noleggio</a></li>
+					<li><a href="../ingressi/">Ingressi</a></li>
+					<li id="activeSub">Corsi</li>
+					<li><a href="../messaggi/">Messaggi</a></li>
+					<li><a href="../../login/logout.php" lang="en">Logout</a></li>
+				</ul>
+			</nav>
+
+            <!-- GRUPPO 3 -> ITEM 2 -->
+            <div class="contentAdmin container3-item">
+                <h1>Sample Text</h1>
+
+				<article id="tables">
+					<h2>Prenotazioni corsi</h2>
+						
+                    <table title='tabella contenente le prenotazioni dei prossimi corsi'>
+                        <caption>Prenotazioni posti per i prossimi corsi</caption>
+                        <thead>
+                            <tr>
+                                <th scope='col'>Corso</th>
+                                <th scope='col'>Data</th>
+                                <th scope='col'>Posti disponibili</th>
+                                <th scope='col'>Posti rimanenti</th>
+                                <th scope='col'>Dettagli</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope='row'>N°</td>
+                                <td>01/01/2000</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><a href='dettagliCorso.php?id=' aria-label='dettaglio corso'><i class='fas fa-info-circle'></i></a></td>
+                            </tr>
+                            <tr>
+                                <td scope='row'>N°</td>
+                                <td>01/01/2000</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><a href='dettagliCorso.php?id=' aria-label='dettaglio corso'><i class='fas fa-info-circle'></i></a></td>
+                            </tr>
+                            <tr>
+                                <td scope='row'>N°</td>
+                                <td>01/01/2000</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><a href='dettagliCorso.php?id=' aria-label='dettaglio corso'><i class='fas fa-info-circle'></i></a></td>
+                            </tr>
+                            <tr>
+                                <td scope='row'>N°</td>
+                                <td>01/01/2000</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><a href='dettagliCorso.php?id=' aria-label='dettaglio corso'><i class='fas fa-info-circle'></i></a></td>
+                            </tr>
+                            <tr>
+                                <td scope='row'>N°</td>
+                                <td>01/01/2000</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td><a href='dettagliCorso.php?id=' aria-label='dettaglio corso'><i class='fas fa-info-circle'></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+				</article>
+
+				<article id="personalData">
+					<h1>Dati personali</h1>
+                    <globalError/>
+
+                    <!--   view / modifica dati personali    -->
+                    <form method="post" action="./" onsubmit="return formValidation(event);">
+                        </errors>
+                        <fieldset>
+                            <legend>Dati personali</legend>
+
+                            <label for="cognomeUser">Cognome*</label>
+                            <span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" required/></span>
+                            <br/>
+
+                            <label for="nomeUser">Nome*</label>
+                            <span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" required/></span>
+                            <br/>
+
+                            <label for="nascitaUser">Data di nascita*</label>
+                            <span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" required/></span>
+                            <br/>
+
+                            <label for="telUser">Telefono*</label>
+                            <span><input type="tel" name="telUser" id="telUser" value="_telefono_" required/></span>
+                            <br/>
+
+                            <input type="submit" name="submitUser" value="Applica Modifiche"/>
+                        </fieldset>
+                    </form>
+
+
+                    <!-- modifica password -->
+                    <form method="post" action="./" onsubmit="return formValidation(event);">
+                        <fieldset>
+                            <legend>Dati per l'accesso</legend>
+
+                            <label for="emailUser" lang="en">E-mail*</label>
+                            <span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
+                            <br/>
+
+                            <label for="oldPsw">Vecchia password*</label>
+                            <span><input type="password" name="oldPsw" id="oldPsw" required/></span>
+                            <br/>
+
+                            <label for="newPsw">Nuova password*</label>
+                            <span><input type="password" name="newPsw" id="newPsw" required/></span>
+                            <br/>
+
+                            <label for="pswCheck">Reinserisci nuova password*</label>
+                            <span><input type="password" name="pswCheck" id="pswCheck" required/></span>
+                            <br/>
+                            
+                            <input type="submit" name="submitPsw" value="Modifica"/>
+                        </fieldset>
+                    </form>
+				</article>
+
+				<article>
+					<h2>Inserimento nuovi corsi</h2>
+					<a href="gestioneCorso.php">Nuovo corso</a>
+				</article>
+
+				<a href="#top">Torna su</a>
+            </div>
+
+        </div> <!-- end container 3 -->
+
+    </div> <!-- end container 1 -->
+
+	<footer>
+		<div class="footerInfo">
+			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
+			<p>Adrenaline Motocross Park è un parco divertimenti dedicato ai motociclisti
+			e agli appassionati di motocross. Il progetto nasce dalla passione autentica
+			per questo sport e punta a dare un tocco di qualità in più per permettere agli
+			appassionati di esprimersi in totale comodità e sicurezza.</p>
+		</div>
+
+		<div class="footerDoveSiamo">
+			<h3>Dove siamo</h3>
+            <p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
+            <p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
+            <p class="informazioniFooter">Indirizzo:</p>
+		</div>
+
+		<img src="../images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+		<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
+				rights reserved</span></p>
+		<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+	</footer>
+</body>
+</html>

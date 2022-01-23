@@ -56,7 +56,7 @@ body {
 	display: flex;
 	flex-wrap: nowrap;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-around;	
 
 	color: rgb(247, 248, 234);
 	background-color: rgb(38, 74, 70);
@@ -70,6 +70,8 @@ body {
 	flex-direction: row;
 	display: flex;
 	justify-content: normal;
+	flex-wrap: wrap;
+	
 
 	border: 1px solid rgb(38, 74, 70);
 
@@ -91,17 +93,20 @@ body {
 
 /* ***************** MENU ***************** */
 #menu {
-	list-style-type: none;
 	font-size: 1.3em;
 	padding: 0.5em;
 	color:rgb(247, 248, 234);
+	list-style: none;
+
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
 #menu li {
-	display: inline;
 	margin-top: 0.5em;
 	margin: 0.5em 0.3em 0.3em 0.3em;
-
 }
 
 #menu a {
@@ -141,7 +146,7 @@ body {
 /* ************ AREA RISERVATA ************ */
 .navUser {
 	min-width: 230px;
-	flex: 0.5 0 0;
+	flex: 1 0 0;
 
 	display: flex;
 	flex-direction: column;
@@ -149,6 +154,16 @@ body {
 
 .navUser i {
 	align-self: center;
+
+	width: 1em;
+	height: 1em;
+
+	background-color: rgb(38, 74, 70);
+	color: rgb(247, 248, 234);
+	font-size: 4em;
+	text-align: center;
+	border: 0.3em solid rgb(38, 74, 70);
+	border-radius: 50%;
 }
 
 #sideMenu {
@@ -172,9 +187,8 @@ body {
 }
 
 #sideMenu a:hover {
-	font-size: 1.4em;
 	color:rgb(38, 74, 70);
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 #activeSub {
@@ -189,6 +203,7 @@ body {
 /* ******** CONTENT AREA RISERVATA ******** */
 .contentUser {
 	flex: 3 0 0;
+	min-width: 500px;
 	color:rgb(38, 74, 70);
 }
 
@@ -203,6 +218,7 @@ body {
 
 .contentAdmin {
 	flex: 3 0 0;
+	min-width: 500px;
 	color:rgb(38, 74, 70);
 }
 
@@ -219,6 +235,108 @@ body {
 	list-style-position: inside;
 	color: rgb(0,0,0);
 }
+
+
+
+
+article {
+	display: flex;
+	flex-direction: column;
+
+    padding: 1em 1em 2em 1em;
+    margin: 0.5em;
+
+    /* border: 1px solid rgb(0, 47, 177); */
+}
+
+/* ***************** TABLE **************** */
+
+table {
+	align-self: center;
+
+    width: 98%;
+    border: 2px solid rgb(38, 74, 70);
+    border-radius: 5px;
+    background-color: rgb(227, 230, 181);
+    border-spacing: 0;
+	font-size: 1.2em;
+}
+
+table caption {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: rgb(247, 248, 234);
+}
+
+table th {
+    padding: 4px;
+    font-size: 1.1em;
+    color: rgb(247, 248, 234);
+    background-color: rgb(38, 74, 70);
+}
+
+table td {
+    
+    padding: 2px;
+    text-align: center;
+    vertical-align: center;
+}
+
+table th,td {
+    border-bottom: 2px solid rgb(38, 74, 70);
+}
+
+
+/* ***************** FORM ***************** */
+
+form {
+	align-self: center;
+
+    /* border: 2px solid rgb(38, 74, 70);
+    border-radius: 5px; */
+    /* background-color: rgb(227, 230, 181); */
+	font-size: 1.3em;
+	
+}
+
+form legend {
+	font-size: 1.3em;
+}
+
+form fieldset {
+	border: 2px solid rgb(38, 74, 70);
+	border-radius: 5px;
+	background-color: rgb(247, 248, 234);
+    padding: 1em;
+    margin: 1em;
+
+	display: flex;
+	flex-direction: column;
+}
+
+form input {
+	min-width: 270px;
+	padding: 0.5em;
+}
+
+form input[type=submit] {
+	min-width: 200px;
+	align-self: flex-end;
+
+	border: none;
+	border-radius: 0.25em;
+	background-color: rgb(38, 74, 70);
+	color: rgb(247, 248, 234);
+	font-size: 0.9em;
+
+	padding: 0.5
+}
+
+
+
 
 
 
