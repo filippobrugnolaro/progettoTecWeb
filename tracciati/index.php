@@ -36,10 +36,8 @@
             if($records !== null) {
                 foreach($records as $record) {
                     $recordsBody .= '<article>';
+                    $recordsBody .= '<div>';
                     $recordsBody .= '<h2>Tracciato #'.$record['id'].'</h2>';
-
-                    if($record['foto'] != null)
-                        $recordsBody .= '<img src=\''.('../images/tracks/'.$record['foto']).'\' alt=\'\' class=\'imgTracciati\'>';
 
                     $recordsBody .= '<p>'.$record['descrizione'].'</p>';
 
@@ -52,6 +50,11 @@
                     $recordsBody .= '<li>Orario di apertura: '.substr($record['apertura'],0,5).'</li>';
                     $recordsBody .= '<li>Orario di chiusura: '.substr($record['chiusura'],0,5).'</li>';
                     $recordsBody .= '</ul>';
+
+                    $recordsBody .= '</div>';
+
+                    if($record['foto'] != null)
+                        $recordsBody .= '<img src=\''.('../images/tracks/'.$record['foto']).'\' alt=\'\' class=\'imgTracciati\'>';
 
                     $recordsBody .= '</article>';
                 }
