@@ -36,7 +36,7 @@
             if($records !== null) {
                 foreach($records as $record) {
                     $recordsBody .= '<article>';
-                    $recordsBody .= '<div>';
+                    $recordsBody .= '<div class="infoTracciato">';
                     $recordsBody .= '<h2>Tracciato #'.$record['id'].'</h2>';
 
                     $recordsBody .= '<p>'.$record['descrizione'].'</p>';
