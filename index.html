@@ -12,65 +12,77 @@
 	<meta name="description" content="Pagina principale" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
 
-	<link rel="stylesheet" href="css/style1.css"/>
+	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="css/style.css"/>
 </head>
 
-<body>
-	<div id="menu" class="container-horizontal">
-		<header>
-			<h1 lang="en">Adrenaline Motocross Park</h1>
-		</header>
+<body class="container1">
 
-		<nav id="menuList">
-			<ul>
-				<li><span lang="en">Home</span></li>
-				<li><a href="./tracciati/">Tracciati</a></li>
-				<li><a href="./servizi/">Servizi</a></li>
-				<li><a href="./corsi/">Corsi</a></li>
-				<li><a href="./noleggio/">Noleggio</a></li>
-				<li><a href="./ingressi/">Ingressi</a></li>
-				<li><a href="./contatti/">Contatti</a></li>
-				<li><a href="login/">Area riservata</a></li>
-			</ul>
-		</nav>
-	</div>
+	<!-- GRUPPO 1 -> ITEM 1 -->
+	<!-- start container 2 -->
+	<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-	<nav id="breadcrumb">
+		<!-- GRUPPO 2 -> ITEM 1 -->
+		<!-- LOGO -->
+		<i class="fa-brands fa-google">oogle</i>
+
+		<!-- GRUPPO 2 -> ITEM 2 -->
+		<!-- MENU LINK -->
+		<ul id="menu">
+			<li><a href="../" lang="en">Home</a></li>
+			<li><a href="../tracciati/">Tracciati</a></li>
+			<li><a href="../servizi/">Servizi</a></li>
+			<li><a href="../corsi/">Corsi</a></li>
+			<li><a href="../noleggio/">Noleggio</a></li>
+			<li><a href="../ingressi/">Ingressi</a></li>
+			<li><a href="../contatti/">Contatti</a></li>
+			<li id="active">Area riservata</li>
+		</ul>
+	</nav> <!-- end container 2 -->
+
+	<!-- GRUPPO 1 -> ITEM 2 -->
+	<nav id="breadcrumb" class="container1-item">
 		<p>Ti trovi in: <span lang="en">Home</span></p>
 	</nav>
 
-  <div id="contentHome" class="content">
-		<p id="slogan">"Frase scelta dal super motociclista Alessandro Cavaliere"</p>
-		<img id="firstImg" src="images/motocross.jpg" alt="moto da fuoristrada che fa una curva">
 
-		<p><span lang="en">Adrenaline Motocross Park</span> nasce per dare la
-		possibilità a tutti gli appassionati, esperti o principianti, di vivere
-		un'autentica esperienza in pista.</p>
+
+  <div id="contentHome" class="container1-item">
+
+		<div class="firstSection">
+			<p id="slogan">"Frase scelta dal super motociclista Alessandro Cavaliere"</p>
+			<img id="firstImg" src="images/motocross.jpg" alt="moto da fuoristrada che fa una curva">
+
+			<p><span lang="en">Adrenaline Motocross Park</span> nasce per dare la
+			possibilità a tutti gli appassionati, esperti o principianti, di vivere
+			un'autentica esperienza in pista.</p>
+		</div>
 
 		<h2>Tracciati</h2>
-		<article class="container-horizontal">
+		<article>
 			<p>L'ampia scelta di tracciati più o meno difficoltosi permette di vivere esperienze diverse per ogni pilota.</p>
-			<img src="images/tracciato.jpg" alt="tracciato esempio" class="imgHome">
+			<img src="images/tracciato.jpg" alt="tracciato esempio">
 		</article>
 
 		<h2>Corsi</h2>
-		<article class="container-horizontal">
+		<article>
 			<p>I nostri istruttori selezionati garantiscono il supporto necessario
 			per godersi al meglio l'esperienza di guida in pista.</p>
-			<img src="images/corsi.jpg" alt="Corsi esempio" class="imgHome">
+			<img src="images/corsi.jpg" alt="Corsi esempio">
 		</article>
 
 		<h2>Noleggio</h2>
-		<article class="container-horizontal">
+		<article>
 			<p>Sei deciso a vivere la tua esperienza in pista ma sei sprovvisto
 			di attrezzatura? Non preoccuparti!
 			<span lang="en">Adrenaline Motocross Park</span> mette a disposizione
 			attrezzatura di prima qualità per il noleggio assicurando divertimento
 			tra le curve dei nostri tracciati.</p>
-			<img src="images/noleggio.jpg" alt="noleggio esempio" class="imgHome">
+			<img src="images/noleggio.jpg" alt="noleggio esempio">
 		</article>
 
-		<a href="#top">Torna su</a>
+		<a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
   </div>
 
 	<footer>

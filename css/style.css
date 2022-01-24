@@ -1,4 +1,4 @@
-/* 
+/*
 	icona da utilizzare per profilo
 	<i class="fa-solid fa-a"></i>
 	da modificare l'ultima lettera
@@ -12,10 +12,12 @@
 
 /*html = finestra, body = contenuto pagina */
 html {
+	max-width: 1024px;
 	height: 100%;
 	font-size: 100%;
 	font-family: "Roboto";
 	margin: auto;
+	background-color: rgb(247, 248, 234);
 }
 
 .errSuggestion {
@@ -42,13 +44,15 @@ body {
 	display: flex;
 	flex-direction: column;
 
-	border: 3px solid rgb(225, 0, 255);
+	/* border: 3px solid rgb(225, 0, 255); */
 
 	background-color: rgb(247, 248, 234);
 }
 
 .container1-item {
-	border: 1px solid rgb(38, 74, 70);
+	border-right: 2px solid rgb(38, 74, 70);
+	border-bottom: 2px solid rgb(38, 74, 70);
+	border-left: 2px solid rgb(38, 74, 70);
 }
 
 .container2 {
@@ -56,7 +60,7 @@ body {
 	display: flex;
 	flex-wrap: nowrap;
 	align-items: center;
-	justify-content: space-around;	
+	justify-content: space-around;
 
 	color: rgb(247, 248, 234);
 	background-color: rgb(38, 74, 70);
@@ -71,17 +75,17 @@ body {
 	display: flex;
 	justify-content: normal;
 	flex-wrap: wrap;
-	
+
 
 	border: 1px solid rgb(38, 74, 70);
 
-	border: 3px solid rgb(60, 255, 0);
+	/* border: 3px solid rgb(60, 255, 0); */
 }
 
 .container3-item {
 	flex: 1 1 0;
 	padding: 1em;
-	
+
 
 	border: 1px solid rgb(38, 74, 70);
 }
@@ -239,7 +243,7 @@ body {
 
 
 
-article {
+.contentUser article, .contentAdmin article {
 	display: flex;
 	flex-direction: column;
 
@@ -279,7 +283,7 @@ table th {
 }
 
 table td {
-    
+
     padding: 2px;
     text-align: center;
     vertical-align: center;
@@ -299,7 +303,7 @@ form {
     border-radius: 5px; */
     /* background-color: rgb(227, 230, 181); */
 	font-size: 1.3em;
-	
+
 }
 
 form legend {
@@ -335,22 +339,66 @@ form input[type=submit] {
 	padding: 0.5
 }
 
+/* **************** HOME **************** */
+#contentHome {
+	color: rgb(38, 74, 70);
+}
 
+#contentHome img {
+	width: 40%;
+	border-radius: 5px;
+}
 
+.firstSection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0.5em;
+	background-color: rgb(227, 230, 181);
+	border: 2px solid rgb(38, 74, 70);
+	border-radius: 5px;
+}
 
+#contentHome p {
+	padding: 1em;
+}
 
+#contentHome article {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	align-items: center;
+
+	padding: 0.5em;
+	margin: 0.5em;
+
+	background-color: rgb(227, 230, 181);
+	border: 2px solid rgb(38, 74, 70);
+  border-radius: 5px;
+}
+
+#contentHome h2{
+	margin-left: 0.5em;
+	margin-top: 1em;
+}
+
+#topButton {
+	margin: 1em;
+	color: rgb(38, 74, 70);
+}
 
 
 /* **************** FOOTER **************** */
 
 footer {
-	flex: 0 0 0; 
+	flex: 0 0 0;
 	color: rgb(247, 248, 234);
 	background-color:rgb(38, 74, 70);
 	clear: both;
 	text-align: center;
 	font-size: 0.8em;
 	padding: 0.5em;
+	padding-top: 1em;
 }
 
 footer p, footer .imgValidCode{
