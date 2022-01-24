@@ -339,31 +339,41 @@ form input[type=submit] {
 	padding: 0.5
 }
 
-/* **************** HOME **************** */
-#contentHome {
+
+/* **************** CONTENT **************** */
+
+.content {
+	display: flex;
+	flex-direction: column;
 	color: rgb(38, 74, 70);
 }
 
-#contentHome img {
+.content img {
 	width: 40%;
 	border-radius: 5px;
 }
 
-.firstSection {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 0.5em;
-	background-color: rgb(227, 230, 181);
-	border: 2px solid rgb(38, 74, 70);
-	border-radius: 5px;
+.content h1 {
+	padding: 0.5em 0.5em 0 0.5em;
 }
 
-#contentHome p {
+.content p {
 	padding: 1em;
 }
 
-#contentHome article {
+.content a {
+	color: rgb(38, 74, 70);
+}
+
+.content a:visited {
+	color: purple;
+}
+
+.content a:hover {
+	color: blue;
+}
+
+.content article {
 	display: flex;
 	justify-content: center;
 	flex-direction: row;
@@ -377,6 +387,18 @@ form input[type=submit] {
   border-radius: 5px;
 }
 
+/* **************** HOME **************** */
+.firstSection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0.5em;
+	background-color: rgb(227, 230, 181);
+	border: 2px solid rgb(38, 74, 70);
+	border-radius: 5px;
+}
+
+
 #contentHome h2{
 	margin-left: 0.5em;
 	margin-top: 1em;
@@ -387,6 +409,21 @@ form input[type=submit] {
 	color: rgb(38, 74, 70);
 }
 
+/* **************** TRACCIATI **************** */
+.infoTracciato {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.infoTracciato ul {
+	padding: 0.5em 1em;
+	list-style-position: inside;
+}
+
+.infoTracciato h2 {
+	padding-left: 0.5em;
+}
 
 /* **************** FOOTER **************** */
 
