@@ -429,6 +429,46 @@ form input[type=submit] {
 	padding-left: 0.5em;
 }
 
+/* **************** CORSI **************** */
+#contentCorsi img {
+	margin-left: 30%;
+}
+
+#contentCorsi article {
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+#contentCorsi article p {
+	padding: 0.5em;
+}
+
+#contentCorsi article ul {
+	padding: 0.5em;
+	list-style-position: inside;
+}
+
+#contentCorsi article h2 {
+	padding-left: 0.5em;
+}
+
+/* *************** INGRESSI *************** */
+#contentServizi img {
+	width: 15%;
+	padding: 0.5em;
+}
+
+#contentServizi article {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.infoServizi h2 {
+	padding-left: 0.5em;
+}
+
 /* *************** INGRESSI *************** */
 #contentIngressi article {
 	flex-direction: column;
