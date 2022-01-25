@@ -75,12 +75,12 @@
                     $noleggioAttrezzatura = '';
                     $moto = '';
                 }
-                else if ($res == -1) {
-                    $messaggiForm = '<li>Impossibile prenotare ingresso. Hai già prenotato un corso per questa data!</li>';
+                else {
                     $error = true;
-                } else {
-                    $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione dell\'ingresso.</li>';
-                    $error = true;
+
+                    if ($res == -1) $messaggiForm = '<li>Impossibile prenotare ingresso. Hai già prenotato un corso per questa data!</li>';
+                    else if($res == -3) $messaggiForm = '<li>Impossibile prenotare ingresso. Non ci sono più posti disponibili per questa data!</li>';
+                    else $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione dell\'ingresso.</li>';
                 }
 
                 $conn->closeDB();
@@ -206,7 +206,7 @@
                     <messaggiForm/>
 
                     <label for="dataDisponibile">Data*</label>
-                    <select id="dataDisponibile" name="dataDisp">
+                    <select id="dataDisponibile" name="dataDisp" aria-required="true">
                         <dataDisp/>
                     </select>
                     <br/>
@@ -251,6 +251,8 @@
     $page = str_replace('<dataDisp/>',$ingressiDropdown,$page);
     $page = str_replace('_checkedAttr_',$noleggioAttrezzatura,$page);
     $page = str_replace('_checkedMoto_',$noleggioMoto,$page);
+
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
 
     echo $page;
 ?>

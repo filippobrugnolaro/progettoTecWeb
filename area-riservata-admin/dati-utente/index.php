@@ -25,6 +25,7 @@
     $nascita = '';
     $telefono = '';
 
+    $username = '';
     $email = '';
     $password = '';
 
@@ -73,7 +74,7 @@
             $cf = $_SESSION['user']->getCF();
 
             //creo oggetto utente e faccio l'insert con la funzione
-            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $_SESSION['user']->getEmail(), 2,$_SESSION['user']->getPsw());
+            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $_SESSION['user']->getEmail(), 2,$_SESSION['user']->getUserName(),$_SESSION['user']->getPsw());
 
             if($conn->openDB()) {
                 if($conn->updateUserData($newUser)) {
@@ -92,6 +93,7 @@
     //SECONDO FORM - Modifica Password
     } else if (isset($_POST['submitPsw'])) {
         $email = $_SESSION['user']->getEmail();
+        $username = $_SESSION['user']->getUserName();
 
         //check password
         if (strlen($_POST['oldPsw']) == 0) {
@@ -112,7 +114,7 @@
 
         if(strlen($errors) == 0) {
             if($conn->openDB()) {
-                $checkPsw = $conn->checkNewPassword($email, $oldPassword, $newPassword);
+                $checkPsw = $conn->checkNewPassword($username, $oldPassword, $newPassword);
 
                 if(strlen($checkPsw) == 0) {
                     //creo oggetto utente e faccio l'insert con la funzione
@@ -125,6 +127,7 @@
                         $_SESSION['user']->getTelefono(),
                         $email,
                         2,
+                        $username,
                         $newPassword);
 
                     if($conn->updateUserPassword($newUser)) {
@@ -172,6 +175,7 @@
     $nascita = strlen($nascita) > 0 ? $nascita : $_SESSION['user']->getNascita();
     $telefono = strlen($telefono) > 0 ? $telefono : $_SESSION['user']->getTelefono();
     $email = strlen($email) > 0 ? $email : $_SESSION['user']->getEmail();
+    $username = strlen($username) > 0 ? $username : $_SESSION['user']->getUserName();
 
     //retrieve worthy of promotion users
     if ($conn->openDB()) {
@@ -240,12 +244,15 @@
     // SECONDO FORM
     $page = str_replace('<errors/>', $errors, $page);
     $page = str_replace("_email_", $email, $page);
+    $page = str_replace("_username_", $username, $page);
 
     //terzo form
     $page = str_replace('_form_',$form,$page);
     $page = str_replace('<messaggiForm2/>', $messaggiForm2, $page);
     $page = str_replace('_utenti_',$utenti,$page);
     $page = str_replace('_erroreUtenti_',$errorDetails,$page);
+
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
 
     echo $page;
 

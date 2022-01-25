@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Gen 21, 2022 alle 09:34
+-- Creato il: Gen 25, 2022 alle 23:31
 -- Versione del server: 10.4.16-MariaDB
 -- Versione PHP: 7.4.12
 
@@ -42,8 +42,8 @@ INSERT INTO `data_disponibile` (`data`, `posti`) VALUES
 ('2022-01-11', 100),
 ('2022-01-14', 200),
 ('2022-01-16', 100),
-('2022-01-22', 50),
-('2022-01-31', 100);
+('2022-01-31', 2),
+('2022-02-22', 50);
 
 -- --------------------------------------------------------
 
@@ -63,8 +63,7 @@ CREATE TABLE `ingressi_entrata` (
 
 INSERT INTO `ingressi_entrata` (`codice`, `utente`, `data`) VALUES
 (43, 'CVLLSN00A04A001B', '2022-01-16'),
-(41, 'CVLLSN00A04A001B', '2022-01-22'),
-(44, 'CVLLSN00A04A001B', '2022-01-31');
+(48, 'CVLLSN00A04A001B', '2022-01-31');
 
 -- --------------------------------------------------------
 
@@ -77,6 +76,13 @@ CREATE TABLE `ingressi_lezione` (
   `utente` varchar(20) DEFAULT NULL,
   `lezione` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `ingressi_lezione`
+--
+
+INSERT INTO `ingressi_lezione` (`codice`, `utente`, `lezione`) VALUES
+(11, 'CVLLSN00A04A001B', 6);
 
 -- --------------------------------------------------------
 
@@ -99,7 +105,7 @@ CREATE TABLE `lezione` (
 
 INSERT INTO `lezione` (`id`, `data`, `posti`, `descrizione`, `istruttore`, `pista`) VALUES
 (5, '2022-01-16', 15, 'Corso pro, allenamento mirato a migliorare il ritmo e il tempo sul giro secco. Inizio con analisi delle traiettorie suddividendo la pista per settori, successivamente simulazione qualifica e manche.', 'Antonio Cairoli', 20),
-(6, '2022-01-22', 15, 'Questo corso &egrave; un corso per insegnare', 'Filippo Brugnolaro', 22);
+(6, '2022-02-22', 1, 'Questo corso &egrave; un corso per insegnare', 'Filippo Brugnolaro', 22);
 
 -- --------------------------------------------------------
 
@@ -166,9 +172,7 @@ CREATE TABLE `noleggio` (
 --
 
 INSERT INTO `noleggio` (`codice`, `data`, `attrezzatura`, `utente`, `moto`) VALUES
-(25, '2022-01-22', 0, 'CVLLSN00A04A001B', 13),
-(26, '2022-01-16', 1, 'CVLLSN00A04A001B', 13),
-(27, '2022-01-31', 1, 'CVLLSN00A04A001B', 13);
+(26, '2022-01-16', 1, 'CVLLSN00A04A001B', 13);
 
 -- --------------------------------------------------------
 
@@ -203,6 +207,7 @@ INSERT INTO `pista` (`id`, `lunghezza`, `descrizione`, `terreno`, `apertura`, `c
 
 CREATE TABLE `utente` (
   `cf` char(16) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `cognome` varchar(25) NOT NULL,
   `nome` varchar(25) NOT NULL,
   `nascita` date NOT NULL,
@@ -216,11 +221,11 @@ CREATE TABLE `utente` (
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`cf`, `cognome`, `nome`, `nascita`, `telefono`, `email`, `password`, `ruolo`) VALUES
-('CVLLSN00A04A001A', 'Cavaliere', 'Alessandro', '2000-01-04', '3477625768', 'ac41husky@gmail.com', '$2y$10$ytTfwaIKaVl5YzK/CDBxYuUeBB41yAsmtjqoZWGs5UtYm2XJz.6.i', 2),
-('CVLLSN00A04A001B', 'Cavaliere', 'Alessandro', '2000-01-04', '3477625768', 'a@a.a', '$2y$10$Lw4xwPjC59KO/RIVE41z0udFSK3iCG53/68dxWZ7fvVR1biigUruC', 1),
-('CVLLSN00A04A001E', 'Dukic', 'Andrei', '1999-12-12', '3477625768', 'andrei@dukic.com', '$2y$10$/7M1579.yRknvEq/IKPgc.WNFiEXtlGJg0WmFPIwkEma7Ycka23ka', 2),
-('CVLLSN00A04A001W', 'Ale', 'Cava', '2022-01-21', '3477625768', 'ale@ale.com', '$2y$10$7xW3r84zT7yUhlKW0qiY7OCu.HaNZOl8KcRWlzlTYxDLGSxxiRKvm', 1);
+INSERT INTO `utente` (`cf`, `username`, `cognome`, `nome`, `nascita`, `telefono`, `email`, `password`, `ruolo`) VALUES
+('CVLLSN00A04A001A', 'alecava41', 'Cavaliere', 'Alessandro', '2000-01-04', '3477625768', 'ac41husky@gmail.com', '$2y$10$ytTfwaIKaVl5YzK/CDBxYuUeBB41yAsmtjqoZWGs5UtYm2XJz.6.i', 2),
+('CVLLSN00A04A001B', 'aleuser41', 'Cavaliere', 'Alessandro', '2000-01-04', '3477625768', 'a@a.a', '$2y$10$szRaPrrGjqkejgTTPEzu0uWCjjV51i8LQ1La7QuX2XJzGffECXE/C', 1),
+('CVLLSN00A04A001E', 'andreiduk', 'Dukic', 'Andrei', '1999-12-12', '3477625768', 'andrei@dukic.com', '$2y$10$UfSWP6GZue3X0qQQTxf.rO69.OBpMai7F62o0.4evtGdOwKLrgAi6', 2),
+('CVLLSN00A04A001Q', 'mariorossi', 'Mario', 'Rossi', '2000-01-04', '3477625768', 'mario.rossi@gmail.com', '$2y$10$u8OPtYsmsqse1BqLesEJ9.5HVFe/6q.9dwXxNz53ONlr4I9dW1HWq', 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -288,7 +293,8 @@ ALTER TABLE `pista`
 -- Indici per le tabelle `utente`
 --
 ALTER TABLE `utente`
-  ADD PRIMARY KEY (`cf`);
+  ADD PRIMARY KEY (`cf`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -298,13 +304,13 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `ingressi_entrata`
 --
 ALTER TABLE `ingressi_entrata`
-  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT per la tabella `ingressi_lezione`
 --
 ALTER TABLE `ingressi_lezione`
-  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `codice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `lezione`

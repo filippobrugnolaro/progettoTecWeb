@@ -45,7 +45,7 @@
 
     <!-- GRUPPO 1 -> ITEM 2 -->
     <nav id="breadcrumb" class="container1-item">
-        <p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Contatti</p>
+        <p>Ti trovi in <a href="../" lang="en">Home</a> / Contatti</p>
     </nav>
 
     <!-- GRUPPO 1 -> ITEM 3 -->
@@ -74,19 +74,19 @@
                     <legend>Dati personali</legend>
 
                     <label for="nome">Nome*</label>
-                    <span><input type="text" name="nome" id="nome" value="_nome_" placeholder="Mario"></span>
+                    <span><input type="text" name="nome" id="nome" value="_nome_" placeholder="Mario" aria-required="true"></span>
                     <br>
 
                     <label for="cognome">Cognome*</label>
-                    <span><input type="text" name="cognome" id="cognome" value="_cognome_" placeholder="Rossi"></span>
+                    <span><input type="text" name="cognome" id="cognome" value="_cognome_" placeholder="Rossi" aria-required="true"></span>
                     <br>
 
                     <label for="email"><span lang="en">E-mail</span>*</label>
-                    <span><input type="email" name="email" id="email" value="_email_" placeholder="mario.rossi@gmail.com"></span>
+                    <span><input type="email" name="email" id="email" value="_email_" placeholder="mario.rossi@gmail.com" aria-required="true"></span>
                     <br>
 
                     <label for="telefono">Telefono*</label>
-                    <span><input type="tel" name="telefono" id="telefono" value="_tel_" placeholder="34213458973"></span>
+                    <span><input type="tel" name="telefono" id="telefono" value="_tel_" placeholder="34213458973" aria-required="true"></span>
 
                 </fieldset>
 
@@ -94,14 +94,14 @@
                     <legend>Richiesta</legend>
 
                     <label for="oggetto">Oggetto*</label>
-                    <span><input type="text" name="oggetto" id="oggetto" value="_obj_" placeholder="Richiesta informazioni per..."></span>
+                    <span><input type="text" name="oggetto" id="oggetto" value="_obj_" aria-required="true" placeholder="Richiesta informazioni per..."></span>
                     <br>
 
                     <label for="messaggio">Messaggio*</label>
-                    <div><textarea id="messaggio" name="messaggio" rows="10" cols="50" placeholder="Testo del messaggio">_text_</textarea></div>
+                    <div><textarea id="messaggio" name="messaggio" rows="10" cols="50" aria-required="true" placeholder="Testo del messaggio">_text_</textarea></div>
 
                     <div>
-                        <span><input type="checkbox" name="termini" id="termini" _checked_></span>
+                        <span><input type="checkbox" name="termini" id="termini" _checked_ aria-required="true"></span>
                         <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.*</label>
                     </div>
                     <br>

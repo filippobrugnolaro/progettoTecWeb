@@ -83,5 +83,7 @@
     $page = str_replace('<erroreDettagli/>',$errorDetails,$page);
     $page = str_replace('<dettaglioCorsi/>',$recordsBody,$page);
 
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
+
     echo $page;
 ?>

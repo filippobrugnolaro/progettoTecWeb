@@ -46,9 +46,9 @@
 
 	<!-- GRUPPO 1 -> ITEM 2 -->
 	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-			<a href="../">Area riservata</a> &gt;&gt; <a href="./">Ingressi</a>
-			&gt;&gt; Gestione ingresso
+		<p>Ti trovi in <a href="../../" lang="en">Home</a> /
+			<a href="../">Area riservata</a> / <a href="./">Ingressi</a>
+			/ Gestione ingresso
 		</p>
 	</nav>
 
@@ -57,11 +57,11 @@
 	<div class="container3 container1-item">
 		<!-- GRUPPO 3 -> ITEM 1 -->
 		<nav class="navUser container3-item"  aria-roledescription="menu area riservata">
-			<i class="_userIcon_"></i>
+			<i class="fa-solid fa-_userIcon_" aria-hidden></i>
 
 			<ul id="sideMenu">
 				<li><a href="../" lang="en">Home</a></li>
-				<li><a href="../dati-utente/">Gestione personale</a></li>
+				<li><a href="../dati-utente/">Personale</a></li>
 				<li><a href="../tracciati/">Tracciati</a></li>
 				<li><a href="../noleggio/">Noleggio</a></li>
 				<li><a id="activeSub" href="./">Ingressi</a></li>
@@ -84,11 +84,11 @@
 					<legend>Dati ingresso</legend>
 
 					<label for="data">Data apertura*</label>
-					<span><input type="date" _readonly_ name="data" id="data" value="_data_" min="_today_" placeholder="Data apertura"></span>
+					<span><input type="date" _readonly_ name="data" id="data" value="_data_" min="_today_" placeholder="Data apertura" aria-required="true"></span>
 					<br>
 
 					<label for="posti">Posti disponibili*</label>
-					<span><input type="number" name="posti" id="posti" value="_posti_" step="10" placeholder="Posti disponibili"></span>
+					<span><input type="number" name="posti" id="posti" value="_posti_" step="10" placeholder="Posti disponibili" aria-required="true"></span>
 					<br>
 				</fieldset>
 				<input type="submit" name="submit" id="submit" value="_azione_">

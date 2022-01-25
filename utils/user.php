@@ -3,6 +3,7 @@ namespace USER;
 
 class User {
     private $cf;
+    private $username;
     private $nome;
     private $cognome;
     private $nascita;
@@ -11,7 +12,7 @@ class User {
     private $psw;
     private $role; //1 == utente, 2 == admin
 
-    function __construct(string $cf, string $nome, string $cognome, string $nascita, string $telefono, string $email, int $role, string $psw = '') {
+    function __construct(string $cf, string $nome, string $cognome, string $nascita, string $telefono, string $email, int $role, string $username, string $psw = '') {
         $this->cf = $cf;
         $this->nome = $nome;
         $this->cognome = $cognome;
@@ -20,6 +21,7 @@ class User {
         $this->email = $email;
         $this->role = $role;
         $this->psw = $psw;
+        $this->username = $username;
     }
 
     public function getCF(): string {
@@ -52,6 +54,10 @@ class User {
 
     public function getPsw(): string {
         return $this->psw;
+    }
+
+    public function getUserName(): string {
+        return $this->username;
     }
 
     public function setPsw(string $p) {

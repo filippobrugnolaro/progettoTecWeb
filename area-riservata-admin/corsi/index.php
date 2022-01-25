@@ -120,5 +120,7 @@
     $page = str_replace('<corsi/>',$recordsBody,$page);
     $page = str_replace('<corso/>',$corsiBody,$page);
 
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
+
     echo $page;
 ?>

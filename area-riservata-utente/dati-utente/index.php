@@ -25,6 +25,7 @@
     $nascita = '';
     $telefono = '';
 
+    $username = '';
     $email = '';
     $password = '';
 
@@ -66,7 +67,7 @@
             $cf = $_SESSION['user']->getCF();
 
             //creo oggetto utente e faccio l'insert con la funzione
-            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $_SESSION['user']->getEmail(), 1,$_SESSION['user']->getPsw());
+            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $_SESSION['user']->getEmail(), 1,$_SESSION['user']->getUserName(), $_SESSION['user']->getPsw());
 
             if($conn->openDB()) {
                 if($conn->updateUserData($newUser)) {
@@ -85,6 +86,7 @@
     //SECONDO FORM - Modifica Password
     } else if (isset($_POST['submitPsw'])) {
         $email = $_SESSION['user']->getEmail();
+        $username = $_SESSION['user']->getUserName();
 
         //check password
         if (strlen($_POST['oldPsw']) == 0) {
@@ -105,7 +107,7 @@
 
         if(strlen($errors) == 0) {
             if($conn->openDB()) {
-                $checkPsw = $conn->checkNewPassword($email, $oldPassword, $newPassword);
+                $checkPsw = $conn->checkNewPassword($username, $oldPassword, $newPassword);
 
                 if(strlen($checkPsw) == 0) {
                     //creo oggetto utente e faccio l'insert con la funzione
@@ -118,6 +120,7 @@
                         $_SESSION['user']->getTelefono(),
                         $email,
                         1,
+                        $username,
                         $newPassword);
 
                     if($conn->updateUserPassword($newUser)) {
@@ -142,6 +145,7 @@
     $nascita = strlen($nascita) > 0 ? $nascita : $_SESSION['user']->getNascita();
     $telefono = strlen($telefono) > 0 ? $telefono : $_SESSION['user']->getTelefono();
     $email = strlen($email) > 0 ? $email : $_SESSION['user']->getEmail();
+    $username = strlen($username) > 0 ? $username : $_SESSION['user']->getUserName();
 
     if(strlen($globalError) > 0)
         $globalError = '<p>'.$globalError.'</p>';
@@ -158,15 +162,18 @@
     // PRIMO FORM
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
 
-    $page = str_replace("_cognome_", $cognome, $page);
-    $page = str_replace("_nome_", $nome, $page);
-    $page = str_replace("_nascita_", $nascita, $page);
-    $page = str_replace("_telefono_", $telefono, $page);
+    $page = str_replace('_cognome_', $cognome, $page);
+    $page = str_replace('_nome_', $nome, $page);
+    $page = str_replace('_nascita_', $nascita, $page);
+    $page = str_replace('_telefono_', $telefono, $page);
 
     // SECONDO FORM
     $page = str_replace('<errors/>', $errors, $page);
 
-    $page = str_replace("_email_", $email, $page);
+    $page = str_replace('_email_', $email, $page);
+    $page = str_replace('_username_', $username, $page);
+
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
 
     echo $page;
 

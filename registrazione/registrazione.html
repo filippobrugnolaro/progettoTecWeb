@@ -38,13 +38,13 @@
 			<li><a href="../noleggio/">Noleggio</a></li>
 			<li><a href="../ingressi/">Ingressi</a></li>
 			<li><a href="../contatti/">Contatti</a></li>
-			<li><a href="../login/">Area riservata</a></li>
+			<li id="active"><a href="../login/">Area riservata</a></li>
 		</ul>
 	</nav> <!-- end container 2 -->
 
 	<!-- GRUPPO 1 -> ITEM 2 -->
 	<nav id="breadcrumb" class="container1-item">
-		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../login/">Area riservata</a> &gt;&gt; Registrazione</p>
+		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> / <a href="../login/">Area riservata</a> / Registrazione</p>
 	</nav>
 
 
@@ -56,36 +56,40 @@
         <form method="post" action="./" onsubmit="return formValidation(event);">
 			<messaggiForm/>
 
-	            <fieldset>
-	                <legend>Dati personali</legend>
+	        <fieldset>
+	            <legend>Dati personali</legend>
 
 				<label for="cognomeUser">Cognome*</label>
-				<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" placeholder="Mario"></span><br/>
+				<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" aria-required="true" placeholder="Mario"></span><br/>
 
                 <label for="nomeUser">Nome*</label>
-				<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" placeholder="Rossi"></span> <br/>
+				<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" aria-required="true" placeholder="Rossi"></span> <br/>
 
 				<label for="nascitaUser">Data di nascita*</label>
-				<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_"></span> <br/>
+				<span><input type="date" name="nascitaUser" id="nascitaUser" aria-required="true" value="_nascita_"></span> <br/>
 
 				<label for="cfUser">Codice fiscale*</label>
-				<span><input type="text" name="cfUser" id="cfUser" value="_cf_" placeholder="MMMRRR00A11G224R"></span> <br/>
+				<span><input type="text" name="cfUser" id="cfUser" value="_cf_" aria-required="true" placeholder="MMMRRR00A11G224R"></span> <br/>
 
 				<label for="telUser">Telefono*</label>
-				<span><input type="tel" name="telUser" id="telUser" value="_telefono_" placeholder="3216547907"></span> <br/>
+				<span><input type="tel" name="telUser" id="telUser" value="_telefono_" aria-required="true" placeholder="3216547907"></span> <br/>
 			</fieldset>
-	            <errors/>
-	            <fieldset>
-					<legend>Dati per l'accesso</legend>
+
+			<errors/>
+	        <fieldset>
+				<legend>Dati per l'accesso</legend>
+
+				<label for="username" lang="en">Username*</label>
+				<span><input type="text" name="username" id="username" value="_username_" aria-required="true" placeholder="mariorossi65"></span> <br/>
 
                 <label for="emailUser" lang="en">E-mail*</label>
-				<span><input type="email" name="emailUser" id="emailUser" value="_email_" placeholder="mario.rossi@gmail.com"></span> <br/>
+				<span><input type="email" name="emailUser" id="emailUser" value="_email_" aria-required="true" placeholder="mario.rossi@gmail.com"></span> <br/>
 
                 <label for="pswUser">Password*</label>
-				<span><input type="password" name="pswUser" id="pswUser"></span> <br/>
+				<span><input type="password" name="pswUser" id="pswUser" aria-required="true"></span> <br/>
 
                 <label for="pswCheck">Reinserisci la password</label>
-				<span><input type="password" name="pswCheck" id="pswCheck"></span> <br/>
+				<span><input type="password" name="pswCheck" id="pswCheck" aria-required="true"></span> <br/>
 			</fieldset>
 
 			<input type="submit" name="submit" value="REGISTRATI">
@@ -108,10 +112,10 @@
             <p class="informazioniFooter">Indirizzo:</p>
 		</div>
 		<div class="footerValid">
-			<img src="images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+			<img src="../images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
 			<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
 					rights reserved</span></p>
-			<img src="images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+			<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 		</div>
 	</footer>
 

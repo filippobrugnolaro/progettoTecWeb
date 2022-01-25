@@ -21,6 +21,7 @@
     $cf = '';
     $telefono = '';
     $email = '';
+    $username = '';
 
     if (isset($_POST['submit'])) {
         //check dati anagrafica
@@ -28,6 +29,13 @@
         switch(checkInputValidity($cf,'/^(?:[A-Z][AEIOU][AEIOUX]|[AEIOU]X{2}|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/')) {
                 case 1: $messaggiForm .= '<li>Codice fiscale non presente.</li>'; break;
                 case 2: $messaggiForm .= '<li>Codice fiscale non valido.</li>'; break;
+                default: break;
+            }
+
+        $username = sanitizeInputString($_POST['username']);
+            switch(checkInputValidity($username,'/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/')) {
+                case 1: $messaggiForm .= '<li><span lang="en">Username</span> non presente.</li>'; break;
+                case 2: $messaggiForm .= '<li><span lang="en">Username</span> deve contenere solo lettere minuscole e numeri.</li>'; break;
                 default: break;
             }
 
@@ -64,9 +72,9 @@
 
         //check email e password
         if (strlen($_POST['emailUser']) == 0) {
-            $errors .= '<li>Email non inserita</li>';
+            $errors .= '<li><span lang="en">E-mail</span> non inserita</li>';
         } else if (filter_var($_POST['emailUser'], FILTER_VALIDATE_EMAIL) == false) {
-            $errors .= '<li>Email inserita non valida.</li>';
+            $errors .= '<li><span lang="en">E-mail</span> inserita non valida.</li>';
         } else {
             $email = sanitizeInputString($_POST['emailUser']);
         }
@@ -85,7 +93,7 @@
             $password = password_hash($password, PASSWORD_DEFAULT);
 
             //creo oggetto utente e faccio l'insert con la funzione
-            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $email, 0, $password);
+            $newUser = new User($cf, $nome, $cognome, $nascita, $telefono, $email, 0, $username, $password);
 
             if($conn->openDB()) {
                 $res = $conn->createNewUser($newUser);
@@ -95,7 +103,7 @@
                 } else if($res == -1){
                     $globalError = 'Errore durante l\'inserimento della registrazione.';
                 } else {
-                    $globalError = 'Esiste già un utente con questo codice fiscale.';
+                    $globalError = 'Esiste già un utente con questo codice fiscale o con questo <span lang="en">username</span>.';
                 }
                 $conn->closeDB();
             } else {
@@ -108,15 +116,16 @@
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);
 
-    $page = str_replace("_cognome_", $cognome, $page);
-    $page = str_replace("_nome_", $nome, $page);
-    $page = str_replace("_nascita_", $nascita, $page);
-    $page = str_replace("_cf_", $cf, $page);
-    $page = str_replace("_telefono_", $telefono, $page);
+    $page = str_replace('_cognome_', $cognome, $page);
+    $page = str_replace('_nome_', $nome, $page);
+    $page = str_replace('_nascita_', $nascita, $page);
+    $page = str_replace('_cf_', $cf, $page);
+    $page = str_replace('_telefono_', $telefono, $page);
+    $page = str_replace('_username_',$username,$page);
 
     $page = str_replace('<errors/>', $errors, $page);
 
-    $page = str_replace("_email_", $email, $page);
+    $page = str_replace('_email_', $email, $page);
 
     echo $page;
 ?>

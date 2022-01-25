@@ -280,5 +280,7 @@
     $page = str_replace('_action_',$action,$page);
     $page = str_replace('_azione_',$actionText,$page);
 
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
+
     echo $page;
 ?>

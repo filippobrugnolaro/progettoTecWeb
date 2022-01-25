@@ -33,7 +33,7 @@
                     $recordsBody .= '</article>';
                 }
             } else {
-                $errorDetails = 'Nessun corso disponibile.';
+                $errorDetails = 'Nessun corso disponibile al momento.';
             }
 
         } catch (Throwable $t) {
@@ -43,6 +43,12 @@
         $conn->closeDB();
     } else
         $globalError = 'Errore di connessione, riprovare più tardi.';
+
+    if(strlen($globalError) > 0)
+        $globalError = "<p>$globalError</p>";
+
+    if(strlen($errorDetails) > 0)
+        $errorDetails = "<p>$errorDetails</p>";
 
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<erroreCorsi/>',$errorDetails,$page);

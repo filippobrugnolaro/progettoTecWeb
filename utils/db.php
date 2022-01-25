@@ -28,7 +28,10 @@ use PRENOTAZIONE\Reservation;
 
 		public const QUERIES = array(
 			//0
-			array('SELECT * FROM moto',
+			array('SELECT numero, marca, modello, cilindrata, anno, COUNT(*) AS disponibili
+				FROM moto
+				GROUP BY marca, modello, cilindrata, anno
+				ORDER BY marca, modello',
 				'Errore durante il recupero delle informazioni sulle moto.'), //get all dirtbikes
 			//1
 			array('SELECT * FROM moto WHERE numero = _num_',
@@ -173,10 +176,10 @@ use PRENOTAZIONE\Reservation;
 		}
 
 		/* ***************************** LOGIN ************************** */
-		public function searchUser(string $email, string $password): ?User {
-			$email = mysqli_real_escape_string($this->conn,$email);
+		public function searchUser(string $username, string $password): ?User {
+			$username = mysqli_real_escape_string($this->conn,$username);
 
-			$sql = "SELECT * FROM utente WHERE email = '$email'";
+			$sql = "SELECT * FROM utente WHERE username = '$username'";
 
 			$query = mysqli_query($this->conn,$sql);
 
@@ -185,7 +188,7 @@ use PRENOTAZIONE\Reservation;
 					$row = mysqli_fetch_assoc($query);
 
 					if(password_verify($password,$row['password'])) {
-						$user = new User($row['cf'],$row['nome'],$row['cognome'],$row['nascita'],$row['telefono'],$row['email'],$row['ruolo']);
+						$user = new User($row['cf'],$row['nome'],$row['cognome'],$row['nascita'],$row['telefono'],$row['email'],$row['ruolo'],$username);
 						mysqli_free_result($query);
 
 						return $user;
@@ -445,6 +448,8 @@ use PRENOTAZIONE\Reservation;
 		public function createNewUser(User $newUser): int {
 			$cf = strtoupper(mysqli_real_escape_string($this->conn,$newUser->getCF()));
 
+			$username = mysqli_real_escape_string($this->conn,$newUser->getUserName());
+
 			$cognome = mysqli_real_escape_string($this->conn,$newUser->getCognome());
 			$cognome[0] = strtoupper($cognome[0]);
 
@@ -460,8 +465,8 @@ use PRENOTAZIONE\Reservation;
 			$password = $newUser->getPsw();
 			$role = 1;
 
-			$sql = "INSERT INTO utente (cf,cognome,nome,nascita,telefono,email,password,ruolo)
-					VALUES (\"$cf\",\"$cognome\",\"$nome\",\"$nascita\",\"$telefono\",\"$email\",\"$password\",$role)";
+			$sql = "INSERT INTO utente (cf,cognome,nome,nascita,telefono,email,password,ruolo,username)
+					VALUES (\"$cf\",\"$cognome\",\"$nome\",\"$nascita\",\"$telefono\",\"$email\",\"$password\",$role,\"$username\")";
 
 			mysqli_query($this->conn,$sql);
 
@@ -481,6 +486,8 @@ use PRENOTAZIONE\Reservation;
 			//usato per identificare l'utente
 			$cf = strtoupper(mysqli_real_escape_string($this->conn,$user->getCF()));
 
+			$username = mysqli_real_escape_string($this->conn,$user->getUserName());
+
 			//colonne da aggiornare
 			$cognome = mysqli_real_escape_string($this->conn,$user->getCognome());
 			$cognome[0] = strtoupper($cognome[0]);
@@ -491,7 +498,8 @@ use PRENOTAZIONE\Reservation;
 			$nascita = mysqli_real_escape_string($this->conn,$user->getNascita());
 			$telefono = mysqli_real_escape_string($this->conn,$user->getTelefono());
 
-			$sql = "UPDATE utente SET cognome=\"$cognome\", nome=\"$nome\", nascita=\"$nascita\", telefono = \"$telefono\" WHERE cf = \"$cf\"";
+			$sql = "UPDATE utente SET cognome=\"$cognome\", nome=\"$nome\", nascita=\"$nascita\", telefono = \"$telefono\", ";
+			$sql .= "username = \"$username\" WHERE cf = \"$cf\"";
 			mysqli_query($this->conn,$sql);
 
 			if(!mysqli_error($this->conn))
@@ -500,10 +508,10 @@ use PRENOTAZIONE\Reservation;
 				return false;
 		}
 
-		public function checkNewPassword(string $email, string $oldPsw, string $newPsw) : string {
+		public function checkNewPassword(string $username, string $oldPsw, string $newPsw) : string {
 			//controllo che email e psw vecchia siano corette
 
-			if($this->searchUser($email, $oldPsw) != null) {
+			if($this->searchUser($username, $oldPsw) != null) {
 				//controllo che psw vecchia e nuova siano diverse
 				if(strcmp($oldPsw, $newPsw) != 0) {
 						return '';
@@ -587,6 +595,25 @@ use PRENOTAZIONE\Reservation;
 				if(mysqli_num_rows($query) > 0) {//ha già prenotato un corso!!
 					mysqli_free_result($query);
 					return -1;
+				}
+
+				//controllo se ci sono posti disponibili
+				$sql = "SELECT data, posti, (SELECT COUNT(*)
+												FROM ingressi_entrata
+												WHERE ingressi_entrata.data = \"$data\" GROUP BY ingressi_entrata.data) AS occupati
+						FROM data_disponibile
+						WHERE data=\"$data\"";
+
+				//echo $sql;
+
+				$query = mysqli_query($this->conn,$sql);
+
+				if(mysqli_num_rows($query) > 0) {
+					$row = mysqli_fetch_assoc($query);
+					mysqli_free_result($query);
+
+					if($row['posti'] - $row['occupati'] <= 0)
+						return -3;
 				}
 
 				$sql = "INSERT INTO ingressi_entrata (data, utente) VALUES (\"$data\",\"$user\")";
@@ -673,6 +700,23 @@ use PRENOTAZIONE\Reservation;
 			if(mysqli_num_rows($query) > 0) {//ha già prenotato un ingresso!!
 				mysqli_free_result($query);
 				return -1;
+			}
+
+			//controllo se ci sono posti disponibili
+			$sql = "SELECT posti, (SELECT COUNT(*)
+										FROM ingressi_lezione
+										WHERE ingressi_lezione.lezione = \"$lez\" GROUP BY ingressi_lezione.lezione) AS occupati
+				FROM lezione
+				WHERE id=\"$lez\"";
+
+			$query = mysqli_query($this->conn,$sql);
+
+			if(mysqli_num_rows($query) > 0) {
+				$row = mysqli_fetch_assoc($query);
+				mysqli_free_result($query);
+
+				if($row['posti'] - $row['occupati'] <= 0)
+					return -3;
 			}
 
 			$sql = "INSERT INTO ingressi_lezione (lezione, utente) VALUES (\"$lez\",\"$user\"); ";

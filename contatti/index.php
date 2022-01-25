@@ -49,7 +49,7 @@
         $email = sanitizeInputString($_POST['email']);
         switch (checkInputValidity($email,null)) {
             case 1:
-                $messaggiForm .= '<li>Email non presente.</li>';
+                $messaggiForm .= '<li><span lang="en">E-mail<span> non presente.</li>';
                 break;
             default:
                 break;
@@ -108,7 +108,7 @@
                 $newId = $conn->createMessage($messaggio);
 
                 if ($newId > -1) {
-                    $messaggiForm = 'Messaggio inviato correttamente.'; //dovrebbe inviare mail ma non possiamo farlo :( )
+                    $messaggiForm = '<li>Messaggio inviato correttamente.</li>'; //dovrebbe inviare mail ma non possiamo farlo :( )
 
                     $text = '';
                     $tel = '';
@@ -118,16 +118,20 @@
                     $checked = '';
                     $obj = '';
                 } else
-                    $messaggiForm = 'Errore durante l\'invio del messaggio.';
+                    $messaggiForm = '<li>Errore durante l\'invio del messaggio.</li>';
 
                 $conn->closeDB();
             } else {
                 $globalError = 'Errore di connessione, riprovare più tardi.';
             }
-        } else {
-            $messaggiForm = '<ul>' . $messaggiForm . '</ul>';
         }
     }
+
+    if(strlen($messaggiForm) > 0)
+        $messaggiForm = "<ul>$messaggiForm</ul>";
+
+    if(strlen($globalError) > 0)
+        $globalError = "<p>$globalError</p>";
 
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);

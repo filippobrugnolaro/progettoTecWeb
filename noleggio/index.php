@@ -17,11 +17,15 @@
 
             if($records !== null) {
                 foreach($records as $record) {
+                    $f = $record['cilindrata'] == 250 || $record['cilindrata'] == 450 ? 'f' : '';
+
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<td>'.$record['marca'].'</td>';
                     $recordsBody .= '<td>'.$record['modello'].'</td>';
                     $recordsBody .= '<td>'.$record['cilindrata'].'<abbr title=\'Centimetri cubici\'>cc</abbr></td>';
                     $recordsBody .= '<td>'.$record['anno'].'</td>';
+                    $recordsBody .= '<td>'.$record['disponibili'].'</td>';
+                    $recordsBody .= '<td><a href=\'http://www.motodacross.com/'.strtolower($record['marca']).'/'.$record['cilindrata'].$f.'.html\' target=\'_blank\' aria-label=\'dettaglio moto\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
             } else {

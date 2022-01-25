@@ -46,9 +46,9 @@
 
     <!-- GRUPPO 1 -> ITEM 2 -->
     <nav id="breadcrumb">
-        <p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-            <a href="../">Area riservata</a> &gt;&gt; <a href="./">Tracciati</a>
-            &gt;&gt; Gestione tracciato
+        <p>Ti trovi in <a href="../../" lang="en">Home</a> /
+            <a href="../">Area riservata</a> / <a href="./">Tracciati</a>
+            / Gestione tracciato
         </p>
     </nav>
 
@@ -57,11 +57,11 @@
     <div class="container3 container1-item">
         <!-- GRUPPO 3 -> ITEM 1 -->
         <nav class="navUser container3-item"  aria-roledescription="menu area riservata">
-            <i class="_userIcon_"></i>
+            <i class="fa-solid fa-_userIcon_" aria-hidden></i>
 
             <ul id="sideMenu">
                 <li><a href="../" lang="en">Home</a></li>
-                <li><a href="../dati-utente/">Gestione personale</a></li>
+                <li><a href="../dati-utente/">Personale</a></li>
                 <li><a id="activeSub" href="./">Tracciati</a></li>
                 <li><a href="../noleggio/">Noleggio</a></li>
                 <li><a href="../ingressi/">Ingressi</a></li>
@@ -88,16 +88,16 @@
                     <id/>
 
                     <label for="lunghezza">Lunghezza (metri)*</label>
-                    <span><input type="number" name="lunghezza" id="lunghezza" value="_lunghezza_" step="100" placeholder="Lunghezza del tracciato"></span>
+                    <span><input type="number" name="lunghezza" id="lunghezza" value="_lunghezza_" aria-required="true" step="100" placeholder="Lunghezza del tracciato"></span>
                     <br>
 
                     <label for="descrizione">Descrizione*</label>
-                    <span><textarea placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione">_descrizione_</textarea>
+                    <span><textarea placeholder="Breve descrizione del tracciato" cols="50" rows="10" aria-required="true" name="descrizione" id="descrizione">_descrizione_</textarea>
                     </span>
                     <br>
 
                     <label for="terreno">Terreno*</label>
-                    <select name="terreno" id="terreno">
+                    <select name="terreno" id="terreno" aria-required="true">
                         <option value="terra_battuta">Terra battuta</option>
                         <option value="terra_sassosa">Terra sassosa</option>
                         <option value="terra_morbida">Terra morbida</option>
@@ -106,16 +106,16 @@
                     <br>
 
                     <label for="apertura">Orario apertura*</label>
-                    <span><input type="time" name="apertura" id="apertura" value="_apertura_"  step="60"></span>
+                    <span><input type="time" name="apertura" id="apertura" value="_apertura_" aria-required="true"  step="60"></span>
                     <br>
                     <label for="chiusura">Orario chiusura*</label>
-                    <span><input type="time" name="chiusura" id="chiusura" value="_chiusura_" step="60"></span>
+                    <span><input type="time" name="chiusura" id="chiusura" value="_chiusura_" aria-required="true" step="60"></span>
                     <br>
 
                     <oldImg/>
 
                     <label for="img">Immagine nuova</label>
-                    <input type="file" name="img" id="img" accept="image/png, image/jpeg">
+                    <input type="file" name="img" id="img" accept="image/png, image/jpeg" _requiredImg_>
 
                 </fieldset>
                 <input type="submit" name="submit" id="submit" value="_azione_">

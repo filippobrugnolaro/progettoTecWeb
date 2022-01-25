@@ -73,5 +73,7 @@
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<messaggi/>',$messaggi,$page);
 
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
+
     echo $page;
 ?>

@@ -168,5 +168,7 @@
     $page = str_replace('_azione_',$actionText,$page);
     $page = str_replace('_today_',date("Y-m-d"),$page);
 
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
+
     echo $page;
 ?>

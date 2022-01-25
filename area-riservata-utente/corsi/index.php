@@ -74,12 +74,18 @@
                     $noleggioAttrezzatura = '';
                     $moto = '';
                 }
-                else if ($res == -1) {
-                    $messaggiForm = '<li>Impossibile prenotare corso. Hai già prenotato un ingresso per questa data!</li>';
-                    $error = true;
-                } else {
-                    $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione del corso.</li>';
-                    $error = true;
+                else {
+                    if ($res == -1) {
+                        $messaggiForm = '<li>Impossibile prenotare corso. Hai già prenotato un ingresso per questa data!</li>';
+                        $error = true;
+                    }
+                    else if($res == -3) {
+                        $messaggiForm = '<li>Impossibile prenotare corso. Non ci sono più posti disponibili per questo corso!</li>';
+                        $error = true;
+                    } else {
+                        $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione del corso.</li>';
+                        $error = true;
+                    }
                 }
 
                 $conn->closeDB();
@@ -207,12 +213,12 @@
                     <messaggiForm/>
 
                     <label for="corso">Corso*</label>
-                    <select id="corso" name="corso">
+                    <select id="corso" name="corso" aria-required="true">
                         <corsoDisp/>
                     </select>
                     <br>
 
-                    <p id="descCorso"></p>
+                    <p id="descCorso" aria-live="polite"></p>
 
                     <fieldset>
                         <legend>Noleggio</legend>
@@ -223,7 +229,7 @@
                         <input type="checkbox" id="moto" name="moto" value="moto">
 
                         <label for="motoNol">Tipo di moto</label>
-                        <select id="motoNol" name="motoNoleggio">
+                        <select id="motoNol" name="motoNoleggio" aria-live="polite">
                         </select>
                         <br/>
 
@@ -267,6 +273,8 @@
     $page = str_replace('<corsoDisp/>',$corsiDropdown,$page);
     $page = str_replace('_checkedAttr_',$noleggioAttrezzatura,$page);
     $page = str_replace('_checkedMoto_',$noleggioMoto,$page);
+
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
 
     echo $page;
 ?>

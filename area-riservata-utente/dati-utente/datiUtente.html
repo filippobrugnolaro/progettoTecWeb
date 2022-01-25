@@ -9,7 +9,7 @@
 	<!-- <meta name="keywords" content="servizi, motocross, enduro" /> -->
 	<!-- <meta name="description" content="servizi offerti dall'impianto" /> -->
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-	<!--<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>-->
+	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 
 	<script src="datiUtenteValidation.js"></script>
 
@@ -44,7 +44,7 @@
 
 	<!-- GRUPPO 1 -> ITEM 2 -->
 	<nav id="breadcrumb" class="container1-item">
-		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Dati personali</p>
+		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> / <a href="../">Area riservata</a> / Dati personali</p>
 	</nav>
 
 	<!-- GRUPPO 1 -> ITEM 3 -->
@@ -52,7 +52,7 @@
 	<div class="container3 container1-item">
 		<!-- GRUPPO 3 -> ITEM 1 -->
 		<nav class="navUser container3-item"  aria-roledescription="menu area riservata utente">
-			<i class="_userIcon_"></i>
+			<i class="fa-solid fa-_userIcon_" aria-hidden></i>
 
 			<ul id="sideMenu">
 				<li><a href="../" lang="en">Home</a></li>
@@ -76,19 +76,19 @@
 					<legend>Dati personali</legend>
 
 					<label for="cognomeUser">Cognome*</label>
-					<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" required/></span>
+					<span><input type="text" name="cognomeUser" aria-required="true" id="cognomeUser" value="_cognome_"/></span>
 					<br/>
 
 					<label for="nomeUser">Nome*</label>
-					<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" required/></span>
+					<span><input type="text" name="nomeUser" aria-required="true" id="nomeUser" value="_nome_"/></span>
 					<br/>
 
 					<label for="nascitaUser">Data di nascita*</label>
-					<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" required/></span>
+					<span><input type="date" name="nascitaUser" aria-required="true" id="nascitaUser" value="_nascita_"/></span>
 					<br/>
 
 					<label for="telUser">Telefono*</label>
-					<span><input type="tel" name="telUser" id="telUser" value="_telefono_" required/></span>
+					<span><input type="tel" name="telUser" id="telUser" aria-required="true" value="_telefono_"/></span>
 					<br/>
 				</fieldset>
 				<input type="submit" name="submitUser" value="Applica Modifiche"/>
@@ -101,20 +101,24 @@
 				<fieldset>
 					<legend>Dati per l'accesso</legend>
 
+					<label for="username" lang="en">Username*</label>
+					<span><input type="text" name="username" id="username" value="_username_" readonly></span>
+					<br/>
+
 					<label for="emailUser" lang="en">E-mail*</label>
-					<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
+					<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly></span>
 					<br/>
 
 					<label for="oldPsw">Vecchia password*</label>
-					<span><input type="password" name="oldPsw" id="oldPsw" required/></span>
+					<span><input type="password" name="oldPsw" id="oldPsw" aria-required="true"></span>
 					<br/>
 
 					<label for="newPsw">Nuova password*</label>
-					<span><input type="password" name="newPsw" id="newPsw" required/></span>
+					<span><input type="password" name="newPsw" id="newPsw" aria-required="true"></span>
 					<br/>
 
 					<label for="pswCheck">Reinserisci nuova password*</label>
-					<span><input type="password" name="pswCheck" id="pswCheck" required/></span>
+					<span><input type="password" name="pswCheck" id="pswCheck" aria-required="true"></span>
 					<br/>
 				</fieldset>
 				<input type="submit" name="submitPsw" value="Modifica"/>

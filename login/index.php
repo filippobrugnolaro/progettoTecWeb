@@ -38,28 +38,28 @@
         $action = './';
 
     if (isset($_POST['submit'])) {
-        if (strlen($_POST['email']) == 0) {
-            $errors .= '<li>Email non inserita</li>';
-        } else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) == false) {
-            $errors .= '<li>Email inserita non valida.</li>';
+        if (strlen($_POST['username']) == 0) {
+            $errors .= '<li><span lang="en">Username</span> non inserito.</li>';
+        } else if (!preg_match('/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/',$_POST['username'])) {
+            $errors .= '<li><span lang="en">Username</span> inserito non valido.</li>';
         } else {
-            $email = sanitizeInputString($_POST['email']);
+            $username = sanitizeInputString($_POST['username']);
         }
 
         if (strlen($_POST['password']) == 0) {
-            $errors .= '<li>Password non inserita</li>';
+            $errors .= '<li>Password non inserita.</li>';
         } else
             $password = $_POST['password'];
 
         if (strlen($errors) == 0) {
             try {
                 if ($conn->openDB()) {
-                    $user = $conn->searchUser($email, $password);
+                    $user = $conn->searchUser($username, $password);
 
                     $conn->closeDB();
 
                     if ($user === null)
-                        $errors = '<li>Email o password errata.</li>';
+                        $errors = '<li>Username o password non corretti.</li>';
                     else {
                         $_SESSION['user'] = $user;
 

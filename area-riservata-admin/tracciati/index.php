@@ -81,5 +81,7 @@
     $page = str_replace('<erroreTracciati/>',$errorTracciati,$page);
     $page = str_replace('<tracciati/>',$recordsBody,$page);
 
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
+
     echo $page;
 ?>

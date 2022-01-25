@@ -37,7 +37,7 @@
                 $messaggioBody = '<article>
                                         <ul>
                                             <li>Nominativo: _nominativo_</li>
-                                            <li>Email: <a href="mailto:_email_?subject=RE: _obj_">_email_</a></li>
+                                            <li><span lang="en">E-mail</span>: <a href="mailto:_email_?subject=RE: _obj_">_email_</a></li>
                                             <li>Telefono: <a href="tel:_tel_">_tel_</a></li>
                                         </ul>
 
@@ -83,6 +83,8 @@
     $page = str_replace('_email_',$email,$page);
     $page = str_replace('_obj_',$obj,$page);
     $page = str_replace('_messaggio_',$text,$page);
+
+    $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
 
     echo $page;
 ?>
