@@ -12,36 +12,44 @@
 	<!--<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>-->
 
 	<script src="registrazioneValidation.js"></script>
-	<link rel="stylesheet" href="../css/style1.css"/>
+	<link rel="stylesheet" href="../css/style.css"/>
+	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 
 </head>
 
 
-<body onload="load();">
-	<div id="menu" class="container-horizontal">
-		<header>
-			<h1 lang="en">Adrenaline Motocross Park</h1>
-		</header>
+<body onload="load();" class="container1">
 
-    <nav id="menuList">
-			<ul>
-				<li><a href="../" lang="en">Home</a></li>
-				<li><a href="../tracciati/">Tracciati</a></li>
-				<li><a href="../servizi/">Servizi</a></li>
-				<li><a href="../corsi/">Corsi</a></li>
-				<li><a href="../noleggio">Noleggio</a></li>
-				<li><a href="../ingressi/">Ingressi</a></li>
-				<li><a href="../contatti/">Contatti</a></li>
-	      <li><a href="../login/">Area riservata</a></li>
-			</ul>
-		</nav>
-	</div>
+	<!-- GRUPPO 1 -> ITEM 1 -->
+	<!-- start container 2 -->
+	<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-	<nav id="breadcrumb">
+		<!-- GRUPPO 2 -> ITEM 1 -->
+		<!-- LOGO -->
+		<i class="fa-brands fa-google">oogle</i>
+
+		<!-- GRUPPO 2 -> ITEM 2 -->
+		<!-- MENU LINK -->
+		<ul id="menu">
+			<li><a href="../" lang="en">Home</a></li>
+			<li><a href="../tracciati/">Tracciati</a></li>
+			<li><a href="../servizi/">Servizi</a></li>
+			<li><a href="../corsi/">Corsi</a></li>
+			<li><a href="../noleggio/">Noleggio</a></li>
+			<li><a href="../ingressi/">Ingressi</a></li>
+			<li><a href="../contatti/">Contatti</a></li>
+			<li><a href="../login/">Area riservata</a></li>
+		</ul>
+	</nav> <!-- end container 2 -->
+
+	<!-- GRUPPO 1 -> ITEM 2 -->
+	<nav id="breadcrumb" class="container1-item">
 		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../login/">Area riservata</a> &gt;&gt; Registrazione</p>
 	</nav>
 
-	<div id="contentLogin" class="content">
+
+
+  <div id="contentRegistrazione" class="container1-item content">
 		<h1>Registrazione</h1>
 
         <globalError/>
@@ -82,7 +90,7 @@
 
 			<input type="submit" name="submit" value="REGISTRATI">
 		</form>
-	</div>
+  </div>
 
 	<footer>
 		<div class="footerInfo">
@@ -100,12 +108,15 @@
             <p class="informazioniFooter">Indirizzo:</p>
 		</div>
 		<div class="footerValid">
-			<img src="../images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+			<img src="images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
 			<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
 					rights reserved</span></p>
-			<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+			<img src="images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 		</div>
 	</footer>
+
 </body>
+
+
 
 </html>
