@@ -367,6 +367,7 @@ form input[type=submit] {
 
 .content a {
 	color: rgb(38, 74, 70);
+	padding: 0.5em;
 }
 
 .content a:visited {
@@ -453,7 +454,7 @@ form input[type=submit] {
 	padding-left: 0.5em;
 }
 
-/* *************** INGRESSI *************** */
+/* *************** SERVIZI *************** */
 #contentServizi img {
 	width: 15%;
 	padding: 0.5em;
@@ -467,6 +468,19 @@ form input[type=submit] {
 
 .infoServizi h2 {
 	padding-left: 0.5em;
+}
+
+/* *************** NOLEGGIO *************** */
+#contentNoleggio img {
+	margin-left: 30%;
+}
+
+#contentNoleggio h2 {
+	padding-left: 0.5em;
+}
+
+#contentNoleggio table {
+	margin-bottom: 0.5em;
 }
 
 /* *************** INGRESSI *************** */

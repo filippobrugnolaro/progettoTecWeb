@@ -11,38 +11,44 @@
 	<meta name="keywords" content="motocross, informazioni, noleggio" />
 	<meta name="description" content="Pagina dedicata al noleggio di attrezzatura" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-	<link rel="stylesheet" href="../css/style1.css"/>
+	<link rel="stylesheet" href="../css/style.css"/>
+	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-	<div id="menu" class="container-horizontal">
-		<header>
-			<h1 lang="en">Adrenaline Motocross Park</h1>
-		</header>
+<body class="container1">
 
-    <nav id="menuList">
-			<ul>
-				<li><a href="../" lang="en">Home</a></li>
-				<li><a href="../tracciati/">Tracciati</a></li>
-				<li><a href="../servizi/">Servizi</a></li>
-				<li><a href="../corsi/">Corsi</a></li>
-				<li>Noleggio</li>
-				<li><a href="../ingressi/">Ingressi</a></li>
-				<li><a href="../contatti/">Contatti</a></li>
-	      <li><a href="../login/">Area riservata</a></li>
-			</ul>
-		</nav>
-	</div>
+	<!-- GRUPPO 1 -> ITEM 1 -->
+	<!-- start container 2 -->
+	<nav class="container2 container1-item" aria-roledescription="menu principale">
 
-	<nav id="breadcrumb">
+		<!-- GRUPPO 2 -> ITEM 1 -->
+		<!-- LOGO -->
+		<i class="fa-brands fa-google">oogle</i>
+
+		<!-- GRUPPO 2 -> ITEM 2 -->
+		<!-- MENU LINK -->
+		<ul id="menu">
+			<li><a href="../" lang="en">Home</a></li>
+			<li><a href="../tracciati/">Tracciati</a></li>
+			<li><a href="../servizi/">Servizi</a></li>
+			<li><a href="../corsi/">Corsi</a></li>
+			<li id="active">Noleggio</li>
+			<li><a href="../ingressi/">Ingressi</a></li>
+			<li><a href="../contatti/">Contatti</a></li>
+			<li><a href="../login/">Area riservata</a></li>
+		</ul>
+	</nav> <!-- end container 2 -->
+
+	<!-- GRUPPO 1 -> ITEM 2 -->
+	<nav id="breadcrumb" class="container1-item">
 		<p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Noleggio</p>
 	</nav>
 
-  <div id="contentNoleggio" class="content">
-    <h1>Noleggio attrezzatura</h1>
+  <div id="contentNoleggio" class="container1-item content">
+		<h1>Noleggio attrezzatura</h1>
 
-    <p>Tutto l'occorrente per una giornata in pista</p>
-    <img src="" alt="pilota seduto su moto con vestiario adatto">
+    <img src="../images/noleggio.jpg" alt="pilota seduto su moto con vestiario adatto">
+		<p>Tutto l'occorrente per una giornata in pista</p>
 
     <h2>Noleggio moto</h2>
 
@@ -64,7 +70,7 @@
 
     <a href='../login/?redirect=noleggio'>Prenota Attrezzatura</a>
 
-    <a href="#top">Torna su</a>
+		<a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
   </div>
 
 	<footer>
@@ -83,12 +89,14 @@
             <p class="informazioniFooter">Indirizzo:</p>
 		</div>
 		<div class="footerValid">
-			<img src="../images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
+			<img src="images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode" />
 			<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
 					rights reserved</span></p>
-			<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
+			<img src="images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 		</div>
 	</footer>
+
 </body>
+
 
 </html>
