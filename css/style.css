@@ -326,6 +326,10 @@ form input {
 	padding: 0.5em;
 }
 
+form input[type=checkbox] {
+	min-width: auto;
+}
+
 form input[type=submit] {
 	min-width: 200px;
 	align-self: flex-end;
@@ -384,7 +388,7 @@ form input[type=submit] {
 
 	background-color: rgb(227, 230, 181);
 	border: 2px solid rgb(38, 74, 70);
-  border-radius: 5px;
+  	border-radius: 5px;
 }
 
 /* **************** HOME **************** */
@@ -424,6 +428,19 @@ form input[type=submit] {
 .infoTracciato h2 {
 	padding-left: 0.5em;
 }
+
+/* *************** INGRESSI *************** */
+#contentIngressi article {
+	flex-direction: column;
+	align-items: center;
+}
+
+/* *************** CONTATTI *************** */
+#contentContatti article {
+	flex-direction: column;
+	align-items: center;
+}
+
 
 /* **************** FOOTER **************** */
 

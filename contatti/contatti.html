@@ -12,96 +12,109 @@
 	<meta name="keywords" content="motocross, informazioni, contatti" />
 	<meta name="description" content="Informazioni di contatto" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-  <script src="contattiValidation.js"></script>
-	<link rel="stylesheet" href="../css/style1.css"/>
+    <script src="contattiValidation.js"></script>
 
+    <script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../css/style.css"/>
 </head>
 
-<body onload="load();">
-	<div id="menu" class="container-horizontal">
-		<header>
-			<h1 lang="en">Adrenaline Motocross Park</h1>
-		</header>
+<!-- start container 1 -->
+<body class="container1" onload="load();">
 
-    <nav id="menuList">
-			<ul>
-				<li><a href="../" lang="en">Home</a></li>
-				<li><a href="../tracciati/">Tracciati</a></li>
-				<li><a href="../servizi/">Servizi</a></li>
-				<li><a href="../corsi/">Corsi</a></li>
-				<li><a href="../noleggio">Noleggio</a></li>
-				<li><a href="../ingressi/">Ingressi</a></li>
-				<li>Contatti</li>
-	      <li><a href="../login/">Area riservata</a></li>
-			</ul>
-		</nav>
-	</div>
+    <!-- GRUPPO 1 -> ITEM 1 -->
+    <!-- start container 2 -->
+    <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Contatti</p>
-	</nav>
+        <!-- GRUPPO 2 -> ITEM 1 -->
+        <!-- LOGO -->
+        <i class="fa-brands fa-google">oogle</i>
 
-  <div id="contentContatti" class="content">
+        <!-- GRUPPO 2 -> ITEM 2 -->
+        <!-- MENU LINK -->
+        <ul id="menu">
+            <li><a href="../" lang="en">Home</a></li>
+            <li><a href="tracciati/">Tracciati</a></li>
+            <li><a href="servizi/">Servizi</a></li>
+            <li><a href="corsi/">Corsi</a></li>
+            <li><a href="noleggio/">Noleggio</a></li>
+            <li><a href="ingressi/">Ingressi</a></li>
+            <li id="active">Contatti</li>
+            <li><a href="login/">Area riservata</a></li>
+        </ul>
+    </nav> <!-- end container 2 -->
 
-      <h1>Contatti</h1>
+    <!-- GRUPPO 1 -> ITEM 2 -->
+    <nav id="breadcrumb" class="container1-item">
+        <p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Contatti</p>
+    </nav>
 
-      <h2>Dove siamo</h2>
+    <!-- GRUPPO 1 -> ITEM 3 -->
+    <div id="contentContatti" class="container1-item content">
 
-          <p class="informazioniContatti"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
+        <h1>Contatti</h1>
 
-          <p class="informazioniContatti"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
+        <article>
+            <h2>Dove siamo</h2>
 
-          <p class="informazioniContatti">Indirizzo:</p>
+            <p class="informazioniContatti"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
 
-      <h2>Chiedici informazioni!</h2>
+            <p class="informazioniContatti"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
 
-          <form action="./" method="post" onsubmit="return formValidation(event);">
-              <messaggiForm/>
-              <globalError/>
+            <p class="informazioniContatti">Indirizzo:</p>
+        </article>
+        
+        <article>
+            <h2>Chiedici informazioni!</h2>
 
-              <fieldset>
-                  <legend>Dati personali</legend>
+            <form action="./" method="post" onsubmit="return formValidation(event);">
+                <messaggiForm/>
+                <globalError/>
 
-                  <label for="nome">Nome*</label>
-                  <span><input type="text" name="nome" id="nome" value="_nome_" placeholder="Mario"></span>
-                  <br>
+                <fieldset>
+                    <legend>Dati personali</legend>
 
-                  <label for="cognome">Cognome*</label>
-                  <span><input type="text" name="cognome" id="cognome" value="_cognome_" placeholder="Rossi"></span>
-                  <br>
+                    <label for="nome">Nome*</label>
+                    <span><input type="text" name="nome" id="nome" value="_nome_" placeholder="Mario"></span>
+                    <br>
 
-                  <label for="email"><span lang="en">E-mail</span>*</label>
-                  <span><input type="email" name="email" id="email" value="_email_" placeholder="mario.rossi@gmail.com"></span>
-                  <br>
+                    <label for="cognome">Cognome*</label>
+                    <span><input type="text" name="cognome" id="cognome" value="_cognome_" placeholder="Rossi"></span>
+                    <br>
 
-                  <label for="telefono">Telefono*</label>
-                  <span><input type="tel" name="telefono" id="telefono" value="_tel_" placeholder="34213458973"></span>
+                    <label for="email"><span lang="en">E-mail</span>*</label>
+                    <span><input type="email" name="email" id="email" value="_email_" placeholder="mario.rossi@gmail.com"></span>
+                    <br>
 
-              </fieldset>
-              <fieldset>
+                    <label for="telefono">Telefono*</label>
+                    <span><input type="tel" name="telefono" id="telefono" value="_tel_" placeholder="34213458973"></span>
 
-                  <legend>Richiesta</legend>
+                </fieldset>
 
-                  <label for="oggetto">Oggetto*</label>
-                  <span><input type="text" name="oggetto" id="oggetto" value="_obj_" placeholder="Richiesta informazioni per..."></span>
-                  <br>
+                <fieldset>
+                    <legend>Richiesta</legend>
 
-                  <label for="messaggio">Messaggio*</label>
-                  <div><textarea id="messaggio" name="messaggio" rows="10" cols="50" placeholder="Testo del messaggio">_text_</textarea></div>
-              </fieldset>
+                    <label for="oggetto">Oggetto*</label>
+                    <span><input type="text" name="oggetto" id="oggetto" value="_obj_" placeholder="Richiesta informazioni per..."></span>
+                    <br>
 
-              <span><input type="checkbox" name="termini" id="termini" _checked_></span>
-              <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.*</label>
-              <br>
+                    <label for="messaggio">Messaggio*</label>
+                    <div><textarea id="messaggio" name="messaggio" rows="10" cols="50" placeholder="Testo del messaggio">_text_</textarea></div>
+                    
+                    <div>
+                        <span><input type="checkbox" name="termini" id="termini" _checked_></span>
+                        <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.*</label>
+                    </div>
+                    <br>
 
-              <input type="submit" name="submit" id="invio">
+                    <input type="submit" name="submit" id="invio">
+                </fieldset>
+            </form>
+        </article>
 
-          </form>
+        <a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+    </div>
 
-      <a href="#top">Torna su</a>
-
-  </div>
-
+    <!-- GRUPPO 1 -> ITEM 4 -->
 	<footer>
 		<div class="footerInfo">
 			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
@@ -124,6 +137,6 @@
 			<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 		</div>
 	</footer>
-</body>
+</body> <!-- end container 1 -->
 
 </html>
