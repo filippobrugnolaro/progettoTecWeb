@@ -9,135 +9,134 @@
 	<!-- <meta name="keywords" content="servizi, motocross, enduro" /> -->
 	<!-- <meta name="description" content="servizi offerti dall'impianto" /> -->
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
-	<!--<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>-->
-
 	<script src="datiValidation.js"></script>
 
+	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
-<body onload="load();">
-	<!-- start container 1 -->
-	<div class="container1">
+<!-- start container 1 -->
+<body class="container1" onload="load();">
 
-        <!-- GRUPPO 1 -> ITEM 1 -->
-        <!-- start container 2 -->
-        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+	<!-- GRUPPO 1 -> ITEM 1 -->
+	<!-- start container 2 -->
+	<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-            <!-- GRUPPO 2 -> ITEM 1 -->
-			<!-- LOGO -->
-			<i class="fa-brands fa-google">oogle</i>
+		<!-- GRUPPO 2 -> ITEM 1 -->
+		<!-- LOGO -->
+		<i class="fa-brands fa-google">oogle</i>
 
-			<!-- GRUPPO 2 -> ITEM 2 -->
-			<!-- MENU LINK -->
-            <ul id="menu">
-                <li><a href="../../" lang="en">Home</a></li>
-                <li><a href="../../tracciati/">Tracciati</a></li>
-                <li><a href="../../servizi/">Servizi</a></li>
-                <li><a href="../../corsi/">Corsi</a></li>
-                <li><a href="../../noleggio/">Noleggio</a></li>
-                <li><a href="../../ingressi/">Ingressi</a></li>
-                <li><a href="../../contatti/">Contatti</a></li>
-                <li id="active">Area riservata</li>
-            </ul>
+		<!-- GRUPPO 2 -> ITEM 2 -->
+		<!-- MENU LINK -->
+		<ul id="menu">
+			<li><a href="../../" lang="en">Home</a></li>
+			<li><a href="../../tracciati/">Tracciati</a></li>
+			<li><a href="../../servizi/">Servizi</a></li>
+			<li><a href="../../corsi/">Corsi</a></li>
+			<li><a href="../../noleggio/">Noleggio</a></li>
+			<li><a href="../../ingressi/">Ingressi</a></li>
+			<li><a href="../../contatti/">Contatti</a></li>
+			<li id="active">Area riservata</li>
+		</ul>
 
-        </nav> <!-- end container 2 -->
+	</nav> <!-- end container 2 -->
 
-        <!-- GRUPPO 1 -> ITEM 2 -->
-        <nav id="breadcrumb">
-			<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Gestione personale</p>
+	<!-- GRUPPO 1 -> ITEM 2 -->
+	<nav id="breadcrumb">
+		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Gestione personale</p>
+	</nav>
+
+	<!-- GRUPPO 1 -> ITEM 3 -->
+	<!-- start container 3 -->
+	<div class="container3 container1-item">
+		<!-- GRUPPO 3 -> ITEM 1 -->
+		<nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+			<i class="_userIcon_"></i>
+
+			<ul id="sideMenu">
+				<li><a href="../" lang="en">Home</a></li>
+				<li id="activeSub">Gestione personale</li>
+				<li><a href="../tracciati/">Tracciati</a></li>
+				<li><a href="../noleggio/">Noleggio</a></li>
+				<li><a href="../ingressi/">Ingressi</a></li>
+				<li><a href="../corsi/">Corsi</a></li>
+				<li><a href="../messaggi/">Messaggi</a></li>
+				<li><a href="../../login/logout.php" lang="en">Logout</a></li>
+			</ul>
 		</nav>
 
-        <!-- GRUPPO 1 -> ITEM 3 -->
-        <!-- start container 3 -->
-		<div class="container3 container1-item">
-            <!-- GRUPPO 3 -> ITEM 1 -->
-            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
-                <i class="_userIcon_"></i>
+		<!-- GRUPPO 3 -> ITEM 2 -->
+		<div class="contentAdmin container3-item">
+			<div id="datiPersonali">
+				<h1>Dati personali</h1>
+				<globalError/>
 
-				<ul id="sideMenu">
-					<li><a href="../" lang="en">Home</a></li>
-					<li id="activeSub">Gestione personale</li>
-					<li><a href="../tracciati/">Tracciati</a></li>
-					<li><a href="../noleggio/">Noleggio</a></li>
-					<li><a href="../ingressi/">Ingressi</a></li>
-					<li><a href="../corsi/">Corsi</a></li>
-					<li><a href="../messaggi/">Messaggi</a></li>
-					<li><a href="../../login/logout.php" lang="en">Logout</a></li>
-				</ul>
-			</nav>
+				<!--   view / modifica dati personali    -->
+				<form method="post" action="./" onsubmit="return formValidation(event)">
+					<messaggiForm/>
 
-            <!-- GRUPPO 3 -> ITEM 2 -->
-            <div class="contentAdmin container3-item">
-				<div id="datiPersonali">
-					<h1>Dati personali</h1>
-					<globalError/>
+					<fieldset>
+						<legend>Dati personali</legend>
 
-					<!--   view / modifica dati personali    -->
-					<form method="post" action="./" onsubmit="return formValidation(event)">
-						<messaggiForm/>
+						<label for="cognomeUser">Cognome*</label>
+						<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_"></span>
+						<br/>
 
-						<fieldset>
-							<legend>Dati personali</legend>
+						<label for="nomeUser">Nome*</label>
+						<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_"></span>
+						<br/>
 
-							<label for="cognomeUser">Cognome*</label>
-							<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_"></span>
-							<br/>
+						<label for="nascitaUser">Data di nascita*</label>
+						<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_"></span>
+						<br/>
 
-							<label for="nomeUser">Nome*</label>
-							<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_"></span>
-							<br/>
+						<label for="telUser">Telefono*</label>
+						<span><input type="tel" name="telUser" id="telUser" value="_telefono_"></span>
+						<br/>
+					</fieldset>
+					<input type="submit" name="submitUser" value="Applica Modifiche">
+				</form>
 
-							<label for="nascitaUser">Data di nascita*</label>
-							<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_"></span>
-							<br/>
+				<!-- modifica password -->
+				<form method="post" action="./" onsubmit="return formValidation2(event);">
+					<errors/>
+					<fieldset>
+						<legend>Dati per l'accesso</legend>
 
-							<label for="telUser">Telefono*</label>
-							<span><input type="tel" name="telUser" id="telUser" value="_telefono_"></span>
-							<br/>
-						</fieldset>
-						<input type="submit" name="submitUser" value="Applica Modifiche">
-					</form>
+						<label for="emailUser" lang="en">E-mail*</label>
+						<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
+						<br/>
 
-					<!-- modifica password -->
-					<form method="post" action="./" onsubmit="return formValidation2(event);">
-						<errors/>
-						<fieldset>
-							<legend>Dati per l'accesso</legend>
+						<label for="oldPsw">Vecchia password*</label>
+						<span><input type="password" name="oldPsw" id="oldPsw"></span>
+						<br/>
 
-							<label for="emailUser" lang="en">E-mail*</label>
-							<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
-							<br/>
+						<label for="newPsw">Nuova password*</label>
+						<span><input type="password" name="newPsw" id="newPsw"></span>
+						<br/>
 
-							<label for="oldPsw">Vecchia password*</label>
-							<span><input type="password" name="oldPsw" id="oldPsw"></span>
-							<br/>
-
-							<label for="newPsw">Nuova password*</label>
-							<span><input type="password" name="newPsw" id="newPsw"></span>
-							<br/>
-
-							<label for="pswCheck">Reinserisci nuova password*</label>
-							<span><input type="password" name="pswCheck" id="pswCheck"></span>
-							<br/>
-						</fieldset>
-						<input type="submit" name="submitPsw" value="Modifica"/>
-					</form>
-				</div>
-
-				<div>
-					<h1>Promozione utenti</h1>
-					<globalError/>
-
-					_erroreUtenti_
-					_form_
-				</div>
+						<label for="pswCheck">Reinserisci nuova password*</label>
+						<span><input type="password" name="pswCheck" id="pswCheck"></span>
+						<br/>
+					</fieldset>
+					<input type="submit" name="submitPsw" value="Modifica"/>
+				</form>
 			</div>
 
-        </div> <!-- end container 3 -->
+			<div>
+				<h1>Promozione utenti</h1>
+				<globalError/>
 
-    </div> <!-- end container 1 -->
+				_erroreUtenti_
+				_form_
+			</div>
 
+			<a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+		</div>
+
+	</div> <!-- end container 3 -->
+
+	<!-- GRUPPO 1 -> ITEM 4 -->
 	<footer>
 
 		<div class="footerInfo">
@@ -160,6 +159,6 @@
 				rights reserved</span></p>
 		<img src="../../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 	</footer>
-</body>
+</body> <!-- end container 1 -->
 
 </html>

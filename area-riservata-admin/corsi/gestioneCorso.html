@@ -18,110 +18,107 @@
 	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
-<body onload="load();">
+<!-- start container 1 -->
+<body class="container1" onload="load();">
 
-	<!-- start container 1 -->
-	<div class="container1">
+	<!-- GRUPPO 1 -> ITEM 1 -->
+	<!-- start container 2 -->
+	<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-        <!-- GRUPPO 1 -> ITEM 1 -->
-        <!-- start container 2 -->
-        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+		<!-- GRUPPO 2 -> ITEM 1 -->
+		<!-- LOGO -->
+		<i class="fa-brands fa-google">oogle</i>
 
-            <!-- GRUPPO 2 -> ITEM 1 -->
-			<!-- LOGO -->
-			<i class="fa-brands fa-google">oogle</i>
+		<!-- GRUPPO 2 -> ITEM 2 -->
+		<!-- MENU LINK -->
+		<ul id="menu">
+			<li><a href="../../" lang="en">Home</a></li>
+			<li><a href="../../tracciati/">Tracciati</a></li>
+			<li><a href="../../servizi/">Servizi</a></li>
+			<li><a href="../../corsi/">Corsi</a></li>
+			<li><a href="../../noleggio/">Noleggio</a></li>
+			<li><a href="../../ingressi/">Ingressi</a></li>
+			<li><a href="../../contatti/">Contatti</a></li>
+			<li id="active">Area riservata</li>
+		</ul>
 
-			<!-- GRUPPO 2 -> ITEM 2 -->
-			<!-- MENU LINK -->
-            <ul id="menu">
-                <li><a href="../../" lang="en">Home</a></li>
-                <li><a href="../../tracciati/">Tracciati</a></li>
-                <li><a href="../../servizi/">Servizi</a></li>
-                <li><a href="../../corsi/">Corsi</a></li>
-                <li><a href="../../noleggio/">Noleggio</a></li>
-                <li><a href="../../ingressi/">Ingressi</a></li>
-                <li><a href="../../contatti/">Contatti</a></li>
-                <li id="active">Area riservata</li>
-            </ul>
+	</nav> <!-- end container 2 -->
 
-        </nav> <!-- end container 2 -->
+	<!-- GRUPPO 1 -> ITEM 2 -->
+	<nav id="breadcrumb">
+		<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
+			<a href="../">Area riservata</a> &gt;&gt; <a href="./">Corsi</a>
+			&gt;&gt; Gestione corso
+		</p>
+	</nav>
 
-        <!-- GRUPPO 1 -> ITEM 2 -->
-        <nav id="breadcrumb">
-			<p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-				<a href="../">Area riservata</a> &gt;&gt; <a href="./">Corsi</a>
-				&gt;&gt; Gestione corso
-			</p>
+	<!-- GRUPPO 1 -> ITEM 3 -->
+	<!-- start container 3 -->
+	<div class="container3 container1-item">
+		<!-- GRUPPO 3 -> ITEM 1 -->
+		<nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+			<i class="_userIcon_"></i>
+
+			<ul id="sideMenu">
+				<li><a href="../" lang="en">Home</a></li>
+				<li><a href="../dati-utente/">Gestione personale</a></li>
+				<li><a href="../tracciati/">Tracciati</a></li>
+				<li><a href="../noleggio/">Noleggio</a></li>
+				<li><a href="../ingressi/">Ingressi</a></li>
+				<li><a id="activeSub" href="./">Corsi</a></li>
+				<li><a href="../messaggi/">Messaggi</a></li>
+				<li><a href="../../login/logout.php" lang="en">Logout</a></li>
+			</ul>
 		</nav>
 
-        <!-- GRUPPO 1 -> ITEM 3 -->
-        <!-- start container 3 -->
-		<div class="container3 container1-item">
-            <!-- GRUPPO 3 -> ITEM 1 -->
-            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
-                <i class="_userIcon_"></i>
+		<!-- GRUPPO 3 -> ITEM 2 -->
+		<div class="contentAdmin container3-item">
+			<h1>Gestione corso</h1>
 
-				<ul id="sideMenu">
-					<li><a href="../" lang="en">Home</a></li>
-					<li><a href="../dati-utente/">Gestione personale</a></li>
-					<li><a href="../tracciati/">Tracciati</a></li>
-					<li><a href="../noleggio/">Noleggio</a></li>
-					<li><a href="../ingressi/">Ingressi</a></li>
-					<li><a id="activeSub" href="./">Corsi</a></li>
-					<li><a href="../messaggi/">Messaggi</a></li>
-					<li><a href="../../login/logout.php" lang="en">Logout</a></li>
-				</ul>
-			</nav>
+			<globalError/>
 
-            <!-- GRUPPO 3 -> ITEM 2 -->
-            <div class="contentAdmin container3-item">
-                <h1>Gestione corso</h1>
+			<form method="post" action="_action_" onsubmit="return formValidation(event);">
+				<messaggiForm/>
 
-				<globalError/>
+				<fieldset>
 
-				<form method="post" action="_action_" onsubmit="return formValidation(event);">
-					<messaggiForm/>
+					<legend>Dati corso</legend>
 
-					<fieldset>
+					<label for="data">Data*</label>
+					<select name="data" id="data">
+						_dateDisponibili_
+					</select>
+					<br>
 
-						<legend>Dati corso</legend>
+					<label for="posti">Posti disponibili*</label>
+					<span><input type="number" name="posti" id="posti" value="_posti_" step="1" placeholder="Posti disponibili"></span>
+					<br>
 
-						<label for="data">Data*</label>
-						<select name="data" id="data">
-							_dateDisponibili_
-						</select>
-						<br>
+					<label for="descrizione">Descrizione*</label>
+					<span><textarea placeholder="Breve descrizione del corso" cols="50" rows="10" name="descrizione" id="descrizione">_descrizione_</textarea></span>
+					<br>
 
-						<label for="posti">Posti disponibili*</label>
-						<span><input type="number" name="posti" id="posti" value="_posti_" step="1" placeholder="Posti disponibili"></span>
-						<br>
+					<label for="istruttore">Istruttore*</label>
+					<span><input type="text" name="istruttore" id="istruttore" value="_istruttore_" placeholder="Istruttore che tiene il corso"></span>
+					<br>
 
-						<label for="descrizione">Descrizione*</label>
-						<span><textarea placeholder="Breve descrizione del corso" cols="50" rows="10" name="descrizione" id="descrizione">_descrizione_</textarea></span>
-						<br>
+					<label for="tracciato">Tracciato*</label>
+					<select name="tracciato" id="tracciato">
+						_tracciati_
+					</select>
+					<br>
 
-						<label for="istruttore">Istruttore*</label>
-						<span><input type="text" name="istruttore" id="istruttore" value="_istruttore_" placeholder="Istruttore che tiene il corso"></span>
-						<br>
+				</fieldset>
+				<input type="submit" name="submit" id="submit" value="_azione_">
 
-						<label for="tracciato">Tracciato*</label>
-						<select name="tracciato" id="tracciato">
-							_tracciati_
-						</select>
-						<br>
+			</form>
 
-					</fieldset>
-					<input type="submit" name="submit" id="submit" value="_azione_">
+			<a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+		</div>
 
-				</form>
+	</div> <!-- end container 3 -->
 
-				<a href="#top">Torna su</a>
-            </div>
-
-        </div> <!-- end container 3 -->
-
-    </div> <!-- end container 1 -->
-
+	<!-- GRUPPO 1 -> ITEM 4 -->
 	<footer>
 		<div class="footerInfo">
 			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
@@ -143,5 +140,5 @@
 				rights reserved</span></p>
 		<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 	</footer>
-</body>
+</body> <!-- end container 1 -->
 </html>

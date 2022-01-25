@@ -16,117 +16,114 @@
 	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
-<body onload="load();">
+<!-- start container 1 -->
+<body class="container1" onload="load();">
 
-	<!-- start container 1 -->
-	<div class="container1">
+	<!-- GRUPPO 1 -> ITEM 1 -->
+	<!-- start container 2-->
+	<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-		<!-- GRUPPO 1 -> ITEM 1 -->
-		<!-- start container 2-->
-		<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+		<!-- GRUPPO 2 -> ITEM 1 -->
+		<!-- LOGO -->
+		<i class="fa-brands fa-google">oogle</i>
 
-			<!-- GRUPPO 2 -> ITEM 1 -->
-			<!-- LOGO -->
-			<i class="fa-brands fa-google">oogle</i>
+		<!-- GRUPPO 2 -> ITEM 2 -->
+		<!-- MENU LINK -->
 
-			<!-- GRUPPO 2 -> ITEM 2 -->
-			<!-- MENU LINK -->
+		<ul id="menu">
+			<li><a href="../" lang="en">Home</a></li>
+			<li><a href="../../tracciati/">Tracciati</a></li>
+			<li><a href="../../servizi/">Servizi</a></li>
+			<li><a href="../../corsi/">Corsi</a></li>
+			<li><a href="../../noleggio/">Noleggio</a></li>
+			<li><a href="../../ingressi/">Ingressi</a></li>
+			<li><a href="../../contatti/">Contatti</a></li>
+			<li id="active">Area riservata</li>
+		</ul>
+	</nav> <!-- end container 2 -->
 
-			<ul id="menu">
+	<!-- GRUPPO 1 -> ITEM 2 -->
+	<nav id="breadcrumb" class="container1-item">
+		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Dati personali</p>
+	</nav>
+
+	<!-- GRUPPO 1 -> ITEM 3 -->
+	<!-- start container 3 -->
+	<div class="container3 container1-item">
+		<!-- GRUPPO 3 -> ITEM 1 -->
+		<nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata utente">
+			<i class="_userIcon_"></i>
+
+			<ul id="sideMenu">
 				<li><a href="../" lang="en">Home</a></li>
-				<li><a href="../../tracciati/">Tracciati</a></li>
-				<li><a href="../../servizi/">Servizi</a></li>
-				<li><a href="../../corsi/">Corsi</a></li>
-				<li><a href="../../noleggio/">Noleggio</a></li>
-				<li><a href="../../ingressi/">Ingressi</a></li>
-				<li><a href="../../contatti/">Contatti</a></li>
-				<li id="active">Area riservata</li>
+				<li id="activeSub">Dati personali</li>
+				<li><a href='../ingressi/'>Ingressi</a></li>
+				<li><a href='../corsi/'>Corsi</a></li>
+				<li><a href="../../login/logout.php" lang="en">Logout</a></li>
 			</ul>
-		</nav> <!-- end container 2 -->
-
-		<!-- GRUPPO 1 -> ITEM 2 -->
-		<nav id="breadcrumb" class="container1-item">
-			<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; <a href="../">Area riservata</a> &gt;&gt; Dati personali</p>
 		</nav>
 
-		<!-- GRUPPO 1 -> ITEM 3 -->
-		<!-- start container 3 -->
-		<div class="container3 container1-item">
-			<!-- GRUPPO 3 -> ITEM 1 -->
-			<nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata utente">
-				<i class="_userIcon_"></i>
+		<!-- GRUPPO 3 -> ITEM 2 -->
+		<div class="contentUser container3-item">
+			<h1>Dati personali</h1>
+			<globalError/>
 
-				<ul id="sideMenu">
-					<li><a href="../" lang="en">Home</a></li>
-					<li id="activeSub">Dati personali</li>
-					<li><a href='../ingressi/'>Ingressi</a></li>
-					<li><a href='../corsi/'>Corsi</a></li>
-					<li><a href="../../login/logout.php" lang="en">Logout</a></li>
-				</ul>
-        	</nav>
+			<!--   view / modifica dati personali    -->
+			<form method="post" action="./" onsubmit="return formValidation(event);">
+				<messaggiForm/>
 
-			<!-- GRUPPO 3 -> ITEM 2 -->
-			<div class="contentUser container3-item">
-				<h1>Dati personali</h1>
-				<globalError/>
+				<fieldset>
+					<legend>Dati personali</legend>
 
-				<!--   view / modifica dati personali    -->
-				<form method="post" action="./" onsubmit="return formValidation(event);">
-					<messaggiForm/>
+					<label for="cognomeUser">Cognome*</label>
+					<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" required/></span>
+					<br/>
 
-					<fieldset>
-						<legend>Dati personali</legend>
+					<label for="nomeUser">Nome*</label>
+					<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" required/></span>
+					<br/>
 
-						<label for="cognomeUser">Cognome*</label>
-						<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" required/></span>
-						<br/>
+					<label for="nascitaUser">Data di nascita*</label>
+					<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" required/></span>
+					<br/>
 
-						<label for="nomeUser">Nome*</label>
-						<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" required/></span>
-						<br/>
-
-						<label for="nascitaUser">Data di nascita*</label>
-						<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" required/></span>
-						<br/>
-
-						<label for="telUser">Telefono*</label>
-						<span><input type="tel" name="telUser" id="telUser" value="_telefono_" required/></span>
-						<br/>
-					</fieldset>
-					<input type="submit" name="submitUser" value="Applica Modifiche"/>
-				</form>
+					<label for="telUser">Telefono*</label>
+					<span><input type="tel" name="telUser" id="telUser" value="_telefono_" required/></span>
+					<br/>
+				</fieldset>
+				<input type="submit" name="submitUser" value="Applica Modifiche"/>
+			</form>
 
 
-				<!-- modifica password -->
-				<form method="post" action="./" onsubmit="return formValidation(event);">
-					<errors/>
-					<fieldset>
-						<legend>Dati per l'accesso</legend>
+			<!-- modifica password -->
+			<form method="post" action="./" onsubmit="return formValidation(event);">
+				<errors/>
+				<fieldset>
+					<legend>Dati per l'accesso</legend>
 
-						<label for="emailUser" lang="en">E-mail*</label>
-						<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
-						<br/>
+					<label for="emailUser" lang="en">E-mail*</label>
+					<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
+					<br/>
 
-						<label for="oldPsw">Vecchia password*</label>
-						<span><input type="password" name="oldPsw" id="oldPsw" required/></span>
-						<br/>
+					<label for="oldPsw">Vecchia password*</label>
+					<span><input type="password" name="oldPsw" id="oldPsw" required/></span>
+					<br/>
 
-						<label for="newPsw">Nuova password*</label>
-						<span><input type="password" name="newPsw" id="newPsw" required/></span>
-						<br/>
+					<label for="newPsw">Nuova password*</label>
+					<span><input type="password" name="newPsw" id="newPsw" required/></span>
+					<br/>
 
-						<label for="pswCheck">Reinserisci nuova password*</label>
-						<span><input type="password" name="pswCheck" id="pswCheck" required/></span>
-						<br/>
-					</fieldset>
-					<input type="submit" name="submitPsw" value="Modifica"/>
-				</form>
-			</div>
+					<label for="pswCheck">Reinserisci nuova password*</label>
+					<span><input type="password" name="pswCheck" id="pswCheck" required/></span>
+					<br/>
+				</fieldset>
+				<input type="submit" name="submitPsw" value="Modifica"/>
+			</form>
+		</div>
 
-		</div> <!-- end container 3 -->
+	</div> <!-- end container 3 -->
 
-	</div> <!-- end container 1 -->
-
+	<!-- GRUPPO 1 -> ITEM 4 -->
 	<footer>
 
 		<div class="footerInfo">
@@ -149,6 +146,6 @@
 				rights reserved</span></p>
 		<img src="../../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 	</footer>
-</body>
+</body> <!-- end container 1 -->
 
 </html>

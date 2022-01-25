@@ -14,88 +14,84 @@
 	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
-<body>
-	
-	<!-- start container 1 -->
-	<div class="container1">
+<!-- start container 1 -->
+<body class="container1">
 
-		<!-- GRUPPO 1 -> ITEM 1 -->
-		<!-- start container 2 -->
-		<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+	<!-- GRUPPO 1 -> ITEM 1 -->
+	<!-- start container 2 -->
+	<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-			<!-- GRUPPO 2 -> ITEM 1 -->
-			<!-- LOGO -->
-			<i class="fa-brands fa-google">oogle</i>
+		<!-- GRUPPO 2 -> ITEM 1 -->
+		<!-- LOGO -->
+		<i class="fa-brands fa-google">oogle</i>
 
-			<!-- GRUPPO 2 -> ITEM 2 -->
-			<!-- MENU LINK -->
-			<ul id="menu">
+		<!-- GRUPPO 2 -> ITEM 2 -->
+		<!-- MENU LINK -->
+		<ul id="menu">
+			<li><a href="../" lang="en">Home</a></li>
+			<li><a href="../tracciati/">Tracciati</a></li>
+			<li><a href="../servizi/">Servizi</a></li>
+			<li><a href="../corsi/">Corsi</a></li>
+			<li><a href="../noleggio/">Noleggio</a></li>
+			<li><a href="../ingressi/">Ingressi</a></li>
+			<li><a href="../contatti/">Contatti</a></li>
+			<li id="active">Area riservata</li>
+		</ul>
+	</nav> <!-- end container 2 -->
+
+	<!-- GRUPPO 1 -> ITEM 2 -->
+	<nav id="breadcrumb" class="container1-item">
+		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; Area riservata</p>
+	</nav>
+
+	<!-- GRUPPO 1 -> ITEM 3 -->
+	<!-- start container 3 -->
+	<div class="container3 container1-item">
+
+		<!-- GRUPPO 3 -> ITEM 1 -->
+		<nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata utente">
+			<i class="_userIcon_"></i>
+
+			<ul id="sideMenu">
 				<li><a href="../" lang="en">Home</a></li>
-				<li><a href="../tracciati/">Tracciati</a></li>
-				<li><a href="../servizi/">Servizi</a></li>
-				<li><a href="../corsi/">Corsi</a></li>
-				<li><a href="../noleggio/">Noleggio</a></li>
-				<li><a href="../ingressi/">Ingressi</a></li>
-				<li><a href="../contatti/">Contatti</a></li>
-				<li id="active">Area riservata</li>
+				<li><a href="../dati-utente/">Dati personali</a></li>
+				<li id="activeSub">Ingressi</li>
+				<li><a href='../corsi/'>Corsi</a></li>
+				<li><a href="../../login/logout.php" lang="en">Logout</a></li>
 			</ul>
-		</nav> <!-- end container 2 -->
-
-		<!-- GRUPPO 1 -> ITEM 2 -->
-		<nav id="breadcrumb" class="container1-item">
-			<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> &gt;&gt; Area riservata</p>
 		</nav>
+		
+		<!-- GRUPPO 3 -> ITEM 2 -->
+		<div class="contentUser container3-item">
+			<globalError/>
 
-		<!-- GRUPPO 1 -> ITEM 3 -->
-		<!-- start container 3 -->
-		<div class="container3 container1-item">
-
-			<!-- GRUPPO 3 -> ITEM 1 -->
-			<nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata utente">
-				<i class="_userIcon_"></i>
-
-				<ul id="sideMenu">
-					<li><a href="../" lang="en">Home</a></li>
-					<li><a href="../dati-utente/">Dati personali</a></li>
-					<li id="activeSub">Ingressi</li>
-					<li><a href='../corsi/'>Corsi</a></li>
-					<li><a href="../../login/logout.php" lang="en">Logout</a></li>
-				</ul>
-			</nav>
-			
-			<!-- GRUPPO 3 -> ITEM 2 -->
-			<div class="contentUser container3-item">
-				<globalError/>
-
-				<!-- I tuoi ingressi -->
-				<article id='gestioneIngressi'>
-					<h2>I tuoi prossimi ingressi prenotati</h2>
-					_prenotazioni_
-					<errorePrenotazione/>
-				</article>
+			<!-- I tuoi ingressi -->
+			<article id='gestioneIngressi'>
+				<h2>I tuoi prossimi ingressi prenotati</h2>
+				_prenotazioni_
+				<errorePrenotazione/>
+			</article>
 
 
-				<!-- Calendario -->
-				<article>
-					<h2>Calendario ingressi</h2>
-					_disp_
-					<erroreIngresso/>
-				</article>
+			<!-- Calendario -->
+			<article>
+				<h2>Calendario ingressi</h2>
+				_disp_
+				<erroreIngresso/>
+			</article>
 
-				<!-- Prenotazione -->
-				<article>
-					<h2>Prenota un ingresso</h2>
-					_form_
-				</article>
+			<!-- Prenotazione -->
+			<article>
+				<h2>Prenota un ingresso</h2>
+				_form_
+			</article>
 
-			</div>
+		</div>
 
-		</div><!-- end container 3 -->
-	
-	</div> <!-- end container 1 -->
+	</div><!-- end container 3 -->
 
 	
-
+	<!-- GRUPPO 1 -> ITEM 4 -->
 	<footer>
 
 		<div class="footerInfo">
@@ -118,6 +114,6 @@
 				rights reserved</span></p>
 		<img src="../../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 	</footer>
-</body>
+</body> <!-- end container 1 -->
 
 </html>

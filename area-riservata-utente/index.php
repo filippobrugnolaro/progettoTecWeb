@@ -9,13 +9,17 @@
     if (!isset($_SESSION['user']) || $_SESSION['user']->getTipoUtente() != 1)
         header('Location: ../login/');
 
-
     $page = file_get_contents('home.html');
 
     $conn = new dbAccess();
 
 
     // $globalError = '';
+
+    /* set user icon letter */
+    // $icon = '';
+    // $icon .= 'fa-solid fa-'; 
+    // $icon .= strtolower( substr($_SESSION['user']->getNome(), 0, 1) );
 
     // $prenotazioni = '';
     // $errorPrenotazioni = '';
@@ -71,6 +75,8 @@
     //     $globalError = 'Errore di connessione, riprovare più tardi.';
 
     // $page = str_replace('<globalError/>',$globalError,$page);
+
+    // $page = str_replace('_userIcon_',$icon,$page);
 
     // $page = str_replace('<nextPrenotazioni/>',$prenotazioni,$page);
     // $page = str_replace('<errorPrenotazioni/>', $errorPrenotazioni, $page);

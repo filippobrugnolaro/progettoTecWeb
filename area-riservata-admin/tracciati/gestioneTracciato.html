@@ -18,119 +18,116 @@
     <link rel="stylesheet" media="screen" href="../../css/style.css"/>
 </head>
 
-<body onload="load();">
+<!-- start container 1 -->
+<body class="container1" onload="load();">
 
-    <!-- start container 1 -->
-	<div class="container1">
+    <!-- GRUPPO 1 -> ITEM 1 -->
+    <!-- start container 2 -->
+    <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-        <!-- GRUPPO 1 -> ITEM 1 -->
-        <!-- start container 2 -->
-        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+        <!-- GRUPPO 2 -> ITEM 1 -->
+        <!-- LOGO -->
+        <i class="fa-brands fa-google">oogle</i>
 
-            <!-- GRUPPO 2 -> ITEM 1 -->
-			<!-- LOGO -->
-			<i class="fa-brands fa-google">oogle</i>
+        <!-- GRUPPO 2 -> ITEM 2 -->
+        <!-- MENU LINK -->
+        <ul id="menu">
+            <li><a href="../../" lang="en">Home</a></li>
+            <li><a href="../../tracciati/">Tracciati</a></li>
+            <li><a href="../../servizi/">Servizi</a></li>
+            <li><a href="../../corsi/">Corsi</a></li>
+            <li><a href="../../noleggio/">Noleggio</a></li>
+            <li><a href="../../ingressi/">Ingressi</a></li>
+            <li><a href="../../contatti/">Contatti</a></li>
+            <li id="active">Area riservata</li>
+        </ul>
 
-			<!-- GRUPPO 2 -> ITEM 2 -->
-			<!-- MENU LINK -->
-            <ul id="menu">
-                <li><a href="../../" lang="en">Home</a></li>
-                <li><a href="../../tracciati/">Tracciati</a></li>
-                <li><a href="../../servizi/">Servizi</a></li>
-                <li><a href="../../corsi/">Corsi</a></li>
-                <li><a href="../../noleggio/">Noleggio</a></li>
-                <li><a href="../../ingressi/">Ingressi</a></li>
-                <li><a href="../../contatti/">Contatti</a></li>
-                <li id="active">Area riservata</li>
+    </nav> <!-- end container 2 -->
+
+    <!-- GRUPPO 1 -> ITEM 2 -->
+    <nav id="breadcrumb">
+        <p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
+            <a href="../">Area riservata</a> &gt;&gt; <a href="./">Tracciati</a>
+            &gt;&gt; Gestione tracciato
+        </p>
+    </nav>
+
+    <!-- GRUPPO 1 -> ITEM 3 -->
+    <!-- start container 3 -->
+    <div class="container3 container1-item">
+        <!-- GRUPPO 3 -> ITEM 1 -->
+        <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+            <i class="_userIcon_"></i>
+
+            <ul id="sideMenu">
+                <li><a href="../" lang="en">Home</a></li>
+                <li><a href="../dati-utente/">Gestione personale</a></li>
+                <li><a id="activeSub" href="./">Tracciati</a></li>
+                <li><a href="../noleggio/">Noleggio</a></li>
+                <li><a href="../ingressi/">Ingressi</a></li>
+                <li><a href="../corsi/">Corsi</a></li>
+                <li><a href="../messaggi/">Messaggi</a></li>
+                <li><a href="../../login/logout.php" lang="en">Logout</a></li>
             </ul>
-
-        </nav> <!-- end container 2 -->
-
-        <!-- GRUPPO 1 -> ITEM 2 -->
-        <nav id="breadcrumb">
-            <p>Ti trovi in <a href="../../" lang="en">Home</a> &gt;&gt;
-                <a href="../">Area riservata</a> &gt;&gt; <a href="./">Tracciati</a>
-                &gt;&gt; Gestione tracciato
-            </p>
         </nav>
 
-        <!-- GRUPPO 1 -> ITEM 3 -->
-        <!-- start container 3 -->
-		<div class="container3 container1-item">
-            <!-- GRUPPO 3 -> ITEM 1 -->
-            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
-                <i class="_userIcon_"></i>
 
-                <ul id="sideMenu">
-                    <li><a href="../" lang="en">Home</a></li>
-                    <li><a href="../dati-utente/">Gestione personale</a></li>
-                    <li><a id="activeSub" href="./">Tracciati</a></li>
-                    <li><a href="../noleggio/">Noleggio</a></li>
-                    <li><a href="../ingressi/">Ingressi</a></li>
-                    <li><a href="../corsi/">Corsi</a></li>
-                    <li><a href="../messaggi/">Messaggi</a></li>
-                    <li><a href="../../login/logout.php" lang="en">Logout</a></li>
-                </ul>
-            </nav>
+        <!-- GRUPPO 3 -> ITEM 2 -->
+        <div class="contentAdmin container3-item">
+            <h1>Gestione tracciato</h1>
 
+            <globalError/>
 
-            <!-- GRUPPO 3 -> ITEM 2 -->
-            <div class="contentAdmin container3-item">
-                <h1>Gestione tracciato</h1>
+            <form method="post" action="_action_" enctype="multipart/form-data" onsubmit="return formValidation(event);">
+                <messaggiForm/>
 
-                <globalError/>
+                <fieldset>
 
-                <form method="post" action="_action_" enctype="multipart/form-data" onsubmit="return formValidation(event);">
-                    <messaggiForm/>
+                    <legend>Dati tracciato</legend>
 
-                    <fieldset>
+                    <id/>
 
-                        <legend>Dati tracciato</legend>
+                    <label for="lunghezza">Lunghezza (metri)*</label>
+                    <span><input type="number" name="lunghezza" id="lunghezza" value="_lunghezza_" step="100" placeholder="Lunghezza del tracciato"></span>
+                    <br>
 
-                        <id/>
+                    <label for="descrizione">Descrizione*</label>
+                    <span><textarea placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione">_descrizione_</textarea>
+                    </span>
+                    <br>
 
-                        <label for="lunghezza">Lunghezza (metri)*</label>
-                        <span><input type="number" name="lunghezza" id="lunghezza" value="_lunghezza_" step="100" placeholder="Lunghezza del tracciato"></span>
-                        <br>
+                    <label for="terreno">Terreno*</label>
+                    <select name="terreno" id="terreno">
+                        <option value="terra_battuta">Terra battuta</option>
+                        <option value="terra_sassosa">Terra sassosa</option>
+                        <option value="terra_morbida">Terra morbida</option>
+                        <option value="sabbia">Sabbia</option>
+                    </select>
+                    <br>
 
-                        <label for="descrizione">Descrizione*</label>
-                        <span><textarea placeholder="Breve descrizione del tracciato" cols="50" rows="10" name="descrizione" id="descrizione">_descrizione_</textarea>
-                        </span>
-                        <br>
+                    <label for="apertura">Orario apertura*</label>
+                    <span><input type="time" name="apertura" id="apertura" value="_apertura_"  step="60"></span>
+                    <br>
+                    <label for="chiusura">Orario chiusura*</label>
+                    <span><input type="time" name="chiusura" id="chiusura" value="_chiusura_" step="60"></span>
+                    <br>
 
-                        <label for="terreno">Terreno*</label>
-                        <select name="terreno" id="terreno">
-                            <option value="terra_battuta">Terra battuta</option>
-                            <option value="terra_sassosa">Terra sassosa</option>
-                            <option value="terra_morbida">Terra morbida</option>
-                            <option value="sabbia">Sabbia</option>
-                        </select>
-                        <br>
+                    <oldImg/>
 
-                        <label for="apertura">Orario apertura*</label>
-                        <span><input type="time" name="apertura" id="apertura" value="_apertura_"  step="60"></span>
+                    <label for="img">Immagine nuova</label>
+                    <input type="file" name="img" id="img" accept="image/png, image/jpeg">
 
-                        <label for="chiusura">Orario chiusura*</label>
-                        <span><input type="time" name="chiusura" id="chiusura" value="_chiusura_" step="60"></span>
-                        <br>
+                </fieldset>
+                <input type="submit" name="submit" id="submit" value="_azione_">
 
-                        <oldImg/>
+            </form>
 
-                        <label for="img">Immagine nuova</label>
-                        <input type="file" name="img" id="img" accept="image/png, image/jpeg">
+            <a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+        </div>
 
-                    </fieldset>
-                    <input type="submit" name="submit" id="submit" value="_azione_">
+    </div> <!-- end container 3 -->
 
-                </form>
-
-                <a href="#top">Torna su</a>
-            </div>
-
-        </div> <!-- end container 3 -->
-
-    </div> <!-- end container 1 -->
-
+    <!-- GRUPPO 1 -> ITEM 4 -->
 	<footer>
 		<div class="footerInfo">
 			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
@@ -152,5 +149,5 @@
 				rights reserved</span></p>
 		<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 	</footer>
-</body>
+</body> <!-- end container 1 -->
 </html>

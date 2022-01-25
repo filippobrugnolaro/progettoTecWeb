@@ -13,125 +13,123 @@
 	<meta name="description" content="Pagina principale admin" />
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio" />
 
+    <script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" media="screen" href="../css/style.css"/>
 </head>
 
-<body>
+<!-- start container 1 -->
+<body class="container1">
 
-    <!-- start container 1 -->
-	<div class="container1">
+    <!-- GRUPPO 1 -> ITEM 1 -->
+    <!-- start container 2 -->
+    <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
 
-        <!-- GRUPPO 1 -> ITEM 1 -->
-        <!-- start container 2 -->
-        <nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+        <!-- GRUPPO 2 -> ITEM 1 -->
+        <!-- LOGO -->
+        <i class="fa-brands fa-google">oogle</i>
 
-            <!-- GRUPPO 2 -> ITEM 1 -->
-			<!-- LOGO -->
-			<i class="fa-brands fa-google">oogle</i>
+        <!-- GRUPPO 2 -> ITEM 2 -->
+        <!-- MENU LINK -->
+        <ul id="menu">
+            <li><a href="../" lang="en">Home</a></li>
+            <li><a href="../tracciati/">Tracciati</a></li>
+            <li><a href="../servizi/">Servizi</a></li>
+            <li><a href="../corsi/">Corsi</a></li>
+            <li><a href="../noleggio/">Noleggio</a></li>
+            <li><a href="../ingressi/">Ingressi</a></li>
+            <li><a href="../contatti/">Contatti</a></li>
+            <li id="active">Area riservata</li>
+        </ul>
+    </nav> <!-- end container 2 -->
 
-			<!-- GRUPPO 2 -> ITEM 2 -->
-			<!-- MENU LINK -->
-            <ul id="menu">
-                <li><a href="../" lang="en">Home</a></li>
-                <li><a href="../tracciati/">Tracciati</a></li>
-                <li><a href="../servizi/">Servizi</a></li>
-                <li><a href="../corsi/">Corsi</a></li>
-                <li><a href="../noleggio/">Noleggio</a></li>
-                <li><a href="../ingressi/">Ingressi</a></li>
-                <li><a href="../contatti/">Contatti</a></li>
-                <li id="active">Area riservata</li>
+    <!-- GRUPPO 1 -> ITEM 2 -->
+    <nav id="breadcrumb">
+        <p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Area riservata</p>
+    </nav>
+
+    <!-- GRUPPO 1 -> ITEM 3 -->
+    <!-- start container 3 -->
+    <div class="container3 container1-item">
+        <!-- GRUPPO 3 -> ITEM 1 -->
+        <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
+            <i class="_userIcon_"></i>
+
+            <ul id="sideMenu">
+                <li id="activeSub"><span lang="en">Home</span></li>
+                <li><a href="./dati-utente/">Gestione personale</a></li>
+                <li><a href="./tracciati/">Tracciati</a></li>
+                <li><a href="./noleggio/">Noleggio</a></li>
+                <li><a href="./ingressi/">Ingressi</a></li>
+                <li><a href="./corsi/">Corsi</a></li>
+                <li><a href="./messaggi/">Messaggi</a></li>
+                <li><a href="../login/logout.php" lang="en">Logout</a></li>
             </ul>
-        </nav> <!-- end container 2 -->
-
-        <!-- GRUPPO 1 -> ITEM 2 -->
-        <nav id="breadcrumb">
-            <p>Ti trovi in <a href="../" lang="en">Home</a> &gt;&gt; Area riservata</p>
         </nav>
 
-        <!-- GRUPPO 1 -> ITEM 3 -->
-        <!-- start container 3 -->
-		<div class="container3 container1-item">
-            <!-- GRUPPO 3 -> ITEM 1 -->
-            <nav class="navUser container3-item" role="navigation" aria-roledescription="menu area riservata">
-                <i class="_userIcon_"></i>
+        <!-- GRUPPO 3 -> ITEM 2 -->
+        <div class="contentAdmin container3-item">
+            <h1>Panello di controllo admin</h1>
 
-                <ul id="sideMenu">
-                    <li id="activeSub"><span lang="en">Home</span></li>
-                    <li><a href="./dati-utente/">Gestione personale</a></li>
-                    <li><a href="./tracciati/">Tracciati</a></li>
-                    <li><a href="./noleggio/">Noleggio</a></li>
-                    <li><a href="./ingressi/">Ingressi</a></li>
-                    <li><a href="./corsi/">Corsi</a></li>
-                    <li><a href="./messaggi/">Messaggi</a></li>
-                    <li><a href="../login/logout.php" lang="en">Logout</a></li>
+            <article>
+                <h2><a href="./dati-utente/">Gestione personale</a></h2>
+                <ul>
+                    <li>Gestione dati personali</li>
+                    <li>Promozione ad admin di altri utenti</li>
                 </ul>
-            </nav>
+            </article>
 
-            <!-- GRUPPO 3 -> ITEM 2 -->
-            <div class="contentAdmin container3-item">
-                <h1>Panello di controllo admin</h1>
+            <article>
+                <h2><a href="./tracciati/">Gestione tracciati</a></h2>
+                <ul>
+                    <li>Inserimento di nuovi tracciati</li>
+                    <li>Modifica delle informazioni dei tracciati già presenti</li>
+                    <li>Cancellazione dei tracciati presenti</li>
+                </ul>
+            </article>
 
-                <article>
-                    <h2><a href="./dati-utente/">Gestione personale</a></h2>
-                    <ul>
-                        <li>Gestione dati personali</li>
-                        <li>Promozione ad admin di altri utenti</li>
-                    </ul>
-                </article>
+            <article>
+                <h2><a href="./noleggio/">Gestione noleggio</a></h2>
+                <ul>
+                    <li>Visualizzazione noleggi prenotati dagli utenti</li>
+                    <li>Modifica delle informazioni delle moto in magazzino</li>
+                    <li>Cancellazione delle moto non più presenti in magazzino</li>
+                    <li>Inserimento di nuove moto noleggiabili</li>
+                </ul>
+            </article>
 
-                <article>
-                    <h2><a href="./tracciati/">Gestione tracciati</a></h2>
-                    <ul>
-                        <li>Inserimento di nuovi tracciati</li>
-                        <li>Modifica delle informazioni dei tracciati già presenti</li>
-                        <li>Cancellazione dei tracciati presenti</li>
-                    </ul>
-                </article>
+            <article>
+                <h2><a href="./ingressi/">Gestione ingressi</a></h2>
+                <ul>
+                    <li>Inserimento di nuove date di apertura</li>
+                    <li>Modifica delle informazioni per una data di apertura</li>
+                    <li>Cancellazione di date precedentemente inserite</li>
+                    <li>Visualizzazione ingressi prenotati dagli utenti</li>
+                </ul>
+            </article>
 
-                <article>
-                    <h2><a href="./noleggio/">Gestione noleggio</a></h2>
-                    <ul>
-                        <li>Visualizzazione noleggi prenotati dagli utenti</li>
-                        <li>Modifica delle informazioni delle moto in magazzino</li>
-                        <li>Cancellazione delle moto non più presenti in magazzino</li>
-                        <li>Inserimento di nuove moto noleggiabili</li>
-                    </ul>
-                </article>
+            <article>
+                <h2><a href="./corsi/">Gestione corsi</a></h2>
+                <ul>
+                    <li>Inserimento di nuove corsi</li>
+                    <li>Modifica delle informazioni per una lezione</li>
+                    <li>Cancellazione di corsi precedentemente inserite</li>
+                    <li>Visualizzazione corsi prenotate dagli utenti</li>
+                </ul>
+            </article>
 
-                <article>
-                    <h2><a href="./ingressi/">Gestione ingressi</a></h2>
-                    <ul>
-                        <li>Inserimento di nuove date di apertura</li>
-                        <li>Modifica delle informazioni per una data di apertura</li>
-                        <li>Cancellazione di date precedentemente inserite</li>
-                        <li>Visualizzazione ingressi prenotati dagli utenti</li>
-                    </ul>
-                </article>
+            <article>
+                <h2><a href="./messaggi/">Messaggi utenti</a></h2>
+                <ul>
+                    <li>Visualizzazione messaggi inviati dagli utenti</li>
+                </ul>
+            </article>
 
-                <article>
-                    <h2><a href="./corsi/">Gestione corsi</a></h2>
-                    <ul>
-                        <li>Inserimento di nuove corsi</li>
-                        <li>Modifica delle informazioni per una lezione</li>
-                        <li>Cancellazione di corsi precedentemente inserite</li>
-                        <li>Visualizzazione corsi prenotate dagli utenti</li>
-                    </ul>
-                </article>
+            <a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+        </div>
 
-                <article>
-                    <h2><a href="./messaggi/">Messaggi utenti</a></h2>
-                    <ul>
-                        <li>Visualizzazione messaggi inviati dagli utenti</li>
-                    </ul>
-                </article>
+    </div> <!-- end container 3 -->
 
-                <a href="#top">Torna su</a>
-            </div>
-
-        </div> <!-- end container 3 -->
-
-    </div> <!-- end container 1 -->
-
+    <!-- GRUPPO 1 -> ITEM 4 -->
 	<footer>
 		<div class="footerInfo">
 			<img src="../images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
@@ -153,5 +151,5 @@
 				rights reserved</span></p>
 		<img src="../images/vcss-blue.gif" alt="CSS valido" class="imgValidCode" />
 	</footer>
-</body>
+</body> <!-- end container 1 -->
 </html>
