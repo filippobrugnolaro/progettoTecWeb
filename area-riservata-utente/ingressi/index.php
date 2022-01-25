@@ -132,7 +132,7 @@
                         $attrezzatura = 'Propria';
 
                     $prenotazioni .= '<tr>';
-                    $prenotazioni .= '<td scope=\'row\'>'.$dw.' '.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
+                    $prenotazioni .= '<th scope=\'row\'>'.$dw.' '.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
                     $prenotazioni .= '<td>'.$moto.'</td>';
                     $prenotazioni .= '<td>'.$attrezzatura.'</td>';
                     $prenotazioni .= '<td><a href=\'deletePrenotazione.php?id='.$ingresso['id'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
@@ -170,7 +170,7 @@
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     $ingressiBody .= '<tr>';
-                    $ingressiBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
+                    $ingressiBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
                     $ingressiBody .= '<td>'.$dw.'</td>';
                     $ingressiBody .= '<td>'.($ingresso['posti'] - $ingresso['occupati']).'</td>';
                     $ingressiBody .= '</tr>';
@@ -206,7 +206,7 @@
                     <messaggiForm/>
 
                     <label for="dataDisponibile">Data*</label>
-                    <select id="dataDisponibile" name="dataDisp" required>
+                    <select id="dataDisponibile" name="dataDisp">
                         <dataDisp/>
                     </select>
                     <br/>

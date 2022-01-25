@@ -46,7 +46,7 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<td scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</td>'; //controllare accessibilità
+                    $recordsBody .= '<th scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</th>'; //controllare accessibilità
                     $recordsBody .= '<td>'.$record['posti'].'</td>';
                     $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
                     $recordsBody .= '<td><a href=\'dettagliIngresso.php?date='.$record['data'].'\' aria-label=\'dettaglio ingressi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
@@ -86,7 +86,7 @@
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     $ingressiBody .= '<tr>';
-                    $ingressiBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
+                    $ingressiBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
                     $ingressiBody .= '<td>'.$dw.'</td>';
                     $ingressiBody .= '<td>'.$ingresso['posti'].'</td>';
                     $ingressiBody .= '<td><a href=\'gestioneIngresso.php?date='.$ingresso['data'].'\' aria-label=\'modifica ingresso\'><i class=\'fas fa-pen\'></i></a></td>';

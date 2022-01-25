@@ -55,7 +55,7 @@
                         $attrezzatura = 'Propria';
 
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<td scope=\'row\'>' . $utente . '</td>';
+                    $recordsBody .= '<th scope=\'row\'>' . $utente . '</th>';
                     $recordsBody .= '<td>' . $moto . '</td>';
                     $recordsBody .= '<td>' . $attrezzatura . '</td>';
                     $recordsBody .= '</tr>';

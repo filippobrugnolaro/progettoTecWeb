@@ -18,7 +18,7 @@
             if($records !== null) {
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($record['data'])).'</td>';
+                    $recordsBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($record['data'])).'</th>';
                     $recordsBody .= '<td>'.$record['posti'].'</td>';
                     $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
                     $recordsBody .= '</tr>';

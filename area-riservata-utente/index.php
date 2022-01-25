@@ -18,7 +18,7 @@
 
     /* set user icon letter */
     // $icon = '';
-    // $icon .= 'fa-solid fa-'; 
+    // $icon .= 'fa-solid fa-';
     // $icon .= strtolower( substr($_SESSION['user']->getNome(), 0, 1) );
 
     // $prenotazioni = '';
@@ -40,7 +40,7 @@
     //                 $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
     //                 $prenotazioni .= '<tr>';
-    //                 $prenotazioni .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
+    //                 $prenotazioni .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
     //                 $prenotazioni .= '<td>'.$dw.'</td>';
     //                 $prenotazioni .= '</tr>';
     //             }
@@ -60,7 +60,7 @@
     //                 $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
     //                 $lezioni .= '<tr>';
-    //                 $lezioni .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</td>';
+    //                 $lezioni .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
     //                 $lezioni .= '<td>'.$dw.'</td>';
     //                 $lezioni .= '</tr>';
     //             }

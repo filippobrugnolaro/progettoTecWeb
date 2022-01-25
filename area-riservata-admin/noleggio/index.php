@@ -45,7 +45,7 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<td scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</td>'; //controllare accessibilità
+                    $recordsBody .= '<th scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</th>'; //controllare accessibilità
                     $recordsBody .= '<td>'.$record['totNoleggi'].'</td>';
                     $recordsBody .= '<td><a href=\'dettagliNoleggio.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
@@ -83,7 +83,7 @@
 
                 foreach($motos as $moto) {
                     $motoBody .= '<tr>';
-                    $motoBody .= '<td scope=\'row\'>'.$moto['numero'].'</td>';
+                    $motoBody .= '<th scope=\'row\'>'.$moto['numero'].'</th>';
                     $motoBody .= '<td>'.$moto['marca'].'</td>';
                     $motoBody .= '<td>'.$moto['modello'].'</td>';
                     $motoBody .= '<td>'.$moto['cilindrata'].'cc</td>';

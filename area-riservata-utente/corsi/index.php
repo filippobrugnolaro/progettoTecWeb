@@ -135,7 +135,7 @@
 
                     $prenotazioni .= '<tr>';
                     $prenotazioni .= '<td>Corso #'.$corso['id'].'</td>';
-                    $prenotazioni .= '<td scope=\'row\'>'.$dw.' '.date('d/m/Y',strtotime($corso['data'])).'</td>';
+                    $prenotazioni .= '<th scope=\'row\'>'.$dw.' '.date('d/m/Y',strtotime($corso['data'])).'</th>';
                     $prenotazioni .= '<td>'.$corso['istruttore'].'</td>';
                     $prenotazioni .= '<td>#'.$corso['pista'].'</td>';
                     $prenotazioni .= '<td>'.$moto.'</td>';
@@ -178,8 +178,8 @@
                     $dw = $weekDays[date('w',strtotime($corso['data']))];
 
                     $corsiBody .= '<tr>';
-                    $corsiBody .= '<td scope=\'row\'>Corso #'.$corso['id'].'</td>';
-                    $corsiBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($corso['data'])).'</td>';
+                    $corsiBody .= '<th scope=\'row\'>Corso #'.$corso['id'].'</th>';
+                    $corsiBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($corso['data'])).'</th>';
                     $corsiBody .= '<td>'.$dw.'</td>';
                     $corsiBody .= '<td>'.$corso['istruttore'].'</td>';
                     $corsiBody .= '<td>#'.$corso['pista'].'</td>';
@@ -207,12 +207,11 @@
                     <messaggiForm/>
 
                     <label for="corso">Corso*</label>
-                    <select id="corso" name="corso" required>
+                    <select id="corso" name="corso">
                         <corsoDisp/>
                     </select>
                     <br>
 
-                    <label for="descCorso">Descrizione del corso:</label>
                     <p id="descCorso"></p>
 
                     <fieldset>

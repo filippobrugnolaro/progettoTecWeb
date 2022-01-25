@@ -27,25 +27,25 @@
             $records = $conn->getQueryResult(dbAccess::QUERIES[18]);
 
             if($records !== null) {
-                $tableMessaggi = '<table title=\'tabella contenente i messaggi inviati dall\'utente\'>
+                $tableMessaggi = "<table title=\"tabella contenente i messaggi inviati dall'utente\">
                                     <caption>Messaggi inviati dagli utenti</caption>
                                     <thead>
                                         <tr>
-                                            <th scope=\'col\'>Data</th>
-                                            <th scope=\'col\'>Nominativo</th>
-                                            <th scope=\'col\'>Oggetto</th>
-                                            <th scope=\'col\'>Dettagli</th>
+                                            <th scope='col'>Data</th>
+                                            <th scope='col'>Nominativo</th>
+                                            <th scope='col'>Oggetto</th>
+                                            <th scope='col'>Dettagli</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <messaggi/>
                                     </tbody>
-                                </table>';
+                                </table>";
 
                 foreach($records as $record) {
                     $messaggi .= '<tr>';
                     $messaggi .= '<td>'.date("d/m/Y",strtotime($record['data'])).'</td>';
-                    $messaggi .= '<td scope=\'row\'>'.$record['nominativo'].'</td>';
+                    $messaggi .= '<th scope=\'row\'>'.$record['nominativo'].'</th>';
                     $messaggi .= '<td>'.$record['oggetto'].'</td>';
                     $messaggi .= '<td><a href=\'dettaglioMessaggio.php?id='.$record['id'].'\' aria-label=\'dettaglio messaggio\'><i class=\'fa-solid fa-magnifying-glass\'></i></a></td>';
                     $messaggi .= '</tr>';

@@ -46,7 +46,7 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<td scope=\'row\'>#'.$record['id'].'</td>';
+                    $recordsBody .= '<th scope=\'row\'>#'.$record['id'].'</th>';
                     $recordsBody .= '<td>'.date("d/m/Y",strtotime($record['data'])).'</td>'; //controllare accessibilità
                     $recordsBody .= '<td>'.$record['posti'].'</td>';
                     $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
@@ -84,7 +84,7 @@
 
                 foreach($corsi as $corso) {
                     $corsiBody .= '<tr>';
-                    $corsiBody .= '<td scope=\'row\'>'.date('d/m/Y',strtotime($corso['data'])).'</td>';
+                    $corsiBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($corso['data'])).'</th>';
                     $corsiBody .= '<td>'.$corso['posti'].'</td>';
                     $corsiBody .= '<td>'.$corso['istruttore'].'</td>';
                     $corsiBody .= '<td>#'.$corso['pista'].'</td>';

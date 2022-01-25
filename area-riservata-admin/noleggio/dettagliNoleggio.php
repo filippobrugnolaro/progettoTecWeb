@@ -31,7 +31,7 @@
                     $moto = '#'.$record['numero'].' - '.$record['marca'].' '.$record['modello'].' '.$record['anno'];
 
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<td scope=\'row\'>'.$utente.'</td>';
+                    $recordsBody .= '<th scope=\'row\'>'.$utente.'</th>';
                     $recordsBody .= '<td>'.$moto.'</td>';
 
                     if($record['attrezzatura'])
