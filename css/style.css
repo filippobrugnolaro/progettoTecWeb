@@ -303,11 +303,11 @@ tbody th {
     text-align: center;
     vertical-align: center;
 	border-top: 2px solid var(--mainBackground);
-} 
+}
 
 table tr:nth-child(even) {
     background-color: var(--secondaryBackground);
-	
+
 }
 
 
@@ -469,7 +469,7 @@ form select {
 	flex-direction: column;
 	align-items: center;
 	margin: 0.5em;
-	background-color: rgb(227, 230, 181);
+	background-color: var(--mainBackground);
 	border: 2px solid var(--darkBackground);
 	border-radius: 5px;
 }
