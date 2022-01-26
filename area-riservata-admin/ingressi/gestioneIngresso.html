@@ -83,16 +83,18 @@
 				<fieldset>
 					<legend>Dati ingresso</legend>
 
-					<label for="data">Data apertura*</label>
-					<span><input type="date" _readonly_ name="data" id="data" value="_data_" min="_today_" placeholder="Data apertura" aria-required="true"></span>
-					<br>
+					<div class="input-container">
+						<label for="data">Data apertura*</label>
+						<span><input type="date" _readonly_ name="data" id="data" value="_data_" min="_today_" placeholder="Data apertura" aria-required="true"></span>
+					</div>
 
-					<label for="posti">Posti disponibili*</label>
-					<span><input type="number" name="posti" id="posti" value="_posti_" step="10" placeholder="Posti disponibili" aria-required="true"></span>
-					<br>
+					<div class="input-container">
+						<label for="posti">Posti disponibili*</label>
+						<span><input type="number" name="posti" id="posti" value="_posti_" step="10" placeholder="Posti disponibili" aria-required="true"></span>
+					</div>
+
+					<input type="submit" name="submit" id="submit" value="_azione_">
 				</fieldset>
-				<input type="submit" name="submit" id="submit" value="_azione_">
-
 			</form>
 
 			<a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>

@@ -212,11 +212,12 @@
         $form = '<form method="post" action="./">
                     <messaggiForm/>
 
-                    <label for="corso">Corso*</label>
-                    <select id="corso" name="corso" aria-required="true">
-                        <corsoDisp/>
-                    </select>
-                    <br>
+                    <div class="input-container">
+                        <label for="corso">Corso*</label>
+                        <select id="corso" name="corso" aria-required="true">
+                            <corsoDisp/>
+                        </select>
+                    </div>
 
                     <p id="descCorso" aria-live="polite"></p>
 
@@ -225,19 +226,24 @@
 
                         <p id="hint"></p>
 
-                        <label for="moto">Noleggio moto</label>
-                        <input type="checkbox" id="moto" name="moto" value="moto">
+                        <div class="input-container">
+                            <label for="moto">Noleggio moto</label>
+                            <input type="checkbox" id="moto" name="moto" value="moto">
+                        </div>
 
-                        <label for="motoNol">Tipo di moto</label>
-                        <select id="motoNol" name="motoNoleggio" aria-live="polite">
-                        </select>
-                        <br/>
+                        <div class="input-container">
+                            <label for="motoNol">Tipo di moto</label>
+                            <select id="motoNol" name="motoNoleggio" aria-live="polite">
+                            </select>
+                        </div>
 
-                        <label for="vestiario">Attrezzatura</label>
-                        <input type="checkbox" id="vestiario" name="vestiario" value="vestiario">
+                        <div class="input-container">
+                            <label for="vestiario">Attrezzatura</label>
+                            <input type="checkbox" id="vestiario" name="vestiario" value="vestiario">
+                        </div>
+
+                        <input type="submit" name="submit" value="PRENOTA">
                     </fieldset>
-
-                    <input type="submit" name="submit" value="PRENOTA">
                 </form>';
     else
         $form = '<p class=\'error\'>Form prenotazione corsi non disponibile.</p>';

@@ -5,9 +5,20 @@
 	e fare il replace su _userIcon_
 */
 
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
 * {
 	padding: 0;
 	margin: 0;
+
+	--mainBackground: rgb(246, 255, 240);
+	--secondaryBackground: rgb(226, 255, 206);
+	--darkBackground: rgb(38, 74, 70);
+	--linkmenu: rgb(185, 185, 180);
+	--linkmenu-hover: var(--mainBackground);
+	--linkbody: var(--darkBackground);
+	--linkbody-hover: blue;
+	--linkvisited: rgb(170, 243, 164);
 }
 
 /*html = finestra, body = contenuto pagina */
@@ -15,9 +26,9 @@ html {
 	max-width: 1024px;
 	height: 100%;
 	font-size: 100%;
-	font-family: "Roboto";
+	font-family: "Roboto", sans-serif;
 	margin: auto;
-	background-color: rgb(247, 248, 234);
+	background-color: var(--mainBackground);
 }
 
 .errSuggestion {
@@ -36,6 +47,14 @@ body {
 	min-height: 100%;
 }
 
+a:visited {
+	color: var(--linkvisited);
+}
+
+a:hover {
+	color: var(--linkbody-hover);
+}
+
 /* **************************************** */
 /* *********** GESTIONE FLEXBOX *********** */
 /* **************************************** */
@@ -44,15 +63,13 @@ body {
 	display: flex;
 	flex-direction: column;
 
-	/* border: 3px solid rgb(225, 0, 255); */
-
-	background-color: rgb(247, 248, 234);
+	background-color: var(--mainBackground);
 }
 
 .container1-item {
-	border-right: 2px solid rgb(38, 74, 70);
-	border-bottom: 2px solid rgb(38, 74, 70);
-	border-left: 2px solid rgb(38, 74, 70);
+	border-right: 2px solid var(--darkBackground);
+	border-bottom: 2px solid var(--darkBackground);
+	border-left: 2px solid var(--darkBackground);
 }
 
 .container2 {
@@ -62,10 +79,8 @@ body {
 	align-items: center;
 	justify-content: space-around;
 
-	color: rgb(247, 248, 234);
-	background-color: rgb(38, 74, 70);
-
-	/* border: 3px solid rgb(0, 255, 76); */
+	color: var(--mainBackground);
+	background-color: var(--darkBackground);
 }
 
 .container3 {
@@ -76,10 +91,8 @@ body {
 	justify-content: normal;
 	flex-wrap: wrap;
 
-
-	border: 1px solid rgb(38, 74, 70);
-
-	/* border: 3px solid rgb(60, 255, 0); */
+	border: 2px solid var(--darkBackground);
+	border-top: none;
 }
 
 .container3-item {
@@ -87,7 +100,7 @@ body {
 	padding: 1em;
 
 
-	border: 1px solid rgb(38, 74, 70);
+	/* border: 1px solid var(--darkBackground); */
 }
 
 
@@ -99,7 +112,7 @@ body {
 #menu {
 	font-size: 1.3em;
 	padding: 0.5em;
-	color:rgb(247, 248, 234);
+	color: var(--mainBackground);
 	list-style: none;
 
 	display: flex;
@@ -113,14 +126,12 @@ body {
 	margin: 0.5em 0.3em 0.3em 0.3em;
 }
 
-#menu a {
-	color:rgb(185, 185, 180);
-	text-decoration: none;
+#menu a:link {
+	color: var(--linkmenu);
 }
 
 #menu a:hover {
-	color:rgb(247, 248, 234);
-	text-decoration: none;
+	color: var(--linkmenu-hover);
 }
 
 #active {
@@ -130,19 +141,20 @@ body {
 /* ************** BREADCRUMB ************** */
 
 #breadcrumb {
-	background-color: rgb(227, 230, 181);
-	color: black;
+	background-color: var(--darkBackground);
+	color: var(--linkmenu);
+	border-top: 2px solid var(--mainBackground);
+	border-bottom: 2px solid var(--mainBackground);
 	padding: 0.5em 0em 0.5em 1.0em;
 }
 
-#breadcrumb a:visited {
-	color: rgb(38, 74, 70);
+#breadcrumb a:link {
+	font-size: 1.2em;
+	color: var(--linkmenu);
 }
 
-#breadcrumb a {
-	font-size: 1.2em;
-	color: rgb(38, 74, 70);
-	text-decoration: underline;
+#breadcrumb a:hover {
+	color: var(--linkmenu-hover);
 }
 
 
@@ -151,6 +163,7 @@ body {
 .navUser {
 	min-width: 230px;
 	flex: 1 0 0;
+	background-color: var(--darkBackground);
 
 	display: flex;
 	flex-direction: column;
@@ -162,11 +175,11 @@ body {
 	width: 1em;
 	height: 1em;
 
-	background-color: rgb(38, 74, 70);
-	color: rgb(247, 248, 234);
+	background-color: var(--mainBackground);
+	color: var(--darkBackground);
 	font-size: 4em;
 	text-align: center;
-	border: 0.3em solid rgb(38, 74, 70);
+	border: 0.3em solid var(--mainBackground);
 	border-radius: 50%;
 }
 
@@ -178,21 +191,19 @@ body {
 	list-style-type: none;
 	font-size: 1.3em;
 	padding: 0.5em;
-	color:rgb(38, 74, 70);
+	color:var(--mainBackground);
 }
 
 #sideMenu li {
 	padding: 0.1em;
 }
 
-#sideMenu a {
-	color: rgb(65, 75, 74);
-	text-decoration: none;
+#sideMenu a:link {
+	color:var(--linkmenu);
 }
 
 #sideMenu a:hover {
-	color:rgb(38, 74, 70);
-	text-decoration: underline;
+	color:var(--mainBackground);
 }
 
 #activeSub {
@@ -208,11 +219,11 @@ body {
 .contentUser {
 	flex: 3 0 0;
 	min-width: 500px;
-	color:rgb(38, 74, 70);
+	color:var(--darkBackground);
 }
 
 .contentUser a {
-	color: rgb(38, 74, 70);
+	color: var(--darkBackground);
 }
 
 .contentUser p {
@@ -223,11 +234,11 @@ body {
 .contentAdmin {
 	flex: 3 0 0;
 	min-width: 500px;
-	color:rgb(38, 74, 70);
+	color:var(--darkBackground);
 }
 
 .contentAdmin a {
-	color: rgb(38, 74, 70);
+	color: var(--darkBackground);
 }
 
 .contentAdmin p {
@@ -249,8 +260,6 @@ body {
 
     padding: 1em 1em 2em 1em;
     margin: 0.5em;
-
-    /* border: 1px solid rgb(0, 47, 177); */
 }
 
 /* ***************** TABLE **************** */
@@ -259,9 +268,9 @@ table {
 	align-self: center;
 
     width: 98%;
-    border: 2px solid rgb(38, 74, 70);
+    border: 2px solid var(--darkBackground);
     border-radius: 5px;
-    background-color: rgb(227, 230, 181);
+    background-color: var(--mainBackground);
     border-spacing: 0;
 	font-size: 1.2em;
 }
@@ -271,37 +280,40 @@ table caption {
     font-weight: bold;
 }
 
-table tr:nth-child(even) {
-    background-color: rgb(247, 248, 234);
-}
-
 table th {
     padding: 4px;
     font-size: 1.1em;
-    color: rgb(247, 248, 234);
-    background-color: rgb(38, 74, 70);
+    color: var(--mainBackground);
+    background-color: var(--darkBackground);
 }
 
 table td {
-
     padding: 2px;
     text-align: center;
     vertical-align: center;
 }
 
 table th,td {
-    border-bottom: 2px solid rgb(38, 74, 70);
+    border-top: 2px solid var(--darkBackground);
+}
+
+tbody th {
+	padding: 2px;
+	font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+	border-top: 2px solid var(--mainBackground);
+} 
+
+table tr:nth-child(even) {
+    background-color: var(--secondaryBackground);
+	
 }
 
 
 /* ***************** FORM ***************** */
-
 form {
 	align-self: center;
-
-    /* border: 2px solid rgb(38, 74, 70);
-    border-radius: 5px; */
-    /* background-color: rgb(227, 230, 181); */
 	font-size: 1.3em;
 
 }
@@ -311,19 +323,27 @@ form legend {
 }
 
 form fieldset {
-	border: 2px solid rgb(38, 74, 70);
+	border: 2px solid var(--darkBackground);
 	border-radius: 5px;
-	background-color: rgb(247, 248, 234);
-    padding: 1em;
+	background-color: var(--mainBackground);
+    padding: 0.5em 1em 0.5em 1em;
     margin: 1em;
 
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 }
 
 form input {
 	min-width: 270px;
 	padding: 0.5em;
+	display: block;
+	border-radius: 5px;
+}
+
+form input[readonly] {
+	background-color: rgb(212, 212, 206);
+	border: 1px solid black;
 }
 
 form input[type=checkbox] {
@@ -336,11 +356,47 @@ form input[type=submit] {
 
 	border: none;
 	border-radius: 0.25em;
-	background-color: rgb(38, 74, 70);
-	color: rgb(247, 248, 234);
+	background-color: var(--darkBackground);
+	color: var(--mainBackground);
 	font-size: 0.9em;
 
-	padding: 0.5
+	margin-top: 0.5em;
+	padding: 0.5em;
+
+	cursor: pointer;
+}
+
+form select {
+	min-width: 270px;
+	padding: 0.5em;
+	display: block;
+	border-radius: 5px;
+}
+
+.input-box {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	padding-top: 0.5em;
+	margin: 0em 0.5em 0em 0.5em;
+}
+
+#checkboxinput {
+	flex-direction: row;
+	align-items: center;
+}
+
+#checkboxinput a {
+	padding: 0em;
+}
+
+.errSuggestion {
+	font-size: 0.75em;
 }
 
 
@@ -349,7 +405,7 @@ form input[type=submit] {
 .content {
 	display: flex;
 	flex-direction: column;
-	color: rgb(38, 74, 70);
+	color: var(--darkBackground);
 }
 
 .content img {
@@ -366,16 +422,8 @@ form input[type=submit] {
 }
 
 .content a {
-	color: rgb(38, 74, 70);
+	color: var(--darkBackground);
 	padding: 0.5em;
-}
-
-.content a:visited {
-	color: purple;
-}
-
-.content a:hover {
-	color: blue;
 }
 
 .content article {
@@ -387,10 +435,33 @@ form input[type=submit] {
 	padding: 0.5em;
 	margin: 0.5em;
 
-	background-color: rgb(227, 230, 181);
-	border: 2px solid rgb(38, 74, 70);
+	background-color: var(--mainBackground);
+	border: 2px solid var(--darkBackground);
   	border-radius: 5px;
 }
+
+/* **************** LOGIN **************** */
+#contentLogin {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#contentLogin a {
+	padding: 0em;
+}
+
+#loginForm fieldset {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#loginForm input[type=submit] {
+	align-self: center;
+}
+
+
 
 /* **************** HOME **************** */
 .firstSection {
@@ -399,7 +470,7 @@ form input[type=submit] {
 	align-items: center;
 	margin: 0.5em;
 	background-color: rgb(227, 230, 181);
-	border: 2px solid rgb(38, 74, 70);
+	border: 2px solid var(--darkBackground);
 	border-radius: 5px;
 }
 
@@ -411,7 +482,7 @@ form input[type=submit] {
 
 #topButton {
 	margin: 1em;
-	color: rgb(38, 74, 70);
+	color: var(--darkBackground);
 }
 
 /* **************** TRACCIATI **************** */
@@ -500,8 +571,8 @@ form input[type=submit] {
 
 footer {
 	flex: 0 0 0;
-	color: rgb(247, 248, 234);
-	background-color:rgb(38, 74, 70);
+	color: var(--mainBackground);
+	background-color:var(--darkBackground);
 	clear: both;
 	text-align: center;
 	font-size: 0.8em;

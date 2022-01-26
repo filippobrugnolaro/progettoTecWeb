@@ -81,35 +81,39 @@
 				<messaggiForm/>
 
 				<fieldset>
-
 					<legend>Dati corso</legend>
 
-					<label for="data">Data*</label>
-					<select name="data" id="data" aria-required="true">
-						_dateDisponibili_
-					</select>
-					<br>
+					<div class="input-container">
+						<label for="data">Data*</label>
+						<select name="data" id="data" aria-required="true">
+							_dateDisponibili_
+						</select>
+					</div>
+					
+					<div class="input-container">
+						<label for="posti">Posti disponibili*</label>
+						<span><input type="number" name="posti" id="posti" value="_posti_" step="1" aria-required="true" placeholder="Posti disponibili"></span>
+					</div>
 
-					<label for="posti">Posti disponibili*</label>
-					<span><input type="number" name="posti" id="posti" value="_posti_" step="1" aria-required="true" placeholder="Posti disponibili"></span>
-					<br>
+					<div class="input-container">
+						<label for="descrizione">Descrizione*</label>
+						<span><textarea placeholder="Breve descrizione del corso" cols="50" rows="10" aria-required="true" name="descrizione" id="descrizione">_descrizione_</textarea></span>
+					</div>
 
-					<label for="descrizione">Descrizione*</label>
-					<span><textarea placeholder="Breve descrizione del corso" cols="50" rows="10" aria-required="true" name="descrizione" id="descrizione">_descrizione_</textarea></span>
-					<br>
+					<div class="input-container">
+						<label for="istruttore">Istruttore*</label>
+						<span><input type="text" name="istruttore" id="istruttore" value="_istruttore_" aria-required="true" placeholder="Istruttore che tiene il corso"></span>
+					</div>
 
-					<label for="istruttore">Istruttore*</label>
-					<span><input type="text" name="istruttore" id="istruttore" value="_istruttore_" aria-required="true" placeholder="Istruttore che tiene il corso"></span>
-					<br>
+					<div class="input-container">
+						<label for="tracciato">Tracciato*</label>
+						<select name="tracciato" id="tracciato">
+							_tracciati_
+						</select>
+					</div>
 
-					<label for="tracciato">Tracciato*</label>
-					<select name="tracciato" id="tracciato">
-						_tracciati_
-					</select>
-					<br>
-
+					<input type="submit" name="submit" id="submit" value="_azione_">
 				</fieldset>
-				<input type="submit" name="submit" id="submit" value="_azione_">
 
 			</form>
 

@@ -72,39 +72,45 @@
 
                 <fieldset>
                     <legend>Dati personali</legend>
-
-                    <label for="nome">Nome*</label>
-                    <span><input type="text" name="nome" id="nome" value="_nome_" placeholder="Mario" aria-required="true"></span>
-                    <br>
-
-                    <label for="cognome">Cognome*</label>
-                    <span><input type="text" name="cognome" id="cognome" value="_cognome_" placeholder="Rossi" aria-required="true"></span>
-                    <br>
-
-                    <label for="email"><span lang="en">E-mail</span>*</label>
-                    <span><input type="email" name="email" id="email" value="_email_" placeholder="mario.rossi@gmail.com" aria-required="true"></span>
-                    <br>
-
-                    <label for="telefono">Telefono*</label>
-                    <span><input type="tel" name="telefono" id="telefono" value="_tel_" placeholder="34213458973" aria-required="true"></span>
-
+                     
+                    <div class="input-container">
+                        <label for="nome">Nome*</label>
+                        <span><input type="text" name="nome" id="nome" value="_nome_" placeholder="Mario" aria-required="true"></span>
+                    </div>
+                    
+                    <div class="input-container">
+                        <label for="cognome">Cognome*</label>
+                        <span><input type="text" name="cognome" id="cognome" value="_cognome_" placeholder="Rossi" aria-required="true"></span>
+                    </div>
+                    
+                    <div class="input-container">
+                        <label for="email"><span lang="en">E-mail</span>*</label>
+                        <span><input type="email" name="email" id="email" value="_email_" placeholder="mario.rossi@gmail.com" aria-required="true"></span>
+                    </div>
+                    
+                    <div class="input-container">
+                        <label for="telefono">Telefono*</label>
+                        <span><input type="tel" name="telefono" id="telefono" value="_tel_" placeholder="34213458973" aria-required="true"></span>
+                    </div>
                 </fieldset>
 
                 <fieldset>
                     <legend>Richiesta</legend>
+                    
+                    <div class="input-container">
+                        <label for="oggetto">Oggetto*</label>
+                        <span><input type="text" name="oggetto" id="oggetto" value="_obj_" aria-required="true" placeholder="Richiesta informazioni per..."></span>
+                    </div>
+                    
+                    <div class="input-container">
+                        <label for="messaggio">Messaggio*</label>
+                        <textarea id="messaggio" name="messaggio" rows="10" cols="50" aria-required="true" placeholder="Testo del messaggio">_text_</textarea>
+                    </div>
 
-                    <label for="oggetto">Oggetto*</label>
-                    <span><input type="text" name="oggetto" id="oggetto" value="_obj_" aria-required="true" placeholder="Richiesta informazioni per..."></span>
-                    <br>
-
-                    <label for="messaggio">Messaggio*</label>
-                    <div><textarea id="messaggio" name="messaggio" rows="10" cols="50" aria-required="true" placeholder="Testo del messaggio">_text_</textarea></div>
-
-                    <div>
+                    <div id="checkboxinput" class="input-container">
                         <span><input type="checkbox" name="termini" id="termini" _checked_ aria-required="true"></span>
                         <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.*</label>
                     </div>
-                    <br>
 
                     <input type="submit" name="submit" id="invio">
                 </fieldset>

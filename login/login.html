@@ -51,18 +51,25 @@
   <div id="contentLogin" class="container1-item content">
 		<h1>Login</h1>
 
-		<form method="post" action="_action_" onsubmit="return formValidation(event);">
+		<form id="loginForm" method="post" action="_action_" onsubmit="return formValidation(event);">
 			<messaggiForm/>
 
 			<fieldset>
 				<legend>Dati personali</legend>
-				<label for="username"><span lang="en">Username</span></label>
-				<span><input type="text" name="username" id="username" placeholder="mariorossi65" aria-required="true"></span><br />
 
-				<label for="password">Password </label>
-				<span><input type="password" name="password" id="password" aria-required="true"></span><br />
+				<div class="input-container">
+					<label for="username"><span lang="en">Username</span></label>
+					<span><input type="text" name="username" id="username" placeholder="mariorossi65" aria-required="true"></span><br />
+				</div>
+
+				<div class="input-container">
+					<label for="password">Password </label>
+					<span><input type="password" name="password" id="password" aria-required="true"></span><br />
+				</div>
+
+				<input type="submit" name="submit" value="ACCEDI"/>
 			</fieldset>
-			<input type="submit" name="submit" value="ACCEDI"/>
+			
 		</form>
 
 		<p>Non sei ancora registrato? Accedi alla pagina di <a href="../registrazione/">registrazione</a>.</p>

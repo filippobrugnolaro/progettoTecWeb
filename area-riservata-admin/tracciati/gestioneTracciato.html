@@ -87,39 +87,51 @@
 
                     <id/>
 
-                    <label for="lunghezza">Lunghezza (metri)*</label>
-                    <span><input type="number" name="lunghezza" id="lunghezza" value="_lunghezza_" aria-required="true" step="100" placeholder="Lunghezza del tracciato"></span>
-                    <br>
+                    <div class="input-box">
+                        <div class="input-container">
+                            <label for="lunghezza">Lunghezza (metri)*</label>
+                            <span><input type="number" name="lunghezza" id="lunghezza" value="_lunghezza_" aria-required="true" step="100" placeholder="Lunghezza del tracciato"></span>
+                        </div>
 
-                    <label for="descrizione">Descrizione*</label>
-                    <span><textarea placeholder="Breve descrizione del tracciato" cols="50" rows="10" aria-required="true" name="descrizione" id="descrizione">_descrizione_</textarea>
-                    </span>
-                    <br>
+                        <div class="input-container">
+                            <label for="terreno">Terreno*</label>
+                            <select name="terreno" id="terreno" aria-required="true">
+                                <option value="terra_battuta">Terra battuta</option>
+                                <option value="terra_sassosa">Terra sassosa</option>
+                                <option value="terra_morbida">Terra morbida</option>
+                                <option value="sabbia">Sabbia</option>
+                            </select>
+                        </div>
+                    </div>
 
-                    <label for="terreno">Terreno*</label>
-                    <select name="terreno" id="terreno" aria-required="true">
-                        <option value="terra_battuta">Terra battuta</option>
-                        <option value="terra_sassosa">Terra sassosa</option>
-                        <option value="terra_morbida">Terra morbida</option>
-                        <option value="sabbia">Sabbia</option>
-                    </select>
-                    <br>
+                    <div class="input-container">
+                        <label for="descrizione">Descrizione*</label>
+                        <span><textarea placeholder="Breve descrizione del tracciato" cols="50" rows="10" aria-required="true" name="descrizione" id="descrizione">_descrizione_</textarea>
+                        </span>
+                    </div>
 
-                    <label for="apertura">Orario apertura*</label>
-                    <span><input type="time" name="apertura" id="apertura" value="_apertura_" aria-required="true"  step="60"></span>
-                    <br>
-                    <label for="chiusura">Orario chiusura*</label>
-                    <span><input type="time" name="chiusura" id="chiusura" value="_chiusura_" aria-required="true" step="60"></span>
-                    <br>
+                    <div class="input-box">
+                        <div class="input-container">
+                            <label for="apertura">Orario apertura*</label>
+                            <span><input type="time" name="apertura" id="apertura" value="_apertura_" aria-required="true"  step="60"></span>
+                        </div>
+                        <div class="input-container">
+                            <label for="chiusura">Orario chiusura*</label>
+                            <span><input type="time" name="chiusura" id="chiusura" value="_chiusura_" aria-required="true" step="60"></span>
+                        </div>
+                    </div>
 
-                    <oldImg/>
+                    <div class="input-container">
+                        <oldImg/>
+                    </div>
 
-                    <label for="img">Immagine nuova</label>
-                    <input type="file" name="img" id="img" accept="image/png, image/jpeg" _requiredImg_>
+                    <div class="input-container">
+                        <label for="img">Immagine nuova</label>
+                        <input type="file" name="img" id="img" accept="image/png, image/jpeg" _requiredImg_>
+                    </div>
 
+                    <input type="submit" name="submit" id="submit" value="_azione_">
                 </fieldset>
-                <input type="submit" name="submit" id="submit" value="_azione_">
-
             </form>
 
             <a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>

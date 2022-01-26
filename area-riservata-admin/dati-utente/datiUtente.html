@@ -78,23 +78,31 @@
 					<fieldset>
 						<legend>Dati personali</legend>
 
-						<label for="cognomeUser">Cognome*</label>
-						<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" aria-required="true"></span>
-						<br/>
+						<div class="input-box">
+							<div class="input-container">
+								<label for="cognomeUser">Cognome*</label>
+								<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" aria-required="true"></span>
+							</div>
 
-						<label for="nomeUser">Nome*</label>
-						<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" aria-required="true"></span>
-						<br/>
+							<div class="input-container">
+								<label for="nomeUser">Nome*</label>
+								<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" aria-required="true"></span>
+							</div>
+						</div>
 
-						<label for="nascitaUser">Data di nascita*</label>
-						<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" aria-required="true"></span>
-						<br/>
+						<div class="input-container">
+							<label for="nascitaUser">Data di nascita*</label>
+							<span><input type="date" name="nascitaUser" id="nascitaUser" value="_nascita_" aria-required="true"></span>
+						</div>
 
-						<label for="telUser">Telefono*</label>
-						<span><input type="tel" name="telUser" id="telUser" value="_telefono_" aria-required="true"></span>
-						<br/>
+						<div class="input-container">
+							<label for="telUser">Telefono*</label>
+							<span><input type="tel" name="telUser" id="telUser" value="_telefono_" aria-required="true"></span>
+						</div>
+
+						<input type="submit" name="submitUser" value="Applica Modifiche">
 					</fieldset>
-					<input type="submit" name="submitUser" value="Applica Modifiche">
+					
 				</form>
 
 				<!-- modifica password -->
@@ -103,27 +111,36 @@
 					<fieldset>
 						<legend>Dati per l'accesso</legend>
 
-						<label for="username" lang="en">Username*</label>
-						<span><input type="text" name="username" id="username" value="_username_" readonly/></span>
-						<br/>
+						<div class="input-box">
+							<div class="input-container">
+								<label for="username" lang="en">Username*</label>
+								<span><input type="text" name="username" id="username" value="_username_" readonly/></span>
+							</div>
 
-						<label for="emailUser" lang="en">E-mail*</label>
-						<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
-						<br/>
+							<div class="input-container">
+								<label for="emailUser" lang="en">E-mail*</label>
+								<span><input type="email" name="emailUser" id="emailUser" value="_email_" readonly/></span>
+							</div>
+						</div>
 
-						<label for="oldPsw">Vecchia password*</label>
-						<span><input type="password" name="oldPsw" id="oldPsw" aria-required="true"></span>
-						<br/>
+						<div class="input-container">
+							<label for="oldPsw">Vecchia password*</label>
+							<span><input type="password" name="oldPsw" id="oldPsw" aria-required="true"></span>
+						</div>
 
-						<label for="newPsw">Nuova password*</label>
-						<span><input type="password" name="newPsw" id="newPsw" aria-required="true"></span>
-						<br/>
+						<div class="input-container">
+							<label for="newPsw">Nuova password*</label>
+							<span><input type="password" name="newPsw" id="newPsw" aria-required="true"></span>
+						</div>
 
-						<label for="pswCheck">Reinserisci nuova password*</label>
-						<span><input type="password" name="pswCheck" id="pswCheck" aria-required="true"></span>
-						<br/>
+						<div class="input-container">
+							<label for="pswCheck">Reinserisci nuova password*</label>
+							<span><input type="password" name="pswCheck" id="pswCheck" aria-required="true"></span>
+						</div>
+
+						<input type="submit" name="submitPsw" value="Modifica"/>
 					</fieldset>
-					<input type="submit" name="submitPsw" value="Modifica"/>
+					
 				</form>
 			</div>
 

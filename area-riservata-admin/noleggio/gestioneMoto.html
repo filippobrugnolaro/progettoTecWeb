@@ -85,28 +85,37 @@
 
                     <id/>
 
-                    <label for="marca">Marca*</label>
-                    <span><input type="text" name="marca" id="marca" value="_marca_" placeholder="Marca della moto" aria-required="true"></span>
-                    <br>
+                    <div class="input-box">
+                        <div class="input-container">
+                            <label for="marca">Marca*</label>
+                            <span><input type="text" name="marca" id="marca" value="_marca_" placeholder="Marca della moto" aria-required="true"></span>
+                        </div>
 
-                    <label for="modello">Modello*</label>
-                    <span><input type="text" name="modello" id="modello" value="_modello_" placeholder="Modello della moto" aria-required="true"></span>
-                    <br>
+                        <div class="input-container">
+                            <label for="modello">Modello*</label>
+                            <span><input type="text" name="modello" id="modello" value="_modello_" placeholder="Modello della moto" aria-required="true"></span>
+                        </div>
+                    </div>
 
-                    <label for="cilindrata">Cilindrata*</label>
-                    <select name="cilindrata" id="cilindrata" aria-required="true">
-                        <option value="125">125cc</option>
-                        <option value="250">250cc</option>
-                        <option value="350">350cc</option>
-                        <option value="450">450cc</option>
-                    </select>
-                    <br>
+                    <div class="input-box">
+                        <div class="input-container">
+                            <label for="cilindrata">Cilindrata*</label>
+                            <select name="cilindrata" id="cilindrata" aria-required="true">
+                                <option value="125">125cc</option>
+                                <option value="250">250cc</option>
+                                <option value="350">350cc</option>
+                                <option value="450">450cc</option>
+                            </select>
+                        </div>
 
-                    <label for="anno">Anno*</label>
-                    <span><input type="number" name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" aria-required="true" step="1" placeholder="Anno di fabbricazione"></span>
-                    <br>
+                        <div class="input-container">
+                            <label for="anno">Anno*</label>
+                            <span><input type="number" name="anno" id="anno" value="_anno_" min="2000" max="_maxYear_" aria-required="true" step="1" placeholder="Anno di fabbricazione"></span>
+                        </div>
+                    </div>
+
+                    <input type="submit" name="submit" id="submit" value="_azione_">
                 </fieldset>
-                <input type="submit" name="submit" id="submit" value="_azione_">
             </form>
 
             <a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>

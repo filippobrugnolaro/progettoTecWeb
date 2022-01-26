@@ -205,29 +205,38 @@
         $form = '<form method="post" action="./">
                     <messaggiForm/>
 
-                    <label for="dataDisponibile">Data*</label>
-                    <select id="dataDisponibile" name="dataDisp" aria-required="true">
-                        <dataDisp/>
-                    </select>
-                    <br/>
+                    <div class="input-container">
+                        <label for="dataDisponibile">Data*</label>
+                        <select id="dataDisponibile" name="dataDisp" aria-required="true">
+                            <dataDisp/>
+                        </select>
+                    </div>
 
                     <fieldset>
                         <legend>Noleggio</legend>
                         <p id="hint"></p>
 
-                        <label for="moto">Noleggio moto</label>
-                        <input type="checkbox" id="moto" name="moto" value="moto" _checkedMoto_ >
+                        <div class="input-box">
+                            <div class="input-container">
+                                <label for="moto">Noleggio moto</label>
+                                <input type="checkbox" id="moto" name="moto" value="moto" _checkedMoto_ >
+                            </div>
 
-                        <label for="motoNol">Tipo di moto</label>
-                        <select id="motoNol" name="motoNoleggio">
-                        </select>
-                        <br/>
+                            <div class="input-container">
+                                <label for="motoNol">Tipo di moto</label>
+                                <select id="motoNol" name="motoNoleggio">
+                                </select>
+                            </div>
+                        </div>
 
-                        <label for="vestiario">Attrezzatura</label>
-                        <input type="checkbox" id="vestiario" name="vestiario" value="vestiario" _checkedAttr_>
+                        <div class="input-container">
+                            <label for="vestiario">Attrezzatura</label>
+                            <input type="checkbox" id="vestiario" name="vestiario" value="vestiario" _checkedAttr_>
+                        </div>
+
+                        <input type="submit" name="submit" value="PRENOTA">
                     </fieldset>
 
-                    <input type="submit" name="submit" value="PRENOTA">
                 </form>';
     else
         $form = '<p class=\'error\'>Form prenotazione ingressi non disponibile.</p>';

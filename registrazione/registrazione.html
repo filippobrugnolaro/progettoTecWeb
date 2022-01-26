@@ -59,40 +59,62 @@
 	        <fieldset>
 	            <legend>Dati personali</legend>
 
-				<label for="cognomeUser">Cognome*</label>
-				<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" aria-required="true" placeholder="Mario"></span><br/>
+				<div class="input-box">
+					<div class="input-container">
+						<label for="cognomeUser">Cognome*</label>
+						<span><input type="text" name="cognomeUser" id="cognomeUser" value="_cognome_" aria-required="true" placeholder="Mario"></span><br/>
+					</div>
 
-                <label for="nomeUser">Nome*</label>
-				<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" aria-required="true" placeholder="Rossi"></span> <br/>
+					<div class="input-container">
+						<label for="nomeUser">Nome*</label>
+						<span><input type="text" name="nomeUser" id="nomeUser" value="_nome_" aria-required="true" placeholder="Rossi"></span> <br/>
+					</div>
+				</div>
 
-				<label for="nascitaUser">Data di nascita*</label>
-				<span><input type="date" name="nascitaUser" id="nascitaUser" aria-required="true" value="_nascita_"></span> <br/>
+				<div class="input-box">
+					<div class="input-container">
+						<label for="nascitaUser">Data di nascita*</label>
+						<span><input type="date" name="nascitaUser" id="nascitaUser" aria-required="true" value="_nascita_"></span> <br/>
+					</div>
 
-				<label for="cfUser">Codice fiscale*</label>
-				<span><input type="text" name="cfUser" id="cfUser" value="_cf_" aria-required="true" placeholder="MMMRRR00A11G224R"></span> <br/>
+					<div class="input-container">
+						<label for="cfUser">Codice fiscale*</label>
+						<span><input type="text" name="cfUser" id="cfUser" value="_cf_" aria-required="true" placeholder="MMMRRR00A11G224R"></span> <br/>
+					</div>
+				</div>
 
-				<label for="telUser">Telefono*</label>
-				<span><input type="tel" name="telUser" id="telUser" value="_telefono_" aria-required="true" placeholder="3216547907"></span> <br/>
+				<div class="input-container">
+					<label for="telUser">Telefono*</label>
+					<span><input type="tel" name="telUser" id="telUser" value="_telefono_" aria-required="true" placeholder="3216547907"></span> <br/>
+				</div>
 			</fieldset>
 
 			<errors/>
 	        <fieldset>
 				<legend>Dati per l'accesso</legend>
 
-				<label for="username" lang="en">Username*</label>
-				<span><input type="text" name="username" id="username" value="_username_" aria-required="true" placeholder="mariorossi65"></span> <br/>
+				<div class="input-container">
+					<label for="username" lang="en">Username*</label>
+					<span><input type="text" name="username" id="username" value="_username_" aria-required="true" placeholder="mariorossi65"></span> <br/>
+				</div>
 
-                <label for="emailUser" lang="en">E-mail*</label>
-				<span><input type="email" name="emailUser" id="emailUser" value="_email_" aria-required="true" placeholder="mario.rossi@gmail.com"></span> <br/>
+				<div class="input-container">
+					<label for="emailUser" lang="en">E-mail*</label>
+					<span><input type="email" name="emailUser" id="emailUser" value="_email_" aria-required="true" placeholder="mario.rossi@gmail.com"></span> <br/>
+				</div>
 
-                <label for="pswUser">Password*</label>
-				<span><input type="password" name="pswUser" id="pswUser" aria-required="true"></span> <br/>
+				<div class="input-container">
+					<label for="pswUser">Password*</label>
+					<span><input type="password" name="pswUser" id="pswUser" aria-required="true"></span> <br/>
+				</div>
 
-                <label for="pswCheck">Reinserisci la password</label>
-				<span><input type="password" name="pswCheck" id="pswCheck" aria-required="true"></span> <br/>
+				<div class="input-container">
+					<label for="pswCheck">Reinserisci la password</label>
+					<span><input type="password" name="pswCheck" id="pswCheck" aria-required="true"></span> <br/>
+				</div>
+
+				<input type="submit" name="submit" value="REGISTRATI">
 			</fieldset>
-
-			<input type="submit" name="submit" value="REGISTRATI">
 		</form>
   </div>
 
