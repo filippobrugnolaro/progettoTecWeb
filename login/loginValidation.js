@@ -1,6 +1,6 @@
 var validationDetails = {
 	//"email"         : ["E-mail del contatto",/^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/,"Inserire un indirizzo e-mail corretto"],
-	"username": ["username dell'utente", /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/, "L'username deve contenere tra 8 e 20 caratteri (solo lettere minuscole e numeri ammessi)"],
+	"username": ["username dell'utente", /^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/, "L'username deve contenere tra 4 e 10 caratteri (solo lettere minuscole e numeri ammessi)"],
 	"password"      : ["Verifica password dell'utente",/^.{1,}$/,"Inserire almeno un caratttere"],
 }
 

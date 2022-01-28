@@ -7,7 +7,7 @@ var validationDetails = {
     "emailUser": ["E-mail del contatto", /^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/, "Inserire un indirizzo e-mail corretto"],
     "pswUser": ["Password nuova dell'utente", /^.{1,}$/, "Inserire almeno un carattere"],
     "pswCheck": ["Verifica password dell'utente", /^.{1,}$/, "La nuova password e la sua verifica non coincidono"],
-    "username": ["username dell'utente", /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/, "L'username deve contenere tra 8 e 20 caratteri (solo lettere minuscole e numeri ammessi)"],
+    "username": ["username dell'utente", /^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/, "L'username deve contenere tra 4 e 10 caratteri (solo lettere minuscole e numeri ammessi)"],
 }
 
 function showError(input) {

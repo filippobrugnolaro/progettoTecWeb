@@ -40,7 +40,7 @@
     if (isset($_POST['submit'])) {
         if (strlen($_POST['username']) == 0) {
             $errors .= '<li><span lang="en">Username</span> non inserito.</li>';
-        } else if (!preg_match('/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/',$_POST['username'])) {
+        } else if (!preg_match('/^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/',$_POST['username'])) {
             $errors .= '<li><span lang="en">Username</span> inserito non valido.</li>';
         } else {
             $username = sanitizeInputString($_POST['username']);

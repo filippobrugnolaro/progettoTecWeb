@@ -33,9 +33,9 @@
             }
 
         $username = sanitizeInputString($_POST['username']);
-            switch(checkInputValidity($username,'/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/')) {
+            switch(checkInputValidity($username,'/^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/')) {
                 case 1: $messaggiForm .= '<li><span lang="en">Username</span> non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li><span lang="en">Username</span> deve contenere solo lettere minuscole e numeri.</li>'; break;
+                case 2: $messaggiForm .= '<li><span lang="en">Username</span> deve contenere tra i 4 e i 10 caratteri, solo lettere minuscole e numeri.</li>'; break;
                 default: break;
             }
 
