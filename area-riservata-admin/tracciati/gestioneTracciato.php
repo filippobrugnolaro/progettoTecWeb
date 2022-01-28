@@ -75,12 +75,16 @@
             if($lunghezza < 500 || $lunghezza > 10000)
                 $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000.</li>';
 
-            $descrizione = sanitizeInputString($_POST['descrizione']);
+            if(isset($_POST['descrizione'])) {
+                    $desc = sanitizeInputString($_POST['descrizione']);
 
-            switch(checkInputValidity($descrizione,'/^.{30,200}$/')) {
-                case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Descrizione deve essere compresa tra 30 e 300 caratteri.</li>'; break;
-                default: break;
+                    switch(checkInputValidity($desc,'/^.{30,300}$/')) {
+                        case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
+                        case 2: $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 300 caratteri.</li>'; break;
+                        default: break;
+                    }
+            } else {
+                $messaggiForm .= '<li>Descrizione non presente.</li>';
             }
 
             $terreno = sanitizeInputString($_POST['terreno']);
@@ -226,12 +230,16 @@
             if($lunghezza < 500 || $lunghezza > 10000)
                 $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000.</li>';
 
-            $descrizione = sanitizeInputString($_POST['descrizione']);
+            if(isset($_POST['descrizione'])) {
+                    $desc = sanitizeInputString($_POST['descrizione']);
 
-            switch(checkInputValidity($descrizione,'/^.{30,200}$/')) {
-                case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
-                case 2: $messaggiForm .= '<li>Descrizione deve essere compresa tra 30 e 300 caratteri.</li>'; break;
-                default: break;
+                    switch(checkInputValidity($desc,'/^.{30,300}$/')) {
+                        case 1: $messaggiForm .= '<li>Descrizione non presente.</li>'; break;
+                        case 2: $messaggiForm .= '<li>La descrizione deve essere compresa tra 30 e 300 caratteri.</li>'; break;
+                        default: break;
+                    }
+            } else {
+                $messaggiForm .= '<li>Descrizione non presente.</li>';
             }
 
             $terreno = sanitizeInputString($_POST['terreno']);
