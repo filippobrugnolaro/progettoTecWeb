@@ -250,16 +250,16 @@
 
 
     if(strlen($globalError) > 0)
-        $globalError = '<p>'.$globalError.'</p>';
+        $globalError = '<p class=\'error\'>'.$globalError.'</p>';
 
     if(strlen($messaggiForm) > 0)
         $messaggiForm = '<ul>'.$messaggiForm.'</ul>';
 
     if(strlen($errorCorsi) > 0)
-        $errorCorsi = '<p>'.$errorCorsi.'</p>';
+        $errorCorsi = '<p class=\'error\'>'.$errorCorsi.'</p>';
 
     if(strlen($errorPrenotazione) > 0)
-        $errorPrenotazione = '<p>'.$errorPrenotazione.'</p>';
+        $errorPrenotazione = '<p class=\'error\'>'.$errorPrenotazione.'</p>';
 
     $page = str_replace('_prenotati_',$tableIngressiPrenotati,$page);
     $page = str_replace('_calendario_',$tableIngressiDisp,$page);

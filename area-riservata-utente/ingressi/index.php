@@ -241,6 +241,15 @@
     else
         $form = '<p class=\'error\'>Form prenotazione ingressi non disponibile.</p>';
 
+    if(strlen($globalError) > 0)
+        $globalError = "<p class=\"error\">$globalError</p>";
+
+    if(strlen($errorIngresso) > 0)
+        $errorIngresso = "<p class=\"error\">$errorIngresso</p>";
+
+    if(strlen($errorPrenotazione) > 0)
+        $errorPrenotazione = "<p class=\"error\">$errorPrenotazione</p>";
+
 
     $page = str_replace('_prenotazioni_',$tablePrenotazioni,$page);
     $page = str_replace('_disp_',$tableDisp,$page);
@@ -253,9 +262,7 @@
 
     $page = str_replace('<nextDate/>',$ingressiBody,$page);
     $page = str_replace('<erroreIngresso/>', $errorIngresso, $page);
-
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
-
 
     $page = str_replace('<dataDisp/>',$ingressiDropdown,$page);
     $page = str_replace('_checkedAttr_',$noleggioAttrezzatura,$page);

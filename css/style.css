@@ -4,7 +4,7 @@
 	--mainBackground: /*rgb(246, 255, 240)*/rgb(255, 234, 210);
 	--secondaryBackground: /*rgb(255, 232, 206)*/rgb(247, 201, 148);
 	--darkBackground: rgb(38, 74, 70);
-	--linkmenu: rgb(185, 185, 180);
+	--linkmenu: /*rgb(185, 185, 180);*/ #DFDFDD;
 	--linkmenu-hover: rgb(255, 250, 240);
 	--linkbody: var(--darkBackground);
 	--linkbody-hover: blue;

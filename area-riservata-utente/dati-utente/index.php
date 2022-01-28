@@ -148,7 +148,7 @@
     $username = strlen($username) > 0 ? $username : $_SESSION['user']->getUserName();
 
     if(strlen($globalError) > 0)
-        $globalError = '<p>'.$globalError.'</p>';
+        $globalError = '<p class=\'error\'>'.$globalError.'</p>';
 
     if(strlen($errors) > 0)
         $errors = '<ul>'.$errors.'</ul>';

@@ -41,10 +41,10 @@
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
     if(strlen($globalError) > 0)
-        $globalError = "<p>$globalErorr</p>";
+        $globalError = "<p class=\"error\">$globalErorr</p>";
 
     if(strlen($errorDetails) > 0)
-        $errorDetails = "<p>$errorDetails</p>";
+        $errorDetails = "<p class=\"error\">$errorDetails</p>";
 
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<erroreMotoDisp/>',$errorDetails,$page);

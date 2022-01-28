@@ -113,6 +113,12 @@
         }
     }
 
+    if(strlen($messaggiForm) > 0)
+        $messaggiForm = "<ul>$messaggiForm</ul>";
+
+    if(strlen($globalError) > 0)
+        $globalError = "<p class=\"error\">$globalError</p>";
+
     $page = str_replace('<messaggiForm/>', $messaggiForm, $page);
     $page = str_replace('<globalError/>', $globalError, $page);
 

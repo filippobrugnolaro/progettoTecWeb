@@ -192,7 +192,7 @@
                                     _utenti_
                                 </select>
                             </div>
-                            
+
                             <input type="submit" name="submitUtenteAdmin" value="Promuovi utente"/>
                         </form>';
 
@@ -222,10 +222,10 @@
         $globalError = 'Errore di connessione, riprovare più tardi.';
 
     if(strlen($globalError) > 0)
-        $globalError = '<p>'.$globalError.'</p>';
+        $globalError = '<p class="error">'.$globalError.'</p>';
 
     if(strlen($errorDetails) > 0)
-        $errorDetails = '<p>'.$errorDetails.'</p>';
+        $errorDetails = '<p class="error">'.$errorDetails.'</p>';
 
     if(strlen($errors) > 0)
         $errors = '<ul>'.$errors.'</ul>';
