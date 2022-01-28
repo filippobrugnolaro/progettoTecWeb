@@ -1,0 +1,10 @@
+Di seguito verrà descritto il livello di intrusività dei linguaggi rispetto al codice sorgente HTML:
+\begin{itemize}
+    \item \textbf{CSS}: \underline{non} intrusivo. Tutto il codice CSS è stato inserito in un file a parte, evitando del tutto pratiche come il
+    CSS inline o embedded.
+    \item \textbf{PHP}: \underline{non} intrusivo. Sebbene ci sia del codice HTML all'interno di alcuni file PHP, la corrispondente
+    pagina HTML non contiene codice PHP. La motivazione per la quale c'è del codice HTML in file PHP è che spesso i dati, essendo molto dinamici,
+    cambiano spesso in base sia all'input dell'utente che dell'amministratore. Dunque in base alla presenza o meno di alcuni di questi 
+    (per esempio le date d'ingresso) possono comparire o meno determinati elementi HTML.
+    \item \textbf{Javascript}: \underline{non} intrusivo. Tutto il codice javascript è stato inserito in un file a parte.
+\end{itemize}
