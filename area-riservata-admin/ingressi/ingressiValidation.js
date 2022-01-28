@@ -1,11 +1,11 @@
 var validationDetails = {
-    "data"          : ["Data dell'ingresso",/^\d{4}-\d{2}-\d{2}$/,"Inserire una data valida successiva ad oggi"],
-    "posti"         : ["Numero di posti disponibili",/^[0-9]{2,3}$/,"Inserire un numero compreso tra 50 e 200 inclusi"],
+    "data"          : [/^\d{4}-\d{2}-\d{2}$/,"Inserire una data valida successiva ad oggi"],
+    "posti"         : [/^[0-9]{2,3}$/,"Inserire un numero compreso tra 50 e 200 inclusi"],
 }
 
 function showError(input) {
     var parent = input.parentNode;
-    var message = validationDetails[input.id][2];
+    var message = validationDetails[input.id][1];
     var error = document.createElement("strong");
     input.setAttribute('aria-invalid', 'true');
     input.setAttribute('aria-describedby', input.id + '-error');
@@ -39,8 +39,8 @@ function fieldValidation(input, event = null) {
             }
 
         default:
-            if ((event !== null && input.value.search(validationDetails[input.id][1]) != 0)
-                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][1]) != 0))) {
+            if ((event !== null && input.value.search(validationDetails[input.id][0]) != 0)
+                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][0]) != 0))) {
                 showError(input);
                 return false;
             } else {
@@ -90,7 +90,7 @@ function formValidation(event) {
 }
 
 function checkDate(input) {
-	if(input.value.search(validationDetails[input.id][1]) != 0)
+	if(input.value.search(validationDetails[input.id][0]) != 0)
 		return false;
 
 	var selectedDate = new Date(input.value);
@@ -100,7 +100,7 @@ function checkDate(input) {
 }
 
 function checkPosti(input) {
-	if(input.value.search(validationDetails[input.id][1]) != 0)
+	if(input.value.search(validationDetails[input.id][0]) != 0)
 			return false;
 
     return (input.value >= 50 && input.value <= 200) ? true : false;

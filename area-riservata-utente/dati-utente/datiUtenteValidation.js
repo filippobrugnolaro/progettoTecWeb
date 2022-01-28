@@ -1,20 +1,20 @@
 var validationDetails = {
-    "cognomeUser": ["Cognome dell'utente", /^[A-Za-zàèùìòé'\s]{2,}$/, "Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
-    "nomeUser": ["Nome dell'utente", /^[A-Za-zàèùìòé'\s]{2,}$/, "Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
-    "nascitaUser": ["Data di nascita dell'utente", /^\d{4}-\d{2}-\d{2}$/, "Inserire una data corretta antecedente a quella odierna"],
-    "telUser": ["Numero di telefono dell'utente", /^\d{8,10}$/, "Inserire un numero di telefono valido tra le 8 e le 10 cifre"],
+    "cognomeUser": [/^[A-Za-zàèùìòé'\s]{2,}$/, "Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
+    "nomeUser": [/^[A-Za-zàèùìòé'\s]{2,}$/, "Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
+    "nascitaUser": [/^\d{4}-\d{2}-\d{2}$/, "Inserire una data corretta antecedente a quella odierna"],
+    "telUser": [/^\d{8,10}$/, "Inserire un numero di telefono valido tra le 8 e le 10 cifre"],
 }
 
 var validationDetails2 = {
-    "oldPsw": ["Password nuova dell'utente", /^.{1,}$/, "Inserire almeno un carattere"],
-    "newPsw": ["Password nuova dell'utente", /^.{1,}$/, "Inserire una password di almeno un carattere diversa dalla precedente"],
-    "pswCheck": ["Verifica password dell'utente", /^.{1,}$/, "La nuova password e la sua verifica non coincidono"],
+    "oldPsw": [/^.{1,}$/, "Inserire almeno un carattere"],
+    "newPsw": [/^.{1,}$/, "Inserire una password di almeno un carattere diversa dalla precedente"],
+    "pswCheck": [/^.{1,}$/, "La nuova password e la sua verifica non coincidono"],
 }
 
 
 function showError(input) {
     var parent = input.parentNode;
-    var message = validationDetails[input.id][2];
+    var message = validationDetails[input.id][1];
     var error = document.createElement("strong");
     input.setAttribute('aria-invalid', 'true');
     input.setAttribute('aria-describedby', input.id + '-error');
@@ -27,7 +27,7 @@ function showError(input) {
 
 function showError2(input) {
     var parent = input.parentNode;
-    var message = validationDetails2[input.id][2];
+    var message = validationDetails2[input.id][1];
     var error = document.createElement("strong");
     input.setAttribute('aria-invalid', 'true');
     input.setAttribute('aria-describedby', input.id + '-error');
@@ -51,8 +51,8 @@ function fieldValidation(input, event = null) {
                 return true;
 
         default:
-            if ((event !== null && input.value.search(validationDetails[input.id][1]) != 0)
-                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][1]) != 0))) {
+            if ((event !== null && input.value.search(validationDetails[input.id][0]) != 0)
+                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][0]) != 0))) {
                 showError(input);
                 return false;
             } else {
@@ -84,8 +84,8 @@ function fieldValidation2(input, event = null) {
                 }
 
         default:
-            if ((event !== null && input.value.search(validationDetails2[input.id][1]) != 0)
-                || (event === null && (input.value.length > 0 && input.value.search(validationDetails2[input.id][1]) != 0))) {
+            if ((event !== null && input.value.search(validationDetails2[input.id][0]) != 0)
+                || (event === null && (input.value.length > 0 && input.value.search(validationDetails2[input.id][0]) != 0))) {
                 showError2(input);
                 return false;
             } else {
@@ -165,14 +165,14 @@ function formValidation2(event) {
 }
 
 function checkReinsert(input) {
-    if(input.value.search(validationDetails2[input.id][1]) != 0)
+    if(input.value.search(validationDetails2[input.id][0]) != 0)
         return false;
 
     return input.value === document.getElementById("newPsw").value ? true : false;
 }
 
 function checkDate(input) {
-    if(input.value.search(validationDetails[input.id][1]) != 0)
+    if(input.value.search(validationDetails[input.id][0]) != 0)
         return false;
 
     var birthDate = new Date(input.value);
@@ -182,7 +182,7 @@ function checkDate(input) {
 }
 
 function checkPswNewOld(input) {
-    if(input.value.search(validationDetails2[input.id][1]) != 0)
+    if(input.value.search(validationDetails2[input.id][0]) != 0)
     return false;
 
     return input.value !== document.getElementById("oldPsw").value ? true : false;

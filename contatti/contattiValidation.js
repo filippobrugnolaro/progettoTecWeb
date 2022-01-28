@@ -1,16 +1,16 @@
 var validationDetails = {
-	"nome"          : ["Nome del contatto",/^[A-Za-zàèùìòé'\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
-	"cognome"       : ["Cognome del contatto",/^[A-Za-zàèùìòé'\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
-	"email"        : ["E-mail del contatto",/^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/,"Inserire un indirizzo e-mail corretto"],
-	"telefono"      : ["Numero di telefono del contatto",/^\d{8,10}$/,"Inserire un numero di telefono valido tra 8 e 10 cifre"],
-	"oggetto"       : ["Oggetto del messaggio",/^.{2,}$/,"Inserire almeno 2 caratteri"],
-	"messaggio"   : ["Descrizione del messaggio",/^.{10,}$/,"Inserire almeno 10 caratteri"],
-	"termini"       : ["Accettazione termini e informativa",null,"Accettare i termini e l'informativa"]
+	"nome"          : [/^[A-Za-zàèùìòé'\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
+	"cognome"       : [/^[A-Za-zàèùìòé'\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
+	"email"        : [/^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/,"Inserire un indirizzo e-mail corretto"],
+	"telefono"      : [/^\d{8,10}$/,"Inserire un numero di telefono valido tra 8 e 10 cifre"],
+	"oggetto"       : [/^.{2,}$/,"Inserire almeno 2 caratteri"],
+	"messaggio"   : [/^.{10,}$/,"Inserire almeno 10 caratteri"],
+	"termini"       : [null,"Accettare i termini e l'informativa"]
 }
 
 function showError(input) {
 	var parent = input.parentNode;
-	var message = validationDetails[input.id][2];
+	var message = validationDetails[input.id][1];
 	var error = document.createElement("strong");
 	input.setAttribute('aria-invalid','true');
 	input.setAttribute('aria-describedby',input.id + '-error');
@@ -24,8 +24,8 @@ function showError(input) {
 function fieldValidation(input, event = null) {
 	removeErrorMessage(input);
 	if(input.type !== "checkbox"){
-		if((event !== null && input.value.search(validationDetails[input.id][1]) != 0)
-			|| (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][1]) != 0))) {
+		if((event !== null && input.value.search(validationDetails[input.id][0]) != 0)
+			|| (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][0]) != 0))) {
 			showError(input);
 			return false;
 		} else {
@@ -59,8 +59,6 @@ function load() {
 }
 
 function formValidation(event) {
-	event.preventDefault();
-
 	var ret = true;
 	var focus = null;
 	for(var key in validationDetails) {

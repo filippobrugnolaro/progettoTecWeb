@@ -1,12 +1,12 @@
 var validationDetails = {
-    "marca"         : ["Marca della moto",/^[A-Za-zàèùìòé\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
-    "modello"       : ["Modello della moto",/^[\wàèùìòé\s]{2,}$/,"Inserire almeno 2 fra caratteri e numeri (caratteri speciali non ammessi)"],
-    "anno"          : ["Nome dell'istruttore",/^\d{4}$/,"Inserire un numero di 4 cifre maggiore di 2000 e non superiore all'anno attuale"],
+    "marca"         : [/^[A-Za-zàèùìòé\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
+    "modello"       : [/^[\wàèùìòé\s]{2,}$/,"Inserire almeno 2 fra caratteri e numeri (caratteri speciali non ammessi)"],
+    "anno"          : [/^\d{4}$/,"Inserire un numero di 4 cifre maggiore di 2000 e non superiore all'anno attuale"],
 }
 
 function showError(input) {
     var parent = input.parentNode;
-    var message = validationDetails[input.id][2];
+    var message = validationDetails[input.id][1];
     var error = document.createElement("strong");
     input.setAttribute('aria-invalid', 'true');
     input.setAttribute('aria-describedby', input.id + '-error');
@@ -31,8 +31,8 @@ function fieldValidation(input, event = null) {
             }
 
         default:
-            if ((event !== null && input.value.search(validationDetails[input.id][1]) != 0)
-                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][1]) != 0))) {
+            if ((event !== null && input.value.search(validationDetails[input.id][0]) != 0)
+                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][0]) != 0))) {
                 showError(input);
                 return false;
             } else {
@@ -82,7 +82,7 @@ function formValidation(event) {
 }
 
 function checkYear(input) {
-	if(input.value.search(validationDetails[input.id][1]) != 0)
+	if(input.value.search(validationDetails[input.id][0]) != 0)
 		return false;
 
     var today = new Date()

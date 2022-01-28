@@ -1,12 +1,11 @@
 var validationDetails = {
-	//"email"         : ["E-mail del contatto",/^([\w\-\+\.]+)\@([\w\-\+\.]+)\.([\w\-\+\.]+)$/,"Inserire un indirizzo e-mail corretto"],
-	"username": ["username dell'utente", /^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/, "L'username deve contenere tra 4 e 10 caratteri (solo lettere minuscole e numeri ammessi)"],
-	"password"      : ["Verifica password dell'utente",/^.{1,}$/,"Inserire almeno un caratttere"],
+	"username": [/^(?=.{4,10}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/, "L'username deve contenere tra 4 e 10 caratteri (solo lettere minuscole e numeri ammessi)"],
+	"password"      : [/^.{1,}$/,"Inserire almeno un caratttere"],
 }
 
 function showError(input) {
 	var parent = input.parentNode;
-	var message = validationDetails[input.id][2];
+	var message = validationDetails[input.id][1];
 	var error = document.createElement("strong");
 	input.setAttribute('aria-invalid','true');
 	input.setAttribute('aria-describedby',input.id + '-error');
@@ -19,8 +18,8 @@ function showError(input) {
 
 function fieldValidation(input, event = null) {
 	removeErrorMessage(input);
-	if((event !== null && input.value.search(validationDetails[input.id][1]) != 0)
-		|| (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][1]) != 0))) {
+	if((event !== null && input.value.search(validationDetails[input.id][0]) != 0)
+		|| (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][0]) != 0))) {
 		showError(input);
 		return false;
 	} else {

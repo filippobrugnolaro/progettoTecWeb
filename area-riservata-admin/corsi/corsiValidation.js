@@ -1,12 +1,12 @@
 var validationDetails = {
-    "posti"         : ["Numero di posti disponibili",/^[0-9]{1,2}$/,"Inserire un numero compreso tra 2 e 15 inclusi"],
-    "descrizione"   : ["Descrizione del corso",/^.{30,300}$/,"Inserire almeno tra i 30 e i 300 caratteri"],
-    "istruttore"    : ["Nome dell'istruttore",/^[A-Za-zàèùìòé'\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"]
+    "posti"         : [/^[0-9]{1,2}$/,"Inserire un numero compreso tra 2 e 15 inclusi"],
+    "descrizione"   : [/^.{30,300}$/,"Inserire almeno tra i 30 e i 300 caratteri"],
+    "istruttore"    : [/^[A-Za-zàèùìòé'\s]{2,}$/,"Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"]
 }
 
 function showError(input) {
     var parent = input.parentNode;
-    var message = validationDetails[input.id][2];
+    var message = validationDetails[input.id][1];
     var error = document.createElement("strong");
     input.setAttribute('aria-invalid', 'true');
     input.setAttribute('aria-describedby', input.id + '-error');
@@ -31,8 +31,8 @@ function fieldValidation(input, event = null) {
             }
 
         default:
-            if ((event !== null && input.value.search(validationDetails[input.id][1]) != 0)
-                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][1]) != 0))) {
+            if ((event !== null && input.value.search(validationDetails[input.id][0]) != 0)
+                || (event === null && (input.value.length > 0 && input.value.search(validationDetails[input.id][0]) != 0))) {
                 showError(input);
                 return false;
             } else {
@@ -82,7 +82,7 @@ function formValidation(event) {
 }
 
 function checkPosti(input) {
-	if(input.value.search(validationDetails[input.id][1]) != 0)
+	if(input.value.search(validationDetails[input.id][0]) != 0)
 		return false;
 
     if((input.value >= 2) && (input.value <= 15)){
