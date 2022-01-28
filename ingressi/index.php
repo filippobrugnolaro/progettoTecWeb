@@ -20,7 +20,7 @@
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($record['data'])).'</th>';
                     $recordsBody .= '<td>'.$record['posti'].'</td>';
-                    $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
+                    $recordsBody .= '<td>'.(($record['posti'] - $record['occupati']) >0 ? ($record['posti'] - $record['occupati']) : '0').'</td>';
                     $recordsBody .= '</tr>';
                 }
             } else {

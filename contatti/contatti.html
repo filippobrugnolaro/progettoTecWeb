@@ -12,14 +12,18 @@
 	<meta name="keywords" content="motocross, informazioni, contatti">
 	<meta name="description" content="Informazioni di contatto">
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio">
-    <script src="contattiValidation.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="contattiValidation.js"></script>
     <script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="../css/style.css"/>
+	<script src="../utils/utils.js"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../images/logo/AMP_dark_icon.png">
 </head>
 
 <!-- start container 1 -->
-<body class="container1" onload="load();">
+<body class="container1" onload="load();setMenu();">
 
     <!-- GRUPPO 1 -> ITEM 1 -->
     <!-- start container 2 -->
@@ -27,11 +31,19 @@
 
         <!-- GRUPPO 2 -> ITEM 1 -->
         <!-- LOGO -->
-        <i class="fa-brands fa-google">oogle</i>
+		<div class="logobox">
+			<!-- LOGO -->
+			<h1 class="logo">Adrenaline Motocross Park</h1>
+			<!-- HAMBURGER -->
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
+
 
         <!-- GRUPPO 2 -> ITEM 2 -->
         <!-- MENU LINK -->
-        <ul id="menu">
+        <ul id="menu" class="showMenu">
             <li><a href="../" lang="en">Home</a></li>
             <li><a href="../tracciati/">Tracciati</a></li>
             <li><a href="../servizi/">Servizi</a></li>
@@ -121,9 +133,9 @@
     </div>
 
     <!-- GRUPPO 1 -> ITEM 4 -->
-	<footer>
+    <footer>
 		<div class="footerInfo">
-			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
+			<img src="../images/logo/AMP_light.png" alt="Logo Adrenaline Motocross Park con le tre iniziali sovrapposte">
 			<p>Adrenaline Motocross Park è un parco divertimenti dedicato ai motociclisti
 			e agli appassionati di motocross. Il progetto nasce dalla passione autentica
 			per questo sport e punta a dare un tocco di qualità in più per permettere agli
@@ -132,10 +144,11 @@
 
 		<div class="footerDoveSiamo">
 			<h3>Dove siamo</h3>
-            <p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
-            <p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
-            <p class="informazioniFooter">Indirizzo:</p>
+			<p class="informazioniFooter"><span lang="en">E-mail</span>: <a href="mailto:"></a></p>
+			<p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
+			<p class="informazioniFooter">Indirizzo:</p>
 		</div>
+
 		<div class="footerValid">
 			<img src="../images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode">
 			<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All

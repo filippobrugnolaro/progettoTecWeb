@@ -27,7 +27,7 @@
                     $recordsBody .= '<li>Istruttore: '.$record['istruttore'].'</li>';
                     $recordsBody .= '<li>Tracciato: #'.$record['pista'].'</li>';
                     $recordsBody .= '<li>Posti totali: '.$record['posti'].'</li>';
-                    $recordsBody .= '<li>Posti disponibili: '.($record['posti'] - $record['occupati']).'</li>';
+                    $recordsBody .= '<li>Posti disponibili: '.(($record['posti'] - $record['occupati']) >0 ? ($record['posti'] - $record['occupati']) : '0').'</li>';
                     $recordsBody .= '</ul>';
 
                     $recordsBody .= '</article>';

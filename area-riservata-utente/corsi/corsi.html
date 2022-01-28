@@ -13,7 +13,9 @@
 
 	<script src="corsi.js"></script>
 
-	<link rel="stylesheet" media="screen" href="../../css/style.css"/>
+	<script src="utils/utils.js"></script>
+<link rel="stylesheet" media="screen" href="../../css/style.css">
+<link rel="icon" href="images/logo/AMP_dark_icon.png">
 </head>
 
 <!-- start container 1 -->
@@ -25,11 +27,18 @@
 
 		<!-- GRUPPO 2 -> ITEM 1 -->
 		<!-- LOGO -->
-		<i class="fa-brands fa-google">oogle</i>
+				<div class="logobox">
+			<!-- LOGO -->
+			<h1 class="logo">Adrenaline Motocross Park</h1>
+			<!-- HAMBURGER -->
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
 
 		<!-- GRUPPO 2 -> ITEM 2 -->
 		<!-- MENU LINK -->
-		<ul id="menu">
+		<ul id="menu" class="showMenu">
 			<li><a href="../../" lang="en">Home</a></li>
 			<li><a href="../../tracciati/">Tracciati</a></li>
 			<li><a href="../../servizi/">Servizi</a></li>

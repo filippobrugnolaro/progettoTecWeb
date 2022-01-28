@@ -5,4 +5,11 @@ function toggleMenu() {
   } else {
     menu.className = "hideMenu";
   }
-}
+};
+
+function setMenu() {
+  var menu = document.getElementById("menu");
+  menu.className = "hideMenu";
+};
+
+window.onload = setMenu;
