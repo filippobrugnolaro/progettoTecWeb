@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-
-
-
 <html lang="it">
-
 <head>
-
 	<title>Contatti - Adrenaline Motocross Park</title>
+
 	<meta charset="utf-8">
 	<meta name="keywords" content="informazioni adrenaline motocross park, adrenaline motocross park, motocross, motocross padova, motocross veneto, enduro, sport, sport padova, noleggio moto, corsi motocross, moto, motorsport">
 	<meta name="description" content="Informazioni per contattare Adrenaline Motocross Park">
@@ -15,8 +11,11 @@
     <meta name="robots" content="index, follow">
 
     <script src="contattiValidation.js"></script>
-    <script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 	<script src="../utils/utils.js"></script>
+
+    <link href="../css/fontawesome/fontawesome.min.css" rel="stylesheet">
+	<link href="../css/fontawesome/solid.min.css" rel="stylesheet">
+	<link href="../css/fontawesome/regular.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" href="../images/logo/AMP_dark_icon.png">
@@ -35,7 +34,7 @@
 			<!-- LOGO -->
 			<h1 class="logo">Adrenaline Motocross Park</h1>
 			<!-- HAMBURGER -->
-			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()" aria-label="apri o chiudi il menu">
 				<i class="fa fa-bars"></i>
 			</a>
 		</div>
@@ -56,14 +55,13 @@
     </nav> <!-- end container 2 -->
 
     <!-- GRUPPO 1 -> ITEM 2 -->
-    <nav id="breadcrumb" class="container1-item">
+    <nav id="breadcrumb" class="container1-item" aria-roledescription="percorso per giungere alla risorsa">
         <p>Ti trovi in <a href="../" lang="en">Home</a> / Contatti</p>
     </nav>
 
     <!-- GRUPPO 1 -> ITEM 3 -->
     <div id="contentContatti" class="container1-item content">
-
-        <h1>Contatti</h1>
+        <h2>Contatti</h2>
 
         <article>
             <h2>Dove siamo</h2>
@@ -116,7 +114,7 @@
 
                     <div class="input-container">
                         <label for="messaggio">Messaggio*</label>
-                        <textarea id="messaggio" name="messaggio" rows="10" cols="50" aria-required="true" placeholder="Testo del messaggio">_text_</textarea>
+                        <span><textarea id="messaggio" name="messaggio" rows="10" cols="50" aria-required="true" placeholder="Testo del messaggio">_text_</textarea></span>
                     </div>
 
                     <div id="checkboxinput" class="input-container">
@@ -124,12 +122,12 @@
                         <label for="termini">Accetto i termini di servizio e <a href="" target="_blank">l'informativa sulla <span lang="en">privacy</span></a>.*</label>
                     </div>
 
-                    <input type="submit" name="submit" id="invio">
+                    <input type="submit" name="submit" id="invio" value="INVIA">
                 </fieldset>
             </form>
         </article>
 
-        <a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+        <a id="topButton" href="#"><i class="fa-solid fa-arrow-up" aria-hidden></i> Torna su</a>
     </div>
 
     <!-- GRUPPO 1 -> ITEM 4 -->

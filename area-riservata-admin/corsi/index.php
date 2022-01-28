@@ -34,7 +34,7 @@
 					            <tr>
 						            <th scope=\'col\'>Corso</th>
 						            <th scope=\'col\'>Data</th>
-						            <th scope=\'col"\'>Posti disponibili</th>
+						            <th scope=\'col\'>Posti disponibili</th>
 						            <th scope=\'col\'>Posti rimanenti</th>
 						            <th scope=\'col\'>Dettagli</th>
 					            </tr>

@@ -82,17 +82,19 @@
                 break;
         }
 
-        $text = sanitizeInputString($_POST['messaggio']);
-        switch (checkInputValidity($text,'/^.{10,}$/')) {
-            case 1:
-                $messaggiForm .= '<li>Testo del messaggio non presente.</li>';
-                break;
-            case 2:
-                $messaggiForm .= '<li>Testo deve contenere almeno 10 caratteri.</li>';
-                break;
-            default:
-                break;
-        }
+        if(isset($_POST['messaggio'])) {
+            $text = sanitizeInputString($_POST['messaggio']);
+            switch (checkInputValidity($text,'/^.{10,}$/')) {
+                case 1:
+                    $messaggiForm .= '<li>Testo del messaggio non presente.</li>';
+                    break;
+                case 2:
+                    $messaggiForm .= '<li>Testo deve contenere almeno 10 caratteri.</li>';
+                    break;
+                default:
+                    break;
+            }
+        } else $messaggiForm .= '<li>Testo del messaggio non presente.</li>';
 
         if(!isset($_POST['termini']))
             $messaggiForm .= '<li>Devi accettare i termini di servizio e l\'informativa sulla <span lang="en">privacy.</li>';

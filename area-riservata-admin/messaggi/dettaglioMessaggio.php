@@ -34,19 +34,17 @@
             $records = $conn->getSpecificQueryResult(str_replace('_id_',$id,dbAccess::QUERIES[19][0]),dbAccess::QUERIES[19][1]);
 
             if($records !== null) {
-                $messaggioBody = '<article>
-                                        <ul>
+                $messaggioBody = '<ul>
                                             <li>Nominativo: _nominativo_</li>
-                                            <li><span lang="en">E-mail</span>: <a href="mailto:_email_?subject=RE: _obj_">_email_</a></li>
+                                            <li><span lang="en">E-mail</span>: <a href="mailto:_email_?subject=RE:%20_obj_">_email_</a></li>
                                             <li>Telefono: <a href="tel:_tel_">_tel_</a></li>
                                         </ul>
 
-                                        <label for="oggetto">Oggetto:</label>
+                                        <p>Oggetto:</p>
                                         <p id="oggetto">_obj_</p>
 
-                                        <label for="messaggio">Messaggio:</label>
-                                        <p id="messaggio">_messaggio_</p>
-                                    </article>';
+                                        <p>Messaggio:</p>
+                                        <p id="messaggio">_messaggio_</p>';
 
                 $record = $records[0];
                 unset($records);

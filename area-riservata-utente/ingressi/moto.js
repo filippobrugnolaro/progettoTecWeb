@@ -1,7 +1,7 @@
-window.onload = function() {
+function setup() {
     var moto = document.getElementById('motoNol');
     var data = document.getElementById('dataDisponibile');
-    data.onchange = function(){getDirtBikes(moto,data.value)};
+    data.onchange = function(){getDirtBikes(moto,data.value); enDisSelectMoto(checkboxMoto.checked)};
 
     var checkboxMoto = document.getElementById('moto');
     checkboxMoto.onchange = function() {enDisSelectMoto(checkboxMoto.checked)};
@@ -10,11 +10,10 @@ window.onload = function() {
     enDisSelectMoto(checkboxMoto.checked);
 }
 
+window.onload = setup;
+
 function enDisSelectMoto(checkBox) {
-    if(checkBox == false)
-        document.getElementById('motoNol').disabled = true;
-    else
-        document.getElementById('motoNol').disabled = false;
+    checkBox == false ? document.getElementById('motoNol').disabled = true : document.getElementById('motoNol').disabled = false;
 }
 
 

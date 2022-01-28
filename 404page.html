@@ -13,7 +13,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex, nofollow">
 
-	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
+	<link href="/acavalie/css/fontawesome/fontawesome.min.css" rel="stylesheet">
+	<link href="/acavalie/css/fontawesome/solid.min.css" rel="stylesheet">
+	<link href="/acavalie/css/fontawesome/regular.min.css" rel="stylesheet">
+
 	<script src="/acavalie/utils/utils.js"></script>
 
 	<link rel="stylesheet" href="/acavalie/css/style.css">
@@ -31,7 +34,7 @@
 			<!-- LOGO -->
 			<h1 class="logo">Adrenaline Motocross Park</h1>
 			<!-- HAMBURGER -->
-			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()" aria-label="apri o chiudi il menu">
 				<i class="fa fa-bars"></i>
 			</a>
 		</div>
@@ -51,13 +54,13 @@
 	</nav> <!-- end container 2 -->
 
 	<!-- GRUPPO 1 -> ITEM 2 -->
-	<!-- <nav id="breadcrumb" class="container1-item">
+	<!-- <nav id="breadcrumb" class="container1-item" aria-roledescription="percorso per giungere alla risorsa">
 		<p>Ti trovi in: <span lang="en">Home</span></p>
 	</nav> -->
 
   <div id="contentHome" class="container1-item content">
 
-		<a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+		<a id="topButton" href="#"><i class="fa-solid fa-arrow-up" aria-hidden></i> Torna su</a>
   </div>
 
 	<footer>

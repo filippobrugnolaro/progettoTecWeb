@@ -13,8 +13,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex, nofollow">
 
-	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 	<script src="../../utils/utils.js"></script>
+
+	<link href="../../css/fontawesome/fontawesome.min.css" rel="stylesheet">
+	<link href="../../css/fontawesome/solid.min.css" rel="stylesheet">
+	<link href="../../css/fontawesome/regular.min.css" rel="stylesheet">
 
 	<link rel="stylesheet" media="screen" href="../../css/style.css">
 	<link rel="icon" href="../../images/logo/AMP_dark_icon.png">
@@ -33,7 +36,7 @@
 			<!-- LOGO -->
 			<h1 class="logo">Adrenaline Motocross Park</h1>
 			<!-- HAMBURGER -->
-			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()" aria-label="apri o chiudi il menu">
 				<i class="fa fa-bars"></i>
 			</a>
 		</div>
@@ -54,8 +57,8 @@
 	</nav> <!-- end container 2 -->
 
 	<!-- GRUPPO 1 -> ITEM 2 -->
-	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../" lang="en">Home</a> / <a href="../">Area riservata</a> / Corsi</p>
+	<nav id="breadcrumb" aria-roledescription="percorso per giungere alla risorsa">
+		<p>Ti trovi in <a href="../../" lang="en">Home</a> / <a href="../../login/">Area riservata</a> / Corsi</p>
 	</nav>
 
 	<!-- GRUPPO 1 -> ITEM 3 -->
@@ -79,7 +82,7 @@
 
 		<!-- GRUPPO 3 -> ITEM 2 -->
 		<div class="contentAdmin container3-item">
-			<h1>Gestione corsi</h1>
+			<h2>Gestione corsi</h2>
 
 			<globalError/>
 
@@ -100,7 +103,7 @@
 				<a href="gestioneCorso.php">Nuovo corso</a>
 			</article>
 
-			<a id="topButton" href="#top"><i class="fa-solid fa-arrow-up">Torna su</i></a>
+			<a id="topButton" href="#"><i class="fa-solid fa-arrow-up" aria-hidden></i> Torna su</a>
 		</div>
 
 	</div> <!-- end container 3 -->

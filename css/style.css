@@ -16,6 +16,11 @@
 	margin: 0;
 }
 
+/* *********** SECRET LINKS 4 ACCESIBILITY *************** */
+#skip {
+	display: none;
+}
+
 /*html = finestra, body = contenuto pagina */
 html {
 	max-width: 1024px;
@@ -27,7 +32,7 @@ html {
 }
 
 .errSuggestion {
-	color: red;
+	color: #940000; /*PRESO DA VALIDATORE*/
 }
 
 .defaultText {
@@ -246,9 +251,9 @@ a:hover {
 	font-size: 1.4em;
 }
 
-#activeSub :hover {
+/* #activeSub :hover {
 	font-size: 1.4em;
-}
+} */
 
 
 /* ******** CONTENT AREA RISERVATA ******** */
@@ -298,6 +303,8 @@ article {
 
     padding: 1em 1em 2em 1em;
     margin: 0.5em;
+	border: 2px solid var(--darkBackground);
+	border-radius: 5px;
 }
 
 /* ***************** TABLE **************** */
@@ -409,6 +416,7 @@ form select {
 	padding: 0.5em;
 	display: block;
 	border-radius: 5px;
+	background-color: white;
 }
 
 .input-box {
@@ -437,6 +445,11 @@ form select {
 	font-size: 0.75em;
 }
 
+form textarea {
+	display: block;
+	width: 100%;
+}
+
 
 /* **************** CONTENT **************** */
 
@@ -451,7 +464,7 @@ form select {
 	border-radius: 5px;
 }
 
-.content h1 {
+.content h2 {
 	padding: 0.5em 0.5em 0 0.5em;
 }
 
@@ -523,7 +536,7 @@ form select {
 	margin-top: 1em;
 }
 
-#topButton {
+#Button {
 	margin: 1em;
 	color: var(--darkBackground);
 }
@@ -682,7 +695,3 @@ footer .imgValidCode {
 	}
 
 }
-
-
-
-

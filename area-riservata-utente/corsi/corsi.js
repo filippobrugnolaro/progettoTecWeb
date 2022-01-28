@@ -1,4 +1,4 @@
-window.onload = function () {
+function setup() {
     var moto = document.getElementById('motoNol');
     var id = document.getElementById('corso');
     var descCorso = document.getElementById('descCorso');
@@ -6,6 +6,7 @@ window.onload = function () {
     id.onchange = function () {
         getDirtBikes(moto, id.value);
         getDescCorso(descCorso, id.value);
+        enDisSelectMoto(checkboxMoto.checked);
     }
 
     var checkboxMoto = document.getElementById('moto');
@@ -15,6 +16,8 @@ window.onload = function () {
     getDescCorso(descCorso, id.value);
     enDisSelectMoto(checkboxMoto.checked);
 }
+
+window.onload = setup;
 
 function enDisSelectMoto(checkBox) {
     if(checkBox == false)

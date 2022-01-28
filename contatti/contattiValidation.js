@@ -59,6 +59,7 @@ function load() {
 }
 
 function formValidation(event) {
+	event.preventDefault();
 
 	var ret = true;
 	var focus = null;
@@ -66,7 +67,7 @@ function formValidation(event) {
 		var input = document.getElementById(key);
 		var validation = fieldValidation(input,event);
 
-		//console.log("ret = " + ret + "; validation = " + validation + "; focus = " + focus);
+		console.log("ret = " + ret + "; validation = " + validation + "; focus = " + focus);
 
 		if(focus == null && ret == true && validation == false)
 			focus = input;
@@ -77,6 +78,8 @@ function formValidation(event) {
 	if(ret == false) {
 		focus.focus();
 	}
+
+	console.log(ret == true);
 
 	return ret;
 }

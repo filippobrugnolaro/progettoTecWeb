@@ -207,7 +207,10 @@
     $page = str_replace('_id_',$id,$page);
     $page = str_replace('_marca_',$marca,$page);
     $page = str_replace('_modello_',$modello,$page);
-    $page = str_replace("value=\"$cilindrata\"","value=\"$cilindrata\" selected",$page);
+
+    if($cilindrata != null)
+        $page = str_replace("value=\"$cilindrata\"","value=\"$cilindrata\" selected",$page);
+
     $page = str_replace('_anno_',$anno,$page);
     $page = str_replace('_action_',$action,$page);
     $page = str_replace('_azione_',$actionText,$page);

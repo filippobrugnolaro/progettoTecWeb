@@ -9,16 +9,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="robots" content="noindex, nofollow">
 
-	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
 	<script src="corsi.js"></script>
 	<script src="../../utils/utils.js"></script>
+
+	<link href="../../css/fontawesome/fontawesome.min.css" rel="stylesheet">
+	<link href="../../css/fontawesome/solid.min.css" rel="stylesheet">
+	<link href="../../css/fontawesome/regular.min.css" rel="stylesheet">
 
 	<link rel="stylesheet" media="screen" href="../../css/style.css">
 	<link rel="icon" href="../../images/logo/AMP_dark_icon.png">
 </head>
 
 <!-- start container 1 -->
-<body class="container1">
+<body class="container1" onload="setMenu();setup();">
 
 	<!-- GRUPPO 1 -> ITEM 1 -->
 	<!-- start container 2 -->
@@ -30,7 +33,7 @@
 			<!-- LOGO -->
 			<h1 class="logo">Adrenaline Motocross Park</h1>
 			<!-- HAMBURGER -->
-			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()" aria-label="apri o chiudi il menu">
 				<i class="fa fa-bars"></i>
 			</a>
 		</div>
@@ -50,8 +53,8 @@
 	</nav>
 
 	<!-- GRUPPO 1 -> ITEM 2 -->
-	<nav id="breadcrumb">
-		<p>Ti trovi in <a href="../../"><span lang="en">Home</span></a> / <a href="../">Area riservata</a> / Corsi</p>
+	<nav id="breadcrumb" aria-roledescription="percorso per giungere alla risorsa">
+		<p>Ti trovi in <a href="../../"><span lang="en">Home</span></a> / <a href="../../login/">Area riservata</a> / Corsi</p>
 	</nav>
 
 	<!-- GRUPPO 1 -> ITEM 3 -->

@@ -14,7 +14,10 @@
 
 	<script src="registrazioneValidation.js"></script>
 	<script src="../utils/utils.js"></script>
-	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
+
+	<link href="../css/fontawesome/fontawesome.min.css" rel="stylesheet">
+	<link href="../css/fontawesome/solid.min.css" rel="stylesheet">
+	<link href="../css/fontawesome/regular.min.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="../images/logo/AMP_dark_icon.png">
@@ -25,7 +28,7 @@
 
 	<!-- GRUPPO 1 -> ITEM 1 -->
 	<!-- start container 2 -->
-	<nav class="container2 container1-item" role="navigation" aria-roledescription="menu principale">
+	<nav class="container2 container1-item"  aria-roledescription="menu principale">
 
 		<!-- GRUPPO 2 -> ITEM 1 -->
 		<!-- LOGO -->
@@ -33,7 +36,7 @@
 			<!-- LOGO -->
 			<h1 class="logo">Adrenaline Motocross Park</h1>
 			<!-- HAMBURGER -->
-			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()" aria-label="apri o chiudi il menu">
 				<i class="fa fa-bars"></i>
 			</a>
 		</div>
@@ -53,14 +56,14 @@
 	</nav> <!-- end container 2 -->
 
 	<!-- GRUPPO 1 -> ITEM 2 -->
-	<nav id="breadcrumb" class="container1-item">
+	<nav id="breadcrumb" class="container1-item" aria-roledescription="percorso per giungere alla risorsa">
 		<p>Ti trovi in <a href="../"><span lang="en">Home</span></a> / <a href="../login/">Area riservata</a> / Registrazione</p>
 	</nav>
 
 
 
   <div id="contentRegistrazione" class="container1-item content">
-		<h1>Registrazione</h1>
+		<h2>Registrazione</h2>
 
         <globalError/>
         <form method="post" action="./" onsubmit="return formValidation(event);">

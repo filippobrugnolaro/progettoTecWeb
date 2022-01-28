@@ -54,7 +54,7 @@
 
     $page = str_replace('_data_',date('d/m/Y',strtotime($date)),$page);
     $page = str_replace('<globalError/>',$globalError,$page);
-    $page = str_replace('<erroreDettagli>',$errorDetails,$page);
+    $page = str_replace('<erroreDettagli/>',$errorDetails,$page);
     $page = str_replace('<dettaglioNoleggi/>',$recordsBody,$page);
 
     $page = str_replace('_userIcon_',strtolower($_SESSION['user']->getNome()[0]),$page);
