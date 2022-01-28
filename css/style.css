@@ -1,24 +1,19 @@
-/*
-	icona da utilizzare per profilo
-	<i class="fa-solid fa-a"></i>
-	da modificare l'ultima lettera
-	e fare il replace su _userIcon_
-*/
-
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+:root {
+	--mainBackground: /*rgb(246, 255, 240)*/rgb(255, 234, 210);
+	--secondaryBackground: /*rgb(255, 232, 206)*/rgb(247, 201, 148);
+	--darkBackground: rgb(38, 74, 70);
+	--linkmenu: rgb(185, 185, 180);
+	--linkmenu-hover: rgb(255, 250, 240);
+	--linkbody: var(--darkBackground);
+	--linkbody-hover: blue;
+	--linkvisited: var(--secondaryBackground);
+}
 
 * {
 	padding: 0;
 	margin: 0;
-
-	--mainBackground: rgb(246, 255, 240);
-	--secondaryBackground: rgb(226, 255, 206);
-	--darkBackground: rgb(38, 74, 70);
-	--linkmenu: rgb(185, 185, 180);
-	--linkmenu-hover: var(--mainBackground);
-	--linkbody: var(--darkBackground);
-	--linkbody-hover: blue;
-	--linkvisited: rgb(170, 243, 164);
 }
 
 /*html = finestra, body = contenuto pagina */
@@ -68,12 +63,12 @@ a:hover {
 
 .container1-item {
 	border-right: 2px solid var(--darkBackground);
-	border-bottom: 2px solid var(--darkBackground);
+	/* border-bottom: 2px solid var(--darkBackground); */
 	border-left: 2px solid var(--darkBackground);
 }
 
 .container2 {
-	flex-direction: row;
+	flex-direction: column;
 	display: flex;
 	flex-wrap: nowrap;
 	align-items: center;
@@ -104,23 +99,40 @@ a:hover {
 }
 
 
-/* ****************** NAV ***************** */
 /* ***************** LOGO ***************** */
-/*
 .logo {
-background-image: url('../images/logo/AMP_light.png');
+	background-image: url('../images/logo/AMP_light.png');
+	min-width: 100px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: top center;
 	text-indent: -999em;
 	font-size: 1.5em;
-	transition: all 0.25s cubic bezier(.19,1,.22,1);
+	/* transition: all 0.25s cubic bezier(.19,1,.22,1); */
 }
 
-.logo:hover {
-	transform: scale(1.05);
+.logobox {
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
-*/
+
+.icon {
+	font-size: 2em;
+}
+
+.icon:link {
+	color: var(--linkmenu);
+}
+
+.icon:hover {
+	color: var(--linkmenu-hover);
+}
 
 
 /* ***************** MENU ***************** */
@@ -130,9 +142,9 @@ background-image: url('../images/logo/AMP_light.png');
 	color: var(--mainBackground);
 	list-style: none;
 
-	display: flex;
+	/* display: flex; */
+	flex-direction: column;
 	align-items: center;
-	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
 
@@ -152,6 +164,15 @@ background-image: url('../images/logo/AMP_light.png');
 #active {
 	font-size: 1.4em;
 }
+
+.showMenu {
+	display: flex;
+}
+
+.hideMenu {
+	display: none;
+}
+
 
 /* ************** BREADCRUMB ************** */
 
@@ -267,7 +288,9 @@ background-image: url('../images/logo/AMP_light.png');
 }
 
 
-
+article {
+	background-color: var(--secondaryBackground);
+}
 
 .contentUser article, .contentAdmin article {
 	display: flex;
@@ -450,7 +473,7 @@ form select {
 	padding: 0.5em;
 	margin: 0.5em;
 
-	background-color: var(--mainBackground);
+	/* background-color: var(--mainBackground); */
 	border: 2px solid var(--darkBackground);
   	border-radius: 5px;
 }
@@ -479,16 +502,21 @@ form select {
 
 
 /* **************** HOME **************** */
-.firstSection {
+#firstSection {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin: 0.5em;
-	background-color: var(--mainBackground);
+	/* background-color: var(--mainBackground); */
 	border: 2px solid var(--darkBackground);
 	border-radius: 5px;
 }
 
+#slogan {
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+}
 
 #contentHome h2{
 	margin-left: 0.5em;
@@ -586,6 +614,9 @@ form select {
 
 footer {
 	flex: 0 0 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	color: var(--mainBackground);
 	background-color:var(--darkBackground);
 	clear: both;
@@ -593,10 +624,11 @@ footer {
 	font-size: 0.8em;
 	padding: 0.5em;
 	padding-top: 1em;
+	border-top: 2px solid var(--secondaryBackground);
 }
 
-footer p, footer .imgValidCode{
-	display: inline;
+footer div {
+	margin-top: 0.5em;
 }
 
 footer p {
@@ -607,3 +639,50 @@ footer .imgValidCode {
 	vertical-align: middle;
 	margin: 0.7em 1.0em 0.7em 1.0em;
 }
+
+.footerInfo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.footerInfo img {
+	width: 100px;
+}
+
+.footerValid {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+
+/* ***************** MEDIA **************** */
+
+@media (min-width: 600px) {
+
+	.container2 {
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+
+	.logobox {
+		width: auto;
+	}
+
+	.icon {
+		display: none;
+	}
+
+	#menu {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+}
+
+
+
+

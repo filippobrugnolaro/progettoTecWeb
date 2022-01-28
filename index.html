@@ -12,7 +12,10 @@
 	<meta name="description" content="Pagina principale">
 	<meta name="author" content="Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<script src="https://kit.fontawesome.com/de3dd2d1dc.js" crossorigin="anonymous"></script>
+	<script src="utils/utils.js"></script>
 
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="images/logo/AMP_dark_icon.png">
@@ -25,12 +28,18 @@
 	<nav class="container2 container1-item"  aria-roledescription="menu principale">
 
 		<!-- GRUPPO 2 -> ITEM 1 -->
-		<!-- LOGO -->
-		<h1 class="logo">Adrenaline Motocross Park</h1>
+		<div class="logobox">
+			<!-- LOGO -->
+			<h1 class="logo">Adrenaline Motocross Park</h1>
+			<!-- HAMBURGER -->
+			<a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
 
 		<!-- GRUPPO 2 -> ITEM 2 -->
 		<!-- MENU LINK -->
-		<ul id="menu">
+		<ul id="menu" class="hideMenu">
 			<li id="active">Home</li>
 			<li><a href="tracciati/">Tracciati</a></li>
 			<li><a href="servizi/">Servizi</a></li>
@@ -49,38 +58,41 @@
 
   <div id="contentHome" class="container1-item content">
 
-		<div class="firstSection">
-			<p id="slogan">"Velocità, fango e gloria."</p>
+		<article id="firstSection">
+			<p id="slogan">"Velocità, fango e gloria"</p>
 			<img id="firstImg" src="images/motocross.jpg" alt="moto da fuoristrada che fa una curva">
 
 			<p><span lang="en">Adrenaline Motocross Park</span> nasce per dare la
 			possibilità a tutti gli appassionati, esperti o principianti, di vivere
 			un'autentica esperienza in pista.</p>
-		</div>
+			</article>
 
 		<article>
-			<h2>Tracciati</h2>
-
-			<p>L'ampia scelta di tracciati più o meno difficoltosi permette di vivere esperienze diverse per ogni pilota.</p>
+			<div>
+				<h2>Tracciati</h2>
+				<p>L'ampia scelta di tracciati più o meno difficoltosi permette di vivere esperienze diverse per ogni pilota.</p>
+			</div>
 			<img src="images/tracciato.jpg" alt="tracciato esempio">
 		</article>
 
 		<article>
-			<h2>Corsi</h2>
-
-			<p>I nostri istruttori selezionati garantiscono il supporto necessario
-			per godersi al meglio l'esperienza di guida in pista.</p>
+			<div>
+				<h2>Corsi</h2>
+				<p>I nostri istruttori selezionati garantiscono il supporto necessario
+				per godersi al meglio l'esperienza di guida in pista.</p>
+			</div>
 			<img src="images/corsi.jpg" alt="Corsi esempio">
 		</article>
 
 		<article>
-			<h2>Noleggio</h2>
+			<div>
+				<h2>Noleggio</h2>
 
-			<p>Sei deciso a vivere la tua esperienza in pista ma sei sprovvisto
-			di attrezzatura? Non preoccuparti!
-			<span lang="en">Adrenaline Motocross Park</span> mette a disposizione
-			attrezzatura di prima qualità per il noleggio assicurando divertimento
-			tra le curve dei nostri tracciati.</p>
+				<p>Sei deciso a vivere la tua esperienza in pista ma sei sprovvisto di attrezzatura? Non preoccuparti!
+				<span lang="en">Adrenaline Motocross Park</span> mette a disposizione attrezzatura di prima qualità per 
+				il noleggio assicurando divertimento tra le curve dei nostri tracciati.</p>
+			</div>
+			
 			<img src="images/noleggio.jpg" alt="noleggio esempio">
 		</article>
 
@@ -89,7 +101,7 @@
 
 	<footer>
 		<div class="footerInfo">
-			<img src="images/" alt="logo con le tre iniziali sovrapposte" class="logo"/>
+			<img src="images/logo/AMP_light.png" alt="logo con le tre iniziali sovrapposte"/>
 			<p>Adrenaline Motocross Park è un parco divertimenti dedicato ai motociclisti
 			e agli appassionati di motocross. Il progetto nasce dalla passione autentica
 			per questo sport e punta a dare un tocco di qualità in più per permettere agli
@@ -102,6 +114,7 @@
             <p class="informazioniFooter"><abbr title="Telefono">Tel:</abbr><a href="tel:"></a></p>
             <p class="informazioniFooter">Indirizzo:</p>
 		</div>
+
 		<div class="footerValid">
 			<img src="images/valid-xhtml10.png" alt="HTML valido" class="imgValidCode">
 			<p>Filippo Brugnolaro, Alessandro Cavaliere, Riccardo Simionato, Leonardo Gambirasio - <span lang="en">All
