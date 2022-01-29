@@ -37,7 +37,7 @@
                 foreach($records as $record) {
                     $recordsBody .= '<article>';
                     $recordsBody .= '<div class="infoTracciato">';
-                    $recordsBody .= '<h2>Tracciato <span aria-hidden>#</span>'.$record['id'].'</h2>';
+                    $recordsBody .= '<h2>Tracciato <span aria-hidden="true">#</span>'.$record['id'].'</h2>';
 
                     $recordsBody .= '<p>'.$record['descrizione'].'</p>';
 

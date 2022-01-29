@@ -50,7 +50,7 @@
                     $track['chiusura'] = substr($track['chiusura'],0,5);
 
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'><span aria-hidden>#</span>'.$track['id'].'</th>';
+                    $recordsBody .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$track['id'].'</th>';
                     $recordsBody .= '<td>'.$track['lunghezza'].'<abbr title=\'metri\'>m</abbr></td>';
                     $recordsBody .= '<td>'.$track['terreno'].'</td>';
                     $recordsBody .= '<td><time>'.$track['apertura'].'</time></td>';

@@ -83,7 +83,7 @@
 
                 foreach($motos as $moto) {
                     $motoBody .= '<tr>';
-                    $motoBody .= '<th scope=\'row\'><span aria-hidden>#</span>'.$moto['numero'].'</th>';
+                    $motoBody .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$moto['numero'].'</th>';
                     $motoBody .= '<td>'.$moto['marca'].'</td>';
                     $motoBody .= '<td>'.$moto['modello'].'</td>';
                     $motoBody .= '<td>'.$moto['cilindrata'].'<abbr title=\'Centimetri cubici\'>cc</abbr></td>';

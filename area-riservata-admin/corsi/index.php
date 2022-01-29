@@ -46,7 +46,7 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'><span aria-hidden>#</span>'.$record['id'].'</th>';
+                    $recordsBody .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$record['id'].'</th>';
                     $recordsBody .= '<td><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></td>';
                     $recordsBody .= '<td>'.$record['posti'].'</td>';
                     $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
@@ -87,7 +87,7 @@
                     $corsiBody .= '<th scope=\'row\'><time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></th>';
                     $corsiBody .= '<td>'.$corso['posti'].'</td>';
                     $corsiBody .= '<td>'.$corso['istruttore'].'</td>';
-                    $corsiBody .= '<td><span aria-hidden>#</span>'.$corso['pista'].'</td>';
+                    $corsiBody .= '<td><span aria-hidden=\'true\'>#</span>'.$corso['pista'].'</td>';
                     $corsiBody .= '<td><a href=\'gestioneCorso.php?id='.$corso['id'].'\' aria-label=\'modifica corso\'><i class=\'fas fa-pen\'></i></a></td>';
                     $corsiBody .= '<td><a href=\'deleteCorso.php?id='.$corso['id'].'\' aria-label=\'elimina corso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $corsiBody .= '</tr>';
