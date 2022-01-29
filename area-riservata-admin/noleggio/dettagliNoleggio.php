@@ -28,7 +28,7 @@
             if($records !== null) {
                 foreach($records as $record) {
                     $utente = $record['cognome'].' '.$record['nome'];
-                    $moto = '#'.$record['numero'].' - '.$record['marca'].' '.$record['modello'].' '.$record['anno'];
+                    $moto = '<span aria-hidden>#</span>'.$record['numero'].' - '.$record['marca'].' '.$record['modello'].' '.$record['anno'];
 
                     $recordsBody .= '<tr>';
                     $recordsBody .= '<th scope=\'row\'>'.$utente.'</th>';
@@ -58,7 +58,7 @@
     if(strlen($errorDetails) > 0)
         $errorDetails = "<p class=\"error\">$errorDetails</p>";
 
-    $page = str_replace('_data_',date('d/m/Y',strtotime($date)),$page);
+    $page = str_replace('_data_',"<time datetime=\"".$date."\">".date('d/m/Y',strtotime($date))."</time>",$page);
     $page = str_replace('<globalError/>',$globalError,$page);
     $page = str_replace('<erroreDettagli/>',$errorDetails,$page);
     $page = str_replace('<dettaglioNoleggi/>',$recordsBody,$page);

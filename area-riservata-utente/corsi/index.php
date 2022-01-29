@@ -140,10 +140,10 @@
                         $attrezzatura = 'Propria';
 
                     $prenotazioni .= '<tr>';
-                    $prenotazioni .= '<th scope=\'row\'>#'.$corso['id'].'</th>';
-                    $prenotazioni .= '<td>'.$dw.' '.date('d/m/Y',strtotime($corso['data'])).'</td>';
+                    $prenotazioni .= '<th scope=\'row\'><span aria-hidden>#</span>'.$corso['id'].'</th>';
+                    $prenotazioni .= '<td>'.$dw.' <time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></td>';
                     $prenotazioni .= '<td>'.$corso['istruttore'].'</td>';
-                    $prenotazioni .= '<td>#'.$corso['pista'].'</td>';
+                    $prenotazioni .= '<td><span aria-hidden>#</span>'.$corso['pista'].'</td>';
                     $prenotazioni .= '<td>'.$moto.'</td>';
                     $prenotazioni .= '<td>'.$attrezzatura.'</td>';
                     $prenotazioni .= '<td><a href=\'deletePrenotazione.php?id='.$corso['codice'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
@@ -184,11 +184,11 @@
                     $dw = $weekDays[date('w',strtotime($corso['data']))];
 
                     $corsiBody .= '<tr>';
-                    $corsiBody .= '<th scope=\'row\'>#'.$corso['id'].'</th>';
-                    $corsiBody .= '<td>'.date('d/m/Y',strtotime($corso['data'])).'</td>';
-                    $corsiBody .= '<td>'.$dw.'</td>';
+                    $corsiBody .= '<th scope=\'row\'><span aria-hidden>#</span>'.$corso['id'].'</th>';
+                    $corsiBody .= '<td><time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></td>';
+                    $corsiBody .= '<td abbr=\''.substr($dw,0,3).'\'>'.$dw.'</td>';
                     $corsiBody .= '<td>'.$corso['istruttore'].'</td>';
-                    $corsiBody .= '<td>#'.$corso['pista'].'</td>';
+                    $corsiBody .= '<td><span aria-hidden>#</span>'.$corso['pista'].'</td>';
                     $corsiBody .= '<td>'.($corso['posti'] - $corso['occupati']).'</td>';
                     $corsiBody .= '</tr>';
 

@@ -46,7 +46,7 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</th>'; //controllare accessibilità
+                    $recordsBody .= '<th scope=\'row\'><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></th>';
                     $recordsBody .= '<td>'.$record['posti'].'</td>';
                     $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
                     $recordsBody .= '<td><a href=\'dettagliIngresso.php?date='.$record['data'].'\' aria-label=\'dettaglio ingressi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
@@ -73,7 +73,7 @@
                                         <tr>
                                             <th scope=\'col\'>Data</th>
                                             <th scope=\'col\'>Giorno</th>
-                                            <th scope=\'col\'>Posti disponibili</th>
+                                            <th scope=\'col\' abbr=\'posti\'>Posti disponibili</th>
                                             <th scope=\'col\'>Modifica</th>
                                             <th scope=\'col\'>Elimina</th>
                                         </tr>
@@ -86,8 +86,8 @@
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     $ingressiBody .= '<tr>';
-                    $ingressiBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
-                    $ingressiBody .= '<td>'.$dw.'</td>';
+                    $ingressiBody .= '<th scope=\'row\'><time datetime=\''.$ingresso['data'].'\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</time></th>';
+                    $ingressiBody .= '<td abbr="'.substr($dw,0,3).'">'.$dw.'</td>';
                     $ingressiBody .= '<td>'.$ingresso['posti'].'</td>';
                     $ingressiBody .= '<td><a href=\'gestioneIngresso.php?date='.$ingresso['data'].'\' aria-label=\'modifica ingresso\'><i class=\'fas fa-pen\'></i></a></td>';
                     $ingressiBody .= '<td><a href=\'deleteIngresso.php?date='.$ingresso['data'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';

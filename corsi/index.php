@@ -18,14 +18,14 @@
             if($records !== null) {
                 foreach($records as $record) {
                     $recordsBody .= '<article>';
-                    $recordsBody .= '<h2>Corso #'.$record['id'].'</h2>';
+                    $recordsBody .= '<h2>Corso <span aria-hidden>#</span>'.$record['id'].'</h2>';
 
                     $recordsBody .= '<p>'.$record['descrizione'].'</p>';
 
                     $recordsBody .= '<ul>';
-                    $recordsBody .= '<li>Data: '.date('d/m/Y',strtotime($record['data'])).'</li>';
+                    $recordsBody .= '<li>Data: <time datetime=\''.$record['data'].'\'>'.date('d/m/Y',strtotime($record['data'])).'</time></li>';
                     $recordsBody .= '<li>Istruttore: '.$record['istruttore'].'</li>';
-                    $recordsBody .= '<li>Tracciato: #'.$record['pista'].'</li>';
+                    $recordsBody .= '<li>Tracciato: <span aria-hidden>#</span>'.$record['pista'].'</li>';
                     $recordsBody .= '<li>Posti totali: '.$record['posti'].'</li>';
                     $recordsBody .= '<li>Posti disponibili: '.(($record['posti'] - $record['occupati']) >0 ? ($record['posti'] - $record['occupati']) : '0').'</li>';
                     $recordsBody .= '</ul>';

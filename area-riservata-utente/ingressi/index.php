@@ -132,7 +132,7 @@
                         $attrezzatura = 'Propria';
 
                     $prenotazioni .= '<tr>';
-                    $prenotazioni .= '<th scope=\'row\'>'.$dw.' '.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
+                    $prenotazioni .= '<th scope=\'row\'>'.$dw.' <time datetime=\''.$ingresso['data'].'\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</time></th>';
                     $prenotazioni .= '<td>'.$moto.'</td>';
                     $prenotazioni .= '<td>'.$attrezzatura.'</td>';
                     $prenotazioni .= '<td><a href=\'deletePrenotazione.php?id='.$ingresso['id'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
@@ -170,8 +170,8 @@
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     $ingressiBody .= '<tr>';
-                    $ingressiBody .= '<th scope=\'row\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</th>';
-                    $ingressiBody .= '<td>'.$dw.'</td>';
+                    $ingressiBody .= '<th scope=\'row\'><time datetime=\''.$ingresso['data'].'\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</time></th>';
+                    $ingressiBody .= '<td abbr=\''.substr($dw,0,3).'\'>'.$dw.'</td>';
                     $ingressiBody .= '<td>'.($ingresso['posti'] - $ingresso['occupati']).'</td>';
                     $ingressiBody .= '</tr>';
 

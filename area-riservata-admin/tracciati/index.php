@@ -50,11 +50,11 @@
                     $track['chiusura'] = substr($track['chiusura'],0,5);
 
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'col\'>#'.$track['id'].'</th>';
+                    $recordsBody .= '<th scope=\'row\'><span aria-hidden>#</span>'.$track['id'].'</th>';
                     $recordsBody .= '<td>'.$track['lunghezza'].'<abbr title=\'metri\'>m</abbr></td>';
                     $recordsBody .= '<td>'.$track['terreno'].'</td>';
-                    $recordsBody .= '<td>'.$track['apertura'].'</td>';
-                    $recordsBody .= '<td>'.$track['chiusura'].'</td>';
+                    $recordsBody .= '<td><time>'.$track['apertura'].'</time></td>';
+                    $recordsBody .= '<td><time>'.$track['chiusura'].'</time></td>';
                     $recordsBody .= '<td><a href=\'gestioneTracciato.php?id='.$track['id'].'\' aria-label=\'modifica tracciato\'><i class=\'fas fa-pen\'></i></a></td>';
                     $recordsBody .= '<td><a href=\'deleteTracciato.php?id='.$track['id'].'\' aria-label=\'elimina tracciato\'><i class=\'fas fa-trash\'></i></a></td>';
                     $recordsBody .= '</tr>';

@@ -37,18 +37,18 @@
                 foreach($records as $record) {
                     $recordsBody .= '<article>';
                     $recordsBody .= '<div class="infoTracciato">';
-                    $recordsBody .= '<h2>Tracciato #'.$record['id'].'</h2>';
+                    $recordsBody .= '<h2>Tracciato <span aria-hidden>#</span>'.$record['id'].'</h2>';
 
                     $recordsBody .= '<p>'.$record['descrizione'].'</p>';
 
-                    $record['terreno'][0] = strtoupper($record['terreno'][0]);
+                    $record['terreno'][0] = strtolower($record['terreno'][0]);
                     $record['terreno'] = str_replace('_',' ',$record['terreno']);
 
                     $recordsBody .= '<ul>';
-                    $recordsBody .= '<li>Lunghezza: '.$record['lunghezza'].' metri</li>';
+                    $recordsBody .= '<li>Lunghezza: '.$record['lunghezza'].'<abbr title=\'metri\'>m</abbr></li>';
                     $recordsBody .= '<li>Tipo di terreno: '.$record['terreno'].'</li>';
-                    $recordsBody .= '<li>Orario di apertura: '.substr($record['apertura'],0,5).'</li>';
-                    $recordsBody .= '<li>Orario di chiusura: '.substr($record['chiusura'],0,5).'</li>';
+                    $recordsBody .= '<li>Orario di apertura: <time>'.substr($record['apertura'],0,5).'</time></li>';
+                    $recordsBody .= '<li>Orario di chiusura: <time>'.substr($record['chiusura'],0,5).'</time></li>';
                     $recordsBody .= '</ul>';
 
                     $recordsBody .= '</div>';

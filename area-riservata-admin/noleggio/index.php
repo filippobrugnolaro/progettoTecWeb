@@ -45,7 +45,7 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'>'.date("d/m/Y",strtotime($record['data'])).'</th>'; //controllare accessibilità
+                    $recordsBody .= '<th scope=\'row\'><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></th>'; //controllare accessibilità
                     $recordsBody .= '<td>'.$record['totNoleggi'].'</td>';
                     $recordsBody .= '<td><a href=\'dettagliNoleggio.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
@@ -83,10 +83,10 @@
 
                 foreach($motos as $moto) {
                     $motoBody .= '<tr>';
-                    $motoBody .= '<th scope=\'row\'>'.$moto['numero'].'</th>';
+                    $motoBody .= '<th scope=\'row\'><span aria-hidden>#</span>'.$moto['numero'].'</th>';
                     $motoBody .= '<td>'.$moto['marca'].'</td>';
                     $motoBody .= '<td>'.$moto['modello'].'</td>';
-                    $motoBody .= '<td>'.$moto['cilindrata'].'cc</td>';
+                    $motoBody .= '<td>'.$moto['cilindrata'].'<abbr title=\'Centimetri cubici\'>cc</abbr></td>';
                     $motoBody .= '<td>'.$moto['anno'].'</td>';
                     $motoBody .= '<td><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class=\'fas fa-pen\'></i></a></td>';
                     $motoBody .= '<td><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class=\'fas fa-trash\'></i></a></td>';

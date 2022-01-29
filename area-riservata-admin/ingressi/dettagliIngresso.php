@@ -78,7 +78,7 @@
         $errorDetails = "<p class='error'>$errorDetails</p>";
 
     $page = str_replace('_tabella_',$table, $page);
-    $page = str_replace('_data_', date('d/m/Y', strtotime($date)), $page);
+    $page = str_replace('_data_', '<time datetime=\''.$date.'\'>'.date('d/m/Y', strtotime($date)).'</time>', $page);
     $page = str_replace('<globalError/>', $globalError, $page);
     $page = str_replace('<erroreDettagli/>', $errorDetails, $page);
     $page = str_replace('<dettaglioNoleggi/>', $recordsBody, $page);
