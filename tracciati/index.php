@@ -17,19 +17,21 @@
 
             /*
             <article>
+                <div class="infoTracciato">
+                    <h2>Facile</h2>
+                    <ul>
+                        <li>Lunghezza: 1000 metri</li>
+                        <li>Caratteristiche:
+                            <ul>
+                                <li>curve paraboliche</li>
+                                <li>8 salti di bassa altezza e lunghezza</li>
+                                <li><span lang="en">waves</span> base</li>
+                            </ul>
+                        </li>
+                        <li>Pubblico consigliato: bambini e piloti con poca esperienza</li>
+                    </ul>
+                </div>
                 <img src="" alt="" class="imgTracciati">
-                <h2>Facile</h2>
-                <ul>
-                    <li>Lunghezza: 1000 metri</li>
-                    <li>Caratteristiche:
-                        <ul>
-                            <li>curve paraboliche</li>
-                            <li>8 salti di bassa altezza e lunghezza</li>
-                            <li><span lang="en">waves</span> base</li>
-                        </ul>
-                    </li>
-                    <li>Pubblico consigliato: bambini e piloti con poca esperienza</li>
-                </ul>
             </article>
             */
 
