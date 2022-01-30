@@ -25,8 +25,7 @@
             $tracks = $conn->getQueryResult(dbAccess::QUERIES[4]);
 
             if($tracks !== null) {
-                $table = '<div class="tableContainer">
-                            <table title="tabella contenente le informazioni dei tracciati">
+                $table = '<table title="tabella contenente le informazioni dei tracciati">
                                 <caption>Informazioni sui tracciati presenti nell\'impianto</caption>
                                 <thead>
                                     <tr>
@@ -42,9 +41,8 @@
                                 <tbody>
                                     <tracciati/>
                                 </tbody>
-                            </table>
-                        </div>';
-                        
+                            </table>';
+
                 foreach($tracks as $track) {
                     $track['terreno'][0] = strtoupper($track['terreno'][0]);
                     $track['terreno'] = str_replace('_',' ',$track['terreno']);
@@ -53,13 +51,13 @@
                     $track['chiusura'] = substr($track['chiusura'],0,5);
 
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$track['id'].'</th>';
-                    $recordsBody .= '<td>'.$track['lunghezza'].'<abbr title=\'metri\'>m</abbr></td>';
-                    $recordsBody .= '<td>'.$track['terreno'].'</td>';
-                    $recordsBody .= '<td><time>'.$track['apertura'].'</time></td>';
-                    $recordsBody .= '<td><time>'.$track['chiusura'].'</time></td>';
-                    $recordsBody .= '<td><a href=\'gestioneTracciato.php?id='.$track['id'].'\' aria-label=\'modifica tracciato\'><i class=\'fas fa-pen\'></i></a></td>';
-                    $recordsBody .= '<td><a href=\'deleteTracciato.php?id='.$track['id'].'\' aria-label=\'elimina tracciato\'><i class=\'fas fa-trash\'></i></a></td>';
+                    $recordsBody .= '<th data-title=\'ID\'scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$track['id'].'</th>';
+                    $recordsBody .= '<td data-title=\'lunghezza\'>'.$track['lunghezza'].'<abbr title=\'metri\'>m</abbr></td>';
+                    $recordsBody .= '<td data-title=\'terreno\'>'.$track['terreno'].'</td>';
+                    $recordsBody .= '<td data-title=\'orario apertura\'><time>'.$track['apertura'].'</time></td>';
+                    $recordsBody .= '<td data-title=\'orario chiusura\'><time>'.$track['chiusura'].'</time></td>';
+                    $recordsBody .= '<td data-title=\'modifica\'><a href=\'gestioneTracciato.php?id='.$track['id'].'\' aria-label=\'modifica tracciato\'><i class=\'fas fa-pen\'></i></a></td>';
+                    $recordsBody .= '<td data-title=\'elimina\'><a href=\'deleteTracciato.php?id='.$track['id'].'\' aria-label=\'elimina tracciato\'><i class=\'fas fa-trash\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
             } else {

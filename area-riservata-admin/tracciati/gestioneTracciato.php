@@ -55,10 +55,8 @@
         if($path != "") {
             $path = '../../images/tracks/'.$path;
 
-            $img .= '<label for="oldImg">Immagine attuale</label>';
-            $img = '<img src=\''.$path.'\' alt=\'immagine del circuito\'/>';
-            $img .= '<caption>Immagine attuale del circuito</caption>';
-            $img .= '<br>';
+            $img = '<p id="label">Immagine attuale</p>';
+            $img .= '<img src=\''.$path.'\' alt=\'immagine del circuito\'>';
         }
 
         $page = str_replace('<id/>',$idinput,$page);

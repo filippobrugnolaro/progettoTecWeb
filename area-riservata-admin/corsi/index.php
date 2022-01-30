@@ -46,11 +46,11 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$record['id'].'</th>';
-                    $recordsBody .= '<td><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></td>';
-                    $recordsBody .= '<td>'.$record['posti'].'</td>';
-                    $recordsBody .= '<td>'.($record['posti'] - $record['occupati']).'</td>';
-                    $recordsBody .= '<td><a href=\'dettagliCorso.php?id='.$record['id'].'\' aria-label=\'dettaglio corso\'><i class=\'fas fa-info-circle\'></i></a></td>';
+                    $recordsBody .= '<th data-title=\'corso\' scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$record['id'].'</th>';
+                    $recordsBody .= '<td data-title=\'data\'><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></td>';
+                    $recordsBody .= '<td data-title=\'posti disponibili\'>'.$record['posti'].'</td>';
+                    $recordsBody .= '<td data-title=\'posti rimanenti\'>'.($record['posti'] - $record['occupati']).'</td>';
+                    $recordsBody .= '<td data-title=\'dettagli\'><a href=\'dettagliCorso.php?id='.$record['id'].'\' aria-label=\'dettaglio corso\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
             } else {
@@ -86,12 +86,12 @@
 
                 foreach($corsi as $corso) {
                     $corsiBody .= '<tr>';
-                    $corsiBody .= '<th scope=\'row\'><time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></th>';
-                    $corsiBody .= '<td>'.$corso['posti'].'</td>';
-                    $corsiBody .= '<td>'.$corso['istruttore'].'</td>';
-                    $corsiBody .= '<td><span aria-hidden=\'true\'>#</span>'.$corso['pista'].'</td>';
-                    $corsiBody .= '<td><a href=\'gestioneCorso.php?id='.$corso['id'].'\' aria-label=\'modifica corso\'><i class=\'fas fa-pen\'></i></a></td>';
-                    $corsiBody .= '<td><a href=\'deleteCorso.php?id='.$corso['id'].'\' aria-label=\'elimina corso\'><i class=\'fas fa-trash\'></i></a></td>';
+                    $corsiBody .= '<th data-title=\'data\' scope=\'row\'><time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></th>';
+                    $corsiBody .= '<td data-title=\'posti disponibili\'>'.$corso['posti'].'</td>';
+                    $corsiBody .= '<td data-title=\'istruttore\'>'.$corso['istruttore'].'</td>';
+                    $corsiBody .= '<td data-title=\'tracciato\'><span aria-hidden=\'true\'>#</span>'.$corso['pista'].'</td>';
+                    $corsiBody .= '<td data-title=\'modifica\'><a href=\'gestioneCorso.php?id='.$corso['id'].'\' aria-label=\'modifica corso\'><i class=\'fas fa-pen\'></i></a></td>';
+                    $corsiBody .= '<td data-title=\'elimina\'><a href=\'deleteCorso.php?id='.$corso['id'].'\' aria-label=\'elimina corso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $corsiBody .= '</tr>';
                 }
             } else {

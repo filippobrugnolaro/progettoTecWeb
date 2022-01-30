@@ -46,10 +46,10 @@
 
                 foreach($records as $record) {
                     $messaggi .= '<tr>';
-                    $messaggi .= '<th scope=\'row\'>'.$record['nominativo'].'</th>';
-                    $messaggi .= '<td><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></td>';
-                    $messaggi .= '<td>'.$record['oggetto'].'</td>';
-                    $messaggi .= '<td><a href=\'dettaglioMessaggio.php?id='.$record['id'].'\' aria-label=\'dettaglio messaggio\'><i class=\'fa-solid fa-magnifying-glass\'></i></a></td>';
+                    $messaggi .= '<th data-title=\'nominativo\' scope=\'row\'>'.$record['nominativo'].'</th>';
+                    $messaggi .= '<td data-title=\'data\'><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></td>';
+                    $messaggi .= '<td data-title=\'oggetto\'>'.$record['oggetto'].'</td>';
+                    $messaggi .= '<td data-title=\'dettagli\'><a href=\'dettaglioMessaggio.php?id='.$record['id'].'\' aria-label=\'dettaglio messaggio\'><i class=\'fa-solid fa-magnifying-glass\'></i></a></td>';
                     $messaggi .= '</tr>';
                 }
             } else {

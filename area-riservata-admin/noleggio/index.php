@@ -31,7 +31,7 @@
             if($records !== null) {
                 $tableNoleggi = '<div class="tableContainer">
                                     <table title="tabella contenente le prenotazioni dei noleggi per le prossime giornate di apertura">
-                                        <caption>Prenotazioni noleggi per le prossime giornate di apertura</caption>
+                                        <caption>Prenotazioni noleggi prossime date d\'apertura</caption>
                                         <thead>
                                             <tr>
                                                 <th scope="col">Data</th>
@@ -47,9 +47,9 @@
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></th>'; //controllare accessibilità
-                    $recordsBody .= '<td>'.$record['totNoleggi'].'</td>';
-                    $recordsBody .= '<td><a href=\'dettagliNoleggio.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
+                    $recordsBody .= '<th data-title=\'data\' scope=\'row\'><time datetime=\''.$record['data'].'\'>'.date("d/m/Y",strtotime($record['data'])).'</time></th>'; //controllare accessibilità
+                    $recordsBody .= '<td data-title=\'noleggi totali\'>'.$record['totNoleggi'].'</td>';
+                    $recordsBody .= '<td data-title=\'dettagli\'><a href=\'dettagliNoleggio.php?date='.$record['data'].'\' aria-label=\'dettaglio noleggi giornata\'><i class=\'fas fa-info-circle\'></i></a></td>';
                     $recordsBody .= '</tr>';
                 }
             } else {
@@ -87,13 +87,13 @@
 
                 foreach($motos as $moto) {
                     $motoBody .= '<tr>';
-                    $motoBody .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$moto['numero'].'</th>';
-                    $motoBody .= '<td>'.$moto['marca'].'</td>';
-                    $motoBody .= '<td>'.$moto['modello'].'</td>';
-                    $motoBody .= '<td>'.$moto['cilindrata'].'<abbr title=\'Centimetri cubici\'>cc</abbr></td>';
-                    $motoBody .= '<td>'.$moto['anno'].'</td>';
-                    $motoBody .= '<td><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class=\'fas fa-pen\'></i></a></td>';
-                    $motoBody .= '<td><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class=\'fas fa-trash\'></i></a></td>';
+                    $motoBody .= '<th data-title=\'ID\' scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$moto['numero'].'</th>';
+                    $motoBody .= '<td data-title=\'marca\'>'.$moto['marca'].'</td>';
+                    $motoBody .= '<td data-title=\'modello\'>'.$moto['modello'].'</td>';
+                    $motoBody .= '<td data-title=\'cilindrata\'>'.$moto['cilindrata'].'<abbr title=\'Centimetri cubici\'>cc</abbr></td>';
+                    $motoBody .= '<td data-title=\'anno\'>'.$moto['anno'].'</td>';
+                    $motoBody .= '<td data-title=\'modifica\'><a href=\'gestioneMoto.php?id='.$moto['numero'].'\' aria-label=\'modifica moto\'><i class=\'fas fa-pen\'></i></a></td>';
+                    $motoBody .= '<td data-title=\'elimina\'><a href=\'deleteMoto.php?id='.$moto['numero'].'\' aria-label=\'elimina moto\'><i class=\'fas fa-trash\'></i></a></td>';
                     $motoBody .= '</tr>';
                 }
             } else {

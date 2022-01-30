@@ -31,13 +31,13 @@
                     $moto = '<span aria-hidden=\'true\'>#</span>'.$record['numero'].' - '.$record['marca'].' '.$record['modello'].' '.$record['anno'];
 
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'>'.$utente.'</th>';
-                    $recordsBody .= '<td>'.$moto.'</td>';
+                    $recordsBody .= '<th data-title=\'utente\' scope=\'row\'>'.$utente.'</th>';
+                    $recordsBody .= '<td data-title=\'moto\'>'.$moto.'</td>';
 
                     if($record['attrezzatura'])
-                        $recordsBody .= '<td>Da noleggiare</td>';
+                        $recordsBody .= '<td data-title=\'attrezzatura\'>Da noleggiare</td>';
                     else
-                        $recordsBody .= '<td>Propria</td>';
+                        $recordsBody .= '<td data-title=\'attrezzatura\'>Propria</td>';
 
                     $recordsBody .= '</tr>';
                 }

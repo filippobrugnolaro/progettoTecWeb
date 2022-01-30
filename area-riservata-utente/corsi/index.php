@@ -140,13 +140,13 @@
                         $attrezzatura = 'Propria';
 
                     $prenotazioni .= '<tr>';
-                    $prenotazioni .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$corso['id'].'</th>';
-                    $prenotazioni .= '<td>'.$dw.' <time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></td>';
-                    $prenotazioni .= '<td>'.$corso['istruttore'].'</td>';
-                    $prenotazioni .= '<td><span aria-hidden=\'true\'>#</span>'.$corso['pista'].'</td>';
-                    $prenotazioni .= '<td>'.$moto.'</td>';
-                    $prenotazioni .= '<td>'.$attrezzatura.'</td>';
-                    $prenotazioni .= '<td><a href=\'deletePrenotazione.php?id='.$corso['codice'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
+                    $prenotazioni .= '<th data-title=\'corso\' scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$corso['id'].'</th>';
+                    $prenotazioni .= '<td data-title=\'data\'>'.$dw.' <time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></td>';
+                    $prenotazioni .= '<td data-title=\'istruttore\'>'.$corso['istruttore'].'</td>';
+                    $prenotazioni .= '<td data-title=\'tracciato\'><span aria-hidden=\'true\'>#</span>'.$corso['pista'].'</td>';
+                    $prenotazioni .= '<td data-title=\'moto\'>'.$moto.'</td>';
+                    $prenotazioni .= '<td data-title=\'attrezzatura\'>'.$attrezzatura.'</td>';
+                    $prenotazioni .= '<td data-title=\'elimina\'><a href=\'deletePrenotazione.php?id='.$corso['codice'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $prenotazioni .= '</tr>';
                 }
             } else {
@@ -186,12 +186,12 @@
                     $dw = $weekDays[date('w',strtotime($corso['data']))];
 
                     $corsiBody .= '<tr>';
-                    $corsiBody .= '<th scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$corso['id'].'</th>';
-                    $corsiBody .= '<td><time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></td>';
-                    $corsiBody .= '<td abbr=\''.substr($dw,0,3).'\'>'.$dw.'</td>';
-                    $corsiBody .= '<td>'.$corso['istruttore'].'</td>';
-                    $corsiBody .= '<td><span aria-hidden=\'true\'>#</span>'.$corso['pista'].'</td>';
-                    $corsiBody .= '<td>'.($corso['posti'] - $corso['occupati']).'</td>';
+                    $corsiBody .= '<th data-title=\'corso\' scope=\'row\'><span aria-hidden=\'true\'>#</span>'.$corso['id'].'</th>';
+                    $corsiBody .= '<td data-title=\'data\'><time datetime=\''.$corso['data'].'\'>'.date('d/m/Y',strtotime($corso['data'])).'</time></td>';
+                    $corsiBody .= '<td data-title=\'giorno\'>'.$dw.'</td>';
+                    $corsiBody .= '<td data-title=\'istruttore\'>'.$corso['istruttore'].'</td>';
+                    $corsiBody .= '<td data-title=\'tracciato\'><span aria-hidden=\'true\'>#</span>'.$corso['pista'].'</td>';
+                    $corsiBody .= '<td data-title=\'posti disponibili\'>'.($corso['posti'] - $corso['occupati']).'</td>';
                     $corsiBody .= '</tr>';
 
                     if($corsoScelto == $corso['id'])

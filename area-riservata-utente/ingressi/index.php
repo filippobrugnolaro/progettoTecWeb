@@ -132,10 +132,10 @@
                         $attrezzatura = 'Propria';
 
                     $prenotazioni .= '<tr>';
-                    $prenotazioni .= '<th scope=\'row\'>'.$dw.' <time datetime=\''.$ingresso['data'].'\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</time></th>';
-                    $prenotazioni .= '<td>'.$moto.'</td>';
-                    $prenotazioni .= '<td>'.$attrezzatura.'</td>';
-                    $prenotazioni .= '<td><a href=\'deletePrenotazione.php?id='.$ingresso['id'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
+                    $prenotazioni .= '<th data-title=\'data\' scope=\'row\'>'.$dw.' <time datetime=\''.$ingresso['data'].'\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</time></th>';
+                    $prenotazioni .= '<td data-title=\'moto\'>'.$moto.'</td>';
+                    $prenotazioni .= '<td data-title=\'attrezzatura\'>'.$attrezzatura.'</td>';
+                    $prenotazioni .= '<td data-title=\'elimina\'><a href=\'deletePrenotazione.php?id='.$ingresso['id'].'\' aria-label=\'elimina ingresso\'><i class=\'fas fa-trash\'></i></a></td>';
                     $prenotazioni .= '</tr>';
                 }
             } else {
@@ -172,9 +172,9 @@
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 
                     $ingressiBody .= '<tr>';
-                    $ingressiBody .= '<th scope=\'row\'><time datetime=\''.$ingresso['data'].'\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</time></th>';
-                    $ingressiBody .= '<td abbr=\''.substr($dw,0,3).'\'>'.$dw.'</td>';
-                    $ingressiBody .= '<td>'.($ingresso['posti'] - $ingresso['occupati']).'</td>';
+                    $ingressiBody .= '<th data-title=\'data\' scope=\'row\'><time datetime=\''.$ingresso['data'].'\'>'.date('d/m/Y',strtotime($ingresso['data'])).'</time></th>';
+                    $ingressiBody .= '<td data-title=\'giorno\'>'.$dw.'</td>';
+                    $ingressiBody .= '<td data-title=\'posti disponibili\'>'.($ingresso['posti'] - $ingresso['occupati']).'</td>';
                     $ingressiBody .= '</tr>';
 
                     if($date == $ingresso['data'])
