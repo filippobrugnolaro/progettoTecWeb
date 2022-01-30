@@ -29,20 +29,22 @@
             $records = $conn->getQueryResult(dbAccess::QUERIES[6]);
 
             if($records !== null) {
-                $tableIngressi = '<table title=\'tabella contenente le prenotazioni degli ingressi per le prossime giornate di apertura\'>
-				                    <caption>Prenotazioni ingressi per le prossime giornate di apertura</caption>
-				                <thead>
-                                        <tr>
-                                            <th scope=\'col\'>Data</th>
-                                            <th scope=\'col\'>Posti disponibili</th>
-                                            <th scope=\'col\'>Posti rimanenti</th>
-                                            <th scope=\'col\'>Dettagli</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <ingressi/>
-                                    </tbody>
-                                </table>';
+                $tableIngressi = '<div class="tableContainer">
+                                    <table title=\'tabella contenente le prenotazioni degli ingressi per le prossime giornate di apertura\'>
+                                        <caption>Prenotazioni ingressi per le prossime giornate di apertura</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope=\'col\'>Data</th>
+                                                <th scope=\'col\'>Posti disponibili</th>
+                                                <th scope=\'col\'>Posti rimanenti</th>
+                                                <th scope=\'col\'>Dettagli</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ingressi/>
+                                        </tbody>
+                                    </table>
+                                </div>';
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
@@ -67,21 +69,24 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($ingressi !== null) {
-                $tableIngresso = '<table title=\'tabella contenente le prossime date di apertura\'>
-                                    <caption>Prossime date di apertura</caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope=\'col\'>Data</th>
-                                            <th scope=\'col\'>Giorno</th>
-                                            <th scope=\'col\' abbr=\'posti\'>Posti disponibili</th>
-                                            <th scope=\'col\'>Modifica</th>
-                                            <th scope=\'col\'>Elimina</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <ingresso/>
-                                    </tbody>
-                                </table>';
+                $tableIngresso = '<div class="tableContainer">
+                                    <table title=\'tabella contenente le prossime date di apertura\'>
+                                        <caption>Prossime date di apertura</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope=\'col\'>Data</th>
+                                                <th scope=\'col\'>Giorno</th>
+                                                <th scope=\'col\' abbr=\'posti\'>Posti disponibili</th>
+                                                <th scope=\'col\'>Modifica</th>
+                                                <th scope=\'col\'>Elimina</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ingresso/>
+                                        </tbody>
+                                    </table>
+                                </div>';
+
                 foreach($ingressi as $ingresso) {
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];
 

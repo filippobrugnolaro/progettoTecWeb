@@ -25,23 +25,26 @@
             $tracks = $conn->getQueryResult(dbAccess::QUERIES[4]);
 
             if($tracks !== null) {
-                $table = '<table title="tabella contenente le informazioni dei tracciati">
-                            <caption>Informazioni sui tracciati presenti nell\'impianto</caption>
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Lunghezza</th>
-                                    <th scope="col">Terreno</th>
-                                    <th scope="col">Orario apertura</th>
-                                    <th scope="col">Orario chiusura</th>
-                                    <th scope="col">Modifica</th>
-                                    <th scope="col">Elimina</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tracciati/>
-                            </tbody>
-                        </table>';
+                $table = '<div class="tableContainer">
+                            <table title="tabella contenente le informazioni dei tracciati">
+                                <caption>Informazioni sui tracciati presenti nell\'impianto</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Lunghezza</th>
+                                        <th scope="col">Terreno</th>
+                                        <th scope="col">Orario apertura</th>
+                                        <th scope="col">Orario chiusura</th>
+                                        <th scope="col">Modifica</th>
+                                        <th scope="col">Elimina</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tracciati/>
+                                </tbody>
+                            </table>
+                        </div>';
+                        
                 foreach($tracks as $track) {
                     $track['terreno'][0] = strtoupper($track['terreno'][0]);
                     $track['terreno'] = str_replace('_',' ',$track['terreno']);

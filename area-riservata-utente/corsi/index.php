@@ -163,7 +163,8 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($corsi !== null) {
-                $tableIngressiDisp = '<table title="tabella contenente i prossimi corsi prenotati disponibili">
+                $tableIngressiDisp = '<div class="tableContainer">
+                                        <table title="tabella contenente i prossimi corsi prenotati disponibili">
                                             <caption>Prossimi corsi</caption>
                                             <thead>
                                                 <tr>
@@ -178,7 +179,8 @@
                                             <tbody>
                                                 <nextDate/>
                                             </tbody>
-                                        </table>';
+                                        </table>
+                                    </div>';
 
                 foreach($corsi as $corso) {
                     $dw = $weekDays[date('w',strtotime($corso['data']))];

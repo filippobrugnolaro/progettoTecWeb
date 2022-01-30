@@ -152,19 +152,21 @@
             $weekDays = array('Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato');
 
             if($ingressi !== null) {
-                $tableDisp = '<table title="tabella contenente le prossime date di apertura">
-                                <caption>Prossime date di apertura</caption>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Data</th>
-                                        <th scope="col">Giorno</th>
-                                        <th scope="col">Posti disponibili</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <nextDate/>
-                                </tbody>
-                            </table>';
+                $tableDisp = '<div class="tableContainer">
+                                <table title="tabella contenente le prossime date di apertura">
+                                    <caption>Prossime date di apertura</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Data</th>
+                                            <th scope="col">Giorno</th>
+                                            <th scope="col">Posti disponibili</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <nextDate/>
+                                    </tbody>
+                                </table>
+                            </div>';
 
                 foreach($ingressi as $ingresso) {
                     $dw = $weekDays[date('w',strtotime($ingresso['data']))];

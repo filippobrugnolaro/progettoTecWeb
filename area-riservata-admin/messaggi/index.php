@@ -27,20 +27,22 @@
             $records = $conn->getQueryResult(dbAccess::QUERIES[18]);
 
             if($records !== null) {
-                $tableMessaggi = "<table title=\"tabella contenente i messaggi inviati dall'utente\">
-                                    <caption>Messaggi inviati dagli utenti</caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope='col'>Nominativo</th>
-                                            <th scope='col'>Data</th>
-                                            <th scope='col'>Oggetto</th>
-                                            <th scope='col'>Dettagli</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <messaggi/>
-                                    </tbody>
-                                </table>";
+                $tableMessaggi = "<div class=\"tableContainer\">
+                                    <table title=\"tabella contenente i messaggi inviati dall'utente\">
+                                        <caption>Messaggi inviati dagli utenti</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope='col'>Nominativo</th>
+                                                <th scope='col'>Data</th>
+                                                <th scope='col'>Oggetto</th>
+                                                <th scope='col'>Dettagli</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <messaggi/>
+                                        </tbody>
+                                    </table>
+                                </div>";
 
                 foreach($records as $record) {
                     $messaggi .= '<tr>';

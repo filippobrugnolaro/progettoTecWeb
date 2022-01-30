@@ -18,9 +18,9 @@
             if($records !== null) {
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'><time datetime=\''.$record['data'].'\'>'.date('d/m/Y',strtotime($record['data'])).'</time></th>';
-                    $recordsBody .= '<td>'.$record['posti'].'</td>';
-                    $recordsBody .= '<td>'.(($record['posti'] - $record['occupati']) >0 ? ($record['posti'] - $record['occupati']) : '0').'</td>';
+                    $recordsBody .= '<th data-title="data" scope=\'row\'><time datetime=\''.$record['data'].'\'>'.date('d/m/Y',strtotime($record['data'])).'</time></th>';
+                    $recordsBody .= '<td data-title="posti disponibili">'.$record['posti'].'</td>';
+                    $recordsBody .= '<td data-title="posti occupati">'.(($record['posti'] - $record['occupati']) >0 ? ($record['posti'] - $record['occupati']) : '0').'</td>';
                     $recordsBody .= '</tr>';
                 }
             } else {

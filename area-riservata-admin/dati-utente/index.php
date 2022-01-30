@@ -186,14 +186,17 @@
                 $form = '<form method="post" action="./" onsubmit="return validazioneForm2();">
                             <messaggiForm2/>
 
-                            <div class="input-container">
-                                <label for="utenti">Utente*</label>
-                                <select name="utente" id="utenti">
-                                    _utenti_
-                                </select>
-                            </div>
+                            <fieldset>
+                                <legend>Promozione utenti</legend>
+                                <div class="input-container">
+                                    <label for="utenti">Utente*</label>
+                                    <select name="utente" id="utenti">
+                                        _utenti_
+                                    </select>
+                                </div>
 
-                            <input type="submit" name="submitUtenteAdmin" value="Promuovi utente"/>
+                                <input type="submit" name="submitUtenteAdmin" value="Promuovi utente"/>
+                            </fieldset>
                         </form>';
 
                 if($utente != null)

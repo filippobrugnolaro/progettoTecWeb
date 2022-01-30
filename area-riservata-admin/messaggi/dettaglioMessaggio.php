@@ -35,16 +35,16 @@
 
             if($records !== null) {
                 $messaggioBody = '<ul>
-                                            <li>Nominativo: _nominativo_</li>
-                                            <li><span lang="en">E-mail</span>: <a href="mailto:_email_?subject=RE:%20_obj_">_email_</a></li>
-                                            <li>Telefono: <a href="tel:_tel_">_tel_</a></li>
-                                        </ul>
+                                    <li><span class="bold">Nominativo:</span> _nominativo_</li>
+                                    <li><span class="bold" lang="en">E-mail:</span> <a href="mailto:_email_?subject=RE:%20_obj_">_email_</a></li>
+                                    <li><span class="bold">Telefono:</span> <a href="tel:_tel_">_tel_</a></li>
+                                </ul>
 
-                                        <p>Oggetto:</p>
-                                        <p id="oggetto">_obj_</p>
+                                <p>Oggetto:</p>
+                                <p id="oggetto">_obj_</p>
 
-                                        <p>Messaggio:</p>
-                                        <p id="messaggio">_messaggio_</p>';
+                                <p>Messaggio:</p>
+                                <p id="messaggio">_messaggio_</p>';
 
                 $record = $records[0];
                 unset($records);

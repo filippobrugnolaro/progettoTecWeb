@@ -65,22 +65,24 @@
             $corsi = $conn->getQueryResult(dbAccess::QUERIES[11]);
 
             if($corsi !== null) {
-                $tableCorso = '<table title=\'tabella contenente i prossimi corsi\'>
-				                <caption>Prossimi corsi</caption>
-				                <thead>
-					            <tr>
-						            <th scope=\'col\'>Data</th>
-						            <th scope=\'col\'>Posti disponibili</th>
-						            <th scope=\'col\'>Istruttore</th>
-						            <th scope=\'col\'>Tracciato</th>
-						            <th scope=\'col\'>Modifica</th>
-						            <th scope=\'col\'>Elimina</th>
-					            </tr>
-				                </thead>
-				                <tbody>
-					                <corso/>
-				                </tbody>
-			                </table>';
+                $tableCorso = '<div class="tableContainer">
+                                <table title=\'tabella contenente i prossimi corsi\'>
+                                    <caption>Prossimi corsi</caption>
+                                    <thead>
+                                    <tr>
+                                        <th scope=\'col\'>Data</th>
+                                        <th scope=\'col\'>Posti disponibili</th>
+                                        <th scope=\'col\'>Istruttore</th>
+                                        <th scope=\'col\'>Tracciato</th>
+                                        <th scope=\'col\'>Modifica</th>
+                                        <th scope=\'col\'>Elimina</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <corso/>
+                                    </tbody>
+                                </table>
+                            </div>';
 
                 foreach($corsi as $corso) {
                     $corsiBody .= '<tr>';

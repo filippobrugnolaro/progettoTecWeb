@@ -27,19 +27,21 @@
             $records = $conn->getSpecificQueryResult(str_replace('_lezione_',$id,dbAccess::QUERIES[12][0]),dbAccess::QUERIES[8][1]);
 
             if($records !== null) {
-                $table = '<table title=\'tabella contenente i dettagli degli ingressi prenotati per il corso\'>
-                            <caption>Dettaglio prenotazioni ingressi per il corso</caption>
-                            <thead>
-                                <tr>
-                                    <th scope=\'col\'>Utente</th>
-                                    <th scope=\'col\'>Noleggio moto</th>
-                                    <th scope=\'col\'>Noleggio attrezzatura</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <dettaglioCorsi/>
-                            </tbody>
-                        </table>';
+                $table = '<div class="tableContainer">
+                            <table title=\'tabella contenente i dettagli degli ingressi prenotati per il corso\'>
+                                <caption>Dettaglio prenotazioni ingressi per il corso</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope=\'col\'>Utente</th>
+                                        <th scope=\'col\'>Noleggio moto</th>
+                                        <th scope=\'col\'>Noleggio attrezzatura</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <dettaglioCorsi/>
+                                </tbody>
+                            </table>
+                        </div>';
 
                 foreach($records as $record) {
                     $utente = $record['cognome'].' '.$record['nome'];

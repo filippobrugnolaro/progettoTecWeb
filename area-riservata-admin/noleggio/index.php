@@ -29,19 +29,21 @@
             $records = $conn->getQueryResult(dbAccess::QUERIES[2]);
 
             if($records !== null) {
-                $tableNoleggi = '<table title="tabella contenente le prenotazioni dei noleggi per le prossime giornate di apertura">
-                                    <caption>Prenotazioni noleggi per le prossime giornate di apertura</caption>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Data</th>
-                                            <th scope="col">Noleggi totali</th>
-                                            <th scope="col">Dettagli</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <noleggi/>
-                                    </tbody>
-                                </table>';
+                $tableNoleggi = '<div class="tableContainer">
+                                    <table title="tabella contenente le prenotazioni dei noleggi per le prossime giornate di apertura">
+                                        <caption>Prenotazioni noleggi per le prossime giornate di apertura</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Data</th>
+                                                <th scope="col">Noleggi totali</th>
+                                                <th scope="col">Dettagli</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <noleggi/>
+                                        </tbody>
+                                    </table>
+                                </div>';
 
                 foreach($records as $record) {
                     $recordsBody .= '<tr>';
@@ -63,7 +65,8 @@
             $motos = $conn->getQueryResult(dbAccess::QUERIES[0]);
 
             if($motos !== null) {
-                $tableNoleggio = '<table title="tabella contenente le moto del magazzino">
+                $tableNoleggio = '<div class="tableContainer">
+                                    <table title="tabella contenente le moto del magazzino">
                                         <caption>Moto del magazzino</caption>
                                         <thead>
                                             <tr>
@@ -79,7 +82,8 @@
                                         <tbody>
                                             <moto/>
                                         </tbody>
-                                    </table>';
+                                    </table>
+                                </div>';
 
                 foreach($motos as $moto) {
                     $motoBody .= '<tr>';

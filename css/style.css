@@ -1,14 +1,14 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
 
 :root {
-	--mainBackground: /*rgb(246, 255, 240)*/rgb(255, 234, 210);
+	--mainBackground: /*rgb(246, 255, 240)*/rgb(240, 215, 187);
 	--secondaryBackground: /*rgb(255, 232, 206)*/rgb(247, 201, 148);
 	--darkBackground: rgb(38, 74, 70);
-	--linkmenu: /*rgb(185, 185, 180);*/ #DFDFDD;
-	--linkmenu-hover: rgb(255, 250, 240);
-	--linkbody: var(--darkBackground);
-	--linkbody-hover: blue;
-	--linkvisited: var(--secondaryBackground);
+	--linkmenu: var(--link)/*#DFDFDD*/;
+	--linkmenu-hover: var(--link-hover)/*rgb(255, 250, 240)*/;
+	--link: #DFDFDD;
+	--link-hover: rgb(255, 250, 240);
+	--link-visited: var(--secondaryBackground);
 }
 
 * {
@@ -47,12 +47,16 @@ body {
 	min-height: 100%;
 }
 
+a:link {
+	color: var(--link);
+}
+
 a:visited {
-	color: var(--linkvisited);
+	color: var(--link-visited);
 }
 
 a:hover {
-	color: var(--linkbody-hover);
+	color: var(--link-hover);
 }
 
 /* **************************************** */
@@ -190,13 +194,14 @@ a:hover {
 }
 
 /* ***************** TABLE **************** */
+.tableContainer {
+	width: 100%;
+}
+
 table {
 	align-self: center;
 
-    width: 98%;
-    border: 2px solid var(--darkBackground);
-    border-radius: 5px;
-    background-color: var(--mainBackground);
+    width: 100%;
     border-spacing: 0;
 	font-size: 1.2em;
 }
@@ -206,35 +211,63 @@ table caption {
     font-weight: bold;
 }
 
-table th {
-    padding: 4px;
+thead {
+	display: none;
+}
+
+tbody {
+	display: flex;
+	flex-direction: column;
+}
+
+tr {
+	align-self: center;
+
+	width: 95%;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid var(--darkBackground);
+	border-radius: 5px;
+	background-color: var(--secondaryBackground);
+
+	margin-bottom: 0.5em;
+}
+
+article>div>table tr {
+	background-color: var(--mainBackground);
+}
+
+table td {
+	font-weight: bold;
+    padding: 0.25em;
+    text-align: center;
+    vertical-align: center;
+}
+
+thead th {
+    padding: 0.5em;
     font-size: 1.1em;
     color: var(--mainBackground);
     background-color: var(--darkBackground);
 }
 
-table td {
-    padding: 2px;
-    text-align: center;
-    vertical-align: center;
-}
-
-table th,td {
-    border-top: 2px solid var(--darkBackground);
-}
-
 tbody th {
-	padding: 2px;
+	padding: 0.25em;
 	font-weight: bold;
     text-align: center;
     vertical-align: center;
-	border-top: 2px solid var(--mainBackground);
+	color: var(--mainBackground);
+	background-color: var(--darkBackground);
 }
 
-table tr:nth-child(even) {
-    background-color: var(--secondaryBackground);
-
+td[data-title]:before, th[data-title]:before {
+	content: attr(data-title) ":\00A0";
+	text-transform: capitalize;
+	font-weight: normal;
 }
+
+
+
 
 
 /* ***************** FORM ***************** */
@@ -250,13 +283,17 @@ form legend {
 form fieldset {
 	border: 2px solid var(--darkBackground);
 	border-radius: 5px;
-	background-color: var(--mainBackground);
+	background-color: var(--secondaryBackground);
     padding: 0.5em 1em 0.5em 1em;
     margin: 1em;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+}
+
+article>form fieldset {
+	background-color: var(--mainBackground);
 }
 
 form input {
@@ -358,7 +395,6 @@ form textarea {
 
 .content a {
 	color: var(--darkBackground);
-	padding: 0.5em;
 }
 
 .content article {
@@ -422,9 +458,9 @@ form textarea {
 	padding-top: 0.125em;
 }
 
-#Button {
+#topButton {
+	width: fit-content;
 	margin: 1em;
-	color: var(--darkBackground);
 }
 
 /* **************** TRACCIATI **************** */
@@ -502,6 +538,11 @@ form textarea {
 	align-items: center;
 }
 
+#contentIngressi td {
+	align-self: flex-start;
+	padding-left: 1em;
+}
+
 /* *************** CONTATTI *************** */
 #contentContatti article {
 	flex-direction: column;
@@ -548,7 +589,7 @@ form textarea {
 }
 
 #sideMenu a:hover {
-	color:var(--mainBackground);
+	color:var(--linkmenu-hover);
 }
 
 #activeSub {
@@ -592,6 +633,38 @@ form textarea {
 	background-color: var(--secondaryBackground);
 	border: 2px solid var(--darkBackground);
   	border-radius: 5px;
+}
+
+/* DETTAGLI MESSAGGIO */
+.bold {
+	font-weight: bold;
+}
+
+.dettaglioMessaggio p {
+	font-weight: bold;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+#oggetto, #messaggio{
+	font-weight: normal;
+	padding-left: 1.5em;
+}
+
+
+/* BUTTON */
+.button {
+	padding: 0.5em 1em 0.5em 1em;
+	align-self: center;
+	width: fit-content;
+	background-color: var(--darkBackground);
+	border-radius: 5px;
+}
+
+.button>a {
+	text-align: center;
+	font: 1.3em;
+	font-weight: bold;
+	color: var(--link);
 }
 
 
@@ -687,6 +760,62 @@ footer .imgValidCode {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+	}
+
+	/* TABLES */
+	.tableContainer {
+		align-self: center;
+		
+		max-height: 1000px;
+		width: 98%;
+		overflow-x: auto;
+		overflow-y: auto;
+	}
+
+	table {
+		background-color: var(--mainBackground);
+		border: 2px solid var(--darkBackground);
+		border-radius: 5px;
+	}
+
+	thead {
+		display: table-header-group;
+	}
+	
+	tbody {
+		display: table-row-group;
+	}
+
+	tr {
+		width: 100%;
+		display: table-row;
+		border: none;
+		border-radius: none;
+	}
+
+	tbody th {
+		color: var(--darkBackground);
+		background-color: transparent;
+	}
+
+	table th,td {
+		border-top: 2px solid var(--darkBackground);
+	}
+
+	table td {
+		font-weight: normal;
+	}
+	
+	td[data-title]:before, th[data-title]:before {
+		content: "";
+	}
+
+	table tr:nth-child(even) {
+		background-color: var(--secondaryBackground);
+	}
+
+	table tr:nth-child(odd) {
+		background-color: var(--mainBackground);
 	}
 
 
