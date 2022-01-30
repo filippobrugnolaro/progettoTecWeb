@@ -34,8 +34,8 @@
                                         <th scope="col">Terreno</th>
                                         <th scope="col">Orario apertura</th>
                                         <th scope="col">Orario chiusura</th>
-                                        <th scope="col">Modifica</th>
-                                        <th scope="col">Elimina</th>
+                                        <th  scope="col">Modifica</th>
+                                        <th  scope="col">Elimina</th>
                                     </tr>
                                 </thead>
                                 <tbody>

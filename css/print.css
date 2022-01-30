@@ -1,0 +1,203 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+html {
+	font-family: "Times New Roman", Times, serif;
+	margin: auto;
+}
+
+p, li {
+    font-size: 1.0em;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+h2 {
+    font-size: 1.0em;
+}
+
+h3 {
+    font-size: 1.0em;
+}
+
+ul {
+    padding-left: 2.0em;
+}
+
+abbr {
+    content: "" attr(title);
+}
+
+a:after {
+    content: " ["attr(href) "]";
+}
+
+a {
+    color: gray;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+.icon {
+    display: none;
+}
+
+.logobox {
+    text-align: center;
+}
+
+img {
+    display: none;
+}
+
+article {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+li {
+    display: list-item;
+}
+
+abbr {
+    text-decoration: none;
+}
+
+footer {
+    margin-top: 2em;
+    padding: 1em;
+    border: 1px solid black;
+}
+
+footer p {
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+footer h3 {
+    margin-top: 0.5em;
+}
+
+abbr::content {
+    content: "(" attr(title) ")";
+}
+
+table a {
+    display: none;
+}
+
+table {
+    width: 100%;
+}
+
+table {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid black;
+}
+
+table th {
+    text-align: left;
+}
+
+caption {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+fieldset {
+    margin-top: 1em;
+    padding: 1em;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.0em;
+}
+
+input, select {
+    margin: 0.5em;
+}
+
+/* SPECIFIC */
+
+#menu {
+    display: none;
+}
+
+.navUser {
+    display: none;
+}
+
+#breadcrumb {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#breadcrumb a::after {
+    content: "";
+}
+
+#slogan {
+    font-style: italic;
+}
+
+#topButton {
+    display: none;
+}
+
+.footerValid {
+    margin-top: 0.5em;
+}
+
+.button a {
+    display: none;
+}
+
+.tableContainer {
+    margin: 1.0em 0em;
+}
+
+.tableContainer a:after {
+    content: "";
+}
+
+.hideColumn {
+    display: none;
+}
+
+#contentLogin a:after {
+    content: "";
+}
+
+#loginForm {
+    margin-bottom: 1em;
+}
+
+.contentReserved a:after{
+    content: "";
+}
+
+.dettaglioMessaggio p {
+    font-weight: bold;
+    margin: 0.5em 0em;
+}
+
+#oggetto, #messaggio {
+    font-weight: normal;
+    margin: 0em 0.5em;
+}
+
+.bold {
+    font-weight: bold;
+}
