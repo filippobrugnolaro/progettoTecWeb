@@ -1,16 +1,27 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
 
 :root {
-	--mainBackground: /*rgb(246, 255, 240)*/rgb(240, 215, 187);
-	--secondaryBackground: /*rgb(255, 232, 206)*/rgb(247, 201, 148);
-	--darkBackground: rgb(38, 74, 70);
+	--mainColor: 255, 127, 1;
+	--mainDarkColor: 38, 74, 70;
+	--mainWhite: 254, 254, 254;
+	--mainGrey: 198, 198, 198;
+
+
+	--primaryBackground: rgba(var(--mainColor), 0.2);
+	--secondaryBackground: rgba(var(--mainColor), 0.3);
+	--darkBackground: rgb(var(--mainDarkColor));
+
+	--lightText: rgb(var(--mainWhite));
+	--darkText: rgb(var(--mainDarkColor));;
+
 	--linkmenu: var(--link)/*#DFDFDD*/;
 	--linkmenu-hover: var(--link-hover)/*rgb(255, 250, 240)*/;
-	--link: #DFDFDD;
+	--link: rgb(var(--mainGrey));
 	--link-hover: rgb(255, 250, 240);
-	--link-visited: var(--secondaryBackground);
-	--odd-row: rgb(248, 209, 164);
-	--even-row: rgb(253, 174, 84);
+	--link-visited: rgb(var(--mainColor));
+
+	--odd-row: rgba(var(--mainWhite), 0.2);
+	--even-row: rgba(var(--mainWhite), 0.7);
 }
 
 * {
@@ -30,7 +41,7 @@ html {
 	font-size: 100%;
 	font-family: "Roboto", sans-serif;
 	margin: auto;
-	background-color: var(--mainBackground);
+	background-color: var(--primaryBackground);
 }
 
 .errSuggestion, .error {
@@ -69,7 +80,7 @@ a:hover {
 	display: flex;
 	flex-direction: column;
 
-	background-color: var(--mainBackground);
+	background-color: var(--primaryBackground);
 }
 
 .container2 {
@@ -79,7 +90,7 @@ a:hover {
 	align-items: center;
 	justify-content: space-around;
 
-	color: var(--mainBackground);
+	color: var(--lightText);
 	background-color: var(--darkBackground);
 }
 
@@ -141,7 +152,7 @@ a:hover {
 #menu {
 	font-size: 1.3em;
 	padding: 0.5em;
-	color: var(--mainBackground);
+	color: var(--lightText);
 	list-style: none;
 
 	/* display: flex; */
@@ -180,11 +191,10 @@ a:hover {
 
 #breadcrumb {
 	background-color: var(--darkBackground);
-	color: var(--linkmenu);
-	border-top: 2px solid var(--mainBackground);
-	border-bottom: 2px solid var(--mainBackground);
+	color: var(--lightText);
+	border-top: 2px solid var(--primaryBackground);
+	border-bottom: 2px solid var(--primaryBackground);
 	padding: 0.5em 1.0em 0.5em 1.0em;
-	/* modificato padding a 1em a DX -> dava problemi di scroll orizzontale */
 }
 
 #breadcrumb a:link {
@@ -195,6 +205,8 @@ a:hover {
 #breadcrumb a:hover {
 	color: var(--linkmenu-hover);
 }
+
+
 
 /* ***************** TABLE **************** */
 .tableContainer {
@@ -237,12 +249,12 @@ tr {
 }
 
 article>div>table tr {
-	background-color: var(--mainBackground);
+	background-color: var(--primaryBackground);
 }
 
-tbody > tr:hover {
+/* tbody > tr:hover {
 	opacity: 0.5;
-}
+} */
 
 table td {
 	font-weight: bold;
@@ -254,7 +266,7 @@ table td {
 thead th {
     padding: 0.5em;
     font-size: 1.1em;
-    color: var(--mainBackground);
+    color: var(--lightText);
     background-color: var(--darkBackground);
 }
 
@@ -263,7 +275,7 @@ tbody th {
 	font-weight: bold;
     text-align: center;
     vertical-align: center;
-	color: var(--mainBackground);
+	color: var(--lightText);
 	background-color: var(--darkBackground);
 }
 
@@ -294,7 +306,7 @@ form legend {
 form fieldset {
 	border: 2px solid var(--darkBackground);
 	border-radius: 5px;
-	background-color: var(--secondaryBackground);
+	background-color: var(--odd-row);
     padding: 0.5em 1em 0.5em 1em;
     margin: 1em;
 
@@ -304,7 +316,7 @@ form fieldset {
 }
 
 article>form fieldset {
-	background-color: var(--mainBackground);
+	background-color: var(--odd-row);
 }
 
 form input {
@@ -335,7 +347,7 @@ form input[type=submit] {
 	border: none;
 	border-radius: 0.25em;
 	background-color: var(--darkBackground);
-	color: var(--mainBackground);
+	color: var(--lightText);
 	font-size: 0.9em;
 	text-transform: uppercase;
 
@@ -351,7 +363,8 @@ form input[type=submit]:hover {
 }
 
 form select {
-	width: fit-content;
+	/* width: fit-content; */
+	align-self: stretch;
 	padding: 0.5em;
 	display: block;
 	border-radius: 5px;
@@ -393,7 +406,7 @@ form textarea {
 .content {
 	display: flex;
 	flex-direction: column;
-	color: var(--darkBackground);
+	color: var(--darkText);
 }
 
 .content img {
@@ -415,7 +428,7 @@ form textarea {
 }
 
 .content a:link {
-	color: var(--darkBackground);
+	color: var(--darkText);
 }
 
 .content a:visited {
@@ -455,6 +468,20 @@ form textarea {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	padding: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#loginForm span {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#loginForm strong {
+	text-align: center;
 }
 
 #loginForm input[type=submit] {
@@ -488,8 +515,22 @@ form textarea {
 }
 
 #topButton {
-	width: fit-content;
+	width: max-content;
+	align-self: flex-end;
 	margin: 1em;
+	padding: 0.5em;
+	color: var(--link);
+	text-decoration: none;
+	background-color: var(--darkBackground);
+	border-radius: 5px;
+}
+
+#topButton:link {
+	color: var(--link);
+}
+
+#topButton:hover {
+	color: var(--link-hover);
 }
 
 /* **************** TRACCIATI **************** */
@@ -588,6 +629,7 @@ form textarea {
 .navUser {
 	flex: 1 0 0;
 	background-color: var(--darkBackground);
+	text-align: center;
 
 	display: flex;
 	flex-direction: row;
@@ -598,6 +640,11 @@ form textarea {
 	display: none;
 }
 
+#userIcon {
+	background-color: rgb(var(--mainColor));
+	color: var(--darkText);
+}
+
 #sideMenu {
 	display: flex;
 	flex-direction: column;
@@ -606,7 +653,7 @@ form textarea {
 	list-style-type: none;
 	font-size: 1.3em;
 	padding: 0.5em;
-	color:var(--mainBackground);
+	color:var(--lightText);
 }
 
 #sideMenu li {
@@ -647,7 +694,7 @@ form textarea {
 }
 
 .contentReserved a {
-	color: var(--darkBackground);
+	color: var(--darkText);
 }
 
 .contentReserved a:hover {
@@ -670,6 +717,11 @@ form textarea {
 
 .contentReserved img {
 	width: 100%;
+}
+
+/* GESTIONE TRACCIATI */
+#gestioneTracciato h2 {
+	align-self: center;
 }
 
 /* DETTAGLI MESSAGGIO */
@@ -698,15 +750,19 @@ form textarea {
 	border-radius: 5px;
 }
 
+.button > a {
+	text-decoration: none;
+}
+
 .button > a:link {
 	text-align: center;
 	font: 1.3em;
 	font-weight: bold;
-	color: var(--link);
+	color: var(--link-hover);
 }
 
 .button > a:visited {
-	color: var(--link-visited);
+	color: var(--link-hover);
 }
 
 .button > a:hover {
@@ -733,7 +789,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	color: var(--mainBackground);
+	color: var(--lightText);
 	background-color:var(--darkBackground);
 	clear: both;
 	text-align: center;
@@ -770,7 +826,7 @@ footer .imgValidCode {
 
 .footerValid {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 }
 
@@ -821,7 +877,7 @@ footer .imgValidCode {
 	}
 
 	table {
-		background-color: var(--mainBackground);
+		background-color: var(--primaryBackground);
 		border: 2px solid var(--darkBackground);
 		border-radius: 5px;
 	}
@@ -842,7 +898,7 @@ footer .imgValidCode {
 	}
 
 	tbody th {
-		color: var(--darkBackground);
+		color: var(--darkText);
 		background-color: transparent;
 	}
 
@@ -859,11 +915,11 @@ footer .imgValidCode {
 	}
 
 	table tr:nth-child(even) {
-		background-color: var(--even-row);
+		background-color: var(--odd-row);
 	}
 
 	table tr:nth-child(odd) {
-		background-color: var(--odd-row);
+		background-color: var(--even-row);
 	}
 
 
@@ -929,7 +985,7 @@ footer .imgValidCode {
 	}
 
 	.corsiList article {
-		width: 45%;
+		flex: 1 1 350px;
 	}
 
 	/* NOLEGGIO */
@@ -979,15 +1035,28 @@ footer .imgValidCode {
 		min-width: 1em;
 		min-height: 1em;
 
-		background-color: var(--mainBackground);
-		color: var(--darkBackground);
+		background-color: var(--primaryBackground);
+		color: var(--darkText);
 		font-size: 4em;
 		text-align: center;
-		border: 0.3em solid var(--mainBackground);
+		border: 0.3em solid var(--primaryBackground);
 		border-radius: 50%;
 	}
 
 	.contentReserved {
 		min-width: 500px;
+	}
+
+	/* ADMIN */
+	/* GESTIONE TRACCIATO */
+	#gestioneTracciato h2 {
+		align-self: flex-start;
+	}
+
+
+
+	/* FOOTER */
+	.footerValid {
+		flex-direction: row;
 	}
 }

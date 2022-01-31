@@ -11,6 +11,20 @@ function toggleMenu() {
   }
 };
 
+/* ??? */
+function toggleSideNav() {
+  var menu = document.getElementById("sideContainer");
+  var icon = document.getElementById("sidenav-icon");
+
+  if (menu.className === "hideMenu") {
+    menu.className = "showMenu";
+    icon.className = "fa-solid fa-angle-left";
+  } else {
+    menu.className = "hideMenu";
+    icon.className = "fa-solid fa-angle-right"; 
+  }
+};
+
 function setMenu() {
   var menu = document.getElementById("menu");
   menu.className = "hideMenu";
