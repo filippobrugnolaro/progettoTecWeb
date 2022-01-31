@@ -1,0 +1,23 @@
+Il codice lato server è stato implementato utilizzando il linguaggio di scripting \textit{PHP}. Tutti gli script vengono lanciati da richieste HTTP provenienti dal browser (client).
+
+Per agevolare l'interazione con il database, sono state codificate delle classi di supporto che vanno a modellare i record delle principali tabelle del database. 
+
+È stata codificata una classe di supporto che funge da intermediaria tra gli script PHP e le chiamate al database, essa si occupa di:
+\begin{itemize}
+\item Gestire la connessione con il database;
+\item Effettuare la sanificazione dei dati che entreranno dal database da un punto di vista sintattico (escape delle stringhe, ...);
+\item Fornire funzioni standard per il recupero di dati dal database;
+\item Eseguire inserimenti, modifiche e cancellazioni di dati.
+\end{itemize}
+
+Tutti gli altri script hanno una procedura di esecuzione standardizzata:
+\begin{enumerate}
+\item Verificano i permessi dell'utente autenticato;
+\item Verificano la disponibilità di connessione al database;
+\item Richiedono le informazioni richieste (variano in base ai dati che deve rappresentare);
+\item Inseriscono, modificano, cancellano dei dati;
+\end{enumerate}
+
+Per l'inserimento e la modifica dei dati viene effettuata prima una importante validazione sintattica e di dominio. La validazione sintattica mira a individuare potenziali errori che potrebbero compromettere l'esito della query al database. La validazione di dominio mira ad evitare di inserire nel database informazioni che non sono coerenti con la realtà (esempi: prenotare un corso e un ingresso nella stessa giornata, prenotare un ingresso anche se non ci sono più posti, ...).
+
+Per garantire la sicurezza degli amministratori e degli utenti è stato implementato, per tutti gli script delle aree riservate (utente e admin), un controllo che impedisce ai due tipi di utente di accedere a contenuti dell'altro tipo di utente. Un utente autorizzato non può accedere ai contenuti dell'admin (ovviamente) e un admin non può accedere ai contenuti di un utente registrato. Questo controllo permette inoltre di non poter accedere all'area riservata senza essersi loggati.

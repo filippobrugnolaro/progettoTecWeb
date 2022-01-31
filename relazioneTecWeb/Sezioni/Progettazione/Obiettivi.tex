@@ -1,19 +1,35 @@
 Nello sviluppo del sito il gruppo si è imposto alcuni intransigenti obiettivi:
 \begin{itemize}
-    \item \textbf{Separazione struttura-presentazione-comportamento}: Il più importante, in quanto il suo raggiungimento
-    comporta una maggior facilità in una eventuale futura manutenzione o espansione.
-    Si sono dunque definite le componenti di stile nei fogli CSS, il contenuto nelle pagine PHP e HTML e il comportamento nei file javascript.
-    \item \textbf{Accessibilità}: Il sito deve poter essere fruibile agevolmente dal maggior
-    numero utenti possibile, compresi quelli con gravi disabilità visive e/o
-    motorie. Alcuni contromisure significative che sono state adottate abbiamo:
+    \item \textbf{Separazione contenuto/struttura - presentazione - comportamento}: Il più importante, in quanto il suo raggiungimento comporta:
+	\begin{itemize}
+	\item Maggior facilità in una eventuale futura manutenzione o espansione;
+	\item Minor peso complessivo del sito e conseguente miglior posizionamento nelle ricerche;
+	\end{itemize}	    
+
+    Si sono dunque definite le macro-componenti in diverse regioni:
     \begin{itemize}
-        \item[$\circ$] lettura corretta delle tabelle;
-        \item[$\circ$] testo alternativo per le immagini;
-        \item[$\circ$] testi e link con buoni livelli di contrasto;
+    	\item Struttura e contenuto: informazioni e dati in documenti HTML;
+    	\item Presentazione: figli di stile CSS;
+    	\item Comportamento:
+    		\begin{itemize}
+    		\item Lato server: script PHP;
+    		\item Lato client: script JavaScript.
+    		\end{itemize}
+	\end{itemize}    
+	
+	La completa separazione delle regioni non è sempre stata possibile, per ragioni derivanti dal dominio d'interesse e per agevolare l'esperienza dell'utente.	
+	
+   \item \textbf{Accessibilità}: Il sito deve poter essere fruibile agevolmente dal maggior numero utenti possibile, compresi quelli con gravi disabilità visive e/o
+    motorie. Alcune contromisure significative che sono state adottate:
+    \begin{itemize}
+        \item Lettura corretta delle tabelle da parte di dispositivi di assistenza (screen reader, ...);
+        \item Testo alternativo per le immagini di contenuto;
+        \item Testi e link con buoni livelli di contrasto;
     \end{itemize}
-    \textbf{NB}: le icone, poichè decorative, non hanno alcun testo alternativo dato che, se venissero rimosse, l'utente
-    capirebbe lo stesso ciò di cui si sta parlando.
-    \item \textbf{Flessibilità}: Il sito deve essere consultabile da varie tipologie di dispositivi,
-    smartphone compresi. Deve, inoltre, essere adattabile a differenti dimensioni
-    di schermo con il minor sforzo possibile.
+    
+    \textbf{NB}: icone e immagini di presentazione, poiché decorative, non hanno alcun testo alternativo dato che, se venissero rimosse, l'utente capirebbe lo stesso ciò di cui si sta parlando.
+    
+L'accessibilità deve essere garantita indipendentemente dal tipo di dispositivo. Deve essere preferito lo sviluppo \textit{"Mobile First"}, data l'utenza relativamente giovane e il tipo di operazioni da eseguire (prenotazioni). È essenziale garantire all'utente la possibilità di svolgere tutte le operazioni da smartphone, al fine di rendere l'esperienza utente il più agevole possibile.
+    
+    \item \textbf{Flessibilità}: Il sito deve essere consultabile da varie tipologie di dispositivi, smartphone compresi. Deve, inoltre, essere adattabile a differenti dimensioni di schermo con il minor sforzo possibile.
 \end{itemize}

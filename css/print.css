@@ -125,7 +125,7 @@ legend {
     font-size: 1.0em;
 }
 
-input, select {
+input, select, textarea {
     margin: 0.5em;
 }
 

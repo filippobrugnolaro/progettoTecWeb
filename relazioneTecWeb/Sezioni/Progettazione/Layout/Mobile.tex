@@ -1,8 +1,6 @@
-Essendo tutte le unità di misura del sito definite in em, è possibile cambiare la dimensione del font e far scalare di conseguenza l’interfaccia.\\
-Tuttavia, sono stati necessari alcuni accorgimenti per avere un’interfaccia mobile utilizzabile.
-Tra i più significativi si è inserita navbar a scomparsa rappresentata come burger icon per il menu di navigazione principale
-(presente sia nella parte pubblica che privata): un tap sull'icona apre la navbar, un altro tap la chiude.\\
-La scelta di non tenere la navbar sempre visibile è stata accuratamente ragionata.
-Infatti la navbar del sito internet mobile è visibile anche quando javascript è disattivato in quando manda direttamente a display il menu
-senza passare per il tap della navbar.\\
+Essendo tutte le unità di misura del sito definite in em, è possibile cambiare la dimensione del font e far scalare di conseguenza l’interfaccia. Tuttavia, sono stati necessari alcuni accorgimenti per avere un’interfaccia mobile utilizzabile.
+
+Tra i più significativi si è inserita navbar a scomparsa rappresentata come burger-icon per il menu di navigazione principale (presente sia nella parte pubblica che privata): un tap sull'icona apre la navbar, un altro tap la chiude. Questa gestione viene implementata con uno script JavaScript. La scelta è stata accuratamente ragionata, infatti la navbar del sito internet mobile è visibile anche quando JavaScript non funziona, in quanto manda direttamente a display il menu senza passare per il tap della navbar.\\
 Per quanto riguarda il menu della parte privata, si è deciso di lasciarlo completamente visibile per le motivazioni scritte nel capitolo 3.2.
+
+I tipi principali di dato da mostrare all'interno del sito sono informazioni tabellari (informazioni su tracciati, corsi disponibili, date di apertura, ...). Non potendo visualizzare lunghe tabelle in modo chiaro e semplice da smartphone, si è deciso di utilizzare una variante della trasformazione elegante per tabelle di Aaron Gustafson.

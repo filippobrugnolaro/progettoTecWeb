@@ -1,10 +1,8 @@
 Di seguito verrà descritto il livello di intrusività dei linguaggi rispetto al codice sorgente HTML:
 \begin{itemize}
-    \item \textbf{CSS}: \underline{non} intrusivo. Tutto il codice CSS è stato inserito in un file a parte, evitando del tutto pratiche come il
-    CSS inline o embedded.
-    \item \textbf{PHP}: \underline{non} intrusivo. Sebbene ci sia del codice HTML all'interno di alcuni file PHP, la corrispondente
-    pagina HTML non contiene codice PHP. La motivazione per la quale c'è del codice HTML in file PHP è che spesso i dati, essendo molto dinamici,
-    cambiano spesso in base sia all'input dell'utente che dell'amministratore. Dunque in base alla presenza o meno di alcuni di questi 
-    (per esempio le date d'ingresso) possono comparire o meno determinati elementi HTML.
-    \item \textbf{Javascript}: \underline{non} intrusivo. Tutto il codice javascript è stato inserito in un file a parte.
+    \item \textbf{CSS}: \underline{non} intrusivo. Tutto il codice CSS è stato inserito in un file a parte, evitando del tutto pratiche come il CSS embedded o stili dichiari inline.
+    
+    \item \textbf{PHP}: \underline{non} intrusivo. Sebbene ci sia del codice HTML all'interno di alcuni file PHP, la corrispondente pagina HTML non contiene codice PHP. La motivazione per la quale c'è del codice HTML in file PHP è che spesso i dati, essendo dinamici, cambiano spesso in base ai dati inseriti da utente e amministratore. Quindi, per migliorare l'esperienza utente, non vengono visualizzate tabelle se non ci sono dati da mostrare o form se non ci sono possibilità che l'inserimento vada a buon fine. Un esempio è il caso in cui non ci sono informazioni sulle prenotazioni degli ingressi (per l'admin): non ha senso mostrare una tabella vuota all'utente, meglio stampare un messaggio di spiegazione. 
+    
+    \item \textbf{JavaScript}: \underline{non} intrusivo. Tutto il codice JavaScript è stato inserito in un file a parte. Tutti gli script, ad eccezione delle chiamate AJAX, aggiungono funzionalità non essenziali al sito, utili solamente a migliorare l'esperienza utente. Esempi sono la validazione dei form (vi è la validazione lato server) e il menu a scomparsa (senza JS il menu viene mostrato senza essere comprimibile).
 \end{itemize}
