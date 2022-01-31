@@ -33,8 +33,8 @@
                                 <thead>
                                     <tr>
                                         <th scope=\'col\'>Utente</th>
-                                        <th scope=\'col\'>Noleggio moto</th>
-                                        <th scope=\'col\'>Noleggio attrezzatura</th>
+                                        <th scope=\'col\'>Moto</th>
+                                        <th scope=\'col\'>Attrezzatura</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,9 +57,9 @@
                         $attrezzatura = 'Propria';
 
                     $recordsBody .= '<tr>';
-                    $recordsBody .= '<th scope=\'row\'>' . $utente . '</th>';
-                    $recordsBody .= '<td>' . $moto . '</td>';
-                    $recordsBody .= '<td>' . $attrezzatura . '</td>';
+                    $recordsBody .= '<th data-title=\'utente\' scope=\'row\'>' . $utente . '</th>';
+                    $recordsBody .= '<td data-title=\'moto\'>' . $moto . '</td>';
+                    $recordsBody .= '<td data-title=\'attrezzatura\'>' . $attrezzatura . '</td>';
                     $recordsBody .= '</tr>';
                 }
             } else {
