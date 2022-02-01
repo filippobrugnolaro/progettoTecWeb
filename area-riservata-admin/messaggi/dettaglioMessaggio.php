@@ -36,7 +36,7 @@
             if($records !== null) {
                 $messaggioBody = '<ul>
                                     <li><span class="bold">Nominativo:</span> _nominativo_</li>
-                                    <li><span class="bold" lang="en">E-mail:</span> <a href="mailto:_email_?subject=RE:%20_obj_">_email_</a></li>
+                                    <li><span class="bold" lang="en">E-mail:</span> <a href="mailto:_email_">_email_</a></li>
                                     <li><span class="bold">Telefono:</span> <a href="tel:_tel_">_tel_</a></li>
                                 </ul>
 
