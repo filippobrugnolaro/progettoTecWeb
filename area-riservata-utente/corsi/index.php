@@ -76,7 +76,7 @@
                 }
                 else {
                     if ($res == -1) {
-                        $messaggiForm = '<li>Impossibile prenotare corso. Hai già prenotato un ingresso per questa data!</li>';
+                        $messaggiForm = '<li>Impossibile prenotare corso. Hai già un impegno per questa data!</li>';
                         $error = true;
                     }
                     else if($res == -3) {

@@ -73,7 +73,7 @@
             if($lunghezza < 500 || $lunghezza > 10000)
                 $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000.</li>';
 
-            if(isset($_POST['descrizione'])) {
+            if(strlen(trim($_POST['descrizione'])) > 0) {
                     $desc = sanitizeInputString($_POST['descrizione']);
 
                     switch(checkInputValidity($desc,'/^.{30,300}$/')) {
@@ -125,7 +125,7 @@
                     else
                         $path = "";
 
-                    $track = new Track((int) $id,(int) $lunghezza,$descrizione,$terreno,$apertura,$chiusura);
+                    $track = new Track((int) $id,(int) $lunghezza,$desc,$terreno,$apertura,$chiusura);
                     $track->setImgPath($path);
 
                     if($conn->updateTrack($track)) {
@@ -152,11 +152,11 @@
                             if(strlen($errors) == 0) {
                                 $fileName = $finalDir.$id.'.'.$fileType;
 
+                                foreach(glob("../../images/tracks/$id.*") as $file)
+                                unlink($file);
+
                                 if(move_uploaded_file($_FILES['img']['tmp_name'],$fileName)) {
                                     $messaggiForm .= '<li>File caricato con successo.</li>';
-
-                                    foreach(glob("../../images/tracks/$id.*") as $file)
-                                    unlink($file);
                                 } else
                                     $messaggiForm .= '<li>Errore durante il carimento del file.</li>';
                             } else
@@ -167,8 +167,9 @@
                             $track->setImgPath($id.'.'.$fileType);
                             $conn->updateTrack($track);
                         }
+
                         $conn->closeDB();
-                        //header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno)
+                        header('Location: ./#gestioneTracciato'); //utente non capisce se file si è caricato o meno)
                     } else {
                         $messaggiForm = '<li>Errore durante l\'inserimento del tracciato.</li>';
                         $conn->closeDB();
@@ -228,7 +229,7 @@
             if($lunghezza < 500 || $lunghezza > 10000)
                 $messaggiForm .= '<li>Lunghezza fuori dai limiti. Deve essere compresa tra 500 e 10000.</li>';
 
-            if(isset($_POST['descrizione'])) {
+            if(strlen(trim($_POST['descrizione'])) > 0) {
                     $desc = sanitizeInputString($_POST['descrizione']);
 
                     switch(checkInputValidity($desc,'/^.{30,300}$/')) {
@@ -276,7 +277,7 @@
 
             if(strlen($messaggiForm) == 0) {
                 if($conn->openDB()) {
-                    $track = new Track(-1,(int) $lunghezza,$descrizione,$terreno,$apertura,$chiusura);
+                    $track = new Track(-1,(int) $lunghezza,$desc,$terreno,$apertura,$chiusura);
 
                     $newId = $conn->createTrack($track);
 

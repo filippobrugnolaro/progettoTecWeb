@@ -78,7 +78,7 @@
                 else {
                     $error = true;
 
-                    if ($res == -1) $messaggiForm = '<li>Impossibile prenotare ingresso. Hai già prenotato un corso per questa data!</li>';
+                    if ($res == -1) $messaggiForm = '<li>Impossibile prenotare ingresso. Hai già un impegno per questa data!</li>';
                     else if($res == -3) $messaggiForm = '<li>Impossibile prenotare ingresso. Non ci sono più posti disponibili per questa data!</li>';
                     else $messaggiForm = '<li>Errore durante l\'inserimento della prenotazione dell\'ingresso.</li>';
                 }

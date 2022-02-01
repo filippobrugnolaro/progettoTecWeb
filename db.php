@@ -31,7 +31,7 @@ use PRENOTAZIONE\Reservation;
 			array('SELECT numero, marca, modello, cilindrata, anno, COUNT(*) AS disponibili
 				FROM moto
 				GROUP BY marca, modello, cilindrata, anno
-				ORDER BY numero',
+				ORDER BY marca, modello',
 				'Errore durante il recupero delle informazioni sulle moto.'), //get all dirtbikes
 			//1
 			array('SELECT * FROM moto WHERE numero = _num_',
@@ -79,7 +79,7 @@ use PRENOTAZIONE\Reservation;
 				ORDER BY data',
 				'Errore durante il recupero delle informazioni sulle lezioni prenotate'), //get booked lessons' info
 			//11
-			array('SELECT * FROM lezione WHERE data >= CURDATE() ORDER BY data',
+			array('SELECT * FROM lezione WHERE data >= CURDATE()',
 				'Errore durante il recupero delle informazioni sulle lezioni'), //get lessons' info
 			//12
 			array('SELECT nome, cognome, moto, attrezzatura, marca, modello, anno FROM (((ingressi_lezione INNER JOIN utente ON ingressi_lezione.utente = utente.cf)
@@ -386,14 +386,6 @@ use PRENOTAZIONE\Reservation;
 			$posti = $lesson->getPosti();
 			$id = $lesson->getID();
 
-			$sql = "SELECT id FROM lezione WHERE data = \"$data\" and pista = $tracciato";
-			$query = mysqli_query($this->conn, $sql);
-
-			if(mysqli_num_rows($query) > 0) {
-				mysqli_free_result($query);
-				return false;
-			}
-
 			$sql = "UPDATE lezione SET data = \"$data\", posti = $posti, descrizione = \"$desc\", istruttore = \"$istruttore\", ";
 			$sql .= "pista = $tracciato WHERE id = $id";
 
@@ -598,28 +590,11 @@ use PRENOTAZIONE\Reservation;
 				mysqli_autocommit($this->conn,false);
 				mysqli_begin_transaction($this->conn,MYSQLI_TRANS_START_READ_WRITE);
 
-				//controllo che non abbia già impegni in quel giorno
-				// $sql = "SELECT codice FROM ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id
-				// 	WHERE lezione.data = \"$data\" AND utente = \"$user\"";
+				//controllo che non abbia già fatto iscrizione a corso
+				$sql = "SELECT codice FROM ingressi_lezione INNER JOIN lezione ON ingressi_lezione.lezione = lezione.id
+					WHERE lezione.data = \"$data\" AND utente = \"$user\"";
 
-				// $query = mysqli_query($this->conn,$sql);
-
-				// if(mysqli_num_rows($query) > 0) {//ha già prenotato un corso!!
-				// 	mysqli_free_result($query);
-				// 	return -1;
-				// }
-
-				$sql = "SELECT cf FROM utente
-					WHERE (cf IN (SELECT ingressi_entrata.utente
-            					FROM ingressi_entrata
-            					WHERE data = \"$data\")
-      						OR cf IN (SELECT ingressi_lezione.utente
-               						FROM (ingressi_lezione INNER JOIN lezione ON lezione.id = ingressi_lezione.lezione)
-                     				INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
-               						WHERE lezione.data=\"$data\"))
-							AND cf = \"$user\"";
-
-				$query = mysqli_query($this->conn, $sql);
+				$query = mysqli_query($this->conn,$sql);
 
 				if(mysqli_num_rows($query) > 0) {//ha già prenotato un corso!!
 					mysqli_free_result($query);
@@ -722,19 +697,11 @@ use PRENOTAZIONE\Reservation;
 			$data = mysqli_fetch_assoc($query)['data'];
 			mysqli_free_result($query);
 
-			$sql = "SELECT cf FROM utente
-				WHERE (cf IN (SELECT ingressi_entrata.utente
-							FROM ingressi_entrata
-							WHERE data = \"$data\")
-						OR cf IN (SELECT ingressi_lezione.utente
-								FROM (ingressi_lezione INNER JOIN lezione ON lezione.id = ingressi_lezione.lezione)
-								INNER JOIN data_disponibile ON lezione.data = data_disponibile.data
-								WHERE lezione.data=\"$data\"))
-						AND cf = \"$user\"";
+			$sql = "SELECT codice FROM ingressi_entrata WHERE data = \"$data\" AND utente = \"$user\"";
 
-			$query = mysqli_query($this->conn, $sql);
+			$query = mysqli_query($this->conn,$sql);
 
-			if(mysqli_num_rows($query) > 0) {//ha già prenotato qualcosa!!
+			if(mysqli_num_rows($query) > 0) {//ha già prenotato un ingresso!!
 				mysqli_free_result($query);
 				return -1;
 			}

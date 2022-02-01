@@ -86,8 +86,6 @@ function formValidation(event) {
         var input = document.getElementById(key);
         var validation = fieldValidation(input, event);
 
-        //console.log("ret = " + ret + "; validation = " + validation + "; focus = " + focus);
-
         if (focus == null && ret == true && validation == false)
             focus = input;
 

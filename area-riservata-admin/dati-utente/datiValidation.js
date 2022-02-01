@@ -2,13 +2,13 @@ var validationDetails = {
     "cognomeUser": [/^[A-Za-zàèùìòé'\s]{2,}$/, "Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
     "nomeUser": [/^[A-Za-zàèùìòé'\s]{2,}$/, "Inserire almeno 2 caratteri (numeri e caratteri speciali non ammessi)"],
     "nascitaUser": [/^\d{4}-\d{2}-\d{2}$/, "Inserire una data corretta antecedente a quella odierna"],
-    "telUser": [/^\d{8,10}$/, "Inserire un numero di telefono valido tra le 8 e le 10 cifre"],
+    "telUser": [/^\d{8,10}$/, "Inserire un numero di telefono valido tra le 8 e le 10 cifre"]
 }
 
 var validationDetails2 = {
     "oldPsw": [/^.{1,}$/, "Inserire almeno un carattere"],
     "newPsw": [/^.{1,}$/, "Inserire una password di almeno un carattere diversa dalla precedente"],
-    "pswCheck": [/^.{1,}$/, "La nuova password e la sua verifica non coincidono"],
+    "pswCheck": [/^.{1,}$/, "La nuova password e la sua verifica non coincidono"]
 }
 
 
@@ -27,7 +27,7 @@ function showError(input) {
 
 function showError2(input) {
     var parent = input.parentNode;
-    var message = validationDetails2[input.id][2];
+    var message = validationDetails2[input.id][1];
     var error = document.createElement("strong");
     input.setAttribute('aria-invalid', 'true');
     input.setAttribute('aria-describedby', input.id + '-error');
@@ -126,8 +126,6 @@ function formValidation(event) {
         var input = document.getElementById(key);
         var validation = fieldValidation(input, event);
 
-        //console.log("ret = " + ret + "; validation = " + validation + "; focus = " + focus);
-
         if (focus == null && ret == true && validation == false)
             focus = input;
 
@@ -142,15 +140,12 @@ function formValidation(event) {
 }
 
 function formValidation2(event) {
-
     var ret = true;
     var focus = null;
 
     for (var key in validationDetails2) {
         var input = document.getElementById(key);
         var validation = fieldValidation2(input, event);
-
-        //console.log("ret = " + ret + "; validation = " + validation + "; focus = " + focus);
 
         if (focus == null && ret == true && validation == false)
             focus = input;
@@ -184,7 +179,7 @@ function checkDate(input) {
 
 function checkPswNewOld(input) {
     if(input.value.search(validationDetails2[input.id][0]) != 0)
-    return false;
+        return false;
 
     return input.value !== document.getElementById("oldPsw").value ? true : false;
 }

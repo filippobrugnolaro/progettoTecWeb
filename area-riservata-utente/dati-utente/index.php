@@ -39,12 +39,18 @@
             default: break;
         }
 
+        if(strlen($cognome) > 0)
+            $cognome[0] = strtoupper($cognome[0]);
+
         $nome = sanitizeInputString($_POST['nomeUser']);
         switch(checkInputValidity($nome,'/^\p{L}+$/')) {
             case 1: $messaggiForm .= '<li>Nome non presente.</li>'; break;
             case 2: $messaggiForm .= '<li>Il nome non puo contenere numeri o caratteri speciali.</li>'; break;
             default: break;
         }
+
+        if(strlen($nome) > 0)
+            $nome[0] = strtoupper($nome[0]);
 
         $nascita = sanitizeInputString($_POST['nascitaUser']);
         switch(checkInputValidity($nascita,'/^\d{4}-\d{2}-\d{2}$/')) {

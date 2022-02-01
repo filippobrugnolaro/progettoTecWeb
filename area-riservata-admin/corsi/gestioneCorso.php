@@ -66,7 +66,7 @@
                 $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 2 e 15.</li>';
 
 
-            if(isset($_POST['descrizione'])) {
+            if(strlen(trim($_POST['descrizione'])) > 0) {
                 $desc = sanitizeInputString($_POST['descrizione']);
 
                 switch(checkInputValidity($desc,'/^.{30,300}$/')) {
@@ -105,7 +105,7 @@
                         $messaggiForm = '<li class=\'success\'>Informazioni sul corso aggiornate con successo.</li>';
                         header("Location: ./#gestioneCorsi");
                     } else
-                        $messaggiForm = '<li class=\'error\'>Errore durante l\'aggiornamento delle informazioni sul corso.</li>';
+                        $messaggiForm = '<li class=\'error\'>Errore durante l\'aggiornamento delle informazioni sul corso. Controllare che non vi siano conflitti tra i corsi.</li>';
 
                     $conn->closeDB();
                 } else {
@@ -172,7 +172,7 @@
             if($posti < 2 || $posti > 15)
                 $messaggiForm .= '<li>Numero posti disponibili deve essere compreso tra 2 e 15.</li>';
 
-            if(isset($_POST['descrizione'])) {
+            if(strlen(trim($_POST['descrizione'])) > 0) {
                     $desc = sanitizeInputString($_POST['descrizione']);
 
                     switch(checkInputValidity($desc,'/^.{30,300}$/')) {
@@ -211,8 +211,8 @@
                     if($newId > -1) {
                         $messaggiForm = '<li class=\'success\'>Nuovo corso inserito con successo.</li>';
                         header("Location: ./#gestioneCorsi");
-                    } else
-                        $messaggiForm = '<li class=\'error\'>Errore durante l\'inserimento del nuovo corso.</li>';
+                    } else if ($newId == -2) $messaggiForm = '<li class=\'error\'>Esiste già un corso in questa data e in questa pista.</li>';
+                    else $messaggiForm = '<li class=\'error\'>Errore durante l\'inserimento del nuovo corso.</li>';
 
                     $conn->closeDB();
                 } else {
