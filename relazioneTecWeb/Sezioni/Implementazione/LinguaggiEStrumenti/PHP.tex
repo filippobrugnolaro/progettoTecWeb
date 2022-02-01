@@ -14,8 +14,8 @@ Tutti gli altri script hanno una procedura di esecuzione standardizzata:
 \begin{enumerate}
 \item Verificano i permessi dell'utente autenticato;
 \item Verificano la disponibilità di connessione al database;
-\item Richiedono le informazioni richieste (variano in base ai dati che deve rappresentare);
-\item Inseriscono, modificano, cancellano dei dati;
+\item Richiedono le informazioni al database, che variano in base ai dati da rappresentare;
+\item Inseriscono, modificano o cancellano dei dati;
 \end{enumerate}
 
 Per l'inserimento e la modifica dei dati viene effettuata prima una importante validazione sintattica e di dominio. La validazione sintattica mira a individuare potenziali errori che potrebbero compromettere l'esito della query al database. La validazione di dominio mira ad evitare di inserire nel database informazioni che non sono coerenti con la realtà (esempi: prenotare un corso e un ingresso nella stessa giornata, prenotare un ingresso anche se non ci sono più posti, ...).
