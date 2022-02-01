@@ -41,10 +41,10 @@
                                 </ul>
 
                                 <p>Oggetto:</p>
-                                <p id="oggetto">_obj_</p>
+                                <p id="oggettoMsg">_obj_</p>
 
                                 <p>Messaggio:</p>
-                                <p id="messaggio">_messaggio_</p>';
+                                <p id="messaggioMsg">_messaggio_</p>';
 
                 $record = $records[0];
                 unset($records);

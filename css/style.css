@@ -48,7 +48,7 @@ html {
 }
 
 .errSuggestion, .error {
-	color: #940000; /*PRESO DA VALIDATORE*/
+	color: #b40000; /*PRESO DA VALIDATORE*/
 }
 
 .defaultText {
@@ -349,7 +349,6 @@ form input[type=submit] {
 	margin-top: 0.5em;
 	padding: 0.5em;
 
-
 	cursor: pointer;
 }
 
@@ -394,9 +393,6 @@ form select {
 form textarea {
 	display: block;
 	width: 90%;
-
-	padding-left: 1.5em;
-	padding-right: 1.5em;
 }
 
 /* **************** CONTENT **************** */
@@ -740,7 +736,7 @@ form textarea {
 	padding: 0.5em 1em 0.5em 1em;
 }
 
-#oggetto, #messaggio{
+#oggettoMsg, #messaggioMsg{
 	font-weight: normal;
 	padding-left: 1.5em;
 }
@@ -777,10 +773,22 @@ form textarea {
 	display: flex;
 	flex-direction: column;
 	align-content: center;
+
+	padding: 1em;
+
 }
 
 #content404 p {
+	font-size: larger;
 	text-align: center;
+}
+
+#easterEgg {
+	color: var(--background);
+}
+
+#content404 img {
+	width: 100%;
 }
 
 
@@ -953,6 +961,12 @@ footer .imgValidCode {
 	/* TRACCIATI */
 	#contentTracciati article {
 		justify-content: space-between;
+	}
+
+	#contentTracciati img {
+		width: 40%;
+		height: 100%;
+		object-fit: scale-down;
 	}
 
 	.infoTracciato {
