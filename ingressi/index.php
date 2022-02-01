@@ -13,7 +13,7 @@
 
     if($conn->openDB()) {
         try {
-            $records = $conn->getQueryResult(dbAccess::QUERIES[17]);
+            $records = $conn->getQueryResult(dbAccess::QUERIES[24]);
 
             if($records !== null) {
                 foreach($records as $record) {

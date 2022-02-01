@@ -128,8 +128,8 @@ use PRENOTAZIONE\Reservation;
 
 			//20
 			array('SELECT data_disponibile.data AS data, posti,
-				(SELECT COUNT(*) FROM ingressi_entrata WHERE ingressi_entrata.data = data_disponibile.data
-				GROUP BY data_disponibile.data) AS occupati
+					(SELECT COUNT(*) FROM ingressi_entrata WHERE ingressi_entrata.data = data_disponibile.data
+					GROUP BY data_disponibile.data) AS occupati
 				FROM data_disponibile
 				WHERE data_disponibile.data >= CURDATE()
 				AND data NOT IN (SELECT data FROM ingressi_entrata WHERE utente = \'_cf_\')
@@ -158,6 +158,15 @@ use PRENOTAZIONE\Reservation;
 			WHERE ruolo = 1
 			ORDER BY cognome, nome',
 			'Errore durante il recupero delle informazioni sugli utenti promuovibli'),
+
+			//24
+			array('SELECT data_disponibile.data AS data, posti,
+					(SELECT COUNT(*) FROM ingressi_entrata WHERE ingressi_entrata.data = data_disponibile.data
+					GROUP BY data_disponibile.data) AS occupati
+				FROM data_disponibile
+				WHERE data_disponibile.data >= CURDATE()
+				ORDER BY data_disponibile.data',
+				'Errore durante il recupero delle informazioni sugli ingressi prenotati'),
 		);
 
 		private $conn;

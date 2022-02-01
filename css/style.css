@@ -622,6 +622,10 @@ form textarea {
 	flex-direction: column;
 }
 
+#formInfo ul {
+	width: 100%;
+}
+
 
 /* ************ AREA RISERVATA ************ */
 .navUser {
@@ -968,11 +972,6 @@ footer .imgValidCode {
 		width: 40%;
 		height: 100%;
 		object-fit: scale-down;
-	}
-
-
-	#contentTracciati > a:visited {
-		color: var(--lightText);
 	}
 
 	.infoTracciato {
